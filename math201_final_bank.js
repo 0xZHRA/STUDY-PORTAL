@@ -1,0 +1,1822 @@
+window.MATH201_BANK_VERSION = "20261126_final_v1";
+window.MATH201_BANK = [
+  {
+    "id": "FX_253_11",
+    "term": "253",
+    "number": 11,
+    "section": "13.7",
+    "topic": "Tangent Planes & Normal Lines",
+    "question": "If $ax + by + cz + 1 = 0$ is an equation for the tangent plane to the surface $z = (x - y)^2$ at the point $(1, 2, 1)$, then $a + b + c =$",
+    "choices": [
+      "$-4$",
+      "$-2$",
+      "$3$",
+      "$1$",
+      "$0$"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Recall the Tangent Plane Formula for an Explicit Surface $z = f(x, y)$:</strong><br>For a differentiable surface $z = f(x, y)$, the tangent plane at a point $(x_0, y_0, z_0)$ on the surface is given by the linear approximation formula:$$z - z_0 = f_x(x_0, y_0)(x - x_0) + f_y(x_0, y_0)(y - y_0)$$First confirm that $(1, 2, 1)$ lies on the surface $f(x, y) = (x - y)^2$: indeed, $f(1, 2) = (1 - 2)^2 = (-1)^2 = 1 = z_0$.<div class=\"step-divider\"></div><strong>Step 2 — Compute the First-Order Partial Derivatives at $(1, 2)$:</strong><br>Apply the chain rule to $f(x, y) = (x - y)^2$:$$f_x(x, y) = 2(x - y) \\cdot \\frac{\\partial}{\\partial x}(x - y) = 2(x - y)$$$$f_y(x, y) = 2(x - y) \\cdot \\frac{\\partial}{\\partial y}(x - y) = -2(x - y)$$Evaluating both partial derivatives at $(x_0, y_0) = (1, 2)$:$$f_x(1, 2) = 2(1 - 2) = -2, \\qquad f_y(1, 2) = -2(1 - 2) = 2$$<div class=\"step-divider\"></div><strong>Step 3 — Write the Tangent Plane in Standard Form $ax + by + cz + 1 = 0$:</strong><br>Substitute $x_0 = 1$, $y_0 = 2$, $z_0 = 1$, $f_x(1, 2) = -2$, and $f_y(1, 2) = 2$ into the tangent plane equation:$$z - 1 = -2(x - 1) + 2(y - 2)$$Expand the right-hand side and collect all terms on one side:$$z - 1 = -2x + 2 + 2y - 4 \\implies z - 1 = -2x + 2y - 2$$Moving every term to the left-hand side yields:$$2x - 2y + z + 1 = 0$$<div class=\"step-divider\"></div><strong>Step 4 — Match Coefficients and Compute $a + b + c$:</strong><br>The constant term is already $+1$, matching the target form $ax + by + cz + 1 = 0$ directly. Reading off the coefficients gives $a = 2$, $b = -2$, and $c = 1$. Therefore:$$a + b + c = 2 + (-2) + 1 = 1$$"
+  },
+  {
+    "id": "FX_253_12",
+    "term": "253",
+    "number": 12,
+    "section": "13.8",
+    "topic": "Extrema & Saddle Points",
+    "question": "The graph of the function $f(x, y) = 4 + x - y - x^2 y + x y^2$ has",
+    "choices": [
+      "two saddle points",
+      "two local maximum points",
+      "one local maximum point and one local minimum point",
+      "one saddle point and one local minimum point",
+      "one saddle point and one local maximum point"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Compute the First Partial Derivatives and Set Up the Critical-Point System:</strong><br>Since $f(x, y) = 4 + x - y - x^2 y + x y^2$ is a polynomial, it is differentiable everywhere, so every critical point satisfies $f_x(x, y) = 0$ and $f_y(x, y) = 0$:$$f_x(x, y) = 1 - 2xy + y^2 = 0 \\qquad (1)$$$$f_y(x, y) = -1 - x^2 + 2xy = 0 \\qquad (2)$$<div class=\"step-divider\"></div><strong>Step 2 — Solve the Nonlinear System for All Real Critical Points:</strong><br>Add equations $(1)$ and $(2)$ to eliminate the constant and cross term $-2xy + 2xy$:$$(1 - 2xy + y^2) + (-1 - x^2 + 2xy) = 0 \\implies y^2 - x^2 = 0 \\implies (y - x)(y + x) = 0$$This splits the solution into two cases:<ul><li><strong>Case 1 ($y = x$):</strong> Substitute $y = x$ into equation $(1)$:$$1 - 2x^2 + x^2 = 0 \\implies 1 - x^2 = 0 \\implies x = \\pm 1$$This produces two real critical points: $(1, 1)$ and $(-1, -1)$. (Both satisfy equation $(2)$ since $-1 - 1 + 2 = 0$.)</li><li><strong>Case 2 ($y = -x$):</strong> Substitute $y = -x$ into equation $(1)$:$$1 - 2x(-x) + (-x)^2 = 0 \\implies 1 + 3x^2 = 0$$Since $1 + 3x^2 \\ge 1 > 0$ for all real $x$, this case yields no real solutions.</li></ul>Hence the only critical points are $(1, 1)$ and $(-1, -1)$.<div class=\"step-divider\"></div><strong>Step 3 — Apply the Second Partials Test:</strong><br>Compute the second-order partial derivatives:$$f_{xx} = -2y, \\qquad f_{yy} = 2x, \\qquad f_{xy} = -2x + 2y$$Form the discriminant $D(x, y) = f_{xx} f_{yy} - (f_{xy})^2$:$$D(x, y) = (-2y)(2x) - (-2x + 2y)^2 = -4xy - 4(y - x)^2$$Evaluate $D$ at each critical point:<ul><li>At $(1, 1)$: $D(1, 1) = -4(1)(1) - 4(1 - 1)^2 = -4 < 0 \\implies$ <strong>saddle point</strong>.</li><li>At $(-1, -1)$: $D(-1, -1) = -4(-1)(-1) - 4(-1 - (-1))^2 = -4 < 0 \\implies$ <strong>saddle point</strong>.</li></ul><div class=\"step-divider\"></div><strong>Step 4 — Conclusion:</strong><br>Both critical points have a strictly negative discriminant $D < 0$, so the graph of $f$ has <strong>two saddle points</strong> and no local extrema."
+  },
+  {
+    "id": "FX_253_13",
+    "term": "253",
+    "number": 13,
+    "section": "13.10",
+    "topic": "Lagrange Multipliers",
+    "question": "If $M$ and $m$ are respectively the maximum and minimum values of $f(x, y) = xy + x + y + 1$ subject to the constraint $xy = 4$, then $M + m =$",
+    "choices": [
+      "$10$",
+      "$6$",
+      "$8$",
+      "$14$",
+      "$12$"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Set Up the Lagrange Multiplier System:</strong><br>Define the constraint function $g(x, y) = xy - 4 = 0$. Notice that $xy = 4$ guarantees $x \\neq 0$ and $y \\neq 0$, so $\\nabla g(x, y) = \\langle y, x \\rangle \\neq \\langle 0, 0 \\rangle$ everywhere along the constraint curve. Compute the gradients:$$\\nabla f(x, y) = \\langle y + 1, \\; x + 1 \\rangle, \\qquad \\nabla g(x, y) = \\langle y, \\; x \\rangle$$Setting $\\nabla f = \\lambda \\nabla g$ together with the constraint gives:$$\\begin{cases} y + 1 = \\lambda y & (1) \\\\ x + 1 = \\lambda x & (2) \\\\ xy = 4 & (3) \\end{cases}$$<div class=\"step-divider\"></div><strong>Step 2 — Eliminate $\\lambda$ to Relate $x$ and $y$:</strong><br>Since $x \\neq 0$ and $y \\neq 0$, divide equation $(1)$ by $y$ and equation $(2)$ by $x$:$$\\lambda = \\frac{y + 1}{y} = 1 + \\frac{1}{y}, \\qquad \\lambda = \\frac{x + 1}{x} = 1 + \\frac{1}{x}$$Equating the two expressions for $\\lambda$ gives:$$1 + \\frac{1}{y} = 1 + \\frac{1}{x} \\implies \\frac{1}{y} = \\frac{1}{x} \\implies y = x$$<div class=\"step-divider\"></div><strong>Step 3 — Solve for the Constrained Critical Points:</strong><br>Substitute $y = x$ into the constraint equation $(3)$:$$x^2 = 4 \\implies x = 2 \\quad \\text{or} \\quad x = -2$$Because $y = x$, the two constrained stationary points are $(2, 2)$ and $(-2, -2)$.<div class=\"step-divider\"></div><strong>Step 4 — Evaluate $f$ at Both Points and Compute $M + m$:</strong><br>Substitute each stationary point into $f(x, y) = xy + x + y + 1$:$$f(2, 2) = (2)(2) + 2 + 2 + 1 = 9$$$$f(-2, -2) = (-2)(-2) + (-2) + (-2) + 1 = 1$$Taking $M = 9$ and $m = 1$ as the larger and smaller stationary values on the constraint curve, their sum is:$$M + m = 9 + 1 = 10$$"
+  },
+  {
+    "id": "FX_253_14",
+    "term": "253",
+    "number": 14,
+    "section": "14.1",
+    "topic": "Iterated Integrals & Plane Area",
+    "question": "$\\displaystyle \\int_{0}^{1} \\int_{0}^{2} (2x - y^2)\\, dy\\, dx =$",
+    "choices": [
+      "$\\dfrac{8}{3}$",
+      "$-\\dfrac{2}{3}$",
+      "$\\dfrac{4}{3}$",
+      "$-\\dfrac{1}{3}$",
+      "$2$"
+    ],
+    "correct_answer": "B",
+    "solution": "<strong>Step 1 — Evaluate the Inner Integral with Respect to $y$:</strong><br>Hold $x$ constant while integrating $2x - y^2$ with respect to $y$ from $y = 0$ to $y = 2$:$$\\int_{0}^{2} (2x - y^2)\\, dy = \\left[ 2xy - \\frac{y^3}{3} \\right]_{y=0}^{y=2} = \\left( 2x(2) - \\frac{2^3}{3} \\right) - (0 - 0) = 4x - \\frac{8}{3}$$<div class=\"step-divider\"></div><strong>Step 2 — Evaluate the Outer Integral with Respect to $x$:</strong><br>Substitute the result of the inner integral into the outer integral from $x = 0$ to $x = 1$:$$\\int_{0}^{1} \\left( 4x - \\frac{8}{3} \\right) dx = \\left[ 2x^2 - \\frac{8}{3}x \\right]_{x=0}^{x=1} = \\left( 2(1)^2 - \\frac{8}{3}(1) \\right) - 0 = 2 - \\frac{8}{3}$$<div class=\"step-divider\"></div><strong>Step 3 — Simplify the Fraction:</strong><br>Express $2$ with denominator $3$ and subtract:$$2 - \\frac{8}{3} = \\frac{6}{3} - \\frac{8}{3} = -\\frac{2}{3}$$"
+  },
+  {
+    "id": "FX_253_15",
+    "term": "253",
+    "number": 15,
+    "section": "14.1",
+    "topic": "Iterated Integrals & Plane Area",
+    "question": "$\\displaystyle \\int_{0}^{2} \\int_{y^2}^{4} f(x, y)\\, dx\\, dy =$",
+    "choices": [
+      "$\\displaystyle \\int_{0}^{4} \\int_{0}^{x} f(x, y)\\, dy\\, dx$",
+      "$\\displaystyle \\int_{0}^{4} \\int_{0}^{\\sqrt{x}} f(x, y)\\, dy\\, dx$",
+      "$\\displaystyle \\int_{y^2}^{4} \\int_{0}^{2} f(x, y)\\, dy\\, dx$",
+      "$\\displaystyle \\int_{0}^{2} \\int_{0}^{\\sqrt{x}} f(x, y)\\, dy\\, dx$",
+      "$\\displaystyle \\int_{0}^{2} \\int_{0}^{x^2} f(x, y)\\, dy\\, dx$"
+    ],
+    "correct_answer": "B",
+    "solution": "<strong>Step 1 — Decode the Region of Integration from the Given Bounds:</strong><br>In the integral $\\int_{0}^{2} \\int_{y^2}^{4} f(x, y)\\, dx\\, dy$, the outer variable is $y$ and the inner variable is $x$. Thus the region $R$ is described horizontally (Type II) by:$$0 \\le y \\le 2, \\qquad y^2 \\le x \\le 4$$This means for each fixed height $y \\in [0, 2]$, a horizontal slice starts on the rightward-opening parabola $x = y^2$ on the left and ends on the vertical line $x = 4$ on the right.<div class=\"step-divider\"></div><strong>Step 2 — Determine the Boundary Intersections and $x$-Interval:</strong><br>At $y = 0$, the parabola gives $x = 0$, so the slice extends from $x = 0$ to $x = 4$. At $y = 2$, the parabola intersects the vertical line $x = 4$ at the point $(4, 2)$. Because $y \\ge 0$ throughout $R$, solving $x = y^2$ for $y$ selects the positive branch $y = \\sqrt{x}$. Overall, $x$ spans the constant interval:$$0 \\le x \\le 4$$<div class=\"step-divider\"></div><strong>Step 3 — Rewrite the Region Vertically ($dy\\,dx$ Order):</strong><br>Draw a vertical cross-section at an arbitrary $x \\in [0, 4]$:<ul><li>The slice enters $R$ at the bottom along the $x$-axis, where $y = 0$.</li><li>The slice exits $R$ at the top along the upper half of the parabola, where $y = \\sqrt{x}$.</li></ul>Hence $R$ is described vertically (Type I) by $0 \\le x \\le 4$ and $0 \\le y \\le \\sqrt{x}$.<div class=\"step-divider\"></div><strong>Step 4 — Write the Reversed Iterated Integral:</strong><br>Placing the constant $x$-bounds on the outside and the $y$-bounds on the inside gives:$$\\int_{0}^{2} \\int_{y^2}^{4} f(x, y)\\, dx\\, dy = \\int_{0}^{4} \\int_{0}^{\\sqrt{x}} f(x, y)\\, dy\\, dx$$"
+  },
+  {
+    "id": "FX_253_16",
+    "term": "253",
+    "number": 16,
+    "section": "14.2",
+    "topic": "Double Integrals, Volume & Average Value",
+    "question": "The average value of $f(x, y) = 4e^{y^2}$ over the plane region $R$ bounded by the curves $y = 2x$, $y = 4$, and $x = 0$ is equal to",
+    "choices": [
+      "$e^{16} - 1$",
+      "$\\dfrac{e^{16} - 1}{16}$",
+      "$\\dfrac{e^{16} - 1}{8}$",
+      "$\\dfrac{e^{16} - 1}{2}$",
+      "$\\dfrac{e^{16} - 1}{4}$"
+    ],
+    "correct_answer": "E",
+    "solution": "<strong>Step 1 — Sketch the Region $R$ and Compute Its Area:</strong><br>Find the pairwise intersections of the three bounding lines $y = 2x$, $y = 4$, and $x = 0$:<ul><li>$x = 0$ and $y = 2x$ meet at $(0, 0)$.</li><li>$x = 0$ and $y = 4$ meet at $(0, 4)$.</li><li>$y = 2x$ and $y = 4$ meet at $(2, 4)$.</li></ul>Thus $R$ is a right triangle with vertical leg length $4$ along the $y$-axis and horizontal leg length $2$ along $y = 4$. Its area is:$$\\text{Area}(R) = \\frac{1}{2} \\times \\text{base} \\times \\text{height} = \\frac{1}{2}(2)(4) = 4$$<div class=\"step-divider\"></div><strong>Step 2 — Choose the Optimal Order of Integration:</strong><br>Because $e^{y^2}$ has no elementary antiderivative with respect to $y$, we must integrate with respect to $x$ first ($dx\\,dy$). Describing $R$ horizontally:<ul><li>$y$ ranges from $0$ to $4$.</li><li>For a fixed $y \\in [0, 4]$, $x$ runs from the left boundary $x = 0$ to the right boundary $y = 2x \\iff x = \\frac{y}{2}$.</li></ul><div class=\"step-divider\"></div><strong>Step 3 — Set Up the Average Value Integral and Evaluate the Inner Integral:</strong><br>Using $f_{\\text{avg}} = \\frac{1}{\\text{Area}(R)} \\iint_R f(x, y)\\, dA$:$$f_{\\text{avg}} = \\frac{1}{4} \\int_{0}^{4} \\int_{0}^{y/2} 4 e^{y^2}\\, dx\\, dy = \\int_{0}^{4} \\int_{0}^{y/2} e^{y^2}\\, dx\\, dy$$Note that the factor of $4$ cancels cleanly with $\\frac{1}{4}$. Holding $y$ constant in the inner integral:$$\\int_{0}^{y/2} e^{y^2}\\, dx = \\left[ x e^{y^2} \\right]_{x=0}^{x=y/2} = \\frac{y}{2} e^{y^2}$$<div class=\"step-divider\"></div><strong>Step 4 — Evaluate the Outer Integral via $u$-Substitution:</strong><br>Now evaluate:$$f_{\\text{avg}} = \\int_{0}^{4} \\frac{y}{2} e^{y^2}\\, dy$$Let $u = y^2$, so $du = 2y\\, dy \\implies \\frac{y}{2}\\, dy = \\frac{1}{4}\\, du$. Transforming the limits: when $y = 0$, $u = 0$; when $y = 4$, $u = 16$. Therefore:$$f_{\\text{avg}} = \\frac{1}{4} \\int_{0}^{16} e^{u}\\, du = \\frac{1}{4} \\left[ e^{u} \\right]_{0}^{16} = \\frac{e^{16} - 1}{4}$$"
+  },
+  {
+    "id": "FX_253_17",
+    "term": "253",
+    "number": 17,
+    "section": "14.3",
+    "topic": "Double Integrals in Polar Coordinates",
+    "question": "If $R = \\{(x, y) : x^2 + y^2 \\le 4,\\; x \\le 0\\}$ then $\\displaystyle \\iint_R e^{-(x^2 + y^2)/2}\\, dA =$",
+    "choices": [
+      "$(1 - e^{-2})\\pi$",
+      "$(e^{-2} - 1)\\dfrac{\\pi}{2}$",
+      "$(1 - e^{-2})\\dfrac{\\pi}{2}$",
+      "$(2 - e^{-2})\\pi$",
+      "$(1 - e^{-2})\\dfrac{\\pi}{4}$"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Convert the Region $R$ to Polar Coordinates:</strong><br>The inequality $x^2 + y^2 \\le 4$ defines the closed disk centered at the origin of radius $2$, which in polar coordinates is $0 \\le r \\le 2$. The condition $x \\le 0$ restricts the region to the left half-plane (Quadrants II and III), where the polar angle $\\theta$ sweeps from the positive $y$-axis to the negative $y$-axis:$$\\frac{\\pi}{2} \\le \\theta \\le \\frac{3\\pi}{2}, \\qquad 0 \\le r \\le 2$$<div class=\"step-divider\"></div><strong>Step 2 — Transform the Integrand and Area Element:</strong><br>Using $x^2 + y^2 = r^2$ and the polar Jacobian $dA = r\\, dr\\, d\\theta$, the double integral becomes:$$\\iint_R e^{-(x^2 + y^2)/2}\\, dA = \\int_{\\pi/2}^{3\\pi/2} \\int_{0}^{2} e^{-r^2/2} \\cdot r\\, dr\\, d\\theta$$<div class=\"step-divider\"></div><strong>Step 3 — Evaluate the Radial Integral via $u$-Substitution:</strong><br>Compute the inner $r$-integral by setting $u = -\\frac{r^2}{2}$, so $du = -r\\, dr \\implies r\\, dr = -du$. When $r = 0$, $u = 0$; when $r = 2$, $u = -2$:$$\\int_{0}^{2} r e^{-r^2/2}\\, dr = \\int_{0}^{-2} (-e^{u})\\, du = \\int_{-2}^{0} e^{u}\\, du = \\left[ e^{u} \\right]_{-2}^{0} = e^{0} - e^{-2} = 1 - e^{-2}$$<div class=\"step-divider\"></div><strong>Step 4 — Evaluate the Angular Integral:</strong><br>Integrate the constant $1 - e^{-2}$ with respect to $\\theta$ over $\\left[\\frac{\\pi}{2}, \\frac{3\\pi}{2}\\right]$:$$\\int_{\\pi/2}^{3\\pi/2} (1 - e^{-2})\\, d\\theta = (1 - e^{-2}) \\left( \\frac{3\\pi}{2} - \\frac{\\pi}{2} \\right) = (1 - e^{-2})\\pi$$"
+  },
+  {
+    "id": "FX_253_18",
+    "term": "253",
+    "number": 18,
+    "section": "14.6",
+    "topic": "Triple Integrals in Rectangular Coordinates",
+    "question": "The volume of the solid in the first octant bounded by the planes $z = 1$ and $3x + 3y + z = 4$ is equal to",
+    "choices": [
+      "$\\dfrac{2}{3}$",
+      "$\\dfrac{1}{3}$",
+      "$1$",
+      "$\\dfrac{3}{4}$",
+      "$\\dfrac{1}{2}$"
+    ],
+    "correct_answer": "E",
+    "solution": "<strong>Step 1 — Identify the Top, Bottom, and Side Boundaries of the Solid:</strong><br>In the first octant, we have $x \\ge 0$, $y \\ge 0$, and $z \\ge 0$. The solid is bounded below by the horizontal plane $z = 1$ and above by the slanted plane $z = 4 - 3x - 3y$. To find the projection $R$ of the solid onto the $xy$-plane, intersect the two planes by setting $z = 1$ in $3x + 3y + z = 4$:$$3x + 3y + 1 = 4 \\implies 3x + 3y = 3 \\implies x + y = 1$$<div class=\"step-divider\"></div><strong>Step 2 — Describe the $xy$-Projection $R$ and Set Up the Triple Integral:</strong><br>In the first quadrant ($x \\ge 0$, $y \\ge 0$), the line $x + y = 1$ cuts off the right triangle $R$ with vertices $(0, 0)$, $(1, 0)$, and $(0, 1)$, described by:$$0 \\le x \\le 1, \\qquad 0 \\le y \\le 1 - x$$Over every point $(x, y) \\in R$, $z$ ranges from $1$ up to $4 - 3x - 3y$. Thus the volume is:$$V = \\int_{0}^{1} \\int_{0}^{1 - x} \\int_{1}^{4 - 3x - 3y} 1\\, dz\\, dy\\, dx$$<div class=\"step-divider\"></div><strong>Step 3 — Integrate with Respect to $z$ and Then $y$:</strong><br>First evaluate the innermost $z$-integral:$$\\int_{1}^{4 - 3x - 3y} dz = (4 - 3x - 3y) - 1 = 3 - 3x - 3y = 3(1 - x - y)$$Next integrate with respect to $y$ from $0$ to $1 - x$:$$\\int_{0}^{1 - x} 3(1 - x - y)\\, dy = 3 \\left[ (1 - x)y - \\frac{y^2}{2} \\right]_{y=0}^{y=1 - x} = 3 \\left( (1 - x)^2 - \\frac{(1 - x)^2}{2} \\right) = \\frac{3}{2}(1 - x)^2$$<div class=\"step-divider\"></div><strong>Step 4 — Evaluate the Outer $x$-Integral:</strong><br>Integrate $\\frac{3}{2}(1 - x)^2$ from $x = 0$ to $x = 1$:$$V = \\frac{3}{2} \\int_{0}^{1} (1 - x)^2\\, dx = \\frac{3}{2} \\left[ -\\frac{(1 - x)^3}{3} \\right]_{0}^{1} = \\frac{3}{2} \\left( 0 - \\left(-\\frac{1}{3}\\right) \\right) = \\frac{3}{2} \\cdot \\frac{1}{3} = \\frac{1}{2}$$(As a quick geometric check, the solid is a tetrahedron with mutually orthogonal legs of lengths $1$, $1$, and $3$ above $z = 1$, whose volume is $\\frac{1}{6}(1)(1)(3) = \\frac{1}{2}$.)"
+  },
+  {
+    "id": "FX_253_19",
+    "term": "253",
+    "number": 19,
+    "section": "14.6",
+    "topic": "Triple Integrals in Rectangular Coordinates",
+    "question": "The volume of the solid bounded above by the parabolic cylinder $z = 4 - x^2$ and below by the paraboloid $z = x^2 + 2y^2$ is equal to",
+    "choices": [
+      "$2\\sqrt{2}\\pi$",
+      "$\\dfrac{\\sqrt{2}\\pi}{4}$",
+      "$2\\pi$",
+      "$\\dfrac{3\\pi}{2}$",
+      "$4\\pi$"
+    ],
+    "correct_answer": "E",
+    "solution": "<strong>Step 1 — Find the Curve of Intersection and the $xy$-Projection $R$:</strong><br>The solid lies between the lower surface $z = x^2 + 2y^2$ and the upper surface $z = 4 - x^2$. Equate their $z$-values to find where they meet:$$x^2 + 2y^2 = 4 - x^2 \\implies 2x^2 + 2y^2 = 4 \\implies x^2 + y^2 = 2$$Inside the disk $R = \\{(x, y) : x^2 + y^2 \\le 2\\}$ of radius $\\sqrt{2}$, we have $4 - x^2 \\ge x^2 + 2y^2$.<div class=\"step-divider\"></div><strong>Step 2 — Set Up the Volume Integral and Integrate with Respect to $z$:</strong><br>Expressing the volume as a triple integral with $x^2 + 2y^2 \\le z \\le 4 - x^2$:$$V = \\iint_R \\left( \\int_{x^2 + 2y^2}^{4 - x^2} dz \\right) dA = \\iint_R \\left[ (4 - x^2) - (x^2 + 2y^2) \\right] dA = \\iint_R \\left( 4 - 2(x^2 + y^2) \\right) dA$$<div class=\"step-divider\"></div><strong>Step 3 — Switch to Polar Coordinates over the Circular Disk $R$:</strong><br>Both the region $R$ ($x^2 + y^2 \\le 2$) and the integrand $4 - 2(x^2 + y^2)$ depend only on $r^2 = x^2 + y^2$. In polar coordinates, $0 \\le r \\le \\sqrt{2}$, $0 \\le \\theta \\le 2\\pi$, and $dA = r\\, dr\\, d\\theta$:$$V = \\int_{0}^{2\\pi} \\int_{0}^{\\sqrt{2}} (4 - 2r^2) r\\, dr\\, d\\theta = \\int_{0}^{2\\pi} \\int_{0}^{\\sqrt{2}} (4r - 2r^3)\\, dr\\, d\\theta$$<div class=\"step-divider\"></div><strong>Step 4 — Evaluate the Iterated Integral:</strong><br>Compute the radial integral first:$$\\int_{0}^{\\sqrt{2}} (4r - 2r^3)\\, dr = \\left[ 2r^2 - \\frac{r^4}{2} \\right]_{0}^{\\sqrt{2}} = 2(2) - \\frac{4}{2} = 4 - 2 = 2$$Now integrate over $\\theta \\in [0, 2\\pi]$:$$V = \\int_{0}^{2\\pi} 2\\, d\\theta = 2(2\\pi) = 4\\pi$$"
+  },
+  {
+    "id": "FX_253_20",
+    "term": "253",
+    "number": 20,
+    "section": "14.7",
+    "topic": "Triple Integrals (Cyl. & Sph.)",
+    "question": "In cylindrical coordinates, $\\displaystyle \\int_{0}^{3} \\int_{-\\sqrt{9 - x^2}}^{\\sqrt{9 - x^2}} \\int_{x^2 + y^2}^{9} y\\, dz\\, dy\\, dx =$",
+    "choices": [
+      "$\\displaystyle \\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}} \\int_{0}^{3} \\int_{r^2}^{9} (r^2 \\sin\\theta)\\, dz\\, dr\\, d\\theta$",
+      "$\\displaystyle \\int_{0}^{\\frac{\\pi}{2}} \\int_{0}^{3} \\int_{r^2}^{9} (r \\sin\\theta)\\, dz\\, dr\\, d\\theta$",
+      "$\\displaystyle \\int_{0}^{\\pi} \\int_{0}^{3} \\int_{r}^{3} (r \\sin\\theta)\\, dz\\, dr\\, d\\theta$",
+      "$\\displaystyle \\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}} \\int_{-3}^{3} \\int_{r^2}^{9} (r^2 \\sin\\theta)\\, dz\\, dr\\, d\\theta$",
+      "$\\displaystyle \\int_{0}^{\\frac{\\pi}{2}} \\int_{0}^{3} \\int_{r^2}^{9} (r^2 \\sin\\theta)\\, dz\\, dr\\, d\\theta$"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Decode the $xy$-Projection $R$ in Polar Coordinates:</strong><br>Read the outer two limits of the rectangular triple integral:$$0 \\le x \\le 3, \\qquad -\\sqrt{9 - x^2} \\le y \\le \\sqrt{9 - x^2}$$Squaring $y = \\pm \\sqrt{9 - x^2}$ gives the circle $x^2 + y^2 = 9$ of radius $3$. Because $x$ is restricted to $[0, 3]$ while $y$ takes both negative and positive values, $R$ is the right half of the disk of radius $3$ (Quadrants IV and I). In polar coordinates:$$-\\frac{\\pi}{2} \\le \\theta \\le \\frac{\\pi}{2}, \\qquad 0 \\le r \\le 3$$<div class=\"step-divider\"></div><strong>Step 2 — Convert the Vertical $z$-Limits to Cylindrical Coordinates:</strong><br>The innermost limits are $x^2 + y^2 \\le z \\le 9$ (from the paraboloid $z = x^2 + y^2$ up to the plane $z = 9$). Using $x^2 + y^2 = r^2$, these become:$$r^2 \\le z \\le 9$$<div class=\"step-divider\"></div><strong>Step 3 — Transform the Integrand and Volume Element:</strong><br>In cylindrical coordinates, $y = r \\sin\\theta$ and the volume element carries the Jacobian factor $r$, so $dz\\, dy\\, dx = r\\, dz\\, dr\\, d\\theta$. Multiplying the integrand by the Jacobian gives:$$y\\, dz\\, dy\\, dx = (r \\sin\\theta)(r\\, dz\\, dr\\, d\\theta) = (r^2 \\sin\\theta)\\, dz\\, dr\\, d\\theta$$<div class=\"step-divider\"></div><strong>Step 4 — Assemble the Cylindrical Triple Integral:</strong><br>Combining the bounds for $\\theta$, $r$, and $z$ with the transformed integrand produces:$$\\int_{-\\frac{\\pi}{2}}^{\\frac{\\pi}{2}} \\int_{0}^{3} \\int_{r^2}^{9} (r^2 \\sin\\theta)\\, dz\\, dr\\, d\\theta$$"
+  },
+  {
+    "id": "FX_253_21",
+    "term": "253",
+    "number": 21,
+    "section": "14.7",
+    "topic": "Triple Integrals (Cyl. & Sph.)",
+    "question": "$\\displaystyle \\int_{-1}^{1} \\int_{0}^{\\sqrt{1 - x^2}} \\int_{0}^{\\sqrt{1 - x^2 - y^2}} (8x^2 + 8y^2 + 8z^2)^{2/3}\\, dz\\, dy\\, dx =$",
+    "choices": [
+      "$\\dfrac{\\pi}{13}$",
+      "$\\dfrac{\\pi}{6}$",
+      "$\\dfrac{5\\pi}{13}$",
+      "$\\dfrac{12\\pi}{13}$",
+      "$\\dfrac{3\\pi}{8}$"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Identify the 3D Region in Spherical Coordinates:</strong><br>Read the three inequalities defining the solid $Q$:$$-1 \\le x \\le 1, \\qquad 0 \\le y \\le \\sqrt{1 - x^2}, \\qquad 0 \\le z \\le \\sqrt{1 - x^2 - y^2}$$<ul><li>From $0 \\le z \\le \\sqrt{1 - x^2 - y^2}$, the solid lies inside the upper half ($z \\ge 0$) of the unit sphere $x^2 + y^2 + z^2 \\le 1$. Thus the spherical radius satisfies $0 \\le \\rho \\le 1$, and the polar angle from the positive $z$-axis satisfies $0 \\le \\phi \\le \\frac{\\pi}{2}$.</li><li>From $-1 \\le x \\le 1$ and $0 \\le y \\le \\sqrt{1 - x^2}$, the projection onto the $xy$-plane is the upper semicircle ($y \\ge 0$, Quadrants I and II), so the azimuthal angle satisfies $0 \\le \\theta \\le \\pi$.</li></ul><div class=\"step-divider\"></div><strong>Step 2 — Convert the Integrand and Volume Element to Spherical Coordinates:</strong><br>Use $x^2 + y^2 + z^2 = \\rho^2$ to simplify the integrand:$$(8x^2 + 8y^2 + 8z^2)^{2/3} = (8\\rho^2)^{2/3} = 8^{2/3} \\rho^{4/3} = (2^3)^{2/3} \\rho^{4/3} = 4\\rho^{4/3}$$Include the spherical volume element $dV = \\rho^2 \\sin\\phi\\, d\\rho\\, d\\phi\\, d\\theta$:$$(4\\rho^{4/3})(\\rho^2 \\sin\\phi)\\, d\\rho\\, d\\phi\\, d\\theta = 4\\rho^{10/3} \\sin\\phi\\, d\\rho\\, d\\phi\\, d\\theta$$<div class=\"step-divider\"></div><strong>Step 3 — Separate the Constant-Limit Iterated Integral:</strong><br>Because all limits are constants and the integrand factors into separate functions of $\\theta$, $\\phi$, and $\\rho$, we can evaluate the triple integral as a product of three single integrals:$$\\int_{0}^{\\pi} \\int_{0}^{\\pi/2} \\int_{0}^{1} 4\\rho^{10/3} \\sin\\phi\\, d\\rho\\, d\\phi\\, d\\theta = \\left( \\int_{0}^{\\pi} d\\theta \\right) \\left( \\int_{0}^{\\pi/2} \\sin\\phi\\, d\\phi \\right) \\left( \\int_{0}^{1} 4\\rho^{10/3}\\, d\\rho \\right)$$<div class=\"step-divider\"></div><strong>Step 4 — Evaluate Each Factor and Multiply:</strong><br>Compute each one-dimensional integral:<ul><li>$\\displaystyle \\int_{0}^{\\pi} d\\theta = \\pi$</li><li>$\\displaystyle \\int_{0}^{\\pi/2} \\sin\\phi\\, d\\phi = \\left[ -\\cos\\phi \\right]_{0}^{\\pi/2} = -0 - (-1) = 1$</li><li>$\\displaystyle \\int_{0}^{1} 4\\rho^{10/3}\\, d\\rho = 4 \\left[ \\frac{3}{13} \\rho^{13/3} \\right]_{0}^{1} = \\frac{12}{13}$</li></ul>Multiplying the three results together yields:$$\\pi \\cdot 1 \\cdot \\frac{12}{13} = \\frac{12\\pi}{13}$$"
+  },
+  {
+    "id": "FX_252_6",
+    "term": "252",
+    "number": 6,
+    "section": "14.6",
+    "topic": "Triple Integrals",
+    "question": "Evaluate the triple integral: $$\\int_{0}^{\\sqrt{\\ln 16}} \\int_{x}^{\\sqrt{\\ln 16}} \\int_{1}^{3} e^{y^2}\\,dz\\,dy\\,dx$$",
+    "choices": [
+      "$\\sqrt{\\ln 16} - 1$",
+      "$1 + 4\\ln 2$",
+      "$16$",
+      "$15$",
+      "$\\sqrt{\\ln 16} + 1$"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Evaluate the Innermost $z$-Integral:</strong><br>The integrand $e^{y^2}$ does not depend on $z$, so integrating with respect to $z$ from $1$ to $3$ simply multiplies by the length of the interval $(3 - 1) = 2$:$$\\int_{1}^{3} e^{y^2}\\,dz = e^{y^2}\\Big[z\\Big]_{1}^{3} = 2e^{y^2}$$This reduces the triple integral to the double integral:$$I = 2\\int_{0}^{\\sqrt{\\ln 16}} \\int_{x}^{\\sqrt{\\ln 16}} e^{y^2}\\,dy\\,dx$$<div class=\\\"step-divider\\\"></div><strong>Step 2 — Reverse the Order of Integration in the $xy$-Plane:</strong><br>Because $e^{y^2}$ has no elementary antiderivative with respect to $y$, we cannot integrate $dy$ first. Instead, examine the 2D region $R$ described by the bounds:$$0 \\le x \\le \\sqrt{\\ln 16}, \\qquad x \\le y \\le \\sqrt{\\ln 16}$$This is the upper-left right triangle in the square $[0, \\sqrt{\\ln 16}] \\times [0, \\sqrt{\\ln 16}]$ lying above the diagonal $y = x$ and below the horizontal line $y = \\sqrt{\\ln 16}$. Slicing horizontally ($dx$ first) gives:$$0 \\le y \\le \\sqrt{\\ln 16}, \\qquad 0 \\le x \\le y$$<div class=\\\"step-divider\\\"></div><strong>Step 3 — Evaluate the Reversed Iterated Integral:</strong><br>Integrating with respect to $x$ first introduces a factor of $y$, which makes $u$-substitution immediate:$$I = 2\\int_{0}^{\\sqrt{\\ln 16}} \\int_{0}^{y} e^{y^2}\\,dx\\,dy = 2\\int_{0}^{\\sqrt{\\ln 16}} y e^{y^2}\\,dy$$Let $u = y^2$, so $du = 2y\\,dy$. When $y = 0$, $u = 0$; when $y = \\sqrt{\\ln 16}$, $u = \\ln 16$:$$I = \\int_{0}^{\\ln 16} e^{u}\\,du = \\Big[e^{u}\\Big]_{0}^{\\ln 16} = e^{\\ln 16} - e^{0} = 16 - 1 = 15$$Thus, the exact value of the triple integral is $15$."
+  },
+  {
+    "id": "FX_252_9",
+    "term": "252",
+    "number": 9,
+    "section": "13.7",
+    "topic": "Tangent Planes & Normal Lines",
+    "question": "Let $P$ be the tangent plane to the surface $xyz = 10$ at the point $(1, 2, 5)$. Which of the following points is <strong>not</strong> on $P$?",
+    "choices": [
+      "$(0, 4, 5)$",
+      "$(0, 6, 0)$",
+      "$(3, 0, 0)$",
+      "$(1, 1, 1)$",
+      "$(0, 0, 15)$"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Find a Normal Vector via the Gradient:</strong><br>Write the surface as a level surface $F(x, y, z) = 10$ where $F(x, y, z) = xyz$. The gradient $\\nabla F(x_0, y_0, z_0)$ is always normal to the tangent plane at $(x_0, y_0, z_0)$:$$\\nabla F(x, y, z) = \\langle F_x, F_y, F_z \\rangle = \\langle yz, \\, xz, \\, xy \\rangle$$Evaluating at the point $(1, 2, 5)$:$$\\mathbf{n} = \\nabla F(1, 2, 5) = \\langle 2 \\cdot 5, \\, 1 \\cdot 5, \\, 1 \\cdot 2 \\rangle = \\langle 10, 5, 2 \\rangle$$<div class=\\\"step-divider\\\"></div><strong>Step 2 — Write the Equation of the Tangent Plane $P$:</strong><br>Using $\\mathbf{n} \\cdot \\langle x - 1, y - 2, z - 5 \\rangle = 0$:$$10(x - 1) + 5(y - 2) + 2(z - 5) = 0$$$$10x + 5y + 2z - (10 + 10 + 10) = 0 \\implies 10x + 5y + 2z = 30$$<div class=\\\"step-divider\\\"></div><strong>Step 3 — Test Each Candidate Point in $10x + 5y + 2z = 30$:</strong><br>• For $(0, 0, 15)$: $10(0) + 5(0) + 2(15) = 30$ (on $P$).<br>• For $(3, 0, 0)$: $10(3) + 5(0) + 2(0) = 30$ (on $P$).<br>• For $(0, 6, 0)$: $10(0) + 5(6) + 2(0) = 30$ (on $P$).<br>• For $(0, 4, 5)$: $10(0) + 5(4) + 2(5) = 20 + 10 = 30$ (on $P$).<br>• For $(1, 1, 1)$: $10(1) + 5(1) + 2(1) = 17 \\neq 30$ (<strong>not</strong> on $P$).<br>Therefore, the point that does not lie on the tangent plane $P$ is $(1, 1, 1)$."
+  },
+  {
+    "id": "FX_252_10",
+    "term": "252",
+    "number": 10,
+    "section": "13.8",
+    "topic": "Extrema of Functions of Two Variables",
+    "question": "The graph of the function $$f(x, y) = \\frac{1}{3}x^3 - x^2 + (x - 1)y^2$$ has",
+    "choices": [
+      "one saddle point, one relative maximum and two relative minima",
+      "two saddle points and two relative maxima",
+      "one saddle point, two relative maxima and one relative minimum",
+      "two saddle points, one relative maximum and one relative minimum",
+      "two relative maxima and two relative minima"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Find All Critical Points:</strong><br>Compute the first-order partial derivatives and set both equal to zero:$$f_x(x, y) = x^2 - 2x + y^2 = 0$$$$f_y(x, y) = 2(x - 1)y = 0$$The second equation factors cleanly, giving two cases:<br>• <strong>Case 1 ($y = 0$):</strong> Substitute into $f_x = 0$ to obtain $x^2 - 2x = x(x - 2) = 0$, so $x = 0$ or $x = 2$. This yields critical points $(0, 0)$ and $(2, 0)$.<br>• <strong>Case 2 ($x = 1$):</strong> Substitute into $f_x = 0$ to obtain $1 - 2 + y^2 = 0 \\implies y^2 = 1 \\implies y = \\pm 1$. This yields critical points $(1, 1)$ and $(1, -1)$.<br>In total, there are four critical points: $(0, 0)$, $(2, 0)$, $(1, 1)$, and $(1, -1)$.<div class=\\\"step-divider\\\"></div><strong>Step 2 — Apply the Second Partials Test:</strong><br>Compute the second partial derivatives and the discriminant $D(x, y) = f_{xx}f_{yy} - (f_{xy})^2$:$$f_{xx} = 2x - 2 = 2(x - 1), \\qquad f_{yy} = 2(x - 1), \\qquad f_{xy} = 2y$$$$D(x, y) = 4(x - 1)^2 - 4y^2$$<div class=\\\"step-divider\\\"></div><strong>Step 3 — Classify Every Critical Point:</strong><br>• At $(0, 0)$: $D(0, 0) = 4(-1)^2 - 0 = 4 > 0$ and $f_{xx}(0, 0) = -2 < 0 \\implies$ <strong>relative maximum</strong>.<br>• At $(2, 0)$: $D(2, 0) = 4(1)^2 - 0 = 4 > 0$ and $f_{xx}(2, 0) = 2 > 0 \\implies$ <strong>relative minimum</strong>.<br>• At $(1, 1)$: $D(1, 1) = 0 - 4(1)^2 = -4 < 0 \\implies$ <strong>saddle point</strong>.<br>• At $(1, -1)$: $D(1, -1) = 0 - 4(-1)^2 = -4 < 0 \\implies$ <strong>saddle point</strong>.<br>Thus, the graph has two saddle points, one relative maximum and one relative minimum."
+  },
+  {
+    "id": "FX_252_11",
+    "term": "252",
+    "number": 11,
+    "section": "13.8",
+    "topic": "Extrema of Functions of Two Variables",
+    "question": "Let $M$ and $m$ denote, respectively, the maximum and minimum values of $$f(x, y) = 2x^2 + 2y^2 - 4x - 4y$$ over the region $R$. The region $R$ is the triangular region in the $xy$-plane with vertices $(0, 0)$, $(2, 0)$, and $(2, 4)$, and it includes its boundary. The value of $M + m =$",
+    "choices": [
+      "$-4$",
+      "$12$",
+      "$16$",
+      "$14$",
+      "$-2$"
+    ],
+    "correct_answer": "B",
+    "solution": "<strong>Step 1 — Understand the Geometry and Check Interior Critical Points:</strong><br>Because $f(x, y)$ is continuous on the closed and bounded triangle $R$, the Extreme Value Theorem guarantees absolute extrema occur either at interior critical points or on the boundary of $R$. The triangle with vertices $(0, 0)$, $(2, 0)$, and $(2, 4)$ is bounded by $y = 0$, $x = 2$, and the hypotenuse $y = 2x$.<br>Find interior critical points by setting $\\nabla f = \\mathbf{0}$:$$f_x = 4x - 4 = 0 \\implies x = 1, \\qquad f_y = 4y - 4 = 0 \\implies y = 1$$Check whether $(1, 1)$ lies inside $R$: since $0 < 1 < 2$ and $0 < 1 < 2(1) = 2$, $(1, 1)$ is strictly in the interior! Evaluating $f$ gives:$$f(1, 1) = 2(1) + 2(1) - 4(1) - 4(1) = -4$$(Notice we can also complete the square: $f(x, y) = 2(x - 1)^2 + 2(y - 1)^2 - 4$, which immediately confirms $-4$ is the global minimum everywhere in $\\mathbb{R}^2$ and increases strictly with distance from $(1, 1)$.)<div class=\\\"step-divider\\\"></div><strong>Step 2 — Check All Three Boundary Edges and Vertices:</strong><br>• <strong>Bottom edge ($y = 0$, $0 \\le x \\le 2$):</strong> $g_1(x) = f(x, 0) = 2x^2 - 4x$. Setting $g_1'(x) = 4x - 4 = 0$ gives $x = 1$ with $f(1, 0) = -2$.<br>• <strong>Right edge ($x = 2$, $0 \\le y \\le 4$):</strong> $g_2(y) = f(2, y) = 2y^2 - 4y$. Setting $g_2'(y) = 4y - 4 = 0$ gives $y = 1$ with $f(2, 1) = -2$.<br>• <strong>Hypotenuse ($y = 2x$, $0 \\le x \\le 2$):</strong> $g_3(x) = f(x, 2x) = 2x^2 + 8x^2 - 4x - 8x = 10x^2 - 12x$. Setting $g_3'(x) = 20x - 12 = 0$ gives $x = \\frac{3}{5}$, $y = \\frac{6}{5}$, with $f\\left(\\frac{3}{5}, \\frac{6}{5}\\right) = -\\frac{18}{5} = -3.6$.<br>• <strong>Vertices:</strong> $f(0, 0) = 0$, $f(2, 0) = 0$, and $f(2, 4) = 2(4) + 2(16) - 8 - 16 = 16$.<div class=\\\"step-divider\\\"></div><strong>Step 3 — Compare Candidates and Compute $M + m$:</strong><br>Comparing all candidate values $\\{-4, -3.6, -2, 0, 16\\}$:$$M = 16 \\quad \\text{at } (2, 4), \\qquad m = -4 \\quad \\text{at } (1, 1)$$Therefore, $M + m = 16 + (-4) = 12$."
+  },
+  {
+    "id": "FX_252_12",
+    "term": "252",
+    "number": 12,
+    "section": "13.9",
+    "topic": "Applications of Extrema",
+    "question": "The minimum distance from the point $(-2, -3, 0)$ to the surface $$z = \\sqrt{3 - 2x - 2y}$$ is equal to",
+    "choices": [
+      "$5$",
+      "$\\sqrt{11}$",
+      "$3$",
+      "$\\sqrt{13}$",
+      "$9$"
+    ],
+    "correct_answer": "B",
+    "solution": "<strong>Step 1 — Minimize the Squared Distance Function:</strong><br>Because distance $d \\ge 0$ is minimized at the exact same point as squared distance $D = d^2$, working with $D$ eliminates the outer square root. For any point $(x, y, z)$ on the surface $z = \\sqrt{3 - 2x - 2y}$ (defined where $3 - 2x - 2y \\ge 0$), we have $z^2 = 3 - 2x - 2y$, so the squared distance to $(-2, -3, 0)$ is:$$D(x, y) = (x + 2)^2 + (y + 3)^2 + (z - 0)^2 = (x + 2)^2 + (y + 3)^2 + (3 - 2x - 2y)$$<div class=\\\"step-divider\\\"></div><strong>Step 2 — Find and Verify the Critical Point:</strong><br>Set the first partial derivatives of $D(x, y)$ equal to zero:$$D_x = 2(x + 2) - 2 = 2x + 2 = 0 \\implies x = -1$$$$D_y = 2(y + 3) - 2 = 2y + 4 = 0 \\implies y = -2$$Check that $(-1, -2)$ lies in the domain $3 - 2x - 2y \\ge 0$: $3 - 2(-1) - 2(-2) = 3 + 2 + 4 = 9 > 0$, giving $z = \\sqrt{9} = 3$.<br>Moreover, expanding and completing the square shows:$$D(x, y) = (x^2 + 2x + 1) + (y^2 + 4y + 4) + 11 = (x + 1)^2 + (y + 2)^2 + 11$$which confirms $D(-1, -2) = 11$ is the strict global minimum over the entire domain.<div class=\\\"step-divider\\\"></div><strong>Step 3 — Take the Square Root to Recover Distance:</strong><br>Since the minimum squared distance is $D_{\\min} = 11$, the minimum distance is:$$d_{\\min} = \\sqrt{11}$$Thus, the minimum distance from $(-2, -3, 0)$ to the surface is $\\sqrt{11}$."
+  },
+  {
+    "id": "FX_252_13",
+    "term": "252",
+    "number": 13,
+    "section": "13.10",
+    "topic": "Lagrange Multipliers",
+    "question": "The minimum value of $f(x, y, z) = xyz + 228$ on the sphere $x^2 + y^2 + z^2 = 27$ is equal to",
+    "choices": [
+      "$208$",
+      "$102$",
+      "$202$",
+      "$101$",
+      "$201$"
+    ],
+    "correct_answer": "E",
+    "solution": "<strong>Step 1 — Set Up the Lagrange Multiplier System:</strong><br>We wish to minimize $f(x, y, z) = xyz + 228$ subject to the compact spherical constraint $g(x, y, z) = x^2 + y^2 + z^2 = 27$. By the method of Lagrange multipliers, $\\nabla f = \\lambda \\nabla g$:$$yz = 2\\lambda x \\quad (1), \\qquad xz = 2\\lambda y \\quad (2), \\qquad xy = 2\\lambda z \\quad (3)$$along with $x^2 + y^2 + z^2 = 27$.<div class=\\\"step-divider\\\"></div><strong>Step 2 — Solve by Case Analysis:</strong><br>• <strong>Case 1 (At least one coordinate is $0$):</strong> Then $xyz = 0$, so $f(x, y, z) = 228$.<br>• <strong>Case 2 ($x \\neq 0$, $y \\neq 0$, $z \\neq 0$):</strong> Multiply equations $(1)$, $(2)$, and $(3)$ by $x$, $y$, and $z$ respectively so all left-hand sides equal $xyz$:$$xyz = 2\\lambda x^2 = 2\\lambda y^2 = 2\\lambda z^2$$Since $xyz \\neq 0$, we must have $\\lambda \\neq 0$, which allows dividing by $2\\lambda$ to get:$$x^2 = y^2 = z^2$$Substituting into the sphere constraint $x^2 + y^2 + z^2 = 27$:$$3x^2 = 27 \\implies x^2 = y^2 = z^2 = 9 \\implies |x| = |y| = |z| = 3$$<div class=\\\"step-divider\\\"></div><strong>Step 3 — Identify the Minimum Value:</strong><br>At the eight symmetric points $(\\pm 3, \\pm 3, \\pm 3)$, the product $xyz$ takes values $+27$ or $-27$. To minimize $f(x, y, z) = xyz + 228$, choose an odd number of negative signs (for instance, $(-3, 3, 3)$ or $(-3, -3, -3)$), giving $xyz = -27$:$$f_{\\min} = -27 + 228 = 201$$Comparing with $228$ from Case 1, the absolute minimum value on the sphere is $201$."
+  },
+  {
+    "id": "FX_252_14",
+    "term": "252",
+    "number": 14,
+    "section": "14.1",
+    "topic": "Iterated Integrals & Area",
+    "question": "Evaluate the iterated integral: $$\\int_{1}^{e} \\int_{0}^{y} \\frac{4}{x^2 + y^2}\\,dx\\,dy$$",
+    "choices": [
+      "$\\pi \\ln 4$",
+      "$\\pi$",
+      "$e \\ln \\pi$",
+      "$e^2 \\pi$",
+      "$e \\ln 4$"
+    ],
+    "correct_answer": "B",
+    "solution": "<strong>Step 1 — Evaluate the Inner Integral with Respect to $x$:</strong><br>Holding $y > 0$ constant (since $y \\in [1, e]$), recall the standard inverse tangent antiderivative:$$\\int \\frac{dx}{x^2 + a^2} = \\frac{1}{a}\\arctan\\left(\\frac{x}{a}\\right) + C$$Applying this with $a = y$:$$\\int_{0}^{y} \\frac{4}{x^2 + y^2}\\,dx = \\frac{4}{y}\\left[\\arctan\\left(\\frac{x}{y}\\right)\\right]_{x=0}^{x=y} = \\frac{4}{y}\\big(\\arctan(1) - \\arctan(0)\\big)$$Since $\\arctan(1) = \\frac{\\pi}{4}$ and $\\arctan(0) = 0$, this simplifies cleanly to:$$\\frac{4}{y} \\cdot \\frac{\\pi}{4} = \\frac{\\pi}{y}$$<div class=\\\"step-divider\\\"></div><strong>Step 2 — Evaluate the Outer Integral with Respect to $y$:</strong><br>Now integrate $\\frac{\\pi}{y}$ from $y = 1$ to $y = e$:$$\\int_{1}^{e} \\frac{\\pi}{y}\\,dy = \\pi\\Big[\\ln y\\Big]_{1}^{e} = \\pi(\\ln e - \\ln 1) = \\pi(1 - 0) = \\pi$$Thus, the exact value of the iterated integral is $\\pi$."
+  },
+  {
+    "id": "FX_252_15",
+    "term": "252",
+    "number": 15,
+    "section": "14.1",
+    "topic": "Iterated Integrals & Area",
+    "question": "Reversing the order of integration, $$\\int_{-1}^{0} \\int_{4x}^{-4x^2} f(x, y)\\,dy\\,dx =$$",
+    "choices": [
+      "$\\displaystyle\\int_{-4}^{0} \\int_{\\sqrt{y/4}}^{-y/4} f(x, y)\\,dx\\,dy$",
+      "$\\displaystyle\\int_{-4}^{0} \\int_{-\\sqrt{-y/4}}^{y/4} f(x, y)\\,dx\\,dy$",
+      "$\\displaystyle\\int_{-4}^{0} \\int_{-\\sqrt{y/4}}^{y/4} f(x, y)\\,dx\\,dy$",
+      "$\\displaystyle\\int_{-4}^{0} \\int_{-\\sqrt{-y/4}}^{-y/4} f(x, y)\\,dx\\,dy$",
+      "$\\displaystyle\\int_{-4}^{0} \\int_{\\sqrt{-y/4}}^{y/4} f(x, y)\\,dx\\,dy$"
+    ],
+    "correct_answer": "B",
+    "solution": "<strong>Step 1 — Sketch and Analyze the Region of Integration:</strong><br>The given Type I bounds are:$$-1 \\le x \\le 0, \\qquad 4x \\le y \\le -4x^2$$Notice this entire region lies in Quadrant III ($x \\le 0$ and $y \\le 0$). The bottom boundary is the line $y = 4x$, and the top boundary is the downward-opening parabola $y = -4x^2$.<br>Find their intersection points by solving $4x = -4x^2 \\implies 4x(x + 1) = 0$, which gives $(0, 0)$ and $(-1, -4)$. Therefore, the vertical span of $y$ is $-4 \\le y \\le 0$.<div class=\\\"step-divider\\\"></div><strong>Step 2 — Rewrite Each Boundary Curve as $x$ in Terms of $y$:</strong><br>To reverse to $dx\\,dy$, slice the region horizontally at a fixed $y \\in [-4, 0]$ (remembering that $y \\le 0$ and $x \\le 0$):<br>• <strong>Parabola $y = -4x^2$:</strong> Solving for $x$ gives $x^2 = -y/4$ (note $-y/4 \\ge 0$ because $y \\le 0$). Since the region lies in Quadrant III where $x \\le 0$, we must take the negative square root:$$x = -\\sqrt{-y/4}$$• <strong>Line $y = 4x$:</strong> Solving for $x$ gives:$$x = y/4$$<div class=\\\"step-divider\\\"></div><strong>Step 3 — Determine Left vs. Right Bounds:</strong><br>Test a horizontal slice at $y = -1$: on the parabola, $x = -\\sqrt{1/4} = -\\frac{1}{2}$; on the line, $x = -\\frac{1}{4}$. Because $-\\frac{1}{2} < -\\frac{1}{4}$, the parabola $x = -\\sqrt{-y/4}$ is on the <strong>left</strong> (lower bound) and the line $x = y/4$ is on the <strong>right</strong> (upper bound).<br>Hence, the reversed integral is $\\displaystyle\\int_{-4}^{0} \\int_{-\\sqrt{-y/4}}^{y/4} f(x, y)\\,dx\\,dy$."
+  },
+  {
+    "id": "FX_252_16",
+    "term": "252",
+    "number": 16,
+    "section": "14.2",
+    "topic": "Double Integrals & Volume",
+    "question": "The volume of the solid lying in the first octant and bounded by the graphs of $z = 8(1 - xy)$, $y = x$, $y = 1$ is equal to",
+    "choices": [
+      "$8$",
+      "$\\frac{1}{3}$",
+      "$3$",
+      "$0$",
+      "$\\frac{1}{8}$"
+    ],
+    "correct_answer": "C",
+    "solution": "<strong>Step 1 — Identify the Base Region $R$ in the First Quadrant:</strong><br>In the first octant ($x \\ge 0$, $y \\ge 0$, $z \\ge 0$), the coordinate plane $x = 0$ together with the lines $y = x$ and $y = 1$ enclose a bounded triangle $R$ in the $xy$-plane with vertices $(0, 0)$, $(0, 1)$, and $(1, 1)$:<br>$$0 \\le y \\le 1, \\qquad 0 \\le x \\le y$$Check that the ceiling surface stays non-negative over $R$: since $0 \\le x \\le 1$ and $0 \\le y \\le 1$, we have $xy \\le 1$, so $z = 8(1 - xy) \\ge 0$ everywhere on $R$.<div class=\\\"step-divider\\\"></div><strong>Step 2 — Set Up and Evaluate the Double Integral for Volume:</strong><br>The volume under $z = 8(1 - xy)$ above $R$ is:$$V = \\iint_{R} 8(1 - xy)\\,dA = 8\\int_{0}^{1} \\int_{0}^{y} (1 - xy)\\,dx\\,dy$$Evaluate the inner integral with respect to $x$:$$\\int_{0}^{y} (1 - xy)\\,dx = \\left[x - \\frac{1}{2}x^2 y\\right]_{x=0}^{x=y} = y - \\frac{1}{2}y^3$$<div class=\\\"step-divider\\\"></div><strong>Step 3 — Evaluate the Outer $y$-Integral:</strong><br>$$V = 8\\int_{0}^{1} \\left(y - \\frac{1}{2}y^3\\right)dy = 8\\left[\\frac{y^2}{2} - \\frac{y^4}{8}\\right]_{0}^{1} = 8\\left(\\frac{1}{2} - \\frac{1}{8}\\right) = 8 \\cdot \\frac{3}{8} = 3$$Thus, the exact volume of the solid is $3$."
+  },
+  {
+    "id": "FX_252_17",
+    "term": "252",
+    "number": 17,
+    "section": "14.2",
+    "topic": "Double Integrals & Volume",
+    "question": "Let $f(x, y) = ax^2 + ay^2$, where $a > 0$ and $R = \\{(x, y) : 0 \\le x \\le a,\\; 0 \\le y \\le a\\}$. If the average value of $f$ over $R$ is $18$, then $a =$",
+    "choices": [
+      "$18$",
+      "$3$",
+      "$9$",
+      "$2$",
+      "$6$"
+    ],
+    "correct_answer": "B",
+    "solution": "<strong>Step 1 — Recall the Average Value Formula:</strong><br>The average value of a function $f(x, y)$ over a planar region $R$ is:$$f_{\\text{avg}} = \\frac{1}{\\text{Area}(R)} \\iint_{R} f(x, y)\\,dA$$Here $R = [0, a] \\times [0, a]$ is a square of side length $a$, so $\\text{Area}(R) = a^2$.<div class=\\\"step-divider\\\"></div><strong>Step 2 — Compute the Double Integral:</strong><br>$$\\iint_{R} (ax^2 + ay^2)\\,dA = \\int_{0}^{a} \\int_{0}^{a} (ax^2 + ay^2)\\,dx\\,dy$$Inner integral with respect to $x$:$$\\int_{0}^{a} (ax^2 + ay^2)\\,dx = \\left[\\frac{a x^3}{3} + a x y^2\\right]_{x=0}^{x=a} = \\frac{a^4}{3} + a^2 y^2$$Outer integral with respect to $y$:$$\\int_{0}^{a} \\left(\\frac{a^4}{3} + a^2 y^2\\right)dy = \\left[\\frac{a^4}{3}y + \\frac{a^2 y^3}{3}\\right]_{0}^{a} = \\frac{a^5}{3} + \\frac{a^5}{3} = \\frac{2a^5}{3}$$<div class=\\\"step-divider\\\"></div><strong>Step 3 — Solve for $a$:</strong><br>Divide by $\\text{Area}(R) = a^2$ and set equal to $18$:$$f_{\\text{avg}} = \\frac{1}{a^2} \\cdot \\frac{2a^5}{3} = \\frac{2}{3}a^3 = 18$$$$a^3 = 18 \\cdot \\frac{3}{2} = 27 \\implies a = 3$$Thus, the value of $a$ is $3$."
+  },
+  {
+    "id": "FX_252_18",
+    "term": "252",
+    "number": 18,
+    "section": "14.3",
+    "topic": "Polar Double Integrals",
+    "question": "If $R = \\{(x, y) : x^2 + y^2 \\le 9,\\; x \\ge 0,\\; y \\ge 0\\}$, then $$\\iint_{R} (x + y)\\,dA =$$",
+    "choices": [
+      "$54$",
+      "$18$",
+      "$27$",
+      "$15$",
+      "$9$"
+    ],
+    "correct_answer": "B",
+    "solution": "<strong>Step 1 — Convert the Quarter-Disk Region to Polar Coordinates:</strong><br>Because $R$ is the first-quadrant portion of the disk of radius $3$ centered at the origin, polar coordinates turn the curved circular boundary into constant limits:$$0 \\le r \\le 3, \\qquad 0 \\le \\theta \\le \\frac{\\pi}{2}$$Substitute $x = r\\cos\\theta$, $y = r\\sin\\theta$, and the area element $dA = r\\,dr\\,d\\theta$:$$\\iint_{R} (x + y)\\,dA = \\int_{0}^{\\pi/2} \\int_{0}^{3} \\big(r\\cos\\theta + r\\sin\\theta\\big)\\,r\\,dr\\,d\\theta = \\int_{0}^{\\pi/2} \\int_{0}^{3} r^2(\\cos\\theta + \\sin\\theta)\\,dr\\,d\\theta$$<div class=\\\"step-divider\\\"></div><strong>Step 2 — Separate and Evaluate the $r$ and $\\theta$ Integrals:</strong><br>Since the limits are constant and the integrand factors into a function of $r$ times a function of $\\theta$, we can evaluate each integral independently:$$\\left(\\int_{0}^{3} r^2\\,dr\\right)\\left(\\int_{0}^{\\pi/2} (\\cos\\theta + \\sin\\theta)\\,d\\theta\\right)$$• Radial part: $\\displaystyle\\int_{0}^{3} r^2\\,dr = \\left[\\frac{r^3}{3}\\right]_{0}^{3} = \\frac{27}{3} = 9$.<br>• Angular part: $\\displaystyle\\int_{0}^{\\pi/2} (\\cos\\theta + \\sin\\theta)\\,d\\theta = \\Big[\\sin\\theta - \\cos\\theta\\Big]_{0}^{\\pi/2} = (1 - 0) - (0 - 1) = 2$.<div class=\\\"step-divider\\\"></div><strong>Step 3 — Multiply the Results:</strong><br>$$\\iint_{R} (x + y)\\,dA = 9 \\cdot 2 = 18$$Thus, the exact value of the double integral is $18$."
+  },
+  {
+    "id": "FX_252_19",
+    "term": "252",
+    "number": 19,
+    "section": "14.7",
+    "topic": "Triple Integrals in Cylindrical & Spherical Coordinates",
+    "question": "The volume of the solid bounded above by $z = 12 - x^2 - y^2$ and below by $z = 2x^2 + 2y^2$ is equal to",
+    "choices": [
+      "$36\\pi$",
+      "$12\\pi$",
+      "$6\\pi$",
+      "$24\\pi$",
+      "$2\\pi$"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Choose Cylindrical Coordinates and Find the Intersection Curve:</strong><br>Both bounding surfaces are circular paraboloids symmetric about the $z$-axis, so cylindrical coordinates ($x^2 + y^2 = r^2$, $dV = r\\,dz\\,dr\\,d\\theta$) are ideal.<br>Rewrite the surfaces as $z = 12 - r^2$ (top) and $z = 2r^2$ (bottom). Find where they intersect:$$12 - r^2 = 2r^2 \\implies 3r^2 = 12 \\implies r^2 = 4 \\implies r = 2$$So the solid projects onto the disk $r \\le 2$ in the $xy$-plane, giving the cylindrical bounds:$$0 \\le \\theta \\le 2\\pi, \\qquad 0 \\le r \\le 2, \\qquad 2r^2 \\le z \\le 12 - r^2$$<div class=\\\"step-divider\\\"></div><strong>Step 2 — Set Up and Evaluate the Triple Integral:</strong><br>$$V = \\int_{0}^{2\\pi} \\int_{0}^{2} \\int_{2r^2}^{12 - r^2} r\\,dz\\,dr\\,d\\theta$$Integrate with respect to $z$ first:$$\\int_{2r^2}^{12 - r^2} r\\,dz = r\\big((12 - r^2) - 2r^2\\big) = 12r - 3r^3$$<div class=\\\"step-divider\\\"></div><strong>Step 3 — Integrate with Respect to $r$ and $\\theta$:</strong><br>$$V = \\left(\\int_{0}^{2\\pi} d\\theta\\right)\\left(\\int_{0}^{2} (12r - 3r^3)\\,dr\\right) = 2\\pi\\left[6r^2 - \\frac{3}{4}r^4\\right]_{0}^{2}$$$$V = 2\\pi\\left(6(4) - \\frac{3}{4}(16)\\right) = 2\\pi(24 - 12) = 24\\pi$$Thus, the exact volume of the solid is $24\\pi$."
+  },
+  {
+    "id": "FX_252_20",
+    "term": "252",
+    "number": 20,
+    "section": "14.7",
+    "topic": "Triple Integrals in Cylindrical & Spherical Coordinates",
+    "question": "If $D = \\{(x, y, z) : 0 \\le z \\le \\sqrt{9 - x^2 - y^2},\\; 0 \\le y \\le \\sqrt{9 - x^2},\\; 0 \\le x \\le 3\\}$, then $$\\iiint_{D} (x^2 + y^2 + z^2)\\,dz\\,dy\\,dx =$$",
+    "choices": [
+      "$\\displaystyle\\int_{0}^{\\pi/2} \\int_{0}^{\\pi/2} \\int_{0}^{3} \\rho^4 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$",
+      "$\\displaystyle\\int_{0}^{\\pi/2} \\int_{0}^{\\pi/2} \\int_{0}^{3} \\rho^2 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$",
+      "$\\displaystyle\\int_{0}^{\\pi} \\int_{0}^{\\pi} \\int_{0}^{3} \\rho^4 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$",
+      "$\\displaystyle\\int_{0}^{\\pi/2} \\int_{0}^{\\pi} \\int_{0}^{3} \\rho^2 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$",
+      "$\\displaystyle\\int_{0}^{\\pi} \\int_{0}^{\\pi/2} \\int_{0}^{3} \\rho^4 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Identify the 3D Solid $D$ Geometrically:</strong><br>Decode the rectangular inequalities from outside to inside:<br>• $0 \\le x \\le 3$ and $0 \\le y \\le \\sqrt{9 - x^2}$ describe the first-quadrant quarter-disk of radius $3$ in the $xy$-plane ($x \\ge 0$, $y \\ge 0$, $x^2 + y^2 \\le 9$).<br>• $0 \\le z \\le \\sqrt{9 - x^2 - y^2}$ extends vertically from the $xy$-plane ($z = 0$) up to the upper hemisphere $x^2 + y^2 + z^2 = 9$.<br>Together, $D$ is the <strong>first-octant</strong> eighth of the solid ball of radius $3$ centered at the origin.<div class=\\\"step-divider\\\"></div><strong>Step 2 — Translate the Region into Spherical Bounds:</strong><br>• Distance from origin: $0 \\le \\rho \\le 3$.<br>• Polar angle from the positive $z$-axis ($z \\ge 0$): $0 \\le \\phi \\le \\frac{\\pi}{2}$.<br>• Azimuthal angle in Quadrant I ($x \\ge 0$, $y \\ge 0$): $0 \\le \\theta \\le \\frac{\\pi}{2}$.<div class=\\\"step-divider\\\"></div><strong>Step 3 — Transform the Integrand and Volume Element:</strong><br>In spherical coordinates, $x^2 + y^2 + z^2 = \\rho^2$, and the volume element is $dV = \\rho^2 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$. Multiplying them gives:$$(x^2 + y^2 + z^2)\\,dV = \\rho^2 \\cdot (\\rho^2 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta) = \\rho^4 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$$Combining the bounds and integrand yields $\\displaystyle\\int_{0}^{\\pi/2} \\int_{0}^{\\pi/2} \\int_{0}^{3} \\rho^4 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$."
+  },
+  {
+    "id": "FX_251_1",
+    "term": "251",
+    "number": 1,
+    "section": "14.6",
+    "topic": "Triple Integrals",
+    "question": "Evaluate the triple integral: $$\\int_{0}^{\\sqrt{\\pi/2}} \\int_{x}^{\\sqrt{\\pi/2}} \\int_{2}^{12} \\sin(y^2)\\,dz\\,dy\\,dx$$",
+    "choices": [
+      "$12 - \\sqrt{\\frac{\\pi}{2}}$",
+      "$10$",
+      "$5$",
+      "$2\\sqrt{\\frac{\\pi}{2}} + 12$",
+      "$2\\sqrt{\\pi} + 12$"
+    ],
+    "correct_answer": "C",
+    "solution": "<strong>Step 1 — Evaluate the Innermost $z$-Integral:</strong><br>Since $\\sin(y^2)$ is independent of $z$, integrating from $z = 2$ to $z = 12$ yields a constant factor of $12 - 2 = 10$:$$\\int_{2}^{12} \\sin(y^2)\\,dz = 10\\sin(y^2)$$Thus the integral reduces to:$$I = 10\\int_{0}^{\\sqrt{\\pi/2}} \\int_{x}^{\\sqrt{\\pi/2}} \\sin(y^2)\\,dy\\,dx$$<div class=\\\"step-divider\\\"></div><strong>Step 2 — Reverse the Order of Integration in the $xy$-Plane:</strong><br>Because $\\sin(y^2)$ has no elementary antiderivative in $y$, we switch from $dy\\,dx$ to $dx\\,dy$. The region $R$ is given by:$$0 \\le x \\le \\sqrt{\\pi/2}, \\qquad x \\le y \\le \\sqrt{\\pi/2}$$This is the triangle bounded by $x = 0$, $y = x$, and $y = \\sqrt{\\pi/2}$, which is equivalently written as $0 \\le x \\le y \\le \\sqrt{\\pi/2}$. Slicing horizontally gives:$$0 \\le y \\le \\sqrt{\\pi/2}, \\qquad 0 \\le x \\le y$$<div class=\\\"step-divider\\\"></div><strong>Step 3 — Integrate $dx$ First and Use $u$-Substitution:</strong><br>$$I = 10\\int_{0}^{\\sqrt{\\pi/2}} \\int_{0}^{y} \\sin(y^2)\\,dx\\,dy = 10\\int_{0}^{\\sqrt{\\pi/2}} y\\sin(y^2)\\,dy$$Let $u = y^2$, so $du = 2y\\,dy \\implies y\\,dy = \\frac{1}{2}\\,du$. As $y$ goes from $0$ to $\\sqrt{\\pi/2}$, $u$ goes from $0$ to $\\frac{\\pi}{2}$:$$I = 10 \\cdot \\frac{1}{2}\\int_{0}^{\\pi/2} \\sin(u)\\,du = 5\\Big[-\\cos(u)\\Big]_{0}^{\\pi/2} = 5\\left(-\\cos\\frac{\\pi}{2} + \\cos 0\\right) = 5(0 + 1) = 5$$Thus, the exact value of the triple integral is $5$."
+  },
+  {
+    "id": "FX_251_2",
+    "term": "251",
+    "number": 2,
+    "section": "13.10",
+    "topic": "Lagrange Multipliers",
+    "question": "The maximum value of $f(x, y) = 6xy$, where $x > 0$ and $y > 0$, subject to the constraint $$\\frac{x^2}{4} + \\frac{y^2}{9} = 1$$ is equal to",
+    "choices": [
+      "$18$",
+      "$36$",
+      "$44$",
+      "$47$",
+      "$26$"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Form the Lagrange Multiplier Equations:</strong><br>Let $g(x, y) = \\frac{x^2}{4} + \\frac{y^2}{9} = 1$. At an extremum in the first quadrant ($x > 0$, $y > 0$), $\\nabla f = \\lambda \\nabla g$:$$6y = \\lambda \\cdot \\frac{x}{2} \\quad (1), \\qquad 6x = \\lambda \\cdot \\frac{2y}{9} \\quad (2)$$<div class=\\\"step-divider\\\"></div><strong>Step 2 — Eliminate $\\lambda$ and Solve Using the Constraint:</strong><br>Since $x > 0$ and $y > 0$, solve both equations for $\\lambda$ and equate them:$$\\lambda = \\frac{12y}{x} = \\frac{27x}{y} \\implies 12y^2 = 27x^2 \\implies 4y^2 = 9x^2 \\implies \\frac{y^2}{9} = \\frac{x^2}{4}$$Substitute $\\frac{y^2}{9} = \\frac{x^2}{4}$ into the ellipse constraint $\\frac{x^2}{4} + \\frac{y^2}{9} = 1$:$$\\frac{x^2}{4} + \\frac{x^2}{4} = 1 \\implies \\frac{x^2}{4} = \\frac{1}{2} \\implies x^2 = 2 \\implies x = \\sqrt{2}$$Similarly, $\\frac{y^2}{9} = \\frac{1}{2} \\implies y^2 = \\frac{9}{2} \\implies y = \\frac{3}{\\sqrt{2}}$ (taking positive roots since $x > 0, y > 0$).<div class=\\\"step-divider\\\"></div><strong>Step 3 — Compute the Maximum Value:</strong><br>Since $f(x, y) = 6xy$ approaches $0$ as $(x, y)$ approaches either axis intercept $(2, 0)$ or $(0, 3)$, this unique interior critical point gives the absolute maximum:$$f\\left(\\sqrt{2}, \\frac{3}{\\sqrt{2}}\\right) = 6(\\sqrt{2})\\left(\\frac{3}{\\sqrt{2}}\\right) = 18$$Thus, the maximum value of $f(x, y)$ subject to the constraint is $18$."
+  },
+  {
+    "id": "FX_251_5",
+    "term": "251",
+    "number": 5,
+    "section": "11.7",
+    "topic": "Cylindrical & Spherical Coordinates",
+    "question": "The point with rectangular coordinates $(x, y, z) = (\\sqrt{3}, 1, 2\\sqrt{3})$ is represented in spherical coordinates by $(\\rho, \\theta, \\phi) =$",
+    "choices": [
+      "$\\left(4, \\frac{\\pi}{6}, \\frac{\\pi}{3}\\right)$",
+      "$\\left(4, \\frac{\\pi}{6}, \\frac{7\\pi}{6}\\right)$",
+      "$\\left(4, \\frac{7\\pi}{6}, \\frac{\\pi}{6}\\right)$",
+      "$\\left(4, \\frac{\\pi}{6}, \\frac{\\pi}{6}\\right)$",
+      "$\\left(4, \\frac{\\pi}{3}, \\frac{\\pi}{6}\\right)$"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Compute the Radial Distance $\\rho$:</strong><br>Use $\\rho = \\sqrt{x^2 + y^2 + z^2}$ with $(x, y, z) = (\\sqrt{3}, 1, 2\\sqrt{3})$:$$\\rho = \\sqrt{(\\sqrt{3})^2 + 1^2 + (2\\sqrt{3})^2} = \\sqrt{3 + 1 + 12} = \\sqrt{16} = 4$$<div class=\\\"step-divider\\\"></div><strong>Step 2 — Compute the Azimuthal Angle $\\theta$:</strong><br>From $\\tan\\theta = \\frac{y}{x} = \\frac{1}{\\sqrt{3}}$ and noting that $x = \\sqrt{3} > 0$, $y = 1 > 0$ places the projection $(x, y)$ in Quadrant I:$$\\theta = \\arctan\\left(\\frac{1}{\\sqrt{3}}\\right) = \\frac{\\pi}{6}$$<div class=\\\"step-divider\\\"></div><strong>Step 3 — Compute the Polar Angle $\\phi$:</strong><br>By definition, $0 \\le \\phi \\le \\pi$ and $\\cos\\phi = \\frac{z}{\\rho}$:$$\\cos\\phi = \\frac{2\\sqrt{3}}{4} = \\frac{\\sqrt{3}}{2} \\implies \\phi = \\frac{\\pi}{6}$$Combining all three spherical coordinates gives $(\\rho, \\theta, \\phi) = \\left(4, \\frac{\\pi}{6}, \\frac{\\pi}{6}\\right)$."
+  },
+  {
+    "id": "FX_251_9",
+    "term": "251",
+    "number": 9,
+    "section": "13.7",
+    "topic": "Tangent Planes & Normal Lines",
+    "question": "If $(a, b, c)$, with $a < 0$, is the point on the surface $4x^2 + 2y^2 - z^2 = 100$ where the tangent plane is parallel to the $yz$-plane, then $a^2 + b^2 + c^2 =$",
+    "choices": [
+      "$225$",
+      "$16$",
+      "$256$",
+      "$25$",
+      "$100$"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Relate Parallel Tangent Planes to the Gradient Vector:</strong><br>Define $F(x, y, z) = 4x^2 + 2y^2 - z^2 - 100$. At any point $(a, b, c)$ on the surface $F = 0$, the normal vector to the tangent plane is:$$\\nabla F(a, b, c) = \\langle 8a, \\, 4b, \\, -2c \\rangle$$The $yz$-plane has equation $x = 0$, whose normal vector is $\\mathbf{i} = \\langle 1, 0, 0 \\rangle$. Two planes are parallel if and only if their normal vectors are parallel, meaning the $y$- and $z$-components of $\\nabla F(a, b, c)$ must vanish (while the $x$-component is nonzero):$$4b = 0 \\implies b = 0, \\qquad -2c = 0 \\implies c = 0$$<div class=\\\"step-divider\\\"></div><strong>Step 2 — Use the Surface Equation to Find $a$:</strong><br>Substitute $b = 0$ and $c = 0$ into $4a^2 + 2b^2 - c^2 = 100$:$$4a^2 = 100 \\implies a^2 = 25 \\implies a = \\pm 5$$Since we are given $a < 0$, we select $a = -5$, giving the point $(-5, 0, 0)$.<div class=\\\"step-divider\\\"></div><strong>Step 3 — Compute $a^2 + b^2 + c^2$:</strong><br>$$a^2 + b^2 + c^2 = (-5)^2 + 0^2 + 0^2 = 25$$Thus, the value of $a^2 + b^2 + c^2$ is $25$."
+  },
+  {
+    "id": "FX_251_10",
+    "term": "251",
+    "number": 10,
+    "section": "13.8",
+    "topic": "Extrema of Functions of Two Variables",
+    "question": "The graph of the function $$f(x, y) = 4x - 4xy + 2y^2 - 4y + x^3 + 10$$ has",
+    "choices": [
+      "no saddle point",
+      "one saddle point and one relative maximum",
+      "one saddle point and two relative maxima",
+      "one saddle point and one relative minimum",
+      "one relative minimum and one relative maximum"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Find All Critical Points:</strong><br>Compute the first partial derivatives and set both equal to zero:$$f_x(x, y) = 4 - 4y + 3x^2 = 0$$$$f_y(x, y) = -4x + 4y - 4 = 0$$From $f_y = 0$, divide by $4$ to express $y$ cleanly in terms of $x$:$$y = x + 1$$Substitute $y = x + 1$ into $f_x = 0$:$$4 - 4(x + 1) + 3x^2 = 0 \\implies 3x^2 - 4x = 0 \\implies x(3x - 4) = 0$$This gives $x = 0$ (so $y = 1$) and $x = \\frac{4}{3}$ (so $y = \\frac{7}{3}$). Thus there are exactly two critical points: $(0, 1)$ and $\\left(\\frac{4}{3}, \\frac{7}{3}\\right)$.<div class=\\\"step-divider\\\"></div><strong>Step 2 — Compute the Second Partials Discriminant $D(x, y)$:</strong><br>$$f_{xx} = 6x, \\qquad f_{yy} = 4, \\qquad f_{xy} = -4$$$$D(x, y) = f_{xx}f_{yy} - (f_{xy})^2 = (6x)(4) - (-4)^2 = 24x - 16$$<div class=\\\"step-divider\\\"></div><strong>Step 3 — Classify Both Critical Points:</strong><br>• At $(0, 1)$: $D(0, 1) = 24(0) - 16 = -16 < 0 \\implies$ <strong>saddle point</strong>.<br>• At $\\left(\\frac{4}{3}, \\frac{7}{3}\\right)$: $D\\left(\\frac{4}{3}, \\frac{7}{3}\\right) = 24\\left(\\frac{4}{3}\\right) - 16 = 32 - 16 = 16 > 0$ and $f_{xx}\\left(\\frac{4}{3}, \\frac{7}{3}\\right) = 8 > 0 \\implies$ <strong>relative minimum</strong>.<br>Thus, the graph has one saddle point and one relative minimum."
+  },
+  {
+    "id": "FX_251_11",
+    "term": "251",
+    "number": 11,
+    "section": "13.8",
+    "topic": "Extrema of Functions of Two Variables",
+    "question": "The maximum value of $f(x, y) = 4x^2 + 4y^2 - 8y$ over the region in the $xy$-plane bounded by the graphs of $y = 2x^2$ and $y = 2$ is equal to",
+    "choices": [
+      "$4$",
+      "$2$",
+      "$-2$",
+      "$28$",
+      "$0$"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Describe the Closed Bounded Region $R$ and Check the Interior:</strong><br>The parabola $y = 2x^2$ and horizontal line $y = 2$ intersect where $2x^2 = 2 \\implies x = \\pm 1$, giving corner points $(-1, 2)$ and $(1, 2)$. The closed region $R$ is $-1 \\le x \\le 1$, $2x^2 \\le y \\le 2$.<br>Find interior critical points from $\\nabla f = \\mathbf{0}$:$$f_x = 8x = 0 \\implies x = 0, \\qquad f_y = 8y - 8 = 0 \\implies y = 1$$Since $2(0)^2 = 0 < 1 < 2$, the point $(0, 1)$ lies inside $R$, with $f(0, 1) = 0 + 4 - 8 = -4$.<div class=\\\"step-divider\\\"></div><strong>Step 2 — Optimize $f$ Along Both Boundary Curves:</strong><br>• <strong>Top segment ($y = 2$, $-1 \\le x \\le 1$):</strong>$$g_1(x) = f(x, 2) = 4x^2 + 4(4) - 8(2) = 4x^2$$Critical point $x = 0$ gives $f(0, 2) = 0$; endpoints $x = \\pm 1$ give $f(\\pm 1, 2) = 4$.<br>• <strong>Parabolic arc ($y = 2x^2$, $-1 \\le x \\le 1$):</strong>$$g_2(x) = f(x, 2x^2) = 4x^2 + 4(4x^4) - 8(2x^2) = 16x^4 - 12x^2$$Setting $g_2'(x) = 64x^3 - 24x = 8x(8x^2 - 3) = 0$ gives $x = 0$ and $x = \\pm\\sqrt{3/8} \\in (-1, 1)$:<br>$$g_2(0) = 0, \\qquad g_2\\left(\\pm\\sqrt{\\frac{3}{8}}\\right) = 16\\left(\\frac{9}{64}\\right) - 12\\left(\\frac{3}{8}\\right) = \\frac{9}{4} - \\frac{9}{2} = -\\frac{9}{4}, \\qquad g_2(\\pm 1) = 4$$<div class=\\\"step-divider\\\"></div><strong>Step 3 — Compare All Candidate Values:</strong><br>Among all candidate values $\\{-4, -\\frac{9}{4}, 0, 4\\}$, the largest value is $4$ (attained at the corners $(-1, 2)$ and $(1, 2)$).<br>Thus, the absolute maximum value of $f$ over the region is $4$."
+  },
+  {
+    "id": "FX_251_12",
+    "term": "251",
+    "number": 12,
+    "section": "13.9",
+    "topic": "Applications of Extrema",
+    "question": "If $(a, b, c)$ is the point on the paraboloid $z = x^2 + y^2$ that is closest to the point $(3, 3, 1)$, then $a^3 + b^3 + c^3 =$",
+    "choices": [
+      "$64 + 4\\sqrt{2}$",
+      "$64 - 4\\sqrt{2}$",
+      "$6$",
+      "$10$",
+      "$0$"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Minimize Squared Distance on the Paraboloid:</strong><br>Any point on the paraboloid has coordinates $(x, y, x^2 + y^2)$. Minimizing distance to $(3, 3, 1)$ is equivalent to minimizing the squared distance function:$$D(x, y) = (x - 3)^2 + (y - 3)^2 + (x^2 + y^2 - 1)^2$$Take first partial derivatives and set them to zero:$$D_x = 2(x - 3) + 4x(x^2 + y^2 - 1) = 0 \\quad (1)$$$$D_y = 2(y - 3) + 4y(x^2 + y^2 - 1) = 0 \\quad (2)$$<div class=\\\"step-divider\\\"></div><strong>Step 2 — Exploit Symmetry by Subtracting $(1) - (2)$:</strong><br>Subtracting equation $(2)$ from equation $(1)$ eliminates the $-6$ constants and factors cleanly:$$2(x - y) + 4(x - y)(x^2 + y^2 - 1) = 0$$$$2(x - y)\\big(2x^2 + 2y^2 - 1\\big) = 0$$Check both factors:<br>• If $2x^2 + 2y^2 - 1 = 0$, then $x^2 + y^2 = \\frac{1}{2}$, so $x^2 + y^2 - 1 = -\\frac{1}{2}$. Substituting into $(1)$ gives $2(x - 3) + 4x\\left(-\\frac{1}{2}\\right) = -6 \\neq 0$, a contradiction.<br>• Therefore, we must have $x = y$. Substituting $y = x$ into $(1)$:$$2(x - 3) + 4x(2x^2 - 1) = 0 \\implies 8x^3 - 2x - 6 = 0 \\implies 4x^3 - x - 3 = 0$$Notice $x = 1$ is a root ($4 - 1 - 3 = 0$). Factoring out $(x - 1)$:$$(x - 1)(4x^2 + 4x + 3) = 0$$The quadratic factor has discriminant $\\Delta = 4^2 - 4(4)(3) = -32 < 0$, so it has no real roots. Hence $x = 1$ is the unique real critical point.<div class=\\\"step-divider\\\"></div><strong>Step 3 — Find $(a, b, c)$ and Evaluate $a^3 + b^3 + c^3$:</strong><br>With $a = 1$ and $b = 1$, we get $c = a^2 + b^2 = 1^2 + 1^2 = 2$. Because $D(x, y) \\to \\infty$ as $x^2 + y^2 \\to \\infty$, this unique critical point $(1, 1, 2)$ is the global closest point.<br>$$a^3 + b^3 + c^3 = 1^3 + 1^3 + 2^3 = 1 + 1 + 8 = 10$$Thus, the value of $a^3 + b^3 + c^3$ is $10$."
+  },
+  {
+    "id": "FX_251_13",
+    "term": "251",
+    "number": 13,
+    "section": "13.10",
+    "topic": "Lagrange Multipliers",
+    "question": "The highest point on the curve of intersection of the cone $x^2 + y^2 - z^2 = 0$ and the plane $x + 4z = 9$ is",
+    "choices": [
+      "$(3, -3, 3)$",
+      "$(1, \\sqrt{3}, 2)$",
+      "$(-4, 0, 4)$",
+      "$(5, 2, 1)$",
+      "$(-3, 0, 3)$"
+    ],
+    "correct_answer": "E",
+    "solution": "<strong>Step 1 — Set Up Lagrange Multipliers with Two Constraints:</strong><br>Finding the highest point means maximizing $f(x, y, z) = z$ subject to two constraints:$$g(x, y, z) = x^2 + y^2 - z^2 = 0, \\qquad h(x, y, z) = x + 4z = 9$$By Lagrange multipliers with two constraints, $\\nabla f = \\lambda \\nabla g + \\mu \\nabla h$:$$\\langle 0, 0, 1 \\rangle = \\lambda \\langle 2x, 2y, -2z \\rangle + \\mu \\langle 1, 0, 4 \\rangle$$Comparing components gives:$$2\\lambda x + \\mu = 0 \\quad (1), \\qquad 2\\lambda y = 0 \\quad (2), \\qquad -2\\lambda z + 4\\mu = 1 \\quad (3)$$<div class=\\\"step-divider\\\"></div><strong>Step 2 — Solve the System:</strong><br>From equation $(2)$, either $\\lambda = 0$ or $y = 0$.<br>• If $\\lambda = 0$, then $(1)$ forces $\\mu = 0$, which makes $(3)$ read $0 = 1$ (impossible).<br>• Therefore $\\lambda \\neq 0$, which forces $y = 0$.<br>Substituting $y = 0$ into the cone equation $x^2 + y^2 - z^2 = 0$ gives $x^2 = z^2$, so $x = z$ or $x = -z$.<div class=\\\"step-divider\\\"></div><strong>Step 3 — Compare Candidate Points on the Plane $x + 4z = 9$:</strong><br>• If $x = z$: $z + 4z = 9 \\implies 5z = 9 \\implies z = \\frac{9}{5}$, yielding $\\left(\\frac{9}{5}, 0, \\frac{9}{5}\\right)$ (the lowest point on the intersection ellipse).<br>• If $x = -z$: $-z + 4z = 9 \\implies 3z = 9 \\implies z = 3$ and $x = -3$, yielding $(-3, 0, 3)$.<br>Since $3 > \\frac{9}{5}$, the highest point on the curve of intersection is $(-3, 0, 3)$."
+  },
+  {
+    "id": "FX_251_14",
+    "term": "251",
+    "number": 14,
+    "section": "14.1",
+    "topic": "Iterated Integrals & Area",
+    "question": "If $R = \\left\\{(x, y) : 0 \\le x \\le \\frac{\\pi}{4},\\; 0 \\le y \\le 1\\right\\}$, then $$\\iint_{R} 4\\sqrt{2}\\,y\\cos x\\,dA =$$",
+    "choices": [
+      "$4\\sqrt{2}$",
+      "$\\frac{\\sqrt{2}}{2}$",
+      "$4$",
+      "$2$",
+      "$\\frac{\\sqrt{2}}{4}$"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Factor the Separable Double Integral Over a Rectangle:</strong><br>Because $R = \\left[0, \\frac{\\pi}{4}\\right] \\times [0, 1]$ is a rectangle with constant bounds and the integrand $4\\sqrt{2}\\,y\\cos x$ is a product of a function of $x$ and a function of $y$, Fubini's Theorem lets us separate the double integral into a product of two single integrals:$$\\iint_{R} 4\\sqrt{2}\\,y\\cos x\\,dA = 4\\sqrt{2}\\left(\\int_{0}^{\\pi/4} \\cos x\\,dx\\right)\\left(\\int_{0}^{1} y\\,dy\\right)$$<div class=\\\"step-divider\\\"></div><strong>Step 2 — Evaluate Each Single Integral and Multiply:</strong><br>• $\\displaystyle\\int_{0}^{\\pi/4} \\cos x\\,dx = \\Big[\\sin x\\Big]_{0}^{\\pi/4} = \\sin\\frac{\\pi}{4} - \\sin 0 = \\frac{\\sqrt{2}}{2}$.<br>• $\\displaystyle\\int_{0}^{1} y\\,dy = \\left[\\frac{y^2}{2}\\right]_{0}^{1} = \\frac{1}{2}$.<br>Multiplying all factors together:$$4\\sqrt{2} \\cdot \\frac{\\sqrt{2}}{2} \\cdot \\frac{1}{2} = \\frac{4 \\cdot 2}{4} = 2$$Thus, the exact value of the double integral is $2$."
+  },
+  {
+    "id": "FX_251_15",
+    "term": "251",
+    "number": 15,
+    "section": "14.1",
+    "topic": "Iterated Integrals & Area",
+    "question": "Reversing the order of integration, $$\\int_{0}^{4} \\int_{0}^{y} f(x, y)\\,dx\\,dy =$$",
+    "choices": [
+      "$\\displaystyle\\int_{0}^{4} \\int_{4x}^{0} f(x, y)\\,dy\\,dx$",
+      "$\\displaystyle\\int_{0}^{4} \\int_{x}^{4} f(x, y)\\,dy\\,dx$",
+      "$\\displaystyle\\int_{0}^{4} \\int_{4}^{x} f(x, y)\\,dy\\,dx$",
+      "$\\displaystyle\\int_{-4}^{0} \\int_{x}^{4} f(x, y)\\,dy\\,dx$",
+      "$\\displaystyle\\int_{-4}^{0} \\int_{0}^{x} f(x, y)\\,dy\\,dx$"
+    ],
+    "correct_answer": "B",
+    "solution": "<strong>Step 1 — Sketch the Region from the Given Type II Bounds:</strong><br>The given iterated integral uses horizontal slices ($dx\\,dy$) over the region:$$0 \\le y \\le 4, \\qquad 0 \\le x \\le y$$This inequality chain $0 \\le x \\le y \\le 4$ describes the right triangle in Quadrant I with vertices $(0, 0)$, $(0, 4)$, and $(4, 4)$, bounded on the left by $x = 0$, on the top by $y = 4$, and on the lower-right diagonal by $y = x$.<div class=\\\"step-divider\\\"></div><strong>Step 2 — Rewrite Using Vertical Slices ($dy\\,dx$):</strong><br>Across the entire triangle, $x$ ranges from $0$ to $4$. For each fixed $x \\in [0, 4]$, a vertical line enters the triangle at the diagonal $y = x$ and exits at the top horizontal boundary $y = 4$:$$0 \\le x \\le 4, \\qquad x \\le y \\le 4$$Therefore, the reversed iterated integral is $\\displaystyle\\int_{0}^{4} \\int_{x}^{4} f(x, y)\\,dy\\,dx$."
+  },
+  {
+    "id": "FX_251_16",
+    "term": "251",
+    "number": 16,
+    "section": "14.2",
+    "topic": "Double Integrals & Volume",
+    "question": "The volume of the solid region bounded by the graphs of the equations $$z = 4 - x^2 - y^2 \\quad \\text{and} \\quad z = 4 - 2x$$ is equal to",
+    "choices": [
+      "$\\displaystyle\\int_{-2}^{2} \\int_{0}^{\\sqrt{1 - (x + 1)^2}} (2x - x^2 - y^2)\\,dy\\,dx$",
+      "$\\displaystyle\\int_{0}^{2} \\int_{-\\sqrt{1 - (x + 1)^2}}^{\\sqrt{1 - (x + 1)^2}} (x^2 + y^2 + 2x)\\,dy\\,dx$",
+      "$-\\displaystyle\\int_{-2}^{0} \\int_{-\\sqrt{1 - (x - 1)^2}}^{\\sqrt{1 - (x - 1)^2}} (x^2 + y^2 + 2x)\\,dy\\,dx$",
+      "$\\displaystyle\\int_{0}^{2} \\int_{-\\sqrt{1 + (x - 1)^2}}^{\\sqrt{1 + (x - 1)^2}} (2x - x^2 - y^2)\\,dy\\,dx$",
+      "$\\displaystyle\\int_{0}^{2} \\int_{-\\sqrt{1 - (x - 1)^2}}^{\\sqrt{1 - (x - 1)^2}} (2x - x^2 - y^2)\\,dy\\,dx$"
+    ],
+    "correct_answer": "E",
+    "solution": "<strong>Step 1 — Find the Projection Region $R$ by Intersecting the Surfaces:</strong><br>Set the two $z$-expressions equal to locate the boundary of the solid's shadow $R$ in the $xy$-plane:$$4 - x^2 - y^2 = 4 - 2x \\implies x^2 - 2x + y^2 = 0$$Complete the square in $x$ by adding $1$ to both sides:$$(x - 1)^2 + y^2 = 1$$This is the disk of radius $1$ centered at $(1, 0)$. In Type I ($dy\\,dx$) form, $x$ runs from $1 - 1 = 0$ to $1 + 1 = 2$, and for each $x \\in [0, 2]$, $y$ runs between the lower and upper semicircles:$$0 \\le x \\le 2, \\qquad -\\sqrt{1 - (x - 1)^2} \\le y \\le \\sqrt{1 - (x - 1)^2}$$<div class=\\\"step-divider\\\"></div><strong>Step 2 — Determine Which Surface Lies on Top:</strong><br>Test the center of the disk $(x, y) = (1, 0)$:<br>• Paraboloid: $z_{\\text{top}} = 4 - 1^2 - 0^2 = 3$.<br>• Plane: $z_{\\text{bottom}} = 4 - 2(1) = 2$.<br>Since $3 > 2$, the paraboloid lies above the plane everywhere inside $R$. Subtracting bottom from top gives the height integrand:$$z_{\\text{top}} - z_{\\text{bottom}} = (4 - x^2 - y^2) - (4 - 2x) = 2x - x^2 - y^2$$<div class=\\\"step-divider\\\"></div><strong>Step 3 — Assemble the Volume Double Integral:</strong><br>$$V = \\int_{0}^{2} \\int_{-\\sqrt{1 - (x - 1)^2}}^{\\sqrt{1 - (x - 1)^2}} (2x - x^2 - y^2)\\,dy\\,dx$$Thus, the exact volume integral is $\\displaystyle\\int_{0}^{2} \\int_{-\\sqrt{1 - (x - 1)^2}}^{\\sqrt{1 - (x - 1)^2}} (2x - x^2 - y^2)\\,dy\\,dx$."
+  },
+  {
+    "id": "FX_251_17",
+    "term": "251",
+    "number": 17,
+    "section": "14.2",
+    "topic": "Double Integrals & Volume",
+    "question": "Let $f(x, y) = 2xy$ and $R$ be the triangular region with vertices $(0, 0)$, $(-3, -1)$, and $(0, -1)$. Then the average value of $f$ over $R$ is equal to",
+    "choices": [
+      "$\\frac{27}{8}$",
+      "$\\frac{9}{4}$",
+      "$\\frac{2}{3}$",
+      "$\\frac{8}{3}$",
+      "$\\frac{3}{2}$"
+    ],
+    "correct_answer": "E",
+    "solution": "<strong>Step 1 — Compute the Area and Describe the Triangle $R$:</strong><br>The triangle with vertices $(0, 0)$, $(-3, -1)$, and $(0, -1)$ is a right triangle in Quadrant III with horizontal base of length $3$ (along $y = -1$) and vertical height of length $1$ (along $x = 0$):$$\\text{Area}(R) = \\frac{1}{2}(3)(1) = \\frac{3}{2}$$The slanted edge connecting $(0, 0)$ and $(-3, -1)$ lies on the line $x = 3y$. Slicing horizontally ($dx\\,dy$) avoids fractions:$$-1 \\le y \\le 0, \\qquad 3y \\le x \\le 0$$(Check at $y = -1$: $-3 \\le x \\le 0$, matching the base.)<div class=\\\"step-divider\\\"></div><strong>Step 2 — Evaluate $\\iint_{R} 2xy\\,dA$:</strong><br>$$\\iint_{R} 2xy\\,dA = \\int_{-1}^{0} \\int_{3y}^{0} 2xy\\,dx\\,dy$$Inner integral with respect to $x$:$$\\int_{3y}^{0} 2xy\\,dx = y\\Big[x^2\\Big]_{x=3y}^{x=0} = y\\big(0 - (3y)^2\\big) = -9y^3$$Outer integral with respect to $y$:$$\\int_{-1}^{0} (-9y^3)\\,dy = \\left[-\\frac{9}{4}y^4\\right]_{-1}^{0} = 0 - \\left(-\\frac{9}{4}\\right) = \\frac{9}{4}$$<div class=\\\"step-divider\\\"></div><strong>Step 3 — Divide by the Area to Find the Average Value:</strong><br>$$f_{\\text{avg}} = \\frac{1}{\\text{Area}(R)} \\iint_{R} f(x, y)\\,dA = \\frac{9/4}{3/2} = \\frac{9}{4} \\cdot \\frac{2}{3} = \\frac{3}{2}$$Thus, the average value of $f$ over $R$ is $\\frac{3}{2}$."
+  },
+  {
+    "id": "FX_251_18",
+    "term": "251",
+    "number": 18,
+    "section": "14.3",
+    "topic": "Polar Double Integrals",
+    "question": "Evaluate the iterated integral: $$\\int_{0}^{3/\\sqrt{2}} \\int_{y}^{\\sqrt{9 - y^2}} \\sqrt{x^2 + y^2}\\,dx\\,dy$$",
+    "choices": [
+      "$\\frac{7\\pi}{2}$",
+      "$\\frac{8\\pi}{5}$",
+      "$\\frac{15\\pi}{4}$",
+      "$\\frac{9\\pi}{4}$",
+      "$\\frac{13\\pi}{9}$"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Sketch the Region and Convert to Polar Coordinates:</strong><br>Both the circular upper bound $x = \\sqrt{9 - y^2}$ and the integrand $\\sqrt{x^2 + y^2} = r$ strongly signal polar coordinates. Examine the rectangular bounds:$$0 \\le y \\le \\frac{3}{\\sqrt{2}}, \\qquad y \\le x \\le \\sqrt{9 - y^2}$$• The right boundary is the circle $x^2 + y^2 = 9$ (radius $r = 3$).<br>• The left boundary is the ray $x = y$ ($\\theta = \\frac{\\pi}{4}$), which intersects the circle $x^2 + y^2 = 9$ at $x = y = \\frac{3}{\\sqrt{2}}$.<br>• The bottom boundary is the positive $x$-axis $y = 0$ ($\\theta = 0$).<br>Thus, $R$ is the circular sector of radius $3$ between $\\theta = 0$ and $\\theta = \\frac{\\pi}{4}$:$$0 \\le \\theta \\le \\frac{\\pi}{4}, \\qquad 0 \\le r \\le 3$$<div class=\\\"step-divider\\\"></div><strong>Step 2 — Evaluate the Polar Double Integral:</strong><br>Substitute $\\sqrt{x^2 + y^2} = r$ and $dx\\,dy = r\\,dr\\,d\\theta$:$$\\int_{0}^{\\pi/4} \\int_{0}^{3} r \\cdot r\\,dr\\,d\\theta = \\left(\\int_{0}^{\\pi/4} d\\theta\\right)\\left(\\int_{0}^{3} r^2\\,dr\\right)$$$$= \\frac{\\pi}{4} \\cdot \\left[\\frac{r^3}{3}\\right]_{0}^{3} = \\frac{\\pi}{4} \\cdot \\frac{27}{3} = \\frac{9\\pi}{4}$$Thus, the exact value of the integral is $\\frac{9\\pi}{4}$."
+  },
+  {
+    "id": "FX_251_19",
+    "term": "251",
+    "number": 19,
+    "section": "14.7",
+    "topic": "Triple Integrals in Cylindrical & Spherical Coordinates",
+    "question": "The volume of the solid region bounded below by the upper nappe of the cone $z^2 = x^2 + y^2$ and above by the sphere $x^2 + y^2 + z^2 = 4$ is equal to",
+    "choices": [
+      "$\\frac{26\\pi}{3}(2 - \\sqrt{2})$",
+      "$\\frac{8\\pi}{3}(2 + \\sqrt{2})$",
+      "$9\\pi(2 - \\sqrt{2})$",
+      "$\\frac{8\\pi}{3}(2 - \\sqrt{2})$",
+      "$\\frac{8\\pi}{3}(5 + \\sqrt{2})$"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Express the Cone and Sphere in Spherical Coordinates:</strong><br>A solid bounded by a cone centered on the $z$-axis and a sphere centered at the origin (an 'ice-cream cone' solid) has purely constant bounds in spherical coordinates:<br>• <strong>Sphere $x^2 + y^2 + z^2 = 4$:</strong> $\\rho^2 = 4 \\implies \\rho = 2$, so $0 \\le \\rho \\le 2$.<br>• <strong>Upper nappe of cone $z = \\sqrt{x^2 + y^2}$:</strong> Since $z = \\rho\\cos\\phi$ and $\\sqrt{x^2 + y^2} = \\rho\\sin\\phi$, we get $\\rho\\cos\\phi = \\rho\\sin\\phi \\implies \\tan\\phi = 1 \\implies \\phi = \\frac{\\pi}{4}$. Points inside/above the cone satisfy $0 \\le \\phi \\le \\frac{\\pi}{4}$.<br>• <strong>Full rotation around the $z$-axis:</strong> $0 \\le \\theta \\le 2\\pi$.<div class=\\\"step-divider\\\"></div><strong>Step 2 — Set Up and Separate the Spherical Volume Integral:</strong><br>Using $dV = \\rho^2 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$:$$V = \\int_{0}^{2\\pi} \\int_{0}^{\\pi/4} \\int_{0}^{2} \\rho^2 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta = \\left(\\int_{0}^{2\\pi} d\\theta\\right)\\left(\\int_{0}^{\\pi/4} \\sin\\phi\\,d\\phi\\right)\\left(\\int_{0}^{2} \\rho^2\\,d\\rho\\right)$$<div class=\\\"step-divider\\\"></div><strong>Step 3 — Evaluate Each Factor:</strong><br>• $\\displaystyle\\int_{0}^{2\\pi} d\\theta = 2\\pi$.<br>• $\\displaystyle\\int_{0}^{\\pi/4} \\sin\\phi\\,d\\phi = \\Big[-\\cos\\phi\\Big]_{0}^{\\pi/4} = -\\frac{\\sqrt{2}}{2} - (-1) = 1 - \\frac{\\sqrt{2}}{2} = \\frac{2 - \\sqrt{2}}{2}$.<br>• $\\displaystyle\\int_{0}^{2} \\rho^2\\,d\\rho = \\left[\\frac{\\rho^3}{3}\\right]_{0}^{2} = \\frac{8}{3}$.<br>Multiplying them together:$$V = 2\\pi \\cdot \\frac{2 - \\sqrt{2}}{2} \\cdot \\frac{8}{3} = \\frac{8\\pi}{3}(2 - \\sqrt{2})$$Thus, the exact volume of the solid is $\\frac{8\\pi}{3}(2 - \\sqrt{2})$."
+  },
+  {
+    "id": "FX_251_20",
+    "term": "251",
+    "number": 20,
+    "section": "14.7",
+    "topic": "Triple Integrals in Cylindrical & Spherical Coordinates",
+    "question": "Convert the triple integral to spherical coordinates: $$\\int_{0}^{3} \\int_{0}^{\\sqrt{9 - x^2}} \\int_{0}^{\\sqrt{9 - x^2 - y^2}} \\sqrt{x^2 + y^2 + z^2}\\,dz\\,dy\\,dx =$$",
+    "choices": [
+      "$\\displaystyle\\int_{0}^{\\pi} \\int_{0}^{\\pi} \\int_{0}^{3} \\rho^3 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$",
+      "$\\displaystyle\\int_{0}^{\\pi} \\int_{0}^{\\pi/2} \\int_{0}^{3} \\rho^3 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$",
+      "$\\displaystyle\\int_{0}^{\\pi/2} \\int_{0}^{\\pi} \\int_{0}^{3} \\rho^{5/2} \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$",
+      "$\\displaystyle\\int_{0}^{\\pi/2} \\int_{0}^{\\pi/2} \\int_{0}^{3} \\rho^3 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$",
+      "$\\displaystyle\\int_{0}^{\\pi/2} \\int_{0}^{\\pi/2} \\int_{0}^{3} \\rho^{5/2} \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Identify the 3D Integration Region:</strong><br>Reading the rectangular limits from outside to inside:<br>• $0 \\le x \\le 3$ and $0 \\le y \\le \\sqrt{9 - x^2}$ give the quarter-disk of radius $3$ in Quadrant I ($x \\ge 0$, $y \\ge 0$).<br>• $0 \\le z \\le \\sqrt{9 - x^2 - y^2}$ sweeps from $z = 0$ up to the upper hemisphere $x^2 + y^2 + z^2 = 9$.<br>Hence, the solid is the first-octant eighth of the ball of radius $3$ centered at the origin.<div class=\\\"step-divider\\\"></div><strong>Step 2 — Convert Bounds to Spherical Coordinates:</strong><br>• Radius: $0 \\le \\rho \\le 3$.<br>• Polar angle ($z \\ge 0$): $0 \\le \\phi \\le \\frac{\\pi}{2}$.<br>• Azimuthal angle (Quadrant I: $x \\ge 0, y \\ge 0$): $0 \\le \\theta \\le \\frac{\\pi}{2}$.<div class=\\\"step-divider\\\"></div><strong>Step 3 — Transform the Integrand and Volume Element:</strong><br>In spherical coordinates, $\\sqrt{x^2 + y^2 + z^2} = \\rho$ and $dV = \\rho^2 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$, so:$$\\sqrt{x^2 + y^2 + z^2}\\,dV = \\rho \\cdot (\\rho^2 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta) = \\rho^3 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$$Therefore, the integral in spherical coordinates is $\\displaystyle\\int_{0}^{\\pi/2} \\int_{0}^{\\pi/2} \\int_{0}^{3} \\rho^3 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$."
+  },
+  {
+    "id": "FX_243_1",
+    "term": "243",
+    "number": 1,
+    "section": "14.1",
+    "topic": "Iterated Integrals & Area",
+    "question": "Evaluate the iterated integral:$$\\int_{1}^{e} \\int_{0}^{y} \\frac{4}{x^2 + y^2}\\,dx\\,dy$$",
+    "choices": [
+      "$3\\pi$",
+      "$\\pi$",
+      "$2\\pi$",
+      "$\\dfrac{\\pi}{2}$",
+      "$4\\pi$"
+    ],
+    "correct_answer": "B",
+    "solution": "<strong>Step 1 — Evaluate the Inner Integral with Respect to $x$:</strong><br>In the inner integral, $y$ is held constant (with $y \\in [1, e]$, so $y > 0$). Recall the standard arctangent antiderivative formula for any constant $a > 0$:$$\\int \\frac{1}{x^2 + a^2}\\,dx = \\frac{1}{a}\\arctan\\!\\left(\\frac{x}{a}\\right) + C$$Applying this with $a = y$ and factoring out the constant $4$ gives:$$\\int_{0}^{y} \\frac{4}{x^2 + y^2}\\,dx = 4 \\cdot \\frac{1}{y}\\left[\\arctan\\!\\left(\\frac{x}{y}\\right)\\right]_{x=0}^{x=y} = \\frac{4}{y}\\bigl(\\arctan(1) - \\arctan(0)\\bigr)$$<div class=\"step-divider\"></div><strong>Step 2 — Simplify the Inner Result:</strong><br>Since $\\arctan(1) = \\dfrac{\\pi}{4}$ and $\\arctan(0) = 0$, the inner integral simplifies cleanly to:$$\\frac{4}{y}\\left(\\frac{\\pi}{4} - 0\\right) = \\frac{\\pi}{y}$$<div class=\"step-divider\"></div><strong>Step 3 — Evaluate the Outer Integral with Respect to $y$:</strong><br>Substitute $\\dfrac{\\pi}{y}$ into the outer integral over $y \\in [1, e]$:$$\\int_{1}^{e} \\frac{\\pi}{y}\\,dy = \\pi \\bigl[\\ln y\\bigr]_{1}^{e} = \\pi(\\ln e - \\ln 1) = \\pi(1 - 0) = \\pi$$Therefore, the value of the iterated integral is $\\pi$."
+  },
+  {
+    "id": "FX_243_2",
+    "term": "243",
+    "number": 2,
+    "section": "14.1",
+    "topic": "Iterated Integrals & Area",
+    "question": "Evaluate the iterated integral:$$\\int_{0}^{1} \\int_{2x}^{2} 4e^{y^2}\\,dy\\,dx$$",
+    "choices": [
+      "$e^4$",
+      "$e^4 - 1$",
+      "$e^4 + 1$",
+      "$e^3 - 1$",
+      "$e^2 - 1$"
+    ],
+    "correct_answer": "B",
+    "solution": "<strong>Step 1 — Recognize the Need to Reverse the Order of Integration:</strong><br>The function $e^{y^2}$ has no elementary antiderivative with respect to $y$, so we cannot evaluate the inner $dy$-integral directly. Instead, we identify the 2D region of integration $R$ and reverse the order from $dy\\,dx$ to $dx\\,dy$.<div class=\"step-divider\"></div><strong>Step 2 — Describe the Region $R$ and Rewrite Its Bounds:</strong><br>From the given limits, $R$ is defined by:$$0 \\le x \\le 1, \\qquad 2x \\le y \\le 2$$This is the right triangle in the first quadrant bounded below by the line $y = 2x$ (i.e., $x = \\dfrac{y}{2}$), above by the horizontal line $y = 2$, and on the left by the $y$-axis $x = 0$. Scanning horizontally for each fixed $y$:$$0 \\le y \\le 2, \\qquad 0 \\le x \\le \\frac{y}{2}$$<div class=\"step-divider\"></div><strong>Step 3 — Evaluate the Reversed Iterated Integral:</strong><br>Rewriting the integral in the order $dx\\,dy$ and integrating with respect to $x$ first (treating $4e^{y^2}$ as a constant in $x$):$$\\int_{0}^{2} \\int_{0}^{y/2} 4e^{y^2}\\,dx\\,dy = \\int_{0}^{2} 4e^{y^2}\\bigl[x\\bigr]_{0}^{y/2}\\,dy = \\int_{0}^{2} 4e^{y^2}\\left(\\frac{y}{2}\\right)dy = \\int_{0}^{2} 2y\\,e^{y^2}\\,dy$$<div class=\"step-divider\"></div><strong>Step 4 — Finish via $u$-Substitution:</strong><br>Let $u = y^2$, so $du = 2y\\,dy$. When $y = 0$, $u = 0$; when $y = 2$, $u = 4$. Thus:$$\\int_{0}^{4} e^{u}\\,du = \\bigl[e^{u}\\bigr]_{0}^{4} = e^4 - e^0 = e^4 - 1$$Therefore, the value of the iterated integral is $e^4 - 1$."
+  },
+  {
+    "id": "FX_243_3",
+    "term": "243",
+    "number": 3,
+    "section": "14.2",
+    "topic": "Double Integrals & Volume",
+    "question": "The average value of $f(x, y) = \\sin(x + y)$ over the rectangular region with vertices $(0, 0)$, $(\\pi, 0)$, $(\\pi, \\pi)$ and $(0, \\pi)$ is equal to",
+    "choices": [
+      "$0$",
+      "$2\\pi$",
+      "$1$",
+      "$\\pi$",
+      "$3\\pi$"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Recall the Average Value Formula Over a Region $R$:</strong><br>The average value of a continuous function $f(x, y)$ over a closed region $R$ is given by:$$f_{\\text{avg}} = \\frac{1}{\\operatorname{Area}(R)} \\iint_{R} f(x, y)\\,dA$$The given rectangle is $R = [0, \\pi] \\times [0, \\pi]$, which has area:$$\\operatorname{Area}(R) = \\pi \\cdot \\pi = \\pi^2$$<div class=\"step-divider\"></div><strong>Step 2 — Evaluate the Inner Integral with Respect to $y$:</strong><br>Setting up the iterated integral over $R$ and integrating with respect to $y$ first (holding $x$ fixed):$$\\int_{0}^{\\pi} \\sin(x + y)\\,dy = \\bigl[-\\cos(x + y)\\bigr]_{y=0}^{y=\\pi} = -\\cos(x + \\pi) + \\cos(x)$$Using the identity $\\cos(x + \\pi) = -\\cos(x)$, this simplifies to:$$-(-\\cos x) + \\cos x = 2\\cos x$$<div class=\"step-divider\"></div><strong>Step 3 — Evaluate the Outer Integral with Respect to $x$:</strong><br>Now integrate $2\\cos x$ from $x = 0$ to $x = \\pi$:$$\\int_{0}^{\\pi} 2\\cos x\\,dx = \\bigl[2\\sin x\\bigr]_{0}^{\\pi} = 2(\\sin\\pi - \\sin 0) = 2(0 - 0) = 0$$<div class=\"step-divider\"></div><strong>Step 4 — Compute the Average Value:</strong><br>Dividing by $\\operatorname{Area}(R) = \\pi^2$ gives:$$f_{\\text{avg}} = \\frac{1}{\\pi^2}(0) = 0$$Therefore, the average value of $f(x, y)$ over the rectangle is $0$."
+  },
+  {
+    "id": "FX_243_4",
+    "term": "243",
+    "number": 4,
+    "section": "14.2",
+    "topic": "Double Integrals & Volume",
+    "question": "The volume of the solid bounded by $z = 8(1 - xy)$, $z = 0$, $y = x$, $y = 1$ and $x = 0$ is equal to",
+    "choices": [
+      "$2$",
+      "$5$",
+      "$7$",
+      "$3$",
+      "$1$"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Identify the Base Region $R$ in the $xy$-Plane:</strong><br>The vertical boundary walls are $y = x$, $y = 1$, and $x = 0$. These three lines form a triangle $R$ in the first quadrant with vertices $(0, 0)$, $(0, 1)$, and $(1, 1)$. On this triangle, $0 \\le x \\le y \\le 1$, which implies $xy \\le 1$ and hence $z = 8(1 - xy) \\ge 0$. Thus $z = 8(1 - xy)$ forms the upper surface and $z = 0$ forms the base. We can describe $R$ as:$$0 \\le x \\le 1, \\qquad x \\le y \\le 1$$<div class=\"step-divider\"></div><strong>Step 2 — Set Up the Double Integral for Volume:</strong><br>$$V = \\iint_{R} 8(1 - xy)\\,dA = 8\\int_{0}^{1} \\int_{x}^{1} (1 - xy)\\,dy\\,dx$$<div class=\"step-divider\"></div><strong>Step 3 — Evaluate the Inner Integral with Respect to $y$:</strong><br>Treating $x$ as a constant:$$\\int_{x}^{1} (1 - xy)\\,dy = \\left[y - \\frac{xy^2}{2}\\right]_{y=x}^{y=1} = \\left(1 - \\frac{x}{2}\\right) - \\left(x - \\frac{x^3}{2}\\right) = 1 - \\frac{3}{2}x + \\frac{1}{2}x^3$$<div class=\"step-divider\"></div><strong>Step 4 — Evaluate the Outer Integral with Respect to $x$:</strong><br>$$V = 8\\int_{0}^{1} \\left(1 - \\frac{3}{2}x + \\frac{1}{2}x^3\\right)dx = 8\\left[x - \\frac{3}{4}x^2 + \\frac{1}{8}x^4\\right]_{0}^{1}$$<br>Evaluating at the bounds:$$V = 8\\left(1 - \\frac{3}{4} + \\frac{1}{8}\\right) = 8\\left(\\frac{8 - 6 + 1}{8}\\right) = 8 \\cdot \\frac{3}{8} = 3$$Therefore, the volume of the solid is $3$."
+  },
+  {
+    "id": "FX_243_5",
+    "term": "243",
+    "number": 5,
+    "section": "14.2",
+    "topic": "Double Integrals & Volume",
+    "question": "The volume of the solid region bounded above by the paraboloid $z = 4 - x^2 - y^2$ and the plane $z = 4 - 2x$ is equal to",
+    "choices": [
+      "$\\displaystyle \\int_{0}^{4} \\int_{-\\sqrt{2x - x^2}}^{\\sqrt{2x - x^2}} (4 - x^2 - y^2)\\,dy\\,dx$",
+      "$\\displaystyle \\int_{-4}^{4} \\int_{-\\sqrt{2x - x^2}}^{\\sqrt{2x - x^2}} (2x - x^2 + y^2)\\,dy\\,dx$",
+      "$\\displaystyle \\int_{0}^{2} \\int_{-\\sqrt{2x - x^2}}^{\\sqrt{2x - x^2}} (2x - x^2 - y^2)\\,dy\\,dx$",
+      "$\\displaystyle \\int_{-2}^{2} \\int_{0}^{\\sqrt{2x - x^2}} (2x - x^2 - y^2)\\,dy\\,dx$",
+      "$\\displaystyle \\int_{0}^{\\sqrt{2}} \\int_{-\\sqrt{2}}^{\\sqrt{2}} (2x - x^2 - y^2)\\,dy\\,dx$"
+    ],
+    "correct_answer": "C",
+    "solution": "<strong>Step 1 — Find the Curve of Intersection and Projection Region $R$:</strong><br>The solid is bounded above by the downward-opening paraboloid $z_{\\text{top}} = 4 - x^2 - y^2$ and below by the plane $z_{\\text{bot}} = 4 - 2x$. To find the boundary of the projection $R$ in the $xy$-plane, equate the two $z$-expressions:$$4 - x^2 - y^2 = 4 - 2x \\implies x^2 - 2x + y^2 = 0$$Completing the square in $x$ gives:$$(x - 1)^2 + y^2 = 1$$This is the disk of radius $1$ centered at $(1, 0)$ in the $xy$-plane.<div class=\"step-divider\"></div><strong>Step 2 — Determine the Integrand $z_{\\text{top}} - z_{\\text{bot}}$:</strong><br>The height of a vertical column through $(x, y) \\in R$ is:$$z_{\\text{top}} - z_{\\text{bot}} = (4 - x^2 - y^2) - (4 - 2x) = 2x - x^2 - y^2$$Notice that on the disk $(x - 1)^2 + y^2 \\le 1$, we have $2x - x^2 - y^2 = 1 - (x-1)^2 - y^2 \\ge 0$, confirming the paraboloid lies above the plane.<div class=\"step-divider\"></div><strong>Step 3 — Express the Disk $R$ as $y$-Simple Limits ($dy\\,dx$):</strong><br>From $(x - 1)^2 + y^2 \\le 1$, the $x$-coordinate ranges across the diameter of the disk centered at $x = 1$ with radius $1$:$$0 \\le x \\le 2$$For each fixed $x \\in [0, 2]$, solving $x^2 - 2x + y^2 \\le 0$ for $y$ yields $y^2 \\le 2x - x^2$, so:$$-\\sqrt{2x - x^2} \\le y \\le \\sqrt{2x - x^2}$$<div class=\"step-divider\"></div><strong>Step 4 — Assemble the Iterated Double Integral:</strong><br>Combining the limits and integrand gives the volume integral:$$V = \\int_{0}^{2} \\int_{-\\sqrt{2x - x^2}}^{\\sqrt{2x - x^2}} (2x - x^2 - y^2)\\,dy\\,dx$$"
+  },
+  {
+    "id": "FX_243_6",
+    "term": "243",
+    "number": 6,
+    "section": "14.3",
+    "topic": "Double Integrals in Polar Coordinates",
+    "question": "Evaluate the sum of iterated integrals:$$\\int_{0}^{2} \\int_{0}^{x} \\sqrt{x^2 + y^2}\\,dy\\,dx + \\int_{2}^{2\\sqrt{2}} \\int_{0}^{\\sqrt{8 - x^2}} \\sqrt{x^2 + y^2}\\,dy\\,dx$$",
+    "choices": [
+      "$\\dfrac{4\\sqrt{2}\\pi}{3}$",
+      "$4\\sqrt{2}\\pi$",
+      "$\\dfrac{\\sqrt{2}\\pi}{3}$",
+      "$\\dfrac{8\\sqrt{2}\\pi}{3}$",
+      "$\\dfrac{2\\sqrt{2}\\pi}{3}$"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Sketch and Combine the Two Subregions $R_1$ and $R_2$:</strong><br>Both integrals share the same integrand $\\sqrt{x^2 + y^2}$. Let us inspect their domains in the first quadrant:<ul><li>$R_1$: $0 \\le x \\le 2$ and $0 \\le y \\le x$ (triangle bounded by $y = 0$, $y = x$, and $x = 2$).</li><li>$R_2$: $2 \\le x \\le 2\\sqrt{2}$ and $0 \\le y \\le \\sqrt{8 - x^2}$ (bounded below by $y = 0$ and above by the circle $x^2 + y^2 = 8$, which has radius $\\sqrt{8} = 2\\sqrt{2}$).</li></ul>Notice that the ray $y = x$ intersects the circle $x^2 + y^2 = 8$ when $2x^2 = 8 \\implies x = 2$, $y = 2$. Therefore, $R_1 \\cup R_2$ forms a single circular sector of radius $2\\sqrt{2}$ in the first quadrant between the positive $x$-axis ($\\theta = 0$) and the line $y = x$ ($\\theta = \\dfrac{\\pi}{4}$).<div class=\"step-divider\"></div><strong>Step 2 — Convert the Combined Integral to Polar Coordinates:</strong><br>In polar coordinates, $x^2 + y^2 = r^2$, so $\\sqrt{x^2 + y^2} = r$, and the area element is $dA = r\\,dr\\,d\\theta$. The sector $R = R_1 \\cup R_2$ has constant polar limits:$$0 \\le \\theta \\le \\frac{\\pi}{4}, \\qquad 0 \\le r \\le 2\\sqrt{2}$$Thus the sum of the two integrals collapses into one polar double integral:$$I = \\int_{0}^{\\pi/4} \\int_{0}^{2\\sqrt{2}} r \\cdot r\\,dr\\,d\\theta = \\int_{0}^{\\pi/4} \\int_{0}^{2\\sqrt{2}} r^2\\,dr\\,d\\theta$$<div class=\"step-divider\"></div><strong>Step 3 — Evaluate the Polar Integral:</strong><br>Since the bounds are constants and the integrand depends only on $r$, we factor the integrals:$$I = \\left(\\int_{0}^{\\pi/4} d\\theta\\right)\\left(\\int_{0}^{2\\sqrt{2}} r^2\\,dr\\right) = \\frac{\\pi}{4} \\cdot \\left[\\frac{r^3}{3}\\right]_{0}^{2\\sqrt{2}}$$Computing $(2\\sqrt{2})^3 = 8 \\cdot 2\\sqrt{2} = 16\\sqrt{2}$ gives:$$I = \\frac{\\pi}{4} \\cdot \\frac{16\\sqrt{2}}{3} = \\frac{4\\sqrt{2}\\pi}{3}$$Therefore, the value of the sum of integrals is $\\dfrac{4\\sqrt{2}\\pi}{3}$."
+  },
+  {
+    "id": "FX_243_7",
+    "term": "243",
+    "number": 7,
+    "section": "14.7",
+    "topic": "Triple Integrals in Cylindrical & Spherical Coordinates",
+    "question": "The volume of the solid inside the sphere $x^2 + y^2 + z^2 = 4$, outside the cone $z = \\sqrt{x^2 + y^2}$, and above the $xy$-plane is",
+    "choices": [
+      "$\\dfrac{8\\sqrt{2}\\pi}{3}$",
+      "$\\dfrac{8\\pi}{3}$",
+      "$\\dfrac{16\\sqrt{2}\\pi}{3}$",
+      "$\\dfrac{4\\sqrt{2}\\pi}{3}$",
+      "$8\\sqrt{2}\\pi$"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Translate the Bounding Surfaces into Spherical Coordinates:</strong><br>In spherical coordinates $(\\rho, \\phi, \\theta)$, we have $x^2 + y^2 + z^2 = \\rho^2$, $z = \\rho\\cos\\phi$, and $\\sqrt{x^2 + y^2} = \\rho\\sin\\phi$ (with $\\rho \\ge 0$, $0 \\le \\phi \\le \\pi$):<ul><li><strong>Sphere:</strong> $x^2 + y^2 + z^2 = 4 \\implies \\rho^2 = 4 \\implies \\rho = 2$.</li><li><strong>Cone:</strong> $z = \\sqrt{x^2 + y^2} \\implies \\rho\\cos\\phi = \\rho\\sin\\phi \\implies \\tan\\phi = 1 \\implies \\phi = \\dfrac{\\pi}{4}$.</li><li><strong>$xy$-plane:</strong> $z = 0 \\implies \\phi = \\dfrac{\\pi}{2}$.</li></ul><div class=\"step-divider\"></div><strong>Step 2 — Determine the Spherical Integration Limits:</strong><br>Being <em>outside</em> the upper cone $z = \\sqrt{x^2 + y^2}$ means $\\phi \\ge \\dfrac{\\pi}{4}$, and being <em>above</em> the $xy$-plane ($z \\ge 0$) means $\\phi \\le \\dfrac{\\pi}{2}$. Because the solid is radially symmetric around the $z$-axis and inside the sphere of radius $2$:$$0 \\le \\theta \\le 2\\pi, \\qquad \\frac{\\pi}{4} \\le \\phi \\le \\frac{\\pi}{2}, \\qquad 0 \\le \\rho \\le 2$$<div class=\"step-divider\"></div><strong>Step 3 — Set Up and Evaluate the Spherical Volume Integral:</strong><br>Using the spherical volume element $dV = \\rho^2 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$:$$V = \\int_{0}^{2\\pi} \\int_{\\pi/4}^{\\pi/2} \\int_{0}^{2} \\rho^2 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$$Since the limits are all constants and the integrand separates:$$V = \\left(\\int_{0}^{2\\pi} d\\theta\\right)\\left(\\int_{\\pi/4}^{\\pi/2} \\sin\\phi\\,d\\phi\\right)\\left(\\int_{0}^{2} \\rho^2\\,d\\rho\\right)$$Evaluate each single integral separately:<ul><li>$\\displaystyle \\int_{0}^{2\\pi} d\\theta = 2\\pi$</li><li>$\\displaystyle \\int_{\\pi/4}^{\\pi/2} \\sin\\phi\\,d\\phi = \\bigl[-\\cos\\phi\\bigr]_{\\pi/4}^{\\pi/2} = 0 - \\left(-\\frac{\\sqrt{2}}{2}\\right) = \\frac{\\sqrt{2}}{2}$</li><li>$\\displaystyle \\int_{0}^{2} \\rho^2\\,d\\rho = \\left[\\frac{\\rho^3}{3}\\right]_{0}^{2} = \\frac{8}{3}$</li></ul><div class=\"step-divider\"></div><strong>Step 4 — Multiply the Factors Together:</strong><br>$$V = (2\\pi)\\left(\\frac{\\sqrt{2}}{2}\\right)\\left(\\frac{8}{3}\\right) = \\frac{8\\sqrt{2}\\pi}{3}$$Therefore, the volume of the solid is $\\dfrac{8\\sqrt{2}\\pi}{3}$."
+  },
+  {
+    "id": "FX_243_8",
+    "term": "243",
+    "number": 8,
+    "section": "14.7",
+    "topic": "Triple Integrals in Cylindrical & Spherical Coordinates",
+    "question": "The volume of the solid inside both $x^2 + y^2 + z^2 = 4$ and $(x - 1)^2 + y^2 = 1$ is equal to",
+    "choices": [
+      "$\\dfrac{16}{3}(\\pi - 2)$",
+      "$\\dfrac{4}{9}(3\\pi - 4)$",
+      "$\\dfrac{32}{9}(\\pi - 1)$",
+      "$\\dfrac{16}{9}(\\pi - 4)$",
+      "$\\dfrac{16}{9}(3\\pi - 4)$"
+    ],
+    "correct_answer": "E",
+    "solution": "<strong>Step 1 — Convert the Bounding Surfaces to Cylindrical Coordinates:</strong><br>We are finding the volume of the region inside both the sphere of radius $2$ centered at the origin and the vertical circular cylinder centered at $(1, 0)$ of radius $1$:<ul><li><strong>Sphere:</strong> $x^2 + y^2 + z^2 = 4 \\implies r^2 + z^2 = 4 \\implies -\\sqrt{4 - r^2} \\le z \\le \\sqrt{4 - r^2}$.</li><li><strong>Cylinder:</strong> $(x - 1)^2 + y^2 = 1 \\implies x^2 - 2x + 1 + y^2 = 1 \\implies x^2 + y^2 = 2x \\implies r^2 = 2r\\cos\\theta \\implies r = 2\\cos\\theta$.</li></ul>The circle $r = 2\\cos\\theta$ lies in the right half-plane $x \\ge 0$ and is traced once for $-\\dfrac{\\pi}{2} \\le \\theta \\le \\dfrac{\\pi}{2}$.<div class=\"step-divider\"></div><strong>Step 2 — Use Symmetry to Simplify the Cylindrical Triple Integral:</strong><br>The solid is symmetric across both the $xy$-plane ($z = 0$) and the $xz$-plane ($y = 0$, i.e., $\\theta = 0$). Using this four-fold symmetry, we compute the volume in the first octant ($0 \\le \\theta \\le \\dfrac{\\pi}{2}$, $z \\ge 0$) and multiply by $4$:$$V = 4\\int_{0}^{\\pi/2} \\int_{0}^{2\\cos\\theta} \\int_{0}^{\\sqrt{4 - r^2}} r\\,dz\\,dr\\,d\\theta = 4\\int_{0}^{\\pi/2} \\int_{0}^{2\\cos\\theta} r\\sqrt{4 - r^2}\\,dr\\,d\\theta$$<div class=\"step-divider\"></div><strong>Step 3 — Evaluate the Inner $r$-Integral via Substitution:</strong><br>Let $u = 4 - r^2$, so $du = -2r\\,dr \\implies r\\,dr = -\\dfrac{1}{2}\\,du$. Then:$$\\int_{0}^{2\\cos\\theta} r\\sqrt{4 - r^2}\\,dr = \\left[-\\frac{1}{3}(4 - r^2)^{3/2}\\right]_{0}^{2\\cos\\theta} = \\frac{1}{3}\\Bigl(4^{3/2} - (4 - 4\\cos^2\\theta)^{3/2}\\Bigr)$$Because $\\theta \\in \\left[0, \\dfrac{\\pi}{2}\\right]$, we have $\\sin\\theta \\ge 0$, so $(4 - 4\\cos^2\\theta)^{3/2} = (4\\sin^2\\theta)^{3/2} = 8\\sin^3\\theta$ (avoiding any sign ambiguity from $\\sqrt{\\sin^2\\theta} = |\\sin\\theta|$!). Thus:$$\\int_{0}^{2\\cos\\theta} r\\sqrt{4 - r^2}\\,dr = \\frac{8}{3}(1 - \\sin^3\\theta)$$<div class=\"step-divider\"></div><strong>Step 4 — Evaluate the Outer $\\theta$-Integral:</strong><br>Substitute into the volume expression:$$V = 4 \\cdot \\frac{8}{3} \\int_{0}^{\\pi/2} (1 - \\sin^3\\theta)\\,d\\theta = \\frac{32}{3}\\left(\\int_{0}^{\\pi/2} 1\\,d\\theta - \\int_{0}^{\\pi/2} \\sin^3\\theta\\,d\\theta\\right)$$Compute $\\displaystyle \\int_{0}^{\\pi/2} \\sin^3\\theta\\,d\\theta$ using $\\sin^2\\theta = 1 - \\cos^2\\theta$ and $w = \\cos\\theta$, $dw = -\\sin\\theta\\,d\\theta$:$$\\int_{0}^{\\pi/2} (1 - \\cos^2\\theta)\\sin\\theta\\,d\\theta = \\int_{0}^{1} (1 - w^2)\\,dw = \\left[w - \\frac{w^3}{3}\\right]_{0}^{1} = 1 - \\frac{1}{3} = \\frac{2}{3}$$Finally:$$V = \\frac{32}{3}\\left(\\frac{\\pi}{2} - \\frac{2}{3}\\right) = \\frac{32}{3} \\cdot \\frac{3\\pi - 4}{6} = \\frac{16}{9}(3\\pi - 4)$$Therefore, the volume of the solid is $\\dfrac{16}{9}(3\\pi - 4)$."
+  },
+  {
+    "id": "FX_243_9",
+    "term": "243",
+    "number": 9,
+    "section": "14.6",
+    "topic": "Triple Integrals & Applications",
+    "question": "Evaluate the triple integral:$$\\int_{1}^{4} \\int_{0}^{1} \\int_{0}^{x} 2z\\,e^{-x^2}\\,dy\\,dx\\,dz$$",
+    "choices": [
+      "$15(e^{-1} - 1)$",
+      "$\\dfrac{15}{2}(1 - e^{-1})$",
+      "$8(1 - e^{-1})$",
+      "$\\dfrac{7}{2}(1 - e^{-1})$",
+      "$\\dfrac{15}{2}(1 + e^{-1})$"
+    ],
+    "correct_answer": "B",
+    "solution": "<strong>Step 1 — Evaluate the Innermost Integral with Respect to $y$:</strong><br>In the innermost integral, both $x$ and $z$ are treated as constants, so $2z\\,e^{-x^2}$ factors completely out of the $dy$-integral:$$\\int_{0}^{x} 2z\\,e^{-x^2}\\,dy = 2z\\,e^{-x^2}\\bigl[y\\bigr]_{0}^{x} = 2zx\\,e^{-x^2}$$<div class=\"step-divider\"></div><strong>Step 2 — Evaluate the Middle Integral with Respect to $x$:</strong><br>Now integrate $2zx\\,e^{-x^2}$ from $x = 0$ to $x = 1$, holding $z$ constant:$$\\int_{0}^{1} 2zx\\,e^{-x^2}\\,dx = z\\int_{0}^{1} 2x\\,e^{-x^2}\\,dx$$Using the substitution $u = -x^2$, $du = -2x\\,dx$ (with $u = 0$ when $x = 0$ and $u = -1$ when $x = 1$):$$z\\int_{0}^{-1} (-e^{u})\\,du = z\\bigl[-e^{-x^2}\\bigr]_{0}^{1} = z(-e^{-1} - (-e^{0})) = z(1 - e^{-1})$$<div class=\"step-divider\"></div><strong>Step 3 — Evaluate the Outermost Integral with Respect to $z$:</strong><br>Factor out the constant $(1 - e^{-1})$ and integrate $z$ from $z = 1$ to $z = 4$:$$\\int_{1}^{4} z(1 - e^{-1})\\,dz = (1 - e^{-1})\\left[\\frac{z^2}{2}\\right]_{1}^{4} = (1 - e^{-1})\\left(\\frac{16}{2} - \\frac{1}{2}\\right) = \\frac{15}{2}(1 - e^{-1})$$Therefore, the value of the triple integral is $\\dfrac{15}{2}(1 - e^{-1})$."
+  },
+  {
+    "id": "FX_243_10",
+    "term": "243",
+    "number": 10,
+    "section": "13.10",
+    "topic": "Lagrange Multipliers",
+    "question": "The minimum value of $f(x, y) = \\dfrac{3}{2}x + y + 1$ subject to the constraint $x^2 y = 6$ is equal to",
+    "choices": [
+      "$\\dfrac{15}{2}$",
+      "$14$",
+      "$9$",
+      "$\\dfrac{11}{2}$",
+      "$\\dfrac{17}{2}$"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Set Up the Method of Lagrange Multipliers:</strong><br>Let the objective function be $f(x, y) = \\dfrac{3}{2}x + y + 1$ and the constraint function be $g(x, y) = x^2 y = 6$ (on the positive quadrant $x > 0, y > 0$ where a minimum exists). Compute both gradients:$$\\nabla f(x, y) = \\left\\langle \\frac{3}{2},\\; 1 \\right\\rangle, \\qquad \\nabla g(x, y) = \\langle 2xy,\\; x^2 \\rangle$$Setting $\\nabla f = \\lambda \\nabla g$ together with the constraint gives the system:$$\\begin{cases} \\dfrac{3}{2} = 2\\lambda x y & (1) \\\\[6pt] 1 = \\lambda x^2 & (2) \\\\[6pt] x^2 y = 6 & (3) \\end{cases}$$<div class=\"step-divider\"></div><strong>Step 2 — Eliminate the Multiplier $\\lambda$:</strong><br>From equation $(3)$, $x \\neq 0$, so equation $(2)$ gives $\\lambda = \\dfrac{1}{x^2}$. Substitute this expression for $\\lambda$ into equation $(1)$:$$\\frac{3}{2} = 2\\left(\\frac{1}{x^2}\\right)xy = \\frac{2y}{x} \\implies 3x = 4y \\implies y = \\frac{3}{4}x$$<div class=\"step-divider\"></div><strong>Step 3 — Solve for $(x, y)$ Using the Constraint:</strong><br>Substitute $y = \\dfrac{3}{4}x$ into $x^2 y = 6$:$$x^2\\left(\\frac{3}{4}x\\right) = 6 \\implies \\frac{3}{4}x^3 = 6 \\implies x^3 = 8 \\implies x = 2$$Then:$$y = \\frac{3}{4}(2) = \\frac{3}{2}$$(We can verify this is a minimum on $x > 0$: along the constraint $y = 6/x^2$, $h(x) = \\frac{3}{2}x + 6x^{-2} + 1$ has $h''(x) = 36x^{-4} > 0$, so $x = 2$ yields the unique minimum for $x > 0$.)<div class=\"step-divider\"></div><strong>Step 4 — Compute the Minimum Value of $f$:</strong><br>Evaluate $f$ at $\\left(2, \\dfrac{3}{2}\\right)$:$$f\\!\\left(2, \\frac{3}{2}\\right) = \\frac{3}{2}(2) + \\frac{3}{2} + 1 = 3 + \\frac{3}{2} + 1 = \\frac{11}{2}$$Therefore, the minimum value is $\\dfrac{11}{2}$."
+  },
+  {
+    "id": "FX_243_11",
+    "term": "243",
+    "number": 11,
+    "section": "13.9",
+    "topic": "Applications of Extrema",
+    "question": "A rectangular box is resting on the $xy$-plane with one vertex at the origin and its opposite vertex lying in the plane $5x + 3y + 2z = 30$. The maximum possible volume of the box is equal to",
+    "choices": [
+      "$50$",
+      "$\\dfrac{125}{3}$",
+      "$90$",
+      "$\\dfrac{100}{3}$",
+      "$\\dfrac{200}{3}$"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Express the Volume as a Function of Two Variables:</strong><br>Let the opposite vertex in the first octant have coordinates $(x, y, z)$ with $x > 0$, $y > 0$, and $z > 0$. The volume of the rectangular box is $V = xyz$. Since $(x, y, z)$ lies in the plane $5x + 3y + 2z = 30$, solve for $z$:$$z = \\frac{30 - 5x - 3y}{2} = 15 - \\frac{5}{2}x - \\frac{3}{2}y$$Substituting $z$ into $V = xyz$ yields the two-variable objective function:$$V(x, y) = xy\\left(15 - \\frac{5}{2}x - \\frac{3}{2}y\\right) = 15xy - \\frac{5}{2}x^2 y - \\frac{3}{2}x y^2$$over the triangular domain $x > 0$, $y > 0$, $5x + 3y < 30$ (on the boundary, $V = 0$).<div class=\"step-divider\"></div><strong>Step 2 — Find the Interior Critical Point:</strong><br>Compute the first partial derivatives and set them equal to zero:$$V_x = 15y - 5xy - \\frac{3}{2}y^2 = y\\left(15 - 5x - \\frac{3}{2}y\\right) = 0$$$$V_y = 15x - \\frac{5}{2}x^2 - 3xy = x\\left(15 - \\frac{5}{2}x - 3y\\right) = 0$$Since $x > 0$ and $y > 0$ for a non-degenerate box, divide out $y$ and $x$ respectively:$$\\begin{cases} 10x + 3y = 30 & (1) \\\\ 5x + 6y = 30 & (2) \\end{cases}$$<div class=\"step-divider\"></div><strong>Step 3 — Solve the Linear System for $(x, y, z)$:</strong><br>Multiply equation $(1)$ by $2$ and subtract equation $(2)$:$$(20x + 6y) - (5x + 6y) = 60 - 30 \\implies 15x = 30 \\implies x = 2$$Substituting $x = 2$ into $(1)$ gives $20 + 3y = 30 \\implies y = \\dfrac{10}{3}$. Then:$$z = \\frac{30 - 5(2) - 3\\left(\\frac{10}{3}\\right)}{2} = \\frac{30 - 10 - 10}{2} = 5$$(Notice the classic symmetry: $5x = 3y = 2z = 10 = \\dfrac{30}{3}$, which splits the plane constant equally among the three terms!)<div class=\"step-divider\"></div><strong>Step 4 — Compute the Maximum Volume:</strong><br>Since $V > 0$ inside the closed triangle and $V = 0$ everywhere on its boundary, this unique interior critical point gives the absolute maximum:$$V_{\\max} = x y z = (2)\\left(\\frac{10}{3}\\right)(5) = \\frac{100}{3}$$Therefore, the maximum possible volume of the box is $\\dfrac{100}{3}$."
+  },
+  {
+    "id": "FX_243_12",
+    "term": "243",
+    "number": 12,
+    "section": "13.8",
+    "topic": "Extrema of Functions of Two Variables",
+    "question": "Let $f(x, y) = x^2 + xy$, and $R = \\{(x, y) : |x| \\le 2,\\; |y| \\le 1\\}$. If $M$ and $m$ represent respectively the absolute maximum and absolute minimum of $f$ over $R$, then $m + M =$",
+    "choices": [
+      "$\\dfrac{25}{4}$",
+      "$\\dfrac{11}{2}$",
+      "$6$",
+      "$\\dfrac{21}{4}$",
+      "$\\dfrac{23}{4}$"
+    ],
+    "correct_answer": "E",
+    "solution": "<strong>Step 1 — Check Interior Critical Points in $R = [-2, 2] \\times [-1, 1]$:</strong><br>By the Extreme Value Theorem, the continuous function $f(x, y) = x^2 + xy$ attains its absolute extrema on the closed bounded rectangle $R$ either at an interior critical point or on the boundary of $R$. Compute the first partial derivatives:$$f_x = 2x + y = 0, \\qquad f_y = x = 0$$This yields a single interior critical point at $(0, 0)$, where $f(0, 0) = 0$.<div class=\"step-divider\"></div><strong>Step 2 — Analyze the Top and Bottom Horizontal Edges ($y = 1$ and $y = -1$):</strong><br><ul><li><strong>Top edge ($y = 1$, $-2 \\le x \\le 2$):</strong> $g_1(x) = f(x, 1) = x^2 + x$. Setting $g_1'(x) = 2x + 1 = 0$ gives $x = -\\dfrac{1}{2} \\in [-2, 2]$, where:$$f\\!\\left(-\\frac{1}{2}, 1\\right) = \\frac{1}{4} - \\frac{1}{2} = -\\frac{1}{4}$$</li><li><strong>Bottom edge ($y = -1$, $-2 \\le x \\le 2$):</strong> $g_2(x) = f(x, -1) = x^2 - x$. Setting $g_2'(x) = 2x - 1 = 0$ gives $x = \\dfrac{1}{2} \\in [-2, 2]$, where:$$f\\!\\left(\\frac{1}{2}, -1\\right) = \\frac{1}{4} - \\frac{1}{2} = -\\frac{1}{4}$$</li></ul><div class=\"step-divider\"></div><strong>Step 3 — Analyze the Left and Right Vertical Edges ($x = -2$ and $x = 2$) and Corners:</strong><br><ul><li><strong>Right edge ($x = 2$, $-1 \\le y \\le 1$):</strong> $h_1(y) = f(2, y) = 4 + 2y$, a strictly increasing linear function with no interior critical points.</li><li><strong>Left edge ($x = -2$, $-1 \\le y \\le 1$):</strong> $h_2(y) = f(-2, y) = 4 - 2y$, a strictly decreasing linear function with no interior critical points.</li></ul>Now evaluate $f(x, y) = x^2 + xy$ at all four corners of the rectangle:$$f(2, 1) = 4 + 2 = 6, \\qquad f(2, -1) = 4 - 2 = 2$$$$f(-2, 1) = 4 - 2 = 2, \\qquad f(-2, -1) = 4 + 2 = 6$$<div class=\"step-divider\"></div><strong>Step 4 — Identify $M$, $m$, and Compute $m + M$:</strong><br>Comparing all candidate values $\\left\\{0,\\; -\\dfrac{1}{4},\\; 2,\\; 6\\right\\}$:$$M = 6, \\qquad m = -\\frac{1}{4}$$Therefore:$$m + M = -\\frac{1}{4} + 6 = \\frac{23}{4}$$"
+  },
+  {
+    "id": "FX_243_13",
+    "term": "243",
+    "number": 13,
+    "section": "13.8",
+    "topic": "Extrema of Functions of Two Variables",
+    "question": "The graph of the function$$f(x, y) = xy + \\frac{1}{x} + \\frac{1}{y}$$has",
+    "choices": [
+      "a relative minimum at $(1, 1)$",
+      "a saddle point at $(1, 1)$",
+      "a relative maximum at $(1, 1)$",
+      "a relative maximum at $(1, 1)$ and a relative minimum at $(-1, -1)$",
+      "no relative extreme values"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Find All Critical Points in the Domain ($x \\neq 0,\\; y \\neq 0$):</strong><br>Compute the first-order partial derivatives of $f(x, y) = xy + x^{-1} + y^{-1}$ and set them equal to zero:$$f_x(x, y) = y - \\frac{1}{x^2} = 0 \\implies y = \\frac{1}{x^2} \\quad (1)$$$$f_y(x, y) = x - \\frac{1}{y^2} = 0 \\implies x = \\frac{1}{y^2} \\quad (2)$$Notice immediately that $y = \\dfrac{1}{x^2} > 0$ and $x = \\dfrac{1}{y^2} > 0$, so $(-1, -1)$ is <em>not</em> a critical point! Substituting $(1)$ into $(2)$ yields:$$x = \\frac{1}{(1/x^2)^2} = x^4 \\implies x(x^3 - 1) = 0$$Since $x \\neq 0$, the unique real solution is $x = 1$, which gives $y = \\dfrac{1}{1^2} = 1$. Thus $(1, 1)$ is the only critical point.<div class=\"step-divider\"></div><strong>Step 2 — Compute the Second-Order Partial Derivatives:</strong><br>$$f_{xx}(x, y) = \\frac{2}{x^3}, \\qquad f_{yy}(x, y) = \\frac{2}{y^3}, \\qquad f_{xy}(x, y) = 1$$Evaluate these at $(1, 1)$:$$f_{xx}(1, 1) = 2, \\qquad f_{yy}(1, 1) = 2, \\qquad f_{xy}(1, 1) = 1$$<div class=\"step-divider\"></div><strong>Step 3 — Apply the Second Partials Test:</strong><br>Compute the discriminant $D = f_{xx} f_{yy} - (f_{xy})^2$ at $(1, 1)$:$$D(1, 1) = (2)(2) - (1)^2 = 4 - 1 = 3 > 0$$Because $D(1, 1) = 3 > 0$ and $f_{xx}(1, 1) = 2 > 0$, the function $f$ has a <strong>relative minimum at $(1, 1)$</strong>."
+  },
+  {
+    "id": "FX_243_14",
+    "term": "243",
+    "number": 14,
+    "section": "13.7",
+    "topic": "Tangent Planes & Normal Lines",
+    "question": "Let $P(a, b, c)$, with $a > 0$, be the point on the ellipsoid $x^2 + 4y^2 + z^2 = 9$ where the tangent plane is perpendicular to the line$$L:\\quad x = 2 - 4t, \\qquad y = 1 + 8t, \\qquad z = 3 - 2t.$$Then $a + b + c =$",
+    "choices": [
+      "$2$",
+      "$0$",
+      "$6$",
+      "$5$",
+      "$1$"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Express the Geometric Condition Using Normal and Direction Vectors:</strong><br>Write the ellipsoid as a level surface $F(x, y, z) = x^2 + 4y^2 + z^2 = 9$. A normal vector to the tangent plane at $P(a, b, c)$ is given by the gradient:$$\\nabla F(a, b, c) = \\langle 2a,\\; 8b,\\; 2c \\rangle$$From the parametric equations of line $L$, its direction vector is:$$\\vec{v} = \\langle -4,\\; 8,\\; -2 \\rangle$$For the tangent plane to be <em>perpendicular</em> to line $L$, the plane's normal vector $\\nabla F(a, b, c)$ must be <em>parallel</em> to $\\vec{v}$:$$\\langle 2a,\\; 8b,\\; 2c \\rangle = k\\langle -4,\\; 8,\\; -2 \\rangle$$for some nonzero scalar $k$.<div class=\"step-divider\"></div><strong>Step 2 — Express $a, b, c$ in Terms of the Proportionality Constant $k$:</strong><br>Equating components gives:$$\\begin{cases} 2a = -4k \\implies a = -2k \\\\ 8b = 8k \\implies b = k \\\\ 2c = -2k \\implies c = -k \\end{cases}$$<div class=\"step-divider\"></div><strong>Step 3 — Impose the Ellipsoid Equation and the Condition $a > 0$:</strong><br>Since $P(a, b, c)$ lies on $x^2 + 4y^2 + z^2 = 9$, substitute $a = -2k$, $b = k$, $c = -k$:$$(-2k)^2 + 4(k)^2 + (-k)^2 = 9 \\implies 4k^2 + 4k^2 + k^2 = 9 \\implies 9k^2 = 9 \\implies k = \\pm 1$$Because we require $a > 0$ and $a = -2k$, we must choose $k = -1$. This gives:$$a = -2(-1) = 2, \\qquad b = -1, \\qquad c = -(-1) = 1$$<div class=\"step-divider\"></div><strong>Step 4 — Verify and Compute $a + b + c$:</strong><br>Check on the ellipsoid: $2^2 + 4(-1)^2 + 1^2 = 4 + 4 + 1 = 9$, and $\\nabla F(2, -1, 1) = \\langle 4, -8, 2 \\rangle = -\\vec{v}$ is indeed parallel to $\\vec{v}$. Finally:$$a + b + c = 2 + (-1) + 1 = 2$$"
+  },
+  {
+    "id": "FX_242_9",
+    "term": "242",
+    "number": 9,
+    "section": "13.7",
+    "topic": "Tangent Planes & Normal Lines",
+    "question": "If $(a, b, c)$, with $a < 0$, is the point on the surface $x^2 + 4y^2 - z^2 = -4$ where the tangent plane is parallel to the plane $2x - 4y + 3z = 1$, then $a + b + c =$",
+    "choices": [
+      "$-3$",
+      "$6$",
+      "$-1$",
+      "$0$",
+      "$4$"
+    ],
+    "correct_answer": "E",
+    "solution": "<strong>Step 1 — Compute the Normal Vector to the Implicit Surface:</strong><br>Write the surface as a level surface $F(x, y, z) = x^2 + 4y^2 - z^2 = -4$. At any point $(a, b, c)$ on the surface, the gradient vector $\\nabla F(a, b, c)$ is normal to the tangent plane:$$\\nabla F(x, y, z) = \\langle 2x, \\; 8y, \\; -2z \\rangle \\implies \\nabla F(a, b, c) = \\langle 2a, \\; 8b, \\; -2c \\rangle$$<div class=\"step-divider\"></div><strong>Step 2 — Use Parallelism of Normal Vectors to Express $(a, b, c)$ in Terms of One Scalar:</strong><br>The given plane $2x - 4y + 3z = 1$ has normal vector $\\mathbf{n} = \\langle 2, -4, 3 \\rangle$. Two planes are parallel if and only if their normal vectors are nonzero scalar multiples of each other, so there exists $k \\neq 0$ such that $\\nabla F(a, b, c) = k \\mathbf{n}$:$$\\begin{cases} 2a = 2k & \\implies a = k \\\\ 8b = -4k & \\implies b = -\\dfrac{k}{2} \\\\ -2c = 3k & \\implies c = -\\dfrac{3k}{2} \\end{cases}$$<div class=\"step-divider\"></div><strong>Step 3 — Enforce the Surface Equation and the Sign Condition $a < 0$:</strong><br>Since $(a, b, c)$ lies on the surface $x^2 + 4y^2 - z^2 = -4$, substitute $a$, $b$, and $c$ in terms of $k$:$$k^2 + 4\\left(-\\frac{k}{2}\\right)^2 - \\left(-\\frac{3k}{2}\\right)^2 = -4$$Simplify each term:$$k^2 + k^2 - \\frac{9}{4}k^2 = -4 \\implies \\left(2 - \\frac{9}{4}\\right)k^2 = -4 \\implies -\\frac{1}{4}k^2 = -4 \\implies k^2 = 16$$Thus $k = 4$ or $k = -4$. Because $a = k$ and the problem requires $a < 0$, we must select $k = -4$.<div class=\"step-divider\"></div><strong>Step 4 — Find the Coordinates $(a, b, c)$ and Their Sum:</strong><br>Substitute $k = -4$ back into the expressions from Step 2:$$a = -4, \\qquad b = -\\frac{-4}{2} = 2, \\qquad c = -\\frac{3(-4)}{2} = 6$$(Check on the surface: $(-4)^2 + 4(2)^2 - 6^2 = 16 + 16 - 36 = -4$.) Summing the coordinates gives:$$a + b + c = -4 + 2 + 6 = 4$$"
+  },
+  {
+    "id": "FX_242_10",
+    "term": "242",
+    "number": 10,
+    "section": "13.8",
+    "topic": "Extrema & Saddle Points",
+    "question": "The graph of the function $f(x, y) = -2x^3 + 8xy - 4y^2 + 5$ has",
+    "choices": [
+      "one saddle point and one relative minimum",
+      "one saddle point and two relative maxima",
+      "one relative minimum and one relative maximum",
+      "one saddle point and one relative maximum",
+      "no saddle point"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Find the First-Order Partial Derivatives and Critical Points:</strong><br>Differentiate $f(x, y) = -2x^3 + 8xy - 4y^2 + 5$ with respect to $x$ and $y$ and set both partials equal to $0$:$$f_x(x, y) = -6x^2 + 8y = 0 \\qquad (1)$$$$f_y(x, y) = 8x - 8y = 0 \\qquad (2)$$From equation $(2)$, $8(x - y) = 0 \\implies y = x$. Substituting $y = x$ into equation $(1)$ yields:$$-6x^2 + 8x = 0 \\implies -2x(3x - 4) = 0 \\implies x = 0 \\quad \\text{or} \\quad x = \\frac{4}{3}$$Because $y = x$, the two critical points are $(0, 0)$ and $\\left(\\frac{4}{3}, \\frac{4}{3}\\right)$.<div class=\"step-divider\"></div><strong>Step 2 — Compute the Second Partial Derivatives and Discriminant:</strong><br>Differentiate $f_x$ and $f_y$ once more:$$f_{xx} = -12x, \\qquad f_{yy} = -8, \\qquad f_{xy} = 8$$Construct the discriminant $D(x, y) = f_{xx} f_{yy} - (f_{xy})^2$:$$D(x, y) = (-12x)(-8) - 8^2 = 96x - 64$$<div class=\"step-divider\"></div><strong>Step 3 — Classify Each Critical Point via the Second Partials Test:</strong><br><ul><li><strong>At $(0, 0)$:</strong> $D(0, 0) = 96(0) - 64 = -64 < 0$, so $(0, 0)$ is a <strong>saddle point</strong>.</li><li><strong>At $\\left(\\frac{4}{3}, \\frac{4}{3}\\right)$:</strong> $D\\left(\\frac{4}{3}, \\frac{4}{3}\\right) = 96\\left(\\frac{4}{3}\\right) - 64 = 128 - 64 = 64 > 0$. Checking the sign of $f_{xx}$:$$f_{xx}\\left(\\frac{4}{3}, \\frac{4}{3}\\right) = -12\\left(\\frac{4}{3}\\right) = -16 < 0$$Since $D > 0$ and $f_{xx} < 0$, the point $\\left(\\frac{4}{3}, \\frac{4}{3}\\right)$ yields a <strong>relative maximum</strong>.</li></ul><div class=\"step-divider\"></div><strong>Step 4 — Conclusion:</strong><br>The graph of $f$ has <strong>one saddle point and one relative maximum</strong>."
+  },
+  {
+    "id": "FX_242_11",
+    "term": "242",
+    "number": 11,
+    "section": "13.8",
+    "topic": "Extrema & Saddle Points",
+    "question": "The maximum value of $f(x, y) = 3x^2 + 2y^2 - 4y$ over the region in the $xy$-plane bounded by the graphs of $y = x^2$ and $y = 4$ is equal to",
+    "choices": [
+      "$20$",
+      "$28$",
+      "$0$",
+      "$16$",
+      "$-2$"
+    ],
+    "correct_answer": "B",
+    "solution": "<strong>Step 1 — Describe the Closed Bounded Region $R$:</strong><br>The parabola $y = x^2$ and horizontal line $y = 4$ intersect where $x^2 = 4$, i.e. at the two corner points $(-2, 4)$ and $(2, 4)$. Thus $R = \\{(x, y) : -2 \\le x \\le 2,\\; x^2 \\le y \\le 4\\}$ is closed and bounded, so by the Extreme Value Theorem, $f$ attains its absolute maximum either at an interior critical point or along the boundary of $R$.<div class=\"step-divider\"></div><strong>Step 2 — Check Interior Critical Points of $f$:</strong><br>Set both first partials to zero:$$f_x = 6x = 0 \\implies x = 0, \\qquad f_y = 4y - 4 = 0 \\implies y = 1$$The point $(0, 1)$ lies strictly inside $R$ (since $0^2 < 1 < 4$). Evaluating $f$ there gives:$$f(0, 1) = 3(0)^2 + 2(1)^2 - 4(1) = -2$$<div class=\"step-divider\"></div><strong>Step 3 — Optimize $f$ Along Both Boundary Pieces:</strong><br><ul><li><strong>Top Boundary ($y = 4$, $-2 \\le x \\le 2$):</strong> Substitute $y = 4$ into $f$:$$g_1(x) = f(x, 4) = 3x^2 + 2(4)^2 - 4(4) = 3x^2 + 16$$Its derivative $g_1'(x) = 6x = 0$ gives the interior boundary point $(0, 4)$ with $f(0, 4) = 16$. At the endpoints $x = \\pm 2$:$$f(-2, 4) = f(2, 4) = 3(4) + 16 = 28$$</li><li><strong>Parabolic Boundary ($y = x^2$, $-2 \\le x \\le 2$):</strong> Substituting $x^2 = y$ (for $0 \\le y \\le 4$) yields a quadratic in $y$:$$g_2(y) = 3y + 2y^2 - 4y = 2y^2 - y$$Setting $g_2'(y) = 4y - 1 = 0$ gives $y = \\frac{1}{4}$ (at $x = \\pm \\frac{1}{2}$), where $g_2\\left(\\frac{1}{4}\\right) = 2\\left(\\frac{1}{16}\\right) - \\frac{1}{4} = -\\frac{1}{8}$. At the endpoints of $y \\in [0, 4]$: $y = 0$ gives $f(0, 0) = 0$, and $y = 4$ gives $f(\\pm 2, 4) = 28$.</li></ul><div class=\"step-divider\"></div><strong>Step 4 — Compare All Candidate Values:</strong><br>Collecting every candidate value — $f(0, 1) = -2$, $f\\left(\\pm \\frac{1}{2}, \\frac{1}{4}\\right) = -\\frac{1}{8}$, $f(0, 0) = 0$, $f(0, 4) = 16$, and $f(\\pm 2, 4) = 28$ — the absolute maximum value of $f$ over $R$ is $28$."
+  },
+  {
+    "id": "FX_242_12",
+    "term": "242",
+    "number": 12,
+    "section": "13.9",
+    "topic": "Applications of Extrema",
+    "question": "If $(a, b, c)$, with $c > 0$, is the point on the cone $z^2 = x^2 + y^2$ that is closest to the point $(1, 2, 0)$, then $8abc =$",
+    "choices": [
+      "$-3\\sqrt{5}$",
+      "$4\\sqrt{5}$",
+      "$\\sqrt{5}$",
+      "$5\\sqrt{5}$",
+      "$2\\sqrt{5}$"
+    ],
+    "correct_answer": "E",
+    "solution": "<strong>Step 1 — Formulate the Squared-Distance Objective Function:</strong><br>Minimizing the Euclidean distance $d = \\sqrt{(x - 1)^2 + (y - 2)^2 + (z - 0)^2}$ from a point $(x, y, z)$ on the cone to $(1, 2, 0)$ is equivalent to minimizing the squared distance $D = (x - 1)^2 + (y - 2)^2 + z^2$. Because the cone equation directly expresses $z^2 = x^2 + y^2$, substitute it into $D$ to eliminate $z$ without introducing any square roots:$$D(x, y) = (x - 1)^2 + (y - 2)^2 + x^2 + y^2 = 2x^2 - 2x + 2y^2 - 4y + 5$$<div class=\"step-divider\"></div><strong>Step 2 — Find and Verify the Unconstrained Minimum of $D(x, y)$:</strong><br>Set the first partial derivatives of $D$ equal to zero:$$D_x = 4x - 2 = 0 \\implies x = \\frac{1}{2}$$$$D_y = 4y - 4 = 0 \\implies y = 1$$Verify using the Second Partials Test: $D_{xx} = 4 > 0$, $D_{yy} = 4$, and $D_{xy} = 0$, giving discriminant $4(4) - 0^2 = 16 > 0$. Since $D(x, y)$ is an upward-opening paraboloid, $\\left(\\frac{1}{2}, 1\\right)$ is its unique global minimizer.<div class=\"step-divider\"></div><strong>Step 3 — Solve for the $z$-Coordinate $c > 0$ on the Cone:</strong><br>Substitute $a = \\frac{1}{2}$ and $b = 1$ into the cone equation $z^2 = x^2 + y^2$:$$c^2 = \\left(\\frac{1}{2}\\right)^2 + 1^2 = \\frac{1}{4} + 1 = \\frac{5}{4}$$Since the problem specifies $c > 0$, take the positive square root:$$c = \\frac{\\sqrt{5}}{2}$$<div class=\"step-divider\"></div><strong>Step 4 — Evaluate $8abc$:</strong><br>Multiply the coordinates of $(a, b, c) = \\left(\\frac{1}{2}, 1, \\frac{\\sqrt{5}}{2}\\right)$ by $8$:$$8abc = 8 \\left(\\frac{1}{2}\\right) (1) \\left(\\frac{\\sqrt{5}}{2}\\right) = 2\\sqrt{5}$$"
+  },
+  {
+    "id": "FX_242_13",
+    "term": "242",
+    "number": 13,
+    "section": "13.10",
+    "topic": "Lagrange Multipliers",
+    "question": "The maximum value of $f(x, y, z) = xyz$ on the sphere $x^2 + y^2 + z^2 = 12$ is equal to",
+    "choices": [
+      "$16$",
+      "$8$",
+      "$27$",
+      "$10$",
+      "$12$"
+    ],
+    "correct_answer": "B",
+    "solution": "<strong>Step 1 — Set Up the Lagrange Multiplier System on the Sphere:</strong><br>Let $g(x, y, z) = x^2 + y^2 + z^2 - 12 = 0$. The sphere is closed and bounded (compact), so $f(x, y, z) = xyz$ attains an absolute maximum. Since $f$ takes positive values on the sphere (e.g. when $x, y, z > 0$), the maximum must occur where $x \\neq 0$, $y \\neq 0$, and $z \\neq 0$. Setting $\\nabla f = \\lambda \\nabla g$ gives:$$\\begin{cases} yz = 2\\lambda x & (1) \\\\ xz = 2\\lambda y & (2) \\\\ xy = 2\\lambda z & (3) \\\\ x^2 + y^2 + z^2 = 12 & (4) \\end{cases}$$<div class=\"step-divider\"></div><strong>Step 2 — Symmetrize the Equations to Prove $x^2 = y^2 = z^2$:</strong><br>Multiply equation $(1)$ by $x$, equation $(2)$ by $y$, and equation $(3)$ by $z$:$$xyz = 2\\lambda x^2, \\qquad xyz = 2\\lambda y^2, \\qquad xyz = 2\\lambda z^2$$Because $xyz \\neq 0$ at any positive maximum, $\\lambda$ cannot be $0$. Dividing through by $2\\lambda$ yields:$$x^2 = y^2 = z^2$$<div class=\"step-divider\"></div><strong>Step 3 — Solve for the Stationary Points on the Sphere:</strong><br>Substitute $y^2 = x^2$ and $z^2 = x^2$ into the sphere constraint $(4)$:$$x^2 + x^2 + x^2 = 12 \\implies 3x^2 = 12 \\implies x^2 = 4 \\implies x = \\pm 2$$Consequently, $|x| = |y| = |z| = 2$, yielding all eight sign combinations $(\\pm 2, \\pm 2, \\pm 2)$.<div class=\"step-divider\"></div><strong>Step 4 — Determine the Maximum Value of $f$:</strong><br>Evaluating $f(x, y, z) = xyz$ at these eight points produces $+8$ whenever an even number of coordinates are negative (such as $(2, 2, 2)$) and $-8$ whenever an odd number of coordinates are negative. Therefore, the maximum value of $f$ on the sphere is $8$."
+  },
+  {
+    "id": "FX_242_14",
+    "term": "242",
+    "number": 14,
+    "section": "14.1",
+    "topic": "Iterated Integrals & Plane Area",
+    "question": "If $R = \\{(x, y) : 0 \\le x \\le 1,\\; 0 \\le y \\le \\ln 3\\}$, then $\\displaystyle \\iint_R y e^{xy}\\, dA =$",
+    "choices": [
+      "$2 - \\ln 3$",
+      "$1 + \\ln 3$",
+      "$4 - \\ln 3$",
+      "$3 - \\ln 3$",
+      "$e - \\ln 3$"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Choose the Best Order of Integration over the Rectangle $R$:</strong><br>Because $R$ is a rectangle $[0, 1] \\times [0, \\ln 3]$, Fubini's Theorem allows us to integrate in either order. Integrating with respect to $y$ first would require integration by parts on $y e^{xy}$. In contrast, integrating with respect to $x$ first treats $y$ as a constant, making $y e^{xy}$ the exact derivative of $e^{xy}$ with respect to $x$! Thus we choose the $dx\\,dy$ order:$$\\iint_R y e^{xy}\\, dA = \\int_{0}^{\\ln 3} \\int_{0}^{1} y e^{xy}\\, dx\\, dy$$<div class=\"step-divider\"></div><strong>Step 2 — Evaluate the Inner Integral with Respect to $x$:</strong><br>Since $\\frac{\\partial}{\\partial x}(e^{xy}) = y e^{xy}$, the inner integral evaluates immediately:$$\\int_{0}^{1} y e^{xy}\\, dx = \\left[ e^{xy} \\right]_{x=0}^{x=1} = e^{1 \\cdot y} - e^{0 \\cdot y} = e^{y} - 1$$<div class=\"step-divider\"></div><strong>Step 3 — Evaluate the Outer Integral with Respect to $y$:</strong><br>Integrate $e^{y} - 1$ from $y = 0$ to $y = \\ln 3$:$$\\int_{0}^{\\ln 3} (e^{y} - 1)\\, dy = \\left[ e^{y} - y \\right]_{0}^{\\ln 3} = (e^{\\ln 3} - \\ln 3) - (e^{0} - 0)$$<div class=\"step-divider\"></div><strong>Step 4 — Simplify Using $e^{\\ln 3} = 3$ and $e^0 = 1$:</strong><br>$$(3 - \\ln 3) - 1 = 2 - \\ln 3$$"
+  },
+  {
+    "id": "FX_242_15",
+    "term": "242",
+    "number": 15,
+    "section": "14.1",
+    "topic": "Iterated Integrals & Plane Area",
+    "question": "$\\displaystyle \\int_{0}^{2} \\int_{x^2}^{2x} f(x, y)\\, dy\\, dx =$",
+    "choices": [
+      "$\\displaystyle \\int_{0}^{4} \\int_{y/2}^{\\sqrt{y}} f(x, y)\\, dx\\, dy$",
+      "$\\displaystyle \\int_{0}^{4} \\int_{y}^{2y^2} f(x, y)\\, dx\\, dy$",
+      "$\\displaystyle \\int_{0}^{2} \\int_{y}^{2\\sqrt{y}} f(x, y)\\, dx\\, dy$",
+      "$\\displaystyle \\int_{0}^{2} \\int_{y/2}^{\\sqrt{y}} f(x, y)\\, dx\\, dy$",
+      "$\\displaystyle \\int_{x^2}^{2x} \\int_{0}^{2} f(x, y)\\, dx\\, dy$"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Identify the Region $R$ from the Given $dy\\,dx$ Bounds:</strong><br>The given integral describes the region $R$ vertically (Type I) by:$$0 \\le x \\le 2, \\qquad x^2 \\le y \\le 2x$$Thus $R$ lies in the first quadrant above the parabola $y = x^2$ and below the line $y = 2x$.<div class=\"step-divider\"></div><strong>Step 2 — Find the Intersection Points and the Overall $y$-Interval:</strong><br>Set $x^2 = 2x$ to locate the vertices of the region:$$x^2 - 2x = 0 \\implies x(x - 2) = 0 \\implies x = 0 \\quad \\text{or} \\quad x = 2$$The corresponding intersection points are $(0, 0)$ and $(2, 4)$. Therefore, as $(x, y)$ ranges over $R$, the vertical coordinate $y$ spans the constant interval:$$0 \\le y \\le 4$$<div class=\"step-divider\"></div><strong>Step 3 — Express the Left and Right Boundaries as Functions of $y$:</strong><br>For a fixed height $y \\in [0, 4]$, trace a horizontal line across $R$ from left to right:<ul><li>It enters $R$ on the left along the straight line $y = 2x$, which solves to $x = \\frac{y}{2}$.</li><li>It exits $R$ on the right along the first-quadrant branch of the parabola $y = x^2$, which solves to $x = \\sqrt{y}$ (since $x \\ge 0$).</li></ul>(Sanity check at $y = 1$: $\\frac{y}{2} = \\frac{1}{2} < 1 = \\sqrt{y}$, confirming the left/right order.)<div class=\"step-divider\"></div><strong>Step 4 — Write the Reversed Iterated Integral ($dx\\,dy$ Order):</strong><br>Placing $0 \\le y \\le 4$ on the outside and $\\frac{y}{2} \\le x \\le \\sqrt{y}$ on the inside gives:$$\\int_{0}^{2} \\int_{x^2}^{2x} f(x, y)\\, dy\\, dx = \\int_{0}^{4} \\int_{y/2}^{\\sqrt{y}} f(x, y)\\, dx\\, dy$$"
+  },
+  {
+    "id": "FX_242_16",
+    "term": "242",
+    "number": 16,
+    "section": "14.2",
+    "topic": "Double Integrals, Volume & Average Value",
+    "question": "The volume of the solid lying in the first octant and bounded by the graphs of $z = 4 - y^2$, $y = x$, $y = 1$ is equal to",
+    "choices": [
+      "$2$",
+      "$\\dfrac{9}{14}$",
+      "$\\dfrac{7}{4}$",
+      "$\\dfrac{5}{12}$",
+      "$\\dfrac{11}{12}$"
+    ],
+    "correct_answer": "C",
+    "solution": "<strong>Step 1 — Determine the Base Region $R$ in the First Quadrant:</strong><br>The solid lies in the first octant ($x \\ge 0$, $y \\ge 0$, $z \\ge 0$), beneath the parabolic cylinder $z = 4 - y^2$ (note that $4 - y^2 > 0$ for all $0 \\le y \\le 1$). In the $xy$-plane, the lines $x = 0$, $y = x$, and $y = 1$ enclose a unique bounded triangle $R$ with vertices $(0, 0)$, $(0, 1)$, and $(1, 1)$.<div class=\"step-divider\"></div><strong>Step 2 — Set Up the Double Integral for Volume Using Horizontal Slices:</strong><br>Describe the triangle $R$ horizontally (Type II):<ul><li>$y$ runs from $0$ to $1$.</li><li>For each fixed $y \\in [0, 1]$, $x$ runs from the $y$-axis ($x = 0$) to the diagonal line ($x = y$).</li></ul>Because the integrand $4 - y^2$ does not depend on $x$, integrating with respect to $x$ first is especially clean:$$V = \\iint_R (4 - y^2)\\, dA = \\int_{0}^{1} \\int_{0}^{y} (4 - y^2)\\, dx\\, dy$$<div class=\"step-divider\"></div><strong>Step 3 — Evaluate the Inner $x$-Integral:</strong><br>Hold $y$ constant and integrate over $0 \\le x \\le y$:$$\\int_{0}^{y} (4 - y^2)\\, dx = (4 - y^2) \\left[ x \\right]_{0}^{y} = y(4 - y^2) = 4y - y^3$$<div class=\"step-divider\"></div><strong>Step 4 — Evaluate the Outer $y$-Integral:</strong><br>Integrate $4y - y^3$ from $y = 0$ to $y = 1$:$$V = \\int_{0}^{1} (4y - y^3)\\, dy = \\left[ 2y^2 - \\frac{y^4}{4} \\right]_{0}^{1} = 2(1)^2 - \\frac{1^4}{4} = 2 - \\frac{1}{4} = \\frac{7}{4}$$"
+  },
+  {
+    "id": "FX_242_17",
+    "term": "242",
+    "number": 17,
+    "section": "14.2",
+    "topic": "Double Integrals, Volume & Average Value",
+    "question": "Let $f(x, y) = 2x + y$ and $R = \\{(x, y) : 0 \\le x \\le a,\\; 0 \\le y \\le a\\}$. If the average value of $f$ over $R$ is $6$, then $a =$",
+    "choices": [
+      "$6$",
+      "$\\dfrac{3}{2}$",
+      "$4$",
+      "$2$",
+      "$\\dfrac{12}{5}$"
+    ],
+    "correct_answer": "C",
+    "solution": "<strong>Step 1 — State the Average Value Formula on the Square $R$:</strong><br>The region $R = [0, a] \\times [0, a]$ is a square of side length $a > 0$, so its area is $\\text{Area}(R) = a^2$. The average value of $f(x, y) = 2x + y$ over $R$ is:$$f_{\\text{avg}} = \\frac{1}{\\text{Area}(R)} \\iint_R (2x + y)\\, dA = \\frac{1}{a^2} \\int_{0}^{a} \\int_{0}^{a} (2x + y)\\, dx\\, dy$$<div class=\"step-divider\"></div><strong>Step 2 — Evaluate the Inner Integral with Respect to $x$:</strong><br>Treat $y$ as a constant while integrating from $x = 0$ to $x = a$:$$\\int_{0}^{a} (2x + y)\\, dx = \\left[ x^2 + yx \\right]_{x=0}^{x=a} = a^2 + ay$$<div class=\"step-divider\"></div><strong>Step 3 — Evaluate the Outer Integral with Respect to $y$:</strong><br>Integrate $a^2 + ay$ from $y = 0$ to $y = a$:$$\\int_{0}^{a} (a^2 + ay)\\, dy = \\left[ a^2 y + \\frac{a y^2}{2} \\right]_{y=0}^{y=a} = a^3 + \\frac{a^3}{2} = \\frac{3}{2}a^3$$<div class=\"step-divider\"></div><strong>Step 4 — Set $f_{\\text{avg}} = 6$ and Solve for $a$:</strong><br>Divide the double integral by $\\text{Area}(R) = a^2$:$$f_{\\text{avg}} = \\frac{1}{a^2} \\left( \\frac{3}{2}a^3 \\right) = \\frac{3}{2}a$$Setting $\\frac{3}{2}a = 6$ gives:$$3a = 12 \\implies a = 4$$"
+  },
+  {
+    "id": "FX_242_18",
+    "term": "242",
+    "number": 18,
+    "section": "14.3",
+    "topic": "Double Integrals in Polar Coordinates",
+    "question": "If $R = \\{(x, y) : x^2 + y^2 \\le 4,\\; x \\ge 0\\}$, then $\\displaystyle \\iint_R e^{-x^2 - y^2}\\, dA =$",
+    "choices": [
+      "$\\dfrac{\\pi}{2}(1 - e^{-4})$",
+      "$\\pi(1 - e^{-4})$",
+      "$\\dfrac{\\pi}{4}(1 + e^{-4})$",
+      "$\\dfrac{\\pi}{4}(1 - e^{-4})$",
+      "$\\dfrac{\\pi}{2}(2 + e^{-4})$"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Express the Semicircular Region $R$ in Polar Coordinates:</strong><br>The condition $x^2 + y^2 \\le 4$ defines the closed disk of radius $2$ centered at the origin ($0 \\le r \\le 2$). The condition $x \\ge 0$ selects the right half of this disk (Quadrants IV and I), where the polar angle $\\theta$ sweeps from $-\\frac{\\pi}{2}$ to $\\frac{\\pi}{2}$:$$-\\frac{\\pi}{2} \\le \\theta \\le \\frac{\\pi}{2}, \\qquad 0 \\le r \\le 2$$<div class=\"step-divider\"></div><strong>Step 2 — Rewrite the Integrand and Area Element in Polar Form:</strong><br>Since $-x^2 - y^2 = -(x^2 + y^2) = -r^2$ and $dA = r\\, dr\\, d\\theta$, the integral transforms into:$$\\iint_R e^{-x^2 - y^2}\\, dA = \\int_{-\\pi/2}^{\\pi/2} \\int_{0}^{2} e^{-r^2} \\cdot r\\, dr\\, d\\theta$$<div class=\"step-divider\"></div><strong>Step 3 — Evaluate the Inner Radial Integral via $u$-Substitution:</strong><br>Let $u = -r^2$, so $du = -2r\\, dr \\implies r\\, dr = -\\frac{1}{2}\\, du$. When $r = 0$, $u = 0$; when $r = 2$, $u = -4$:$$\\int_{0}^{2} r e^{-r^2}\\, dr = \\left[ -\\frac{1}{2} e^{-r^2} \\right]_{0}^{2} = -\\frac{1}{2}(e^{-4} - e^{0}) = \\frac{1 - e^{-4}}{2}$$<div class=\"step-divider\"></div><strong>Step 4 — Evaluate the Outer Angular Integral:</strong><br>Integrate the constant $\\frac{1 - e^{-4}}{2}$ over $-\\frac{\\pi}{2} \\le \\theta \\le \\frac{\\pi}{2}$:$$\\int_{-\\pi/2}^{\\pi/2} \\frac{1 - e^{-4}}{2}\\, d\\theta = \\frac{1 - e^{-4}}{2} \\left( \\frac{\\pi}{2} - \\left(-\\frac{\\pi}{2}\\right) \\right) = \\frac{\\pi}{2}(1 - e^{-4})$$"
+  },
+  {
+    "id": "FX_242_19",
+    "term": "242",
+    "number": 19,
+    "section": "14.7",
+    "topic": "Triple Integrals (Cyl. & Sph.)",
+    "question": "The volume of the solid bounded above by $z = 3 - x^2 - y^2$ and below by $z = 2x^2 + 2y^2$ is equal to",
+    "choices": [
+      "$\\dfrac{5\\pi}{2}$",
+      "$2\\pi$",
+      "$\\dfrac{3\\pi}{2}$",
+      "$\\dfrac{7\\pi}{2}$",
+      "$3\\pi$"
+    ],
+    "correct_answer": "C",
+    "solution": "<strong>Step 1 — Convert Both Paraboloids to Cylindrical Coordinates and Find Their Intersection:</strong><br>Using $r^2 = x^2 + y^2$, the upper downward-opening paraboloid is $z = 3 - r^2$ and the lower upward-opening paraboloid is $z = 2r^2$. Set them equal to find their curve of intersection:$$3 - r^2 = 2r^2 \\implies 3r^2 = 3 \\implies r^2 = 1 \\implies r = 1$$Thus the projection onto the $xy$-plane is the unit disk $0 \\le r \\le 1$, $0 \\le \\theta \\le 2\\pi$.<div class=\"step-divider\"></div><strong>Step 2 — Set Up the Cylindrical Triple Integral for Volume:</strong><br>For every point in the unit disk, $z$ goes from the lower surface $z = 2r^2$ up to the upper surface $z = 3 - r^2$. Including the cylindrical volume element $dV = r\\, dz\\, dr\\, d\\theta$:$$V = \\int_{0}^{2\\pi} \\int_{0}^{1} \\int_{2r^2}^{3 - r^2} r\\, dz\\, dr\\, d\\theta$$<div class=\"step-divider\"></div><strong>Step 3 — Integrate with Respect to $z$ and Then $r$:</strong><br>Evaluate the $z$-integral first:$$\\int_{2r^2}^{3 - r^2} r\\, dz = r \\left[ (3 - r^2) - 2r^2 \\right] = r(3 - 3r^2) = 3r - 3r^3$$Next evaluate the radial integral over $0 \\le r \\le 1$:$$\\int_{0}^{1} (3r - 3r^3)\\, dr = \\left[ \\frac{3}{2}r^2 - \\frac{3}{4}r^4 \\right]_{0}^{1} = \\frac{3}{2} - \\frac{3}{4} = \\frac{3}{4}$$<div class=\"step-divider\"></div><strong>Step 4 — Evaluate the Outer $\\theta$-Integral:</strong><br>Multiply by the angular span $2\\pi$:$$V = \\int_{0}^{2\\pi} \\frac{3}{4}\\, d\\theta = \\frac{3}{4}(2\\pi) = \\frac{3\\pi}{2}$$"
+  },
+  {
+    "id": "FX_242_20",
+    "term": "242",
+    "number": 20,
+    "section": "14.7",
+    "topic": "Triple Integrals (Cyl. & Sph.)",
+    "question": "If $D = \\{(x, y, z) : 0 \\le z \\le \\sqrt{4 - x^2 - y^2},\\; 0 \\le y \\le \\sqrt{4 - x^2},\\; -2 \\le x \\le 2\\}$, then $\\displaystyle \\iiint_D \\sin(x^2 + y^2 + z^2)\\, dV =$",
+    "choices": [
+      "$\\displaystyle \\int_{0}^{2\\pi} \\int_{0}^{\\frac{\\pi}{2}} \\int_{0}^{2} \\rho^2 \\sin(\\rho^2) \\cdot \\sin\\phi\\, d\\rho\\, d\\phi\\, d\\theta$",
+      "$\\displaystyle \\int_{0}^{\\pi} \\int_{0}^{\\frac{\\pi}{2}} \\int_{0}^{2} \\rho^2 \\sin(\\rho^2) \\cdot \\sin\\phi\\, d\\rho\\, d\\phi\\, d\\theta$",
+      "$\\displaystyle \\int_{0}^{\\pi} \\int_{0}^{\\pi} \\int_{0}^{2} \\rho^2 \\sin\\rho \\cdot \\sin\\phi\\, d\\rho\\, d\\phi\\, d\\theta$",
+      "$\\displaystyle \\int_{0}^{\\pi} \\int_{0}^{\\frac{\\pi}{2}} \\int_{0}^{4} \\rho \\sin(\\rho^2) \\cdot \\sin\\phi\\, d\\rho\\, d\\phi\\, d\\theta$",
+      "$\\displaystyle \\int_{0}^{2\\pi} \\int_{0}^{\\pi} \\int_{0}^{4} \\rho \\sin(\\rho^2) \\cdot \\sin\\phi\\, d\\rho\\, d\\phi\\, d\\theta$"
+    ],
+    "correct_answer": "B",
+    "solution": "<strong>Step 1 — Decode the 3D Region $D$ in Spherical Coordinates:</strong><br>Analyze each of the three inequalities defining $D$:<ul><li><strong>Spherical radius $\\rho$ and polar angle $\\phi$:</strong> The inequality $0 \\le z \\le \\sqrt{4 - x^2 - y^2}$ means $z \\ge 0$ and $x^2 + y^2 + z^2 \\le 4$, which is the upper hemisphere of the ball of radius $2$ centered at the origin. Therefore:$$0 \\le \\rho \\le 2, \\qquad 0 \\le \\phi \\le \\frac{\\pi}{2}$$</li><li><strong>Azimuthal angle $\\theta$:</strong> The $xy$-projection is described by $-2 \\le x \\le 2$ and $0 \\le y \\le \\sqrt{4 - x^2}$. Because $y \\ge 0$ while $x$ ranges across both negative and positive values, this is the upper half of the disk of radius $2$ (Quadrants I and II):$$0 \\le \\theta \\le \\pi$$</li></ul><div class=\"step-divider\"></div><strong>Step 2 — Convert the Integrand to Spherical Coordinates:</strong><br>Using the fundamental spherical identity $x^2 + y^2 + z^2 = \\rho^2$, the integrand becomes:$$\\sin(x^2 + y^2 + z^2) = \\sin(\\rho^2)$$<div class=\"step-divider\"></div><strong>Step 3 — Include the Spherical Volume Element:</strong><br>In spherical coordinates, the differential volume element is:$$dV = \\rho^2 \\sin\\phi\\, d\\rho\\, d\\phi\\, d\\theta$$Multiplying the integrand by $dV$ gives $\\rho^2 \\sin(\\rho^2) \\cdot \\sin\\phi\\, d\\rho\\, d\\phi\\, d\\theta$.<div class=\"step-divider\"></div><strong>Step 4 — Assemble the Spherical Triple Integral:</strong><br>Combining the bounds $0 \\le \\theta \\le \\pi$, $0 \\le \\phi \\le \\frac{\\pi}{2}$, and $0 \\le \\rho \\le 2$ with the transformed integrand yields:$$\\int_{0}^{\\pi} \\int_{0}^{\\frac{\\pi}{2}} \\int_{0}^{2} \\rho^2 \\sin(\\rho^2) \\cdot \\sin\\phi\\, d\\rho\\, d\\phi\\, d\\theta$$"
+  },
+  {
+    "id": "FX_241_5",
+    "term": "241",
+    "number": 5,
+    "section": "13.7",
+    "topic": "Tangent Planes & Normal Lines",
+    "question": "The $x$-coordinate of the point on the surface$$z = 4x^2 + 4xy - 2y^2 + 8x - 5y - 4$$at which the tangent plane is horizontal is",
+    "choices": [
+      "$-1$",
+      "$-\\dfrac{1}{4}$",
+      "$-\\dfrac{1}{3}$",
+      "$\\dfrac{1}{12}$",
+      "$-\\dfrac{5}{12}$"
+    ],
+    "correct_answer": "B",
+    "solution": "<strong>Step 1 — Characterize a Horizontal Tangent Plane:</strong><br>For a smooth surface $z = f(x, y)$, the tangent plane at $(x_0, y_0, z_0)$ has equation $z - z_0 = f_x(x_0, y_0)(x - x_0) + f_y(x_0, y_0)(y - y_0)$ and normal vector $\\langle f_x, f_y, -1 \\rangle$. The tangent plane is horizontal (parallel to the $xy$-plane, normal to $\\langle 0, 0, 1 \\rangle$) if and only if both first partial derivatives vanish simultaneously:$$z_x = 0 \\qquad \\text{and} \\qquad z_y = 0$$<div class=\"step-divider\"></div><strong>Step 2 — Compute $z_x$ and $z_y$ and Form the Linear System:</strong><br>Differentiating $z = 4x^2 + 4xy - 2y^2 + 8x - 5y - 4$ partially with respect to $x$ and $y$:$$\\begin{cases} z_x = 8x + 4y + 8 = 0 & (1) \\\\ z_y = 4x - 4y - 5 = 0 & (2) \\end{cases}$$<div class=\"step-divider\"></div><strong>Step 3 — Solve for the $x$-Coordinate:</strong><br>Notice that the $y$-coefficients are $+4$ and $-4$, so adding equations $(1)$ and $(2)$ directly eliminates $y$:$$(8x + 4y + 8) + (4x - 4y - 5) = 0 \\implies 12x + 3 = 0 \\implies x = -\\frac{3}{12} = -\\frac{1}{4}$$(For completeness, substituting $x = -\\dfrac{1}{4}$ into $(1)$ gives $-2 + 4y + 8 = 0 \\implies y = -\\dfrac{3}{2}$, confirming a unique point.)<br>Therefore, the $x$-coordinate of the point is $-\\dfrac{1}{4}$."
+  },
+  {
+    "id": "FX_241_9",
+    "term": "241",
+    "number": 9,
+    "section": "13.8",
+    "topic": "Extrema of Functions of Two Variables",
+    "question": "The function $f(x, y) = \\sqrt[3]{x^2 + y^2} + 2$ has",
+    "choices": [
+      "a saddle point at $(0, 0)$",
+      "a critical point at $(0, 1)$",
+      "no extrema",
+      "a relative maximum at $(0, 0)$",
+      "a relative minimum at $(0, 0)$"
+    ],
+    "correct_answer": "E",
+    "solution": "<strong>Step 1 — Locate All Critical Points of $f(x, y)$:</strong><br>Write $f(x, y) = (x^2 + y^2)^{1/3} + 2$ and compute the first partial derivatives for $(x, y) \\neq (0, 0)$:$$f_x(x, y) = \\frac{2x}{3(x^2 + y^2)^{2/3}}, \\qquad f_y(x, y) = \\frac{2y}{3(x^2 + y^2)^{2/3}}$$For $(x, y) \\neq (0, 0)$, $f_x = 0$ and $f_y = 0$ cannot both hold (since that requires $x = 0$ and $y = 0$). However, at $(0, 0)$, the denominator vanishes so both $f_x(0, 0)$ and $f_y(0, 0)$ fail to exist while $f(0, 0) = 2$ is defined. Hence $(0, 0)$ is the unique critical point of $f$.<div class=\"step-divider\"></div><strong>Step 2 — Classify $(0, 0)$ Directly Without the Second Partials Test:</strong><br>Because the first partial derivatives do not exist at $(0, 0)$, the Second Partials Test does not apply. Instead, use direct inequality reasoning: For every $(x, y) \\in \\mathbb{R}^2$, we have $x^2 + y^2 \\ge 0$. Since the cube root function is strictly increasing and $\\sqrt[3]{0} = 0$, it follows that:$$\\sqrt[3]{x^2 + y^2} \\ge 0 \\implies f(x, y) = \\sqrt[3]{x^2 + y^2} + 2 \\ge 2 = f(0, 0)$$with strict inequality $f(x, y) > f(0, 0)$ for all $(x, y) \\neq (0, 0)$.<div class=\"step-divider\"></div><strong>Step 3 — Conclude:</strong><br>Since $f(0, 0) = 2 \\le f(x, y)$ for all $(x, y)$ in every neighborhood of $(0, 0)$ (in fact, globally on $\\mathbb{R}^2$), the function $f$ has a <strong>relative minimum at $(0, 0)$</strong>."
+  },
+  {
+    "id": "FX_241_10",
+    "term": "241",
+    "number": 10,
+    "section": "13.8",
+    "topic": "Extrema of Functions of Two Variables",
+    "question": "Let $T$ be the triangular region in the $xy$-plane with vertices $(2, 0)$, $(0, 1)$, and $(1, 2)$ respectively. If $M$ and $m$ represent respectively the absolute maximum and absolute minimum of the function $f(x, y) = (2x - y)^2$ over the region $T$, then $M + m =$",
+    "choices": [
+      "$17$",
+      "$18$",
+      "$14$",
+      "$16$",
+      "$19$"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Find the Interior Critical Points:</strong><br>Compute the first partial derivatives of $f(x, y) = (2x - y)^2$:$$f_x = 4(2x - y) = 0, \\qquad f_y = -2(2x - y) = 0$$Both partial derivatives vanish along the entire line $y = 2x$, where $f(x, y) = 0$. Note that since $f(x, y) = (2x - y)^2 \\ge 0$ everywhere on $\\mathbb{R}^2$, any point in $T$ satisfying $2x - y = 0$ immediately achieves the absolute minimum value $m = 0$.<div class=\"step-divider\"></div><strong>Step 2 — Verify That the Line $2x - y = 0$ Intersects $T$:</strong><br>Notice that the vertex $(1, 2)$ of $T$ directly satisfies $2(1) - 2 = 0$, giving $f(1, 2) = 0$! (The line $y = 2x$ also passes through the interior of $T$ to the edge connecting $(0, 1)$ and $(2, 0)$ at $\\left(\\frac{2}{5}, \\frac{4}{5}\\right)$.) Therefore, the absolute minimum on $T$ is:$$m = 0$$<div class=\"step-divider\"></div><strong>Step 3 — Find the Absolute Maximum $M$ Along the Boundary of $T$:</strong><br>Because $f(x, y) = (2x - y)^2$ is the square of the linear function $L(x, y) = 2x - y$, along any line segment $L$ varies linearly, so $|L|$ (and hence $L^2$) attains its maximum at one of the endpoints (vertices) of the triangle $T$! Evaluating $f$ at all three vertices:<ul><li>At $(2, 0)$: $f(2, 0) = (2(2) - 0)^2 = 4^2 = 16$.</li><li>At $(0, 1)$: $f(0, 1) = (2(0) - 1)^2 = (-1)^2 = 1$.</li><li>At $(1, 2)$: $f(1, 2) = (2(1) - 2)^2 = 0^2 = 0$.</li></ul>Thus the absolute maximum is $M = 16$, attained at $(2, 0)$.<div class=\"step-divider\"></div><strong>Step 4 — Compute $M + m$:</strong><br>$$M + m = 16 + 0 = 16$$"
+  },
+  {
+    "id": "FX_241_11",
+    "term": "241",
+    "number": 11,
+    "section": "13.9",
+    "topic": "Applications of Extrema",
+    "question": "A box without a top is to be made, where the material for the base costs twice as much per square unit as the material for the sides. If the sides cost &#36;4 per square unit and the total cost of materials is &#36;600, then the sum of length, width, and height of the largest possible box is:",
+    "choices": [
+      "$30\\text{ units}$",
+      "$20\\text{ units}$",
+      "$15\\text{ units}$",
+      "$35\\text{ units}$",
+      "$60\\text{ units}$"
+    ],
+    "correct_answer": "C",
+    "solution": "<strong>Step 1 — Formulate the Objective Function and Cost Constraint:</strong><br>Let the box have length $x > 0$, width $y > 0$, and height $z > 0$. We want to maximize the volume:$$V(x, y, z) = xyz$$The open-top box has one base of area $xy$ and four vertical sides of combined area $2xz + 2yz$. The sides cost &#36;4 per square unit, and the base costs twice as much, i.e., &#36;8 per square unit. Setting the total cost equal to &#36;600:$$8(xy) + 4(2xz + 2yz) = 600 \\implies 8xy + 8xz + 8yz = 600$$Dividing through by $8$ yields a completely symmetric constraint:$$xy + xz + yz = 75$$<div class=\"step-divider\"></div><strong>Step 2 — Eliminate $z$ (or Apply Lagrange Multipliers):</strong><br>Using Lagrange multipliers with $V(x, y, z) = xyz$ and $g(x, y, z) = xy + xz + yz = 75$, set $\\nabla V = \\lambda \\nabla g$:$$\\begin{cases} yz = \\lambda(y + z) & (1) \\\\ xz = \\lambda(x + z) & (2) \\\\ xy = \\lambda(x + y) & (3) \\end{cases}$$Multiply $(1)$ by $x$, $(2)$ by $y$, and $(3)$ by $z$:$$xyz = \\lambda(xy + xz) = \\lambda(xy + yz) = \\lambda(xz + yz)$$<div class=\"step-divider\"></div><strong>Step 3 — Solve for the Optimal Dimensions $x, y, z$:</strong><br>Since $x, y, z > 0$, we have $\\lambda \\neq 0$. Equating the first two expressions:$$xy + xz = xy + yz \\implies xz = yz \\implies x = y$$Similarly, equating the second and third expressions:$$xy + yz = xz + yz \\implies xy = xz \\implies y = z$$Thus the largest box is a cube with $x = y = z$. Substituting into $xy + xz + yz = 75$:$$3x^2 = 75 \\implies x^2 = 25 \\implies x = y = z = 5\\text{ units}$$<div class=\"step-divider\"></div><strong>Step 4 — Compute the Sum of Length, Width, and Height:</strong><br>$$x + y + z = 5 + 5 + 5 = 15\\text{ units}$$"
+  },
+  {
+    "id": "FX_241_12",
+    "term": "241",
+    "number": 12,
+    "section": "13.10",
+    "topic": "Lagrange Multipliers",
+    "question": "The minimum value of $f(x, y) = e^{-xy/4}$ subject to the constraint $x^2 + y^2 = 1$ is equal to",
+    "choices": [
+      "$1$",
+      "$e$",
+      "$e^{-\\frac{1}{8}}$",
+      "$e^{-1}$",
+      "$e^{\\frac{1}{8}}$"
+    ],
+    "correct_answer": "C",
+    "solution": "<strong>Step 1 — Set Up the Lagrange Multiplier System:</strong><br>Let $f(x, y) = e^{-xy/4}$ and $g(x, y) = x^2 + y^2 = 1$. Compute both gradients:$$\\nabla f(x, y) = \\left\\langle -\\frac{y}{4}e^{-xy/4},\\; -\\frac{x}{4}e^{-xy/4} \\right\\rangle, \\qquad \\nabla g(x, y) = \\langle 2x,\\; 2y \\rangle$$Setting $\\nabla f = \\lambda \\nabla g$ together with the unit-circle constraint gives:$$\\begin{cases} -\\dfrac{y}{4}e^{-xy/4} = 2\\lambda x & (1) \\\\[6pt] -\\dfrac{x}{4}e^{-xy/4} = 2\\lambda y & (2) \\\\[6pt] x^2 + y^2 = 1 & (3) \\end{cases}$$<div class=\"step-divider\"></div><strong>Step 2 — Solve for All Candidate Points on $x^2 + y^2 = 1$:</strong><br>Multiply equation $(1)$ by $y$ and equation $(2)$ by $x$ to match the right-hand sides:$$-\\frac{y^2}{4}e^{-xy/4} = 2\\lambda xy = -\\frac{x^2}{4}e^{-xy/4}$$Since $-\\dfrac{1}{4}e^{-xy/4} \\neq 0$ everywhere, divide both sides by it to obtain:$$y^2 = x^2$$Substituting $y^2 = x^2$ into the constraint $x^2 + y^2 = 1$ gives:$$2x^2 = 1 \\implies x^2 = \\frac{1}{2} \\implies x = \\pm\\frac{1}{\\sqrt{2}}, \\qquad y = \\pm\\frac{1}{\\sqrt{2}}$$<div class=\"step-divider\"></div><strong>Step 3 — Evaluate $f(x, y)$ at All Four Critical Points:</strong><br><ul><li>When $x$ and $y$ have the <strong>same sign</strong>, i.e., $\\left(\\frac{1}{\\sqrt{2}}, \\frac{1}{\\sqrt{2}}\\right)$ and $\\left(-\\frac{1}{\\sqrt{2}}, -\\frac{1}{\\sqrt{2}}\\right)$, we have $xy = \\dfrac{1}{2}$, so:$$f(x, y) = e^{-(1/2)/4} = e^{-1/8}$$</li><li>When $x$ and $y$ have <strong>opposite signs</strong>, i.e., $\\left(\\frac{1}{\\sqrt{2}}, -\\frac{1}{\\sqrt{2}}\\right)$ and $\\left(-\\frac{1}{\\sqrt{2}}, \\frac{1}{\\sqrt{2}}\\right)$, we have $xy = -\\dfrac{1}{2}$, so:$$f(x, y) = e^{-(-1/2)/4} = e^{1/8}$$</li></ul><div class=\"step-divider\"></div><strong>Step 4 — Identify the Minimum Value:</strong><br>Since the constraint circle $x^2 + y^2 = 1$ is closed and bounded and $e^{-1/8} < e^{1/8}$, the absolute minimum value of $f(x, y)$ on the constraint is $e^{-\\frac{1}{8}}$."
+  },
+  {
+    "id": "FX_241_13",
+    "term": "241",
+    "number": 13,
+    "section": "14.1",
+    "topic": "Iterated Integrals & Area",
+    "question": "Evaluate the iterated integral:$$\\int_{0}^{\\ln 4} \\int_{0}^{\\ln 3} e^{x + y}\\,dy\\,dx$$",
+    "choices": [
+      "$6$",
+      "$3$",
+      "$5$",
+      "$1$",
+      "$4$"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Separate the Integrand Over Constant Limits:</strong><br>Using the exponent law $e^{x + y} = e^{x} e^{y}$ and the fact that both integration limits are constants, the double integral factors into the product of two single-variable integrals:$$\\int_{0}^{\\ln 4} \\int_{0}^{\\ln 3} e^{x} e^{y}\\,dy\\,dx = \\left(\\int_{0}^{\\ln 4} e^{x}\\,dx\\right)\\left(\\int_{0}^{\\ln 3} e^{y}\\,dy\\right)$$<div class=\"step-divider\"></div><strong>Step 2 — Evaluate Each Single Integral:</strong><br>Recall that $e^{\\ln k} = k$ and $e^{0} = 1$:$$\\int_{0}^{\\ln 4} e^{x}\\,dx = \\bigl[e^{x}\\bigr]_{0}^{\\ln 4} = e^{\\ln 4} - e^{0} = 4 - 1 = 3$$$$\\int_{0}^{\\ln 3} e^{y}\\,dy = \\bigl[e^{y}\\bigr]_{0}^{\\ln 3} = e^{\\ln 3} - e^{0} = 3 - 1 = 2$$<div class=\"step-divider\"></div><strong>Step 3 — Multiply the Results:</strong><br>$$\\int_{0}^{\\ln 4} \\int_{0}^{\\ln 3} e^{x + y}\\,dy\\,dx = 3 \\times 2 = 6$$Therefore, the value of the iterated integral is $6$."
+  },
+  {
+    "id": "FX_241_14",
+    "term": "241",
+    "number": 14,
+    "section": "14.1",
+    "topic": "Iterated Integrals & Area",
+    "question": "Evaluate the iterated integral:$$\\int_{0}^{1} \\int_{x}^{1} \\cos(y^2)\\,dy\\,dx$$",
+    "choices": [
+      "$\\dfrac{1}{2}\\sin(1)$",
+      "$0$",
+      "$\\dfrac{1}{2}\\cos(1)$",
+      "$\\sin(1)$",
+      "$\\cos(1)$"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Identify the Need to Reverse the Order of Integration:</strong><br>The function $\\cos(y^2)$ does not possess an elementary antiderivative in $y$, so we rewrite the domain of integration $R$ and switch the order from $dy\\,dx$ to $dx\\,dy$.<div class=\"step-divider\"></div><strong>Step 2 — Rewrite the Triangular Region $R$ as $x$-Simple:</strong><br>The given limits define the triangle in the first quadrant:$$0 \\le x \\le 1, \\qquad x \\le y \\le 1$$This triangle is bounded below by the diagonal $y = x$, above by $y = 1$, and on the left by $x = 0$. Slicing horizontally at a fixed $y \\in [0, 1]$, the coordinate $x$ runs from the $y$-axis ($x = 0$) to the line $x = y$:$$0 \\le y \\le 1, \\qquad 0 \\le x \\le y$$<div class=\"step-divider\"></div><strong>Step 3 — Evaluate the Reversed Integral:</strong><br>Integrate with respect to $x$ first (holding $\\cos(y^2)$ constant):$$\\int_{0}^{1} \\int_{0}^{y} \\cos(y^2)\\,dx\\,dy = \\int_{0}^{1} \\cos(y^2)\\bigl[x\\bigr]_{0}^{y}\\,dy = \\int_{0}^{1} y\\cos(y^2)\\,dy$$<div class=\"step-divider\"></div><strong>Step 4 — Finish via $u$-Substitution:</strong><br>Let $u = y^2$, so $du = 2y\\,dy \\implies y\\,dy = \\dfrac{1}{2}\\,du$. When $y = 0$, $u = 0$; when $y = 1$, $u = 1$. Thus:$$\\int_{0}^{1} \\frac{1}{2}\\cos(u)\\,du = \\left[\\frac{1}{2}\\sin(u)\\right]_{0}^{1} = \\frac{1}{2}\\bigl(\\sin(1) - \\sin(0)\\bigr) = \\frac{1}{2}\\sin(1)$$Therefore, the value of the iterated integral is $\\dfrac{1}{2}\\sin(1)$."
+  },
+  {
+    "id": "FX_241_15",
+    "term": "241",
+    "number": 15,
+    "section": "14.3",
+    "topic": "Double Integrals in Polar Coordinates",
+    "question": "Evaluate the iterated integral:$$\\int_{0}^{\\sqrt{2}} \\int_{y}^{\\sqrt{4 - y^2}} \\sqrt{x^2 + y^2}\\,dx\\,dy$$",
+    "choices": [
+      "$\\dfrac{\\pi}{2}$",
+      "$\\dfrac{2\\pi}{3}$",
+      "$\\dfrac{5\\pi}{3}$",
+      "$\\dfrac{4\\pi}{3}$",
+      "$2\\pi$"
+    ],
+    "correct_answer": "B",
+    "solution": "<strong>Step 1 — Sketch and Identify the Region of Integration $R$:</strong><br>From the limits of integration:$$0 \\le y \\le \\sqrt{2}, \\qquad y \\le x \\le \\sqrt{4 - y^2}$$The left boundary is the line $x = y$ (i.e., $\\theta = \\dfrac{\\pi}{4}$) and the right boundary is the semicircle $x = \\sqrt{4 - y^2}$ of the circle $x^2 + y^2 = 4$ (radius $r = 2$). Notice that $x = y$ intersects $x^2 + y^2 = 4$ in the first quadrant at $2y^2 = 4 \\implies y = \\sqrt{2}$, $x = \\sqrt{2}$. Since $x \\ge y \\ge 0$, every point in $R$ lies below the line $y = x$ and above the positive $x$-axis ($y = 0$), inside the circle of radius $2$. Thus $R$ is the circular sector:$$0 \\le \\theta \\le \\frac{\\pi}{4}, \\qquad 0 \\le r \\le 2$$<div class=\"step-divider\"></div><strong>Step 2 — Convert the Integral to Polar Coordinates:</strong><br>Substitute $\\sqrt{x^2 + y^2} = r$ and $dx\\,dy = r\\,dr\\,d\\theta$:$$I = \\int_{0}^{\\pi/4} \\int_{0}^{2} r \\cdot r\\,dr\\,d\\theta = \\int_{0}^{\\pi/4} \\int_{0}^{2} r^2\\,dr\\,d\\theta$$<div class=\"step-divider\"></div><strong>Step 3 — Evaluate the Polar Integral:</strong><br>$$I = \\left(\\int_{0}^{\\pi/4} d\\theta\\right)\\left(\\int_{0}^{2} r^2\\,dr\\right) = \\frac{\\pi}{4} \\cdot \\left[\\frac{r^3}{3}\\right]_{0}^{2} = \\frac{\\pi}{4} \\cdot \\frac{8}{3} = \\frac{2\\pi}{3}$$Therefore, the value of the integral is $\\dfrac{2\\pi}{3}$."
+  },
+  {
+    "id": "FX_241_16",
+    "term": "241",
+    "number": 16,
+    "section": "14.2",
+    "topic": "Double Integrals & Volume",
+    "question": "The volume of the solid bounded by $z = 4 - x - y$, $z = 0$, $y = 2$, $y = x$, and $x = 0$ is equal to",
+    "choices": [
+      "$5$",
+      "$2$",
+      "$4$",
+      "$3$",
+      "$1$"
+    ],
+    "correct_answer": "C",
+    "solution": "<strong>Step 1 — Identify the Base Region $R$ in the $xy$-Plane:</strong><br>The vertical boundary planes $x = 0$, $y = x$, and $y = 2$ enclose a triangle $R$ in the first quadrant with vertices $(0, 0)$, $(0, 2)$, and $(2, 2)$. On this triangle, $x + y \\le 2 + 2 = 4$, so the plane $z = 4 - x - y \\ge 0$ lies everywhere above the $xy$-plane $z = 0$. Describing $R$ as an $x$-simple region ($dx\\,dy$) gives clean bounds:$$0 \\le y \\le 2, \\qquad 0 \\le x \\le y$$<div class=\"step-divider\"></div><strong>Step 2 — Set Up the Double Integral for Volume:</strong><br>$$V = \\iint_{R} (4 - x - y)\\,dA = \\int_{0}^{2} \\int_{0}^{y} (4 - x - y)\\,dx\\,dy$$<div class=\"step-divider\"></div><strong>Step 3 — Evaluate the Inner Integral with Respect to $x$:</strong><br>Holding $y$ constant:$$\\int_{0}^{y} (4 - x - y)\\,dx = \\left[4x - \\frac{x^2}{2} - xy\\right]_{x=0}^{x=y} = 4y - \\frac{y^2}{2} - y^2 = 4y - \\frac{3}{2}y^2$$<div class=\"step-divider\"></div><strong>Step 4 — Evaluate the Outer Integral with Respect to $y$:</strong><br>$$V = \\int_{0}^{2} \\left(4y - \\frac{3}{2}y^2\\right)dy = \\left[2y^2 - \\frac{1}{2}y^3\\right]_{0}^{2} = 2(4) - \\frac{1}{2}(8) = 8 - 4 = 4$$Therefore, the volume of the solid is $4$."
+  },
+  {
+    "id": "FX_241_17",
+    "term": "241",
+    "number": 17,
+    "section": "14.6",
+    "topic": "Triple Integrals & Applications",
+    "question": "If$$\\int_{0}^{4} \\int_{0}^{(4-x)/2} \\int_{0}^{(12-3x-6y)/4} dz\\,dy\\,dx = \\int_{0}^{a} \\int_{0}^{b} \\int_{0}^{c} dy\\,dx\\,dz,$$then",
+    "choices": [
+      "$a = \\dfrac{12 - 4z}{3},\\; b = \\dfrac{12 - 4z - 3x}{6},\\; c = 3$",
+      "$a = \\dfrac{12 - 4z}{3},\\; b = 3,\\; c = \\dfrac{12 - 4z - 3x}{6}$",
+      "$a = 3,\\; b = \\dfrac{12 - 4z}{3},\\; c = \\dfrac{12 - 4z - 3x}{6}$",
+      "$a = 12,\\; b = 4,\\; c = \\dfrac{12 - 4z}{3}$",
+      "$a = 3,\\; b = \\dfrac{12 - 4z - 3x}{6},\\; c = \\dfrac{12 - 4z}{3}$"
+    ],
+    "correct_answer": "C",
+    "solution": "<strong>Step 1 — Identify the 3D Solid Region $Q$:</strong><br>From the original limits of integration:$$0 \\le x \\le 4, \\qquad 0 \\le y \\le \\frac{4 - x}{2}, \\qquad 0 \\le z \\le \\frac{12 - 3x - 6y}{4}$$Clearing denominators in the upper $z$-bound yields $4z \\le 12 - 3x - 6y$, or equivalently:$$3x + 6y + 4z \\le 12$$Together with $x \\ge 0$, $y \\ge 0$, and $z \\ge 0$ (check: setting $z = 0$ gives $3x + 6y \\le 12 \\iff y \\le \\dfrac{4 - x}{2}$, and setting $y = z = 0$ gives $3x \\le 12 \\iff x \\le 4$), the solid $Q$ is the first-octant tetrahedron bounded by the three coordinate planes and the inclined plane $3x + 6y + 4z = 12$.<div class=\"step-divider\"></div><strong>Step 2 — Determine the Innermost Bound $c$ (for $y$):</strong><br>In the new integration order $dy\\,dx\\,dz$, $y$ is integrated first while $x$ and $z$ are held fixed. Solve $3x + 6y + 4z \\le 12$ for $y$:$$6y \\le 12 - 4z - 3x \\implies 0 \\le y \\le \\frac{12 - 4z - 3x}{6}$$Hence $c = \\dfrac{12 - 4z - 3x}{6}$.<div class=\"step-divider\"></div><strong>Step 3 — Determine the Middle Bound $b$ (for $x$) and Outer Bound $a$ (for $z$):</strong><br>Project the tetrahedron $Q$ onto the $xz$-plane by setting $y = 0$ in $3x + 6y + 4z \\le 12$. This gives the triangle in the first quadrant of the $xz$-plane:$$x \\ge 0, \\qquad z \\ge 0, \\qquad 3x + 4z \\le 12$$<ul><li>For a fixed $z$, $x$ runs from $0$ to the line $3x + 4z = 12$, so $0 \\le x \\le \\dfrac{12 - 4z}{3}$, giving $b = \\dfrac{12 - 4z}{3}$.</li><li>Finally, setting $x = 0$ gives $4z \\le 12 \\implies 0 \\le z \\le 3$, so the constant outer limit is $a = 3$.</li></ul>Therefore, $a = 3$, $b = \\dfrac{12 - 4z}{3}$, and $c = \\dfrac{12 - 4z - 3x}{6}$."
+  },
+  {
+    "id": "FX_241_18",
+    "term": "241",
+    "number": 18,
+    "section": "11.7",
+    "topic": "Cylindrical & Spherical Coordinates",
+    "question": "An equation in spherical coordinates for the surface $x^2 + y^2 - 3z^2 = 0$ is",
+    "choices": [
+      "$\\phi = \\dfrac{\\pi}{3}\\text{ or }\\phi = \\dfrac{2\\pi}{3}$",
+      "$\\phi = \\dfrac{\\pi}{2}\\text{ or }\\phi = \\dfrac{3\\pi}{2}$",
+      "$\\phi = \\dfrac{\\pi}{6}\\text{ or }\\phi = \\dfrac{5\\pi}{6}$",
+      "$\\phi = \\dfrac{\\pi}{4}\\text{ or }\\phi = \\dfrac{3\\pi}{4}$",
+      "$\\phi = \\dfrac{\\pi}{4}\\text{ or }\\phi = \\dfrac{\\pi}{3}$"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Substitute Spherical Coordinate Relations into the Equation:</strong><br>Recall the conversions from rectangular to spherical coordinates $(\\rho, \\phi, \\theta)$ with $\\rho \\ge 0$ and $0 \\le \\phi \\le \\pi$:$$x^2 + y^2 = \\rho^2 \\sin^2\\phi, \\qquad z = \\rho\\cos\\phi$$Substituting these into the double-cone equation $x^2 + y^2 - 3z^2 = 0$ gives:$$\\rho^2 \\sin^2\\phi - 3\\rho^2 \\cos^2\\phi = 0 \\implies \\rho^2\\bigl(\\sin^2\\phi - 3\\cos^2\\phi\\bigr) = 0$$<div class=\"step-divider\"></div><strong>Step 2 — Solve for the Polar Angle $\\phi \\in [0, \\pi]$:</strong><br>For $\\rho > 0$ (and noting $\\rho = 0$ is already included at the vertex for any fixed $\\phi$), we require:$$\\sin^2\\phi = 3\\cos^2\\phi$$Since $\\cos\\phi = 0$ would imply $\\sin^2\\phi = 1 \\neq 0$, we may divide by $\\cos^2\\phi$:$$\\tan^2\\phi = 3 \\implies \\tan\\phi = \\pm\\sqrt{3}$$<div class=\"step-divider\"></div><strong>Step 3 — Identify Both Nappes of the Cone:</strong><br>On the standard spherical interval $0 \\le \\phi \\le \\pi$:<ul><li>$\\tan\\phi = +\\sqrt{3} \\implies \\phi = \\dfrac{\\pi}{3}$ (the upper nappe where $z \\ge 0$).</li><li>$\\tan\\phi = -\\sqrt{3} \\implies \\phi = \\pi - \\dfrac{\\pi}{3} = \\dfrac{2\\pi}{3}$ (the lower nappe where $z \\le 0$).</li></ul>Therefore, the spherical coordinate equation of the surface is $\\phi = \\dfrac{\\pi}{3}$ or $\\phi = \\dfrac{2\\pi}{3}$."
+  },
+  {
+    "id": "FX_241_19",
+    "term": "241",
+    "number": 19,
+    "section": "14.7",
+    "topic": "Triple Integrals in Cylindrical & Spherical Coordinates",
+    "question": "The volume of the solid inside $x^2 + y^2 + z^2 = 16$ and outside $z = \\sqrt{x^2 + y^2}$ is equal to",
+    "choices": [
+      "$\\dfrac{32\\pi}{3}(2 + \\sqrt{2})$",
+      "$\\dfrac{64\\pi}{3}(2 + \\sqrt{2})$",
+      "$\\dfrac{\\pi}{3}$",
+      "$\\dfrac{64\\pi}{3}(1 + \\sqrt{2})$",
+      "$\\dfrac{32\\pi}{3}(1 + \\sqrt{2})$"
+    ],
+    "correct_answer": "B",
+    "solution": "<strong>Step 1 — Convert the Bounding Surfaces to Spherical Coordinates:</strong><br><ul><li><strong>Sphere:</strong> $x^2 + y^2 + z^2 = 16 \\implies \\rho^2 = 16 \\implies \\rho = 4$.</li><li><strong>Upper Cone:</strong> $z = \\sqrt{x^2 + y^2} \\implies \\rho\\cos\\phi = \\rho\\sin\\phi \\implies \\phi = \\dfrac{\\pi}{4}$.</li></ul><div class=\"step-divider\"></div><strong>Step 2 — Carefully Determine the Range of $\\phi$:</strong><br>Because $z = \\sqrt{x^2 + y^2}$ is only the <em>upper</em> cone ($0 \\le \\phi \\le \\dfrac{\\pi}{4}$ is the ice-cream-cone interior) and there is <em>no</em> restriction requiring $z \\ge 0$, every point inside the sphere with $\\phi \\ge \\dfrac{\\pi}{4}$ — including the entire lower hemisphere $\\dfrac{\\pi}{2} \\le \\phi \\le \\pi$ — lies outside the cone! Thus:$$0 \\le \\theta \\le 2\\pi, \\qquad \\frac{\\pi}{4} \\le \\phi \\le \\pi, \\qquad 0 \\le \\rho \\le 4$$<div class=\"step-divider\"></div><strong>Step 3 — Evaluate the Spherical Volume Integral:</strong><br>Using $dV = \\rho^2 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$ and separating the constant-limit integrals:$$V = \\int_{0}^{2\\pi} \\int_{\\pi/4}^{\\pi} \\int_{0}^{4} \\rho^2 \\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta = \\left(\\int_{0}^{2\\pi} d\\theta\\right)\\left(\\int_{\\pi/4}^{\\pi} \\sin\\phi\\,d\\phi\\right)\\left(\\int_{0}^{4} \\rho^2\\,d\\rho\\right)$$Evaluate each factor:<ul><li>$\\displaystyle \\int_{0}^{2\\pi} d\\theta = 2\\pi$</li><li>$\\displaystyle \\int_{\\pi/4}^{\\pi} \\sin\\phi\\,d\\phi = \\bigl[-\\cos\\phi\\bigr]_{\\pi/4}^{\\pi} = -\\cos(\\pi) - \\bigl(-\\cos(\\pi/4)\\bigr) = 1 + \\frac{\\sqrt{2}}{2} = \\frac{2 + \\sqrt{2}}{2}$</li><li>$\\displaystyle \\int_{0}^{4} \\rho^2\\,d\\rho = \\left[\\frac{\\rho^3}{3}\\right]_{0}^{4} = \\frac{64}{3}$</li></ul><div class=\"step-divider\"></div><strong>Step 4 — Multiply and Simplify:</strong><br>$$V = (2\\pi)\\left(\\frac{2 + \\sqrt{2}}{2}\\right)\\left(\\frac{64}{3}\\right) = \\frac{64\\pi}{3}(2 + \\sqrt{2})$$Therefore, the volume of the solid is $\\dfrac{64\\pi}{3}(2 + \\sqrt{2})$."
+  },
+  {
+    "id": "FX_241_20",
+    "term": "241",
+    "number": 20,
+    "section": "14.7",
+    "topic": "Triple Integrals in Cylindrical & Spherical Coordinates",
+    "question": "If the volume of the solid region cut from the sphere $x^2 + y^2 + z^2 = 4$ by the cylinder $x^2 + y^2 - 2y = 0$ is given by$$\\int_{0}^{a\\pi} \\int_{0}^{b\\sin\\theta} \\int_{-\\sqrt{c - r^2}}^{\\sqrt{c - r^2}} r\\,dz\\,dr\\,d\\theta,$$then $a + b + c =$",
+    "choices": [
+      "$7$",
+      "$6$",
+      "$5$",
+      "$10$",
+      "$8$"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Convert the Sphere Equation to Determine $c$:</strong><br>In cylindrical coordinates, $x^2 + y^2 = r^2$, so the sphere $x^2 + y^2 + z^2 = 4$ becomes:$$r^2 + z^2 = 4 \\implies z = \\pm\\sqrt{4 - r^2}$$Thus the vertical limits for $z$ are $-\\sqrt{4 - r^2} \\le z \\le \\sqrt{4 - r^2}$. Comparing with $\\pm\\sqrt{c - r^2}$ gives:$$c = 4$$<div class=\"step-divider\"></div><strong>Step 2 — Convert the Cylinder Equation to Determine $b$:</strong><br>Substitute $x^2 + y^2 = r^2$ and $y = r\\sin\\theta$ into the cylinder equation $x^2 + y^2 - 2y = 0$:$$r^2 - 2r\\sin\\theta = 0 \\implies r(r - 2\\sin\\theta) = 0 \\implies r = 2\\sin\\theta$$Completing the square in Cartesian form shows $x^2 + (y - 1)^2 = 1$, a circle of radius $1$ centered at $(0, 1)$ resting in the upper half-plane $y \\ge 0$. For each angle $\\theta$, $r$ runs from the origin $0$ to $2\\sin\\theta$. Comparing with $0 \\le r \\le b\\sin\\theta$ gives:$$b = 2$$<div class=\"step-divider\"></div><strong>Step 3 — Determine the Angular Range $a\\pi$ for the Circle $r = 2\\sin\\theta$:</strong><br>Because the circle $x^2 + (y - 1)^2 = 1$ lies entirely in the upper half-plane ($y \\ge 0$) and passes through the origin, $r = 2\\sin\\theta \\ge 0$ traces the entire circle <em>exactly once</em> as $\\theta$ sweeps from $0$ to $\\pi$ (sweeping up to $2\\pi$ would trace the circle twice!). Comparing $0 \\le \\theta \\le \\pi$ with $0 \\le \\theta \\le a\\pi$ gives:$$a = 1$$<div class=\"step-divider\"></div><strong>Step 4 — Compute $a + b + c$:</strong><br>$$a + b + c = 1 + 2 + 4 = 7$$"
+  },
+  {
+    "id": "FX_233_9",
+    "term": "233",
+    "number": 9,
+    "section": "13.7",
+    "topic": "Tangent Planes and Normal Lines",
+    "question": "If $ax + by - z = d$ is an equation of the tangent plane to the paraboloid $z = x^2 + 2y^2 + 1$ at the point $(2, 1, 7)$, then $a + b + d =$",
+    "choices": [
+      "$10$",
+      "$-6$",
+      "$-7$",
+      "$13$",
+      "$8$"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Express the surface as a level surface and find its normal vector:</strong><br>\nRewrite the paraboloid $z = x^2 + 2y^2 + 1$ in the implicit level-surface form $F(x, y, z) = 0$ by moving all terms to one side:\n$$F(x, y, z) = x^2 + 2y^2 - z + 1 = 0$$\nThe gradient vector $\\nabla F(x, y, z)$ is perpendicular (normal) to the surface at every point:\n$$\\nabla F(x, y, z) = \\langle F_x, F_y, F_z \\rangle = \\langle 2x,\\, 4y,\\, -1 \\rangle$$\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Evaluate the normal vector at $(2, 1, 7)$:</strong><br>\nSubstitute $x = 2$, $y = 1$, $z = 7$ (note that $2^2 + 2(1)^2 + 1 = 7$, confirming the point lies on the surface):\n$$\\mathbf{n} = \\nabla F(2, 1, 7) = \\langle 2(2),\\, 4(1),\\, -1 \\rangle = \\langle 4,\\, 4,\\, -1 \\rangle$$\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Write the tangent plane equation and match coefficients:</strong><br>\nUsing the point-normal form of a plane passing through $(x_0, y_0, z_0) = (2, 1, 7)$:\n$$4(x - 2) + 4(y - 1) - 1(z - 7) = 0$$\nExpand and collect the constant terms:\n$$4x - 8 + 4y - 4 - z + 7 = 0 \\implies 4x + 4y - z - 5 = 0 \\implies 4x + 4y - z = 5$$\nComparing this directly with the target form $ax + by - z = d$ (noting the coefficient of $z$ is already $-1$):\n$$a = 4, \\quad b = 4, \\quad d = 5$$\n<div class=\"step-divider\"></div>\n<strong>Step 4 — Compute $a + b + d$:</strong><br>\n$$a + b + d = 4 + 4 + 5 = 13$$"
+  },
+  {
+    "id": "FX_233_10",
+    "term": "233",
+    "number": 10,
+    "section": "13.8",
+    "topic": "Extrema of Functions of Two Variables",
+    "question": "If $(a, b)$ is the only critical point of $f(x, y) = x^2 - xy - y^2 - 3x - y$, then",
+    "choices": [
+      "$f$ has a relative maximum at $(a, b)$",
+      "$ab = -2$",
+      "$f$ has a relative minimum at $(a, b)$",
+      "$a + b = 3$",
+      "$f$ has a saddle point at $(a, b)$"
+    ],
+    "correct_answer": "E",
+    "solution": "<strong>Step 1 — Find the critical point $(a, b)$:</strong><br>\nBecause $f(x, y) = x^2 - xy - y^2 - 3x - y$ is a polynomial, its first partial derivatives exist everywhere, so critical points occur only where $f_x = 0$ and $f_y = 0$:\n$$f_x(x, y) = 2x - y - 3 = 0 \\quad \\text{(1)}$$\n$$f_y(x, y) = -x - 2y - 1 = 0 \\quad \\text{(2)}$$\nMultiply equation (2) by $2$ to get $-2x - 4y - 2 = 0$, and add it to equation (1) to eliminate $x$:\n$$(2x - y - 3) + (-2x - 4y - 2) = 0 \\implies -5y - 5 = 0 \\implies y = -1$$\nSubstitute $y = -1$ back into equation (1):\n$$2x - (-1) - 3 = 0 \\implies 2x - 2 = 0 \\implies x = 1$$\nThus the unique critical point is $(a, b) = (1, -1)$. Notice immediately that $a + b = 1 + (-1) = 0 \\neq 3$ and $ab = (1)(-1) = -1 \\neq -2$.\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Apply the Second Partials Test:</strong><br>\nCompute the second-order partial derivatives of $f$:\n$$f_{xx} = 2, \\qquad f_{yy} = -2, \\qquad f_{xy} = -1$$\nCalculate the discriminant $D(x, y) = f_{xx}f_{yy} - (f_{xy})^2$ at $(1, -1)$:\n$$D(1, -1) = (2)(-2) - (-1)^2 = -4 - 1 = -5$$\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Classify the critical point:</strong><br>\nSince $D(1, -1) = -5 < 0$, the Second Partials Test guarantees that $f$ has a <strong>saddle point</strong> at $(a, b) = (1, -1)$."
+  },
+  {
+    "id": "FX_233_11",
+    "term": "233",
+    "number": 11,
+    "section": "13.9",
+    "topic": "Applications of Extrema",
+    "question": "The minimum distance from the point $(-1, -2, 0)$ to the surface $z = \\sqrt{1 - 2x - 2y}$ is equal to (Hint: To simplify the computations, minimize the square of the distance)",
+    "choices": [
+      "$2\\sqrt{5}$",
+      "$2\\sqrt{7}$",
+      "$\\sqrt{5}$",
+      "$\\sqrt{7}$",
+      "$\\frac{\\sqrt{5}}{2}$"
+    ],
+    "correct_answer": "C",
+    "solution": "<strong>Step 1 — Set up the squared distance objective function:</strong><br>\nLet $(x, y, z)$ be any point on the surface $z = \\sqrt{1 - 2x - 2y}$ (note that the domain requires $1 - 2x - 2y \\ge 0$). The distance $d$ from $(-1, -2, 0)$ to $(x, y, z)$ satisfies:\n$$d^2 = (x - (-1))^2 + (y - (-2))^2 + (z - 0)^2 = (x + 1)^2 + (y + 2)^2 + z^2$$\nSince $d \\ge 0$, minimizing $d$ is equivalent to minimizing $f(x, y) = d^2$. Substitute $z^2 = 1 - 2x - 2y$ into $d^2$:\n$$f(x, y) = (x + 1)^2 + (y + 2)^2 + 1 - 2x - 2y$$\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Find the critical points of $f(x, y)$:</strong><br>\nCompute the first partial derivatives and set them equal to zero:\n$$f_x = 2(x + 1) - 2 = 2x = 0 \\implies x = 0$$\n$$f_y = 2(y + 2) - 2 = 2y + 2 = 0 \\implies y = -1$$\nVerify that $(0, -1)$ lies inside the domain $1 - 2x - 2y \\ge 0$:\n$$1 - 2(0) - 2(-1) = 1 + 2 = 3 > 0$$\nHence the corresponding point on the surface is $(0, -1, \\sqrt{3})$.\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Confirm that $(0, -1)$ gives the global minimum:</strong><br>\nCompute the second partial derivatives:\n$$f_{xx} = 2, \\qquad f_{yy} = 2, \\qquad f_{xy} = 0$$\nThe discriminant is $D = f_{xx}f_{yy} - (f_{xy})^2 = (2)(2) - 0^2 = 4 > 0$, with $f_{xx} = 2 > 0$, confirming a local minimum. Even stronger, expanding $f(x, y)$ gives:\n$$f(x, y) = (x^2 + 2x + 1) + (y^2 + 4y + 4) + 1 - 2x - 2y = x^2 + (y + 1)^2 + 5$$\nBecause $x^2 \\ge 0$ and $(y + 1)^2 \\ge 0$ everywhere, $f(x, y) \\ge 5$ with equality exclusively at $(x, y) = (0, -1)$.\n<div class=\"step-divider\"></div>\n<strong>Step 4 — Take the square root to obtain the minimum distance:</strong><br>\n$$d_{\\min}^2 = f(0, -1) = 5 \\implies d_{\\min} = \\sqrt{5}$$"
+  },
+  {
+    "id": "FX_233_12",
+    "term": "233",
+    "number": 12,
+    "section": "13.10",
+    "topic": "Lagrange Multipliers",
+    "question": "The maximum value of $f(x, y) = 2x + 2xy + y$ subject to the constraint $2x + y = 20$ is",
+    "choices": [
+      "$80$",
+      "$60$",
+      "$100$",
+      "$140$",
+      "$120$"
+    ],
+    "correct_answer": "E",
+    "solution": "<strong>Step 1 — Set up the Lagrange multiplier system:</strong><br>\nWe want to maximize $f(x, y) = 2x + 2xy + y$ subject to $g(x, y) = 2x + y = 20$. At any constrained extremum, $\\nabla f(x, y) = \\lambda \\nabla g(x, y)$, which yields:\n$$\\begin{aligned}\nf_x = \\lambda g_x &\\implies 2 + 2y = 2\\lambda \\quad \\text{(1)} \\\\\nf_y = \\lambda g_y &\\implies 2x + 1 = \\lambda \\quad \\text{(2)} \\\\\ng(x, y) = 20 &\\implies 2x + y = 20 \\quad \\text{(3)}\n\\end{aligned}$$\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Eliminate $\\lambda$ and solve for $(x, y)$:</strong><br>\nDivide equation (1) by $2$ to get $1 + y = \\lambda$. Equating this with equation (2):\n$$1 + y = 2x + 1 \\implies y = 2x$$\nSubstitute $y = 2x$ into the constraint equation (3):\n$$2x + 2x = 20 \\implies 4x = 20 \\implies x = 5$$\nThen $y = 2(5) = 10$, giving the unique critical point $(5, 10)$.\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Evaluate $f(5, 10)$ and verify it is a maximum:</strong><br>\n$$f(5, 10) = 2(5) + 2(5)(10) + 10 = 10 + 100 + 10 = 120$$\nTo confirm this is a maximum rather than a minimum, substitute $y = 20 - 2x$ directly into $f$:\n$$f(x, 20 - 2x) = 2x + 2x(20 - 2x) + (20 - 2x) = -4x^2 + 40x + 20 = -4(x - 5)^2 + 120 \\le 120$$\nSince this is a downward-opening parabola with vertex at $x = 5$, the absolute maximum value subject to the constraint is $120$."
+  },
+  {
+    "id": "FX_233_13",
+    "term": "233",
+    "number": 13,
+    "section": "14.1",
+    "topic": "Iterated Integrals and Area in the Plane",
+    "question": "$\\displaystyle\\int_{0}^{\\frac{\\pi}{2}} \\int_{0}^{\\cos x} (1 + \\sin x)\\,dy\\,dx =$",
+    "choices": [
+      "$\\frac{5}{2}$",
+      "$\\frac{3}{2}$",
+      "$\\frac{1}{2}$",
+      "$2$",
+      "$1$"
+    ],
+    "correct_answer": "B",
+    "solution": "<strong>Step 1 — Evaluate the inner integral with respect to $y$:</strong><br>\nIn the inner integral, $x$ is held constant, so the entire integrand $(1 + \\sin x)$ acts as a constant factor:\n$$\\int_{0}^{\\cos x} (1 + \\sin x)\\,dy = (1 + \\sin x)\\Big[y\\Big]_{y=0}^{y=\\cos x} = (1 + \\sin x)\\cos x$$\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Evaluate the outer integral with respect to $x$ via $u$-substitution:</strong><br>\nWe now compute:\n$$\\int_{0}^{\\frac{\\pi}{2}} (1 + \\sin x)\\cos x\\,dx$$\nLet $u = 1 + \\sin x$. Then $du = \\cos x\\,dx$. Update the limits of integration:\n<ul>\n<li>When $x = 0$: $u = 1 + \\sin 0 = 1$.</li>\n<li>When $x = \\frac{\\pi}{2}$: $u = 1 + \\sin\\frac{\\pi}{2} = 2$.</li>\n</ul>\nSubstituting into the integral gives:\n$$\\int_{1}^{2} u\\,du = \\left[\\frac{u^2}{2}\\right]_{1}^{2} = \\frac{2^2 - 1^2}{2} = \\frac{4 - 1}{2} = \\frac{3}{2}$$"
+  },
+  {
+    "id": "FX_233_14",
+    "term": "233",
+    "number": 14,
+    "section": "14.1",
+    "topic": "Iterated Integrals and Area in the Plane",
+    "question": "$\\displaystyle\\int_{0}^{4} \\int_{\\sqrt{y}}^{2} f(x, y)\\,dx\\,dy =$",
+    "choices": [
+      "$\\displaystyle\\int_{0}^{2} \\int_{x^2}^{0} f(x, y)\\,dy\\,dx$",
+      "$\\displaystyle\\int_{0}^{2} \\int_{0}^{\\sqrt{x}} f(x, y)\\,dy\\,dx$",
+      "$\\displaystyle\\int_{0}^{4} \\int_{\\sqrt{x}}^{2} f(x, y)\\,dy\\,dx$",
+      "$\\displaystyle\\int_{\\sqrt{y}}^{2} \\int_{0}^{4} f(x, y)\\,dy\\,dx$",
+      "$\\displaystyle\\int_{0}^{2} \\int_{0}^{x^2} f(x, y)\\,dy\\,dx$"
+    ],
+    "correct_answer": "E",
+    "solution": "<strong>Step 1 — Identify the region of integration $R$ from the given limits:</strong><br>\nIn the original order $dx\\,dy$:\n<ul>\n<li>Outer limits: $0 \\le y \\le 4$.</li>\n<li>Inner limits: $\\sqrt{y} \\le x \\le 2$.</li>\n</ul>\nGeometrically, for each horizontal slice at height $y \\in [0, 4]$, $x$ enters the region on the right half of the parabola $x = \\sqrt{y}$ (which is equivalent to $y = x^2$ with $x \\ge 0$) and exits at the vertical line $x = 2$. At $y = 0$, $x$ runs from $0$ to $2$; at $y = 4$, $x = \\sqrt{4} = 2$ (a single corner point $(2, 4)$).\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Rewrite $R$ using vertical slices (order $dy\\,dx$):</strong><br>\nProjecting $R$ onto the $x$-axis gives the full horizontal span $0 \\le x \\le 2$. For a fixed vertical slice at $x \\in [0, 2]$:\n<ul>\n<li>The bottom boundary is the $x$-axis: $y = 0$.</li>\n<li>The top boundary is the parabola: $y = x^2$.</li>\n</ul>\nThus $R = \\{(x, y) : 0 \\le x \\le 2,\\; 0 \\le y \\le x^2\\}$.\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Write the reversed iterated integral:</strong><br>\n$$\\int_{0}^{4} \\int_{\\sqrt{y}}^{2} f(x, y)\\,dx\\,dy = \\int_{0}^{2} \\int_{0}^{x^2} f(x, y)\\,dy\\,dx$$"
+  },
+  {
+    "id": "FX_233_15",
+    "term": "233",
+    "number": 15,
+    "section": "14.2",
+    "topic": "Double Integrals and Volume",
+    "question": "The average value of $f(x, y) = x^2 + y^2$ over the square region with vertices $(0, 0)$, $(0, 2)$, $(2, 0)$, $(2, 2)$ is equal to",
+    "choices": [
+      "$\\frac{10}{3}$",
+      "$5$",
+      "$\\frac{20}{3}$",
+      "$\\frac{16}{3}$",
+      "$\\frac{8}{3}$"
+    ],
+    "correct_answer": "E",
+    "solution": "<strong>Step 1 — Recall the average value formula and describe the region $R$:</strong><br>\nThe average value of $f$ over a planar region $R$ is:\n$$f_{\\text{avg}} = \\frac{1}{\\text{Area}(R)} \\iint_{R} f(x, y)\\,dA$$\nThe square with vertices $(0, 0)$, $(0, 2)$, $(2, 0)$, and $(2, 2)$ is the rectangle $R = [0, 2] \\times [0, 2]$, whose area is:\n$$\\text{Area}(R) = 2 \\times 2 = 4$$\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Evaluate the double integral over $R$:</strong><br>\n$$\\iint_{R} (x^2 + y^2)\\,dA = \\int_{0}^{2} \\int_{0}^{2} (x^2 + y^2)\\,dy\\,dx$$\nFirst integrate with respect to $y$ (treating $x$ as constant):\n$$\\int_{0}^{2} (x^2 + y^2)\\,dy = \\left[x^2 y + \\frac{y^3}{3}\\right]_{y=0}^{y=2} = 2x^2 + \\frac{8}{3}$$\nNow integrate with respect to $x$:\n$$\\int_{0}^{2} \\left(2x^2 + \\frac{8}{3}\\right)dx = \\left[\\frac{2x^3}{3} + \\frac{8x}{3}\\right]_{0}^{2} = \\frac{16}{3} + \\frac{16}{3} = \\frac{32}{3}$$\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Divide by the area of $R$:</strong><br>\n$$f_{\\text{avg}} = \\frac{1}{4} \\cdot \\frac{32}{3} = \\frac{8}{3}$$"
+  },
+  {
+    "id": "FX_233_16",
+    "term": "233",
+    "number": 16,
+    "section": "14.3",
+    "topic": "Change of Variables: Polar Coordinates",
+    "question": "$\\displaystyle\\int_{0}^{1} \\int_{0}^{\\sqrt{1 - x^2}} (x^2 + y^2)^{\\frac{3}{2}}\\,dy\\,dx =$",
+    "choices": [
+      "$\\pi$",
+      "$\\frac{2\\pi}{5}$",
+      "$\\frac{\\pi}{10}$",
+      "$\\frac{3\\pi}{10}$",
+      "$\\frac{\\pi}{5}$"
+    ],
+    "correct_answer": "C",
+    "solution": "<strong>Step 1 — Sketch the region of integration and convert to polar coordinates:</strong><br>\nThe Cartesian limits are $0 \\le x \\le 1$ and $0 \\le y \\le \\sqrt{1 - x^2}$. Notice that $y = \\sqrt{1 - x^2}$ is the upper half of the unit circle $x^2 + y^2 = 1$. Combined with $x \\ge 0$ and $y \\ge 0$, the region $R$ is the <strong>quarter-disk of radius $1$ in the first quadrant</strong>.\n<br>In polar coordinates ($x = r\\cos\\theta$, $y = r\\sin\\theta$, $x^2 + y^2 = r^2$, $dA = r\\,dr\\,d\\theta$):\n<ul>\n<li>Radius bounds: $0 \\le r \\le 1$.</li>\n<li>Angle bounds: $0 \\le \\theta \\le \\frac{\\pi}{2}$.</li>\n</ul>\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Transform the integrand and area element:</strong><br>\nSince $r \\ge 0$:\n$$(x^2 + y^2)^{\\frac{3}{2}}\\,dy\\,dx = (r^2)^{\\frac{3}{2}} \\cdot r\\,dr\\,d\\theta = r^3 \\cdot r\\,dr\\,d\\theta = r^4\\,dr\\,d\\theta$$\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Evaluate the polar iterated integral:</strong><br>\n$$\\int_{0}^{\\frac{\\pi}{2}} \\int_{0}^{1} r^4\\,dr\\,d\\theta = \\left(\\int_{0}^{\\frac{\\pi}{2}} d\\theta\\right)\\left(\\int_{0}^{1} r^4\\,dr\\right) = \\left(\\frac{\\pi}{2}\\right)\\left[\\frac{r^5}{5}\\right]_{0}^{1} = \\frac{\\pi}{2} \\cdot \\frac{1}{5} = \\frac{\\pi}{10}$$"
+  },
+  {
+    "id": "FX_233_17",
+    "term": "233",
+    "number": 17,
+    "section": "14.6",
+    "topic": "Triple Integrals and Applications",
+    "question": "Let $d > 0$. If the volume of the solid bounded by the planes $x + 2y + z = d$, $x = 0$, $y = 0$, $z = 0$ is equal to $\\frac{16}{3}$, then $d =$",
+    "choices": [
+      "$5$",
+      "$3$",
+      "$2$",
+      "$6$",
+      "$4$"
+    ],
+    "correct_answer": "E",
+    "solution": "<strong>Step 1 — Set up the triple integral bounds for the tetrahedron:</strong><br>\nThe solid lies in the first octant ($x \\ge 0$, $y \\ge 0$, $z \\ge 0$) beneath the plane $z = d - x - 2y$.\n<ul>\n<li>Vertical ($z$) bounds: $0 \\le z \\le d - x - 2y$.</li>\n<li>Projection $R$ onto the $xy$-plane (set $z = 0$): $x + 2y = d \\implies y = \\frac{d - x}{2}$, with $x \\ge 0$ and $y \\ge 0$.</li>\n<li>As $x$ varies from $0$ to $d$, $y$ runs from $0$ to $\\frac{d - x}{2}$.</li>\n</ul>\nThus the volume is:\n$$V = \\int_{0}^{d} \\int_{0}^{\\frac{d - x}{2}} \\int_{0}^{d - x - 2y} dz\\,dy\\,dx$$\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Evaluate the triple integral in terms of $d$:</strong><br>\nIntegrate with respect to $z$:\n$$V = \\int_{0}^{d} \\int_{0}^{\\frac{d - x}{2}} (d - x - 2y)\\,dy\\,dx$$\nIntegrate with respect to $y$ (treating $d - x$ as constant):\n$$\\int_{0}^{\\frac{d - x}{2}} \\big((d - x) - 2y\\big)\\,dy = \\Big[(d - x)y - y^2\\Big]_{y=0}^{y=\\frac{d - x}{2}} = \\frac{(d - x)^2}{2} - \\frac{(d - x)^2}{4} = \\frac{(d - x)^2}{4}$$\nNow integrate with respect to $x$:\n$$V = \\frac{1}{4}\\int_{0}^{d} (d - x)^2\\,dx = \\frac{1}{4}\\left[-\\frac{(d - x)^3}{3}\\right]_{0}^{d} = \\frac{1}{4}\\left(0 - \\left(-\\frac{d^3}{3}\\right)\\right) = \\frac{d^3}{12}$$\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Solve for $d$:</strong><br>\nSet the volume equal to $\\frac{16}{3}$:\n$$\\frac{d^3}{12} = \\frac{16}{3} \\implies d^3 = 12 \\cdot \\frac{16}{3} = 4 \\cdot 16 = 64 \\implies d = 4$$"
+  },
+  {
+    "id": "FX_233_18",
+    "term": "233",
+    "number": 18,
+    "section": "11.7",
+    "topic": "Cylindrical and Spherical Coordinates",
+    "question": "The point with spherical coordinates $(\\rho, \\theta, \\phi) = \\left(4, \\frac{\\pi}{6}, \\frac{\\pi}{4}\\right)$ is represented in rectangular coordinates by",
+    "choices": [
+      "$(x, y, z) = (2\\sqrt{6}, 2\\sqrt{2}, 2\\sqrt{2})$",
+      "$(x, y, z) = (\\sqrt{6}, \\sqrt{2}, 2\\sqrt{2})$",
+      "$(x, y, z) = (2\\sqrt{6}, \\sqrt{2}, \\sqrt{2})$",
+      "$(x, y, z) = (\\sqrt{6}, 2\\sqrt{2}, 1)$",
+      "$(x, y, z) = (\\sqrt{6}, \\sqrt{2}, \\sqrt{2})$"
+    ],
+    "correct_answer": "B",
+    "solution": "<strong>Step 1 — Recall the spherical-to-rectangular conversion formulas:</strong><br>\nGiven spherical coordinates $(\\rho, \\theta, \\phi)$, where $\\rho$ is the distance from the origin, $\\theta$ is the azimuthal angle in the $xy$-plane, and $\\phi$ is the polar angle from the positive $z$-axis:\n$$x = \\rho\\sin\\phi\\cos\\theta, \\qquad y = \\rho\\sin\\phi\\sin\\theta, \\qquad z = \\rho\\cos\\phi$$\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Substitute $\\rho = 4$, $\\theta = \\frac{\\pi}{6}$, and $\\phi = \\frac{\\pi}{4}$:</strong><br>\nRecall the exact trigonometric values: $\\sin\\frac{\\pi}{4} = \\cos\\frac{\\pi}{4} = \\frac{\\sqrt{2}}{2}$, $\\cos\\frac{\\pi}{6} = \\frac{\\sqrt{3}}{2}$, and $\\sin\\frac{\\pi}{6} = \\frac{1}{2}$.\n$$x = 4\\sin\\frac{\\pi}{4}\\cos\\frac{\\pi}{6} = 4 \\cdot \\frac{\\sqrt{2}}{2} \\cdot \\frac{\\sqrt{3}}{2} = \\sqrt{6}$$\n$$y = 4\\sin\\frac{\\pi}{4}\\sin\\frac{\\pi}{6} = 4 \\cdot \\frac{\\sqrt{2}}{2} \\cdot \\frac{1}{2} = \\sqrt{2}$$\n$$z = 4\\cos\\frac{\\pi}{4} = 4 \\cdot \\frac{\\sqrt{2}}{2} = 2\\sqrt{2}$$\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Quick consistency check:</strong><br>\nCheck $x^2 + y^2 + z^2 = (\\sqrt{6})^2 + (\\sqrt{2})^2 + (2\\sqrt{2})^2 = 6 + 2 + 8 = 16 = 4^2 = \\rho^2$.\n<br>Therefore, the rectangular coordinates are $(x, y, z) = (\\sqrt{6}, \\sqrt{2}, 2\\sqrt{2})$."
+  },
+  {
+    "id": "FX_233_19",
+    "term": "233",
+    "number": 19,
+    "section": "14.7",
+    "topic": "Triple Integrals in Other Coordinates",
+    "question": "The volume of the solid bounded by the paraboloids $z = x^2 + y^2 + 2$ and $z = 8 - x^2 - y^2$ is equal to",
+    "choices": [
+      "$4\\pi\\sqrt{3}$",
+      "$\\frac{5\\pi}{2}$",
+      "$9\\pi$",
+      "$2\\pi\\sqrt{3}$",
+      "$6\\pi$"
+    ],
+    "correct_answer": "C",
+    "solution": "<strong>Step 1 — Find the curve of intersection and determine upper/lower surfaces:</strong><br>\nSet the two $z$-expressions equal to find where the paraboloids intersect:\n$$x^2 + y^2 + 2 = 8 - x^2 - y^2 \\implies 2(x^2 + y^2) = 6 \\implies x^2 + y^2 = 3$$\nThus the shadow (projection) of the solid onto the $xy$-plane is the disk $R$: $x^2 + y^2 \\le 3$ (radius $\\sqrt{3}$). Inside this disk (for example, at $(0, 0)$), $8 - 0 = 8 > 0 + 2 = 2$, so $z = 8 - x^2 - y^2$ is the upper surface and $z = x^2 + y^2 + 2$ is the lower surface.\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Set up the triple integral in cylindrical coordinates:</strong><br>\nBecause both surfaces depend only on $r^2 = x^2 + y^2$, cylindrical coordinates ($dV = r\\,dz\\,dr\\,d\\theta$) are ideal:\n<ul>\n<li>$z$-bounds: $r^2 + 2 \\le z \\le 8 - r^2$.</li>\n<li>$r$-bounds: $0 \\le r \\le \\sqrt{3}$.</li>\n<li>$\\theta$-bounds: $0 \\le \\theta \\le 2\\pi$.</li>\n</ul>\n$$V = \\int_{0}^{2\\pi} \\int_{0}^{\\sqrt{3}} \\int_{r^2 + 2}^{8 - r^2} r\\,dz\\,dr\\,d\\theta$$\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Evaluate the iterated integral:</strong><br>\nFirst integrate with respect to $z$:\n$$\\int_{r^2 + 2}^{8 - r^2} r\\,dz = r\\big[(8 - r^2) - (r^2 + 2)\\big] = r(6 - 2r^2) = 6r - 2r^3$$\nNext integrate with respect to $r$:\n$$\\int_{0}^{\\sqrt{3}} (6r - 2r^3)\\,dr = \\left[3r^2 - \\frac{r^4}{2}\\right]_{0}^{\\sqrt{3}} = 3(3) - \\frac{9}{2} = 9 - \\frac{9}{2} = \\frac{9}{2}$$\nFinally integrate with respect to $\\theta$:\n$$V = \\int_{0}^{2\\pi} \\frac{9}{2}\\,d\\theta = \\frac{9}{2} \\cdot 2\\pi = 9\\pi$$"
+  },
+  {
+    "id": "FX_233_20",
+    "term": "233",
+    "number": 20,
+    "section": "14.7",
+    "topic": "Triple Integrals in Other Coordinates",
+    "question": "The volume of the solid bounded above by the sphere $x^2 + y^2 + z^2 = 4$ and below by the cone $z^2 = 3x^2 + 3y^2$ is equal to",
+    "choices": [
+      "$\\frac{8\\pi}{3}(2 - \\sqrt{3})$",
+      "$\\frac{8\\pi}{3}$",
+      "$\\frac{8\\pi}{3}\\left(1 - \\frac{\\sqrt{3}}{2}\\right)$",
+      "$\\frac{4\\pi}{3}(3 - \\sqrt{3})$",
+      "$\\frac{16\\pi}{3}(\\sqrt{3} - 1)$"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Convert the bounding surfaces to spherical coordinates:</strong><br>\nThis \"ice-cream cone\" region is naturally described in spherical coordinates ($x^2 + y^2 = \\rho^2\\sin^2\\phi$, $z = \\rho\\cos\\phi$, $x^2 + y^2 + z^2 = \\rho^2$, $dV = \\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$):\n<ul>\n<li><strong>Sphere:</strong> $x^2 + y^2 + z^2 = 4 \\implies \\rho^2 = 4 \\implies \\rho = 2$ (since $\\rho \\ge 0$).</li>\n<li><strong>Cone:</strong> $z^2 = 3(x^2 + y^2) \\implies \\rho^2\\cos^2\\phi = 3\\rho^2\\sin^2\\phi$. Dividing by $\\rho^2\\cos^2\\phi$ gives $\\tan^2\\phi = \\frac{1}{3}$. Because the solid is bounded <em>below</em> by the cone, we use the upper nappe ($z \\ge 0$, so $0 \\le \\phi \\le \\frac{\\pi}{2}$), giving $\\tan\\phi = \\frac{1}{\\sqrt{3}} \\implies \\phi = \\frac{\\pi}{6}$.</li>\n</ul>\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Set up the spherical triple integral:</strong><br>\nThe solid $E$ is given by $0 \\le \\rho \\le 2$, $0 \\le \\phi \\le \\frac{\\pi}{6}$, and $0 \\le \\theta \\le 2\\pi$:\n$$V = \\iiint_{E} dV = \\int_{0}^{2\\pi} \\int_{0}^{\\frac{\\pi}{6}} \\int_{0}^{2} \\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$$\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Factor and evaluate the separable integral:</strong><br>\nBecause all limits are constants and the integrand is a product of single-variable functions, we can multiply the three 1D integrals:\n$$V = \\left(\\int_{0}^{2\\pi} d\\theta\\right)\\left(\\int_{0}^{\\frac{\\pi}{6}} \\sin\\phi\\,d\\phi\\right)\\left(\\int_{0}^{2} \\rho^2\\,d\\rho\\right)$$\nEvaluate each factor:\n<ul>\n<li>$\\displaystyle\\int_{0}^{2\\pi} d\\theta = 2\\pi$.</li>\n<li>$\\displaystyle\\int_{0}^{\\frac{\\pi}{6}} \\sin\\phi\\,d\\phi = \\Big[-\\cos\\phi\\Big]_{0}^{\\frac{\\pi}{6}} = -\\cos\\frac{\\pi}{6} - (-\\cos 0) = 1 - \\frac{\\sqrt{3}}{2}$.</li>\n<li>$\\displaystyle\\int_{0}^{2} \\rho^2\\,d\\rho = \\left[\\frac{\\rho^3}{3}\\right]_{0}^{2} = \\frac{8}{3}$.</li>\n</ul>\nMultiply them together and simplify:\n$$V = 2\\pi \\cdot \\frac{8}{3} \\cdot \\left(1 - \\frac{\\sqrt{3}}{2}\\right) = \\frac{8\\pi}{3} \\cdot 2\\left(1 - \\frac{\\sqrt{3}}{2}\\right) = \\frac{8\\pi}{3}(2 - \\sqrt{3})$$"
+  },
+  {
+    "id": "FX_232_12",
+    "term": "232",
+    "number": 12,
+    "section": "13.7",
+    "topic": "Tangent Planes and Normal Lines",
+    "question": "If $ax + by + cz = 7$ is an equation of the tangent plane to the ellipsoid $x^2 + 2y^2 + z^2 = 7$ at the point $(1, -1, 2)$, then $a + b + c =$",
+    "choices": [
+      "$-2$",
+      "$-4$",
+      "$3$",
+      "$1$",
+      "$5$"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Compute the gradient normal vector to the level surface:</strong><br>\nDefine $F(x, y, z) = x^2 + 2y^2 + z^2 - 7$. The ellipsoid is the level surface $F(x, y, z) = 0$. Its gradient vector is normal to the tangent plane:\n$$\\nabla F(x, y, z) = \\langle F_x,\\, F_y,\\, F_z \\rangle = \\langle 2x,\\, 4y,\\, 2z \\rangle$$\nEvaluate $\\nabla F$ at the point $(1, -1, 2)$ (checking $1^2 + 2(-1)^2 + 2^2 = 1 + 2 + 4 = 7$):\n$$\\mathbf{n} = \\nabla F(1, -1, 2) = \\langle 2(1),\\, 4(-1),\\, 2(2) \\rangle = \\langle 2,\\, -4,\\, 4 \\rangle$$\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Write the tangent plane equation and match the right-hand side:</strong><br>\nUsing the point-normal form at $(1, -1, 2)$:\n$$2(x - 1) - 4(y + 1) + 4(z - 2) = 0$$\nExpand and combine constants:\n$$2x - 2 - 4y - 4 + 4z - 8 = 0 \\implies 2x - 4y + 4z = 14$$\nDivide both sides by $2$ so the constant on the right-hand side matches $7$:\n$$x - 2y + 2z = 7$$\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Identify $a, b, c$ and find their sum:</strong><br>\nComparing $x - 2y + 2z = 7$ with $ax + by + cz = 7$ yields $a = 1$, $b = -2$, $c = 2$. Therefore:\n$$a + b + c = 1 + (-2) + 2 = 1$$"
+  },
+  {
+    "id": "FX_232_13",
+    "term": "232",
+    "number": 13,
+    "section": "13.8",
+    "topic": "Extrema of Functions of Two Variables",
+    "question": "If $(a, b)$ is the only critical point of $f(x, y) = x^2 + xy + \\frac{1}{2}y^2 - 2x + y$, then",
+    "choices": [
+      "$f$ has a relative maximum at $(a, b)$",
+      "$a + b = 1$",
+      "$f$ has a saddle point at $(a, b)$",
+      "$f(a, b) = 5$",
+      "$f$ has a relative minimum at $(a, b)$"
+    ],
+    "correct_answer": "E",
+    "solution": "<strong>Step 1 — Solve $f_x = 0$ and $f_y = 0$ to find $(a, b)$:</strong><br>\nCompute the first-order partial derivatives of $f(x, y) = x^2 + xy + \\frac{1}{2}y^2 - 2x + y$:\n$$f_x(x, y) = 2x + y - 2 = 0 \\quad \\text{(1)}$$\n$$f_y(x, y) = x + y + 1 = 0 \\quad \\text{(2)}$$\nSubtract equation (2) from equation (1) to eliminate $y$:\n$$(2x + y - 2) - (x + y + 1) = 0 \\implies x - 3 = 0 \\implies x = 3$$\nSubstitute $x = 3$ into equation (2):\n$$3 + y + 1 = 0 \\implies y = -4$$\nSo the unique critical point is $(a, b) = (3, -4)$. Note that $a + b = 3 + (-4) = -1 \\neq 1$, and $f(3, -4) = 9 + (3)(-4) + \\frac{1}{2}(16) - 6 - 4 = 9 - 12 + 8 - 10 = -5 \\neq 5$.\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Apply the Second Partials Test:</strong><br>\nCompute the second partial derivatives:\n$$f_{xx} = 2, \\qquad f_{yy} = 1, \\qquad f_{xy} = 1$$\nEvaluate the discriminant $D = f_{xx}f_{yy} - (f_{xy})^2$ at $(3, -4)$:\n$$D(3, -4) = (2)(1) - (1)^2 = 1 > 0$$\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Conclude the classification:</strong><br>\nSince $D(3, -4) = 1 > 0$ and $f_{xx}(3, -4) = 2 > 0$, the Second Partials Test tells us that $f$ has a <strong>relative minimum</strong> at $(a, b) = (3, -4)$."
+  },
+  {
+    "id": "FX_232_14",
+    "term": "232",
+    "number": 14,
+    "section": "13.8",
+    "topic": "Extrema of Functions of Two Variables",
+    "question": "The absolute maximum of $f(x, y) = x^2 - 4xy + 5$ on the region $R = \\{(x, y) : 1 \\le x \\le 4,\\; 0 \\le y \\le 2\\}$ is",
+    "choices": [
+      "$25$",
+      "$15$",
+      "$21$",
+      "$-11$",
+      "$-6$"
+    ],
+    "correct_answer": "C",
+    "solution": "<strong>Step 1 — Check for interior critical points in $R$:</strong><br>\nBecause $R = [1, 4] \\times [0, 2]$ is closed and bounded and $f$ is continuous, the Extreme Value Theorem guarantees an absolute maximum occurs either at an interior critical point or on the boundary of $R$. Compute the first partial derivatives:\n$$f_x = 2x - 4y = 0, \\qquad f_y = -4x = 0$$\nFrom $f_y = 0$ we get $x = 0$, which forces $y = 0$. Since $(0, 0) \\notin R$ (as $1 \\le x \\le 4$), there are <strong>no interior critical points</strong> in $R$.\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Analyze $f$ along each of the four boundary edges:</strong><br>\n<ul>\n<li><strong>Bottom edge ($y = 0$, $1 \\le x \\le 4$):</strong> $f(x, 0) = x^2 + 5$, which is strictly increasing on $[1, 4]$. Its endpoints give $f(1, 0) = 6$ and $f(4, 0) = 21$.</li>\n<li><strong>Top edge ($y = 2$, $1 \\le x \\le 4$):</strong> $f(x, 2) = x^2 - 8x + 5$. Setting its derivative $2x - 8 = 0$ gives $x = 4$ (a corner). Endpoints give $f(1, 2) = -2$ and $f(4, 2) = -11$.</li>\n<li><strong>Left edge ($x = 1$, $0 \\le y \\le 2$):</strong> $f(1, y) = 6 - 4y$, a linear function whose extrema occur at the corners $(1, 0)$ and $(1, 2)$ (values $6$ and $-2$).</li>\n<li><strong>Right edge ($x = 4$, $0 \\le y \\le 2$):</strong> $f(4, y) = 21 - 16y$, a linear function whose extrema occur at the corners $(4, 0)$ and $(4, 2)$ (values $21$ and $-11$).</li>\n</ul>\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Compare all candidate values:</strong><br>\nComparing the values $\\{6, 21, -2, -11\\}$, the absolute maximum value of $f$ on $R$ is $21$ (attained at the corner $(4, 0)$)."
+  },
+  {
+    "id": "FX_232_15",
+    "term": "232",
+    "number": 15,
+    "section": "13.9",
+    "topic": "Applications of Extrema",
+    "question": "The minimum distance from the point $(-1, -1, 0)$ to the surface $z = \\sqrt{1 - 2x - 2y}$ is equal to (Hint: To simplify the computations, minimize the square of the distance).",
+    "choices": [
+      "$\\sqrt{3}$",
+      "$\\sqrt{2}$",
+      "$3\\sqrt{2}$",
+      "$2\\sqrt{3}$",
+      "$\\frac{\\sqrt{3}}{2}$"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Form the squared distance function $f(x, y) = d^2$:</strong><br>\nFor any point $(x, y, z)$ on the surface $z = \\sqrt{1 - 2x - 2y}$ (domain $1 - 2x - 2y \\ge 0$), the squared distance to $(-1, -1, 0)$ is:\n$$d^2 = (x + 1)^2 + (y + 1)^2 + (z - 0)^2$$\nSubstituting $z^2 = 1 - 2x - 2y$ gives a function of two variables:\n$$f(x, y) = (x + 1)^2 + (y + 1)^2 + 1 - 2x - 2y$$\nExpanding simplifies this dramatically:\n$$f(x, y) = (x^2 + 2x + 1) + (y^2 + 2y + 1) + 1 - 2x - 2y = x^2 + y^2 + 3$$\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Find and classify the critical point:</strong><br>\nSet the first partial derivatives equal to zero:\n$$f_x = 2x = 0 \\implies x = 0, \\qquad f_y = 2y = 0 \\implies y = 0$$\nVerify $(0, 0)$ is in the surface domain: $1 - 2(0) - 2(0) = 1 \\ge 0$, so $z = \\sqrt{1} = 1$, giving the point $(0, 0, 1)$ on the surface.\n<br>By the Second Partials Test, $f_{xx} = 2 > 0$, $f_{yy} = 2$, $f_{xy} = 0$, and $D = (2)(2) - 0^2 = 4 > 0$. Moreover, $f(x, y) = x^2 + y^2 + 3 \\ge 3$ everywhere, confirming a global minimum at $(0, 0)$.\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Compute the minimum distance:</strong><br>\n$$d_{\\min}^2 = f(0, 0) = 3 \\implies d_{\\min} = \\sqrt{3}$$"
+  },
+  {
+    "id": "FX_232_16",
+    "term": "232",
+    "number": 16,
+    "section": "13.10",
+    "topic": "Lagrange Multipliers",
+    "question": "The minimum value of $f(x, y, z) = x^2 + 2y^2 + 3z^2$ subject to the constraint $x - 2y + 6z = 45$ is",
+    "choices": [
+      "$115$",
+      "$95$",
+      "$135$",
+      "$105$",
+      "$125$"
+    ],
+    "correct_answer": "C",
+    "solution": "<strong>Step 1 — Write the Lagrange multiplier equations:</strong><br>\nLet $g(x, y, z) = x - 2y + 6z = 45$. At a constrained extremum, $\\nabla f = \\lambda \\nabla g$:\n$$\\begin{aligned}\nf_x = \\lambda g_x &\\implies 2x = \\lambda(1) \\implies x = \\frac{\\lambda}{2} \\\\\nf_y = \\lambda g_y &\\implies 4y = \\lambda(-2) \\implies y = -\\frac{\\lambda}{2} \\\\\nf_z = \\lambda g_z &\\implies 6z = \\lambda(6) \\implies z = \\lambda\n\\end{aligned}$$\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Substitute into the constraint to solve for $\\lambda$ and $(x, y, z)$:</strong><br>\nPlug $x = \\frac{\\lambda}{2}$, $y = -\\frac{\\lambda}{2}$, and $z = \\lambda$ into $x - 2y + 6z = 45$:\n$$\\frac{\\lambda}{2} - 2\\left(-\\frac{\\lambda}{2}\\right) + 6\\lambda = 45$$\n$$\\frac{\\lambda}{2} + \\lambda + 6\\lambda = 45 \\implies \\frac{15}{2}\\lambda = 45 \\implies \\lambda = 45 \\cdot \\frac{2}{15} = 6$$\nNow recover the coordinates:\n$$x = \\frac{6}{2} = 3, \\qquad y = -\\frac{6}{2} = -3, \\qquad z = 6$$\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Evaluate $f(3, -3, 6)$ and confirm it is the minimum:</strong><br>\n$$f(3, -3, 6) = 3^2 + 2(-3)^2 + 3(6)^2 = 9 + 18 + 108 = 135$$\nBecause $f(x, y, z) = x^2 + 2y^2 + 3z^2 \\ge x^2 + y^2 + z^2 \\to \\infty$ as the distance from the origin grows along the plane (for instance, $(45, 0, 0)$ lies on the plane with $f(45, 0, 0) = 2025 > 135$), the unique critical point gives the absolute minimum value $135$."
+  },
+  {
+    "id": "FX_232_17",
+    "term": "232",
+    "number": 17,
+    "section": "14.1",
+    "topic": "Iterated Integrals and Area in the Plane",
+    "question": "$\\displaystyle\\int_{0}^{2} \\int_{x}^{2} x\\sqrt{1 + y^3}\\,dy\\,dx =$",
+    "choices": [
+      "$3$",
+      "$9$",
+      "$\\frac{26}{9}$",
+      "$\\frac{26}{3}$",
+      "$\\frac{1}{3}(\\sqrt{3} - 1)$"
+    ],
+    "correct_answer": "C",
+    "solution": "<strong>Step 1 — Recognize the need to reverse the order of integration:</strong><br>\nThe inner integrand $\\sqrt{1 + y^3}$ has no elementary antiderivative with respect to $y$. Therefore, we reverse the order of integration from $dy\\,dx$ to $dx\\,dy$.\n<br>From the given limits, the region $R$ is defined by $0 \\le x \\le 2$ and $x \\le y \\le 2$. This is the triangle with vertices $(0, 0)$, $(0, 2)$, and $(2, 2)$, bounded below by $y = x$, above by $y = 2$, and on the left by $x = 0$.\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Rewrite the bounds using horizontal slices ($dx\\,dy$):</strong><br>\nLooking across the triangle horizontally:\n<ul>\n<li>$y$ spans from $0$ to $2$.</li>\n<li>For each fixed $y \\in [0, 2]$, $x$ enters at $x = 0$ and exits at the line $x = y$.</li>\n</ul>\nThus:\n$$\\int_{0}^{2} \\int_{x}^{2} x\\sqrt{1 + y^3}\\,dy\\,dx = \\int_{0}^{2} \\int_{0}^{y} x\\sqrt{1 + y^3}\\,dx\\,dy$$\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Evaluate the inner $x$-integral and outer $y$-integral:</strong><br>\nIntegrate with respect to $x$ first (holding $y$ constant):\n$$\\int_{0}^{y} x\\sqrt{1 + y^3}\\,dx = \\sqrt{1 + y^3}\\left[\\frac{x^2}{2}\\right]_{0}^{y} = \\frac{1}{2}y^2\\sqrt{1 + y^3}$$\nNow evaluate the outer integral using $u = 1 + y^3$, so $du = 3y^2\\,dy \\implies y^2\\,dy = \\frac{1}{3}\\,du$. When $y = 0$, $u = 1$; when $y = 2$, $u = 1 + 8 = 9$:\n$$\\frac{1}{2}\\int_{0}^{2} y^2\\sqrt{1 + y^3}\\,dy = \\frac{1}{2} \\cdot \\frac{1}{3}\\int_{1}^{9} u^{\\frac{1}{2}}\\,du = \\frac{1}{6} \\cdot \\left[\\frac{2}{3}u^{\\frac{3}{2}}\\right]_{1}^{9} = \\frac{1}{9}\\left(9^{\\frac{3}{2}} - 1^{\\frac{3}{2}}\\right) = \\frac{1}{9}(27 - 1) = \\frac{26}{9}$$"
+  },
+  {
+    "id": "FX_232_18",
+    "term": "232",
+    "number": 18,
+    "section": "14.1",
+    "topic": "Iterated Integrals and Area in the Plane",
+    "question": "$\\displaystyle\\int_{0}^{2} \\int_{y^2}^{4} f(x, y)\\,dx\\,dy =$",
+    "choices": [
+      "$\\displaystyle\\int_{y^2}^{4} \\int_{0}^{2} f(x, y)\\,dy\\,dx$",
+      "$\\displaystyle\\int_{0}^{2} \\int_{0}^{\\sqrt{x}} f(x, y)\\,dy\\,dx$",
+      "$\\displaystyle\\int_{0}^{4} \\int_{0}^{\\sqrt{x}} f(x, y)\\,dy\\,dx$",
+      "$\\displaystyle\\int_{0}^{4} \\int_{1}^{\\sqrt{x}} f(x, y)\\,dy\\,dx$",
+      "$\\displaystyle\\int_{0}^{2} \\int_{0}^{x^2} f(x, y)\\,dy\\,dx$"
+    ],
+    "correct_answer": "C",
+    "solution": "<strong>Step 1 — Describe the region of integration $R$:</strong><br>\nFrom the original iterated integral in order $dx\\,dy$:\n<ul>\n<li>Outer limits: $0 \\le y \\le 2$.</li>\n<li>Inner limits: $y^2 \\le x \\le 4$.</li>\n</ul>\nThe left boundary is the parabola $x = y^2$ (for $y \\ge 0$, equivalently $y = \\sqrt{x}$), the right boundary is the vertical line $x = 4$, and the bottom boundary is the $x$-axis $y = 0$. The parabola meets $x = 4$ at $(4, 2)$.\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Re-express $R$ in the order $dy\\,dx$:</strong><br>\nProjecting $R$ onto the $x$-axis gives $0 \\le x \\le 4$. For any fixed vertical slice at $x \\in [0, 4]$:\n<ul>\n<li>The lower $y$-boundary is $y = 0$.</li>\n<li>The upper $y$-boundary is the curve $y = \\sqrt{x}$.</li>\n</ul>\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Write the equivalent iterated integral:</strong><br>\n$$\\int_{0}^{2} \\int_{y^2}^{4} f(x, y)\\,dx\\,dy = \\int_{0}^{4} \\int_{0}^{\\sqrt{x}} f(x, y)\\,dy\\,dx$$"
+  },
+  {
+    "id": "FX_232_19",
+    "term": "232",
+    "number": 19,
+    "section": "14.1",
+    "topic": "Iterated Integrals and Area in the Plane",
+    "question": "$\\displaystyle\\int_{0}^{1} \\int_{0}^{y} (6x + 5y^3)\\,dx\\,dy =$",
+    "choices": [
+      "$2$",
+      "$4$",
+      "$1$",
+      "$0$",
+      "$3$"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Evaluate the inner integral with respect to $x$:</strong><br>\nTreat $y$ as a constant while integrating $6x + 5y^3$ from $x = 0$ to $x = y$:\n$$\\int_{0}^{y} (6x + 5y^3)\\,dx = \\Big[3x^2 + 5y^3 x\\Big]_{x=0}^{x=y} = 3y^2 + 5y^3(y) - 0 = 3y^2 + 5y^4$$\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Evaluate the outer integral with respect to $y$:</strong><br>\n$$\\int_{0}^{1} (3y^2 + 5y^4)\\,dy = \\Big[y^3 + y^5\\Big]_{0}^{1} = (1^3 + 1^5) - 0 = 1 + 1 = 2$$"
+  },
+  {
+    "id": "FX_232_20",
+    "term": "232",
+    "number": 20,
+    "section": "14.2",
+    "topic": "Double Integrals and Volume",
+    "question": "The average value of $f(x, y) = 2xy$ over the triangular region with vertices $(0, 0)$, $(1, 0)$, $(1, 3)$ is equal to",
+    "choices": [
+      "$2$",
+      "$\\frac{6}{5}$",
+      "$\\frac{3}{2}$",
+      "$\\frac{5}{2}$",
+      "$\\frac{1}{2}$"
+    ],
+    "correct_answer": "C",
+    "solution": "<strong>Step 1 — Find the area and bounding inequalities of the triangle $R$:</strong><br>\nThe triangle with vertices $(0, 0)$, $(1, 0)$, and $(1, 3)$ is a right triangle with horizontal base $b = 1$ along the $x$-axis ($y = 0$) and vertical leg $h = 3$ along $x = 1$. Its hypotenuse joins $(0, 0)$ to $(1, 3)$, which is the line $y = 3x$.\n<ul>\n<li>Area: $\\text{Area}(R) = \\frac{1}{2}(1)(3) = \\frac{3}{2}$.</li>\n<li>Vertical slice bounds: $0 \\le x \\le 1$ and $0 \\le y \\le 3x$.</li>\n</ul>\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Compute the double integral $\\iint_{R} 2xy\\,dA$:</strong><br>\n$$\\iint_{R} 2xy\\,dA = \\int_{0}^{1} \\int_{0}^{3x} 2xy\\,dy\\,dx$$\nEvaluate the inner integral with respect to $y$:\n$$\\int_{0}^{3x} 2xy\\,dy = \\Big[xy^2\\Big]_{y=0}^{y=3x} = x(3x)^2 = 9x^3$$\nEvaluate the outer integral with respect to $x$:\n$$\\int_{0}^{1} 9x^3\\,dx = \\left[\\frac{9x^4}{4}\\right]_{0}^{1} = \\frac{9}{4}$$\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Divide by $\\text{Area}(R)$ to get the average value:</strong><br>\n$$f_{\\text{avg}} = \\frac{1}{\\text{Area}(R)} \\iint_{R} 2xy\\,dA = \\frac{1}{\\frac{3}{2}} \\cdot \\frac{9}{4} = \\frac{2}{3} \\cdot \\frac{9}{4} = \\frac{3}{2}$$"
+  },
+  {
+    "id": "FX_232_21",
+    "term": "232",
+    "number": 21,
+    "section": "14.2",
+    "topic": "Double Integrals and Volume",
+    "question": "The volume of the solid lying in the first octant and bounded by the graphs of $z = 4 - y^2$, $y = x$, $y = 2$ is equal to",
+    "choices": [
+      "$\\frac{32}{3}$",
+      "$\\frac{17}{3}$",
+      "$\\frac{22}{3}$",
+      "$6$",
+      "$4$"
+    ],
+    "correct_answer": "E",
+    "solution": "<strong>Step 1 — Identify the base region $R$ in the $xy$-plane:</strong><br>\nLying in the first octant requires $x \\ge 0$, $y \\ge 0$, and $z \\ge 0$. Notice that $z = 4 - y^2 \\ge 0$ precisely when $0 \\le y \\le 2$, which matches the bounding plane $y = 2$.\n<br>In the $xy$-plane, the region bounded by $x = 0$, $y = x$, and $y = 2$ is the triangle with vertices $(0, 0)$, $(0, 2)$, and $(2, 2)$:\n<ul>\n<li>Using horizontal slices ($dx\\,dy$): $0 \\le y \\le 2$ and $0 \\le x \\le y$.</li>\n<li>(Equivalently, using vertical slices ($dy\\,dx$): $0 \\le x \\le 2$ and $x \\le y \\le 2$.)</li>\n</ul>\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Set up and evaluate the volume double integral:</strong><br>\nUsing the simpler order $dx\\,dy$ (since the integrand $4 - y^2$ does not depend on $x$):\n$$V = \\iint_{R} (4 - y^2)\\,dA = \\int_{0}^{2} \\int_{0}^{y} (4 - y^2)\\,dx\\,dy$$\nIntegrate with respect to $x$:\n$$\\int_{0}^{y} (4 - y^2)\\,dx = (4 - y^2)\\Big[x\\Big]_{0}^{y} = 4y - y^3$$\nIntegrate with respect to $y$:\n$$V = \\int_{0}^{2} (4y - y^3)\\,dy = \\left[2y^2 - \\frac{y^4}{4}\\right]_{0}^{2} = \\left(2(4) - \\frac{16}{4}\\right) - 0 = 8 - 4 = 4$$"
+  },
+  {
+    "id": "FX_232_22",
+    "term": "232",
+    "number": 22,
+    "section": "14.3",
+    "topic": "Change of Variables: Polar Coordinates",
+    "question": "If $R = \\{(x, y) : x^2 + y^2 \\le 9,\\; x \\ge 0,\\; y \\ge 0\\}$, then $\\displaystyle\\iint_{R} (x + y)\\,dA =$",
+    "choices": [
+      "$\\frac{2\\pi}{3}$",
+      "$6\\pi$",
+      "$18$",
+      "$36$",
+      "$9$"
+    ],
+    "correct_answer": "C",
+    "solution": "<strong>Step 1 — Express the region $R$ and integrand in polar coordinates:</strong><br>\nThe region $R$ is the quarter-disk of radius $3$ in the first quadrant:\n$$0 \\le r \\le 3, \\qquad 0 \\le \\theta \\le \\frac{\\pi}{2}$$\nSubstitute $x = r\\cos\\theta$, $y = r\\sin\\theta$, and $dA = r\\,dr\\,d\\theta$:\n$$\\iint_{R} (x + y)\\,dA = \\int_{0}^{\\frac{\\pi}{2}} \\int_{0}^{3} (r\\cos\\theta + r\\sin\\theta)\\,r\\,dr\\,d\\theta = \\int_{0}^{\\frac{\\pi}{2}} \\int_{0}^{3} r^2(\\cos\\theta + \\sin\\theta)\\,dr\\,d\\theta$$\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Separate and evaluate the $r$- and $\\theta$-integrals:</strong><br>\nSince the limits are constants and the integrand factors cleanly:\n$$\\iint_{R} (x + y)\\,dA = \\left(\\int_{0}^{\\frac{\\pi}{2}} (\\cos\\theta + \\sin\\theta)\\,d\\theta\\right)\\left(\\int_{0}^{3} r^2\\,dr\\right)$$\nCompute each factor:\n<ul>\n<li>$\\displaystyle\\int_{0}^{3} r^2\\,dr = \\left[\\frac{r^3}{3}\\right]_{0}^{3} = \\frac{27}{3} = 9$.</li>\n<li>$\\displaystyle\\int_{0}^{\\frac{\\pi}{2}} (\\cos\\theta + \\sin\\theta)\\,d\\theta = \\Big[\\sin\\theta - \\cos\\theta\\Big]_{0}^{\\frac{\\pi}{2}} = (1 - 0) - (0 - 1) = 2$.</li>\n</ul>\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Multiply the results:</strong><br>\n$$\\iint_{R} (x + y)\\,dA = 2 \\cdot 9 = 18$$"
+  },
+  {
+    "id": "FX_232_23",
+    "term": "232",
+    "number": 23,
+    "section": "14.3",
+    "topic": "Change of Variables: Polar Coordinates",
+    "question": "$\\displaystyle\\int_{-4}^{4} \\int_{0}^{\\sqrt{16 - x^2}} \\cos(x^2 + y^2)\\,dy\\,dx =$",
+    "choices": [
+      "$\\displaystyle\\int_{0}^{\\pi} \\int_{-4}^{4} r\\cos(r^2)\\,dr\\,d\\theta$",
+      "$\\displaystyle\\int_{-\\pi}^{\\pi} \\int_{0}^{4} r\\cos(r^2)\\,dr\\,d\\theta$",
+      "$\\displaystyle\\int_{0}^{2\\pi} \\int_{0}^{4} r\\cos(r^2)\\,dr\\,d\\theta$",
+      "$\\displaystyle\\int_{0}^{\\pi} \\int_{0}^{4} r\\cos(r^2)\\,dr\\,d\\theta$",
+      "$\\displaystyle\\int_{0}^{\\pi} \\int_{0}^{4} \\cos(r^2)\\,dr\\,d\\theta$"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Identify the planar region of integration $R$:</strong><br>\nThe Cartesian limits are $-4 \\le x \\le 4$ and $0 \\le y \\le \\sqrt{16 - x^2}$. The equation $y = \\sqrt{16 - x^2}$ defines the upper semicircle of $x^2 + y^2 = 16$ (radius $4$, with $y \\ge 0$). Since $x$ runs across the full diameter from $-4$ to $4$, $R$ is the <strong>upper half-disk of radius $4$</strong>.\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Convert the bounds, integrand, and area element to polar coordinates:</strong><br>\n<ul>\n<li>Radius bounds: $0 \\le r \\le 4$ (note that $r$ is never negative here).</li>\n<li>Angle bounds for the upper half-plane (Quadrants I and II): $0 \\le \\theta \\le \\pi$.</li>\n<li>Integrand: $\\cos(x^2 + y^2) = \\cos(r^2)$.</li>\n<li>Area element (Jacobian): $dy\\,dx = r\\,dr\\,d\\theta$.</li>\n</ul>\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Assemble the polar iterated integral:</strong><br>\n$$\\int_{-4}^{4} \\int_{0}^{\\sqrt{16 - x^2}} \\cos(x^2 + y^2)\\,dy\\,dx = \\int_{0}^{\\pi} \\int_{0}^{4} r\\cos(r^2)\\,dr\\,d\\theta$$"
+  },
+  {
+    "id": "FX_232_24",
+    "term": "232",
+    "number": 24,
+    "section": "14.6",
+    "topic": "Triple Integrals and Applications",
+    "question": "The volume of the solid region bounded below by the paraboloid $z = x^2 + y^2$ and above by the sphere $x^2 + y^2 + z^2 = 6$ is given by",
+    "choices": [
+      "$\\displaystyle\\int_{0}^{\\sqrt{2}} \\int_{0}^{\\sqrt{2 - x^2}} \\int_{x^2 + y^2}^{\\sqrt{6 - x^2 - y^2}} dz\\,dy\\,dx$",
+      "$\\displaystyle\\int_{-1}^{1} \\int_{-\\sqrt{1 - x^2}}^{\\sqrt{1 - x^2}} \\int_{x^2 + y^2}^{\\sqrt{6 - x^2 - y^2}} dz\\,dy\\,dx$",
+      "$\\displaystyle\\int_{-\\sqrt{2}}^{\\sqrt{2}} \\int_{-\\sqrt{2 - x^2}}^{\\sqrt{2 - x^2}} \\int_{x^2 + y^2}^{\\sqrt{6 - x^2 - y^2}} dz\\,dy\\,dx$",
+      "$\\displaystyle\\int_{-\\sqrt{2}}^{\\sqrt{2}} \\int_{-\\sqrt{2 - x^2}}^{\\sqrt{2 - x^2}} \\int_{\\sqrt{6 - x^2 - y^2}}^{x^2 + y^2} dz\\,dy\\,dx$",
+      "$\\displaystyle\\int_{0}^{\\sqrt{2}} \\int_{0}^{\\sqrt{2 - x^2}} \\int_{0}^{\\sqrt{6 - x^2 - y^2}} dz\\,dy\\,dx$"
+    ],
+    "correct_answer": "C",
+    "solution": "<strong>Step 1 — Determine the $z$-bounds of the solid:</strong><br>\nThe solid is bounded below by the paraboloid $z = x^2 + y^2$ (where $z \\ge 0$) and above by the upper hemisphere of $x^2 + y^2 + z^2 = 6$, namely $z = \\sqrt{6 - x^2 - y^2}$. Hence:\n$$x^2 + y^2 \\le z \\le \\sqrt{6 - x^2 - y^2}$$\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Find the projection $R$ onto the $xy$-plane by intersecting the surfaces:</strong><br>\nSubstitute $x^2 + y^2 = z$ into the sphere equation $x^2 + y^2 + z^2 = 6$:\n$$z + z^2 = 6 \\implies z^2 + z - 6 = 0 \\implies (z + 3)(z - 2) = 0$$\nBecause $z = x^2 + y^2 \\ge 0$, we discard $z = -3$ and keep $z = 2$. Plugging $z = 2$ back into the paraboloid gives the circle of intersection:\n$$x^2 + y^2 = 2$$\nThus the projection $R$ is the full disk $x^2 + y^2 \\le 2$ of radius $\\sqrt{2}$.\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Express $R$ in rectangular coordinates ($dy\\,dx$):</strong><br>\nFor the disk $x^2 + y^2 \\le 2$:\n<ul>\n<li>$x$ runs from $-\\sqrt{2}$ to $\\sqrt{2}$.</li>\n<li>For each fixed $x$, $y$ runs from $-\\sqrt{2 - x^2}$ to $\\sqrt{2 - x^2}$.</li>\n</ul>\nCombining all three bounds gives the rectangular triple integral for the volume:\n$$V = \\int_{-\\sqrt{2}}^{\\sqrt{2}} \\int_{-\\sqrt{2 - x^2}}^{\\sqrt{2 - x^2}} \\int_{x^2 + y^2}^{\\sqrt{6 - x^2 - y^2}} dz\\,dy\\,dx$$"
+  },
+  {
+    "id": "FX_232_25",
+    "term": "232",
+    "number": 25,
+    "section": "14.6",
+    "topic": "Triple Integrals and Applications",
+    "question": "$\\displaystyle\\int_{1}^{4} \\int_{1}^{e^2} \\int_{0}^{\\frac{1}{xz}} (\\ln z)\\,dy\\,dz\\,dx =$",
+    "choices": [
+      "$3\\ln 4$",
+      "$\\ln 4$",
+      "$\\frac{\\ln 4}{2}$",
+      "$\\frac{\\ln 4}{3}$",
+      "$2\\ln 4$"
+    ],
+    "correct_answer": "E",
+    "solution": "<strong>Step 1 — Evaluate the innermost integral with respect to $y$:</strong><br>\nHolding $x$ and $z$ constant, $\\ln z$ is independent of $y$:\n$$\\int_{0}^{\\frac{1}{xz}} (\\ln z)\\,dy = (\\ln z)\\Big[y\\Big]_{0}^{\\frac{1}{xz}} = \\frac{\\ln z}{xz}$$\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Evaluate the middle integral with respect to $z$:</strong><br>\nFactor $\\frac{1}{x}$ outside the $z$-integral:\n$$\\frac{1}{x}\\int_{1}^{e^2} \\frac{\\ln z}{z}\\,dz$$\nUse the substitution $u = \\ln z$, so $du = \\frac{1}{z}\\,dz$. Update the limits: when $z = 1$, $u = \\ln 1 = 0$; when $z = e^2$, $u = \\ln(e^2) = 2$:\n$$\\frac{1}{x}\\int_{0}^{2} u\\,du = \\frac{1}{x}\\left[\\frac{u^2}{2}\\right]_{0}^{2} = \\frac{1}{x} \\cdot \\frac{4 - 0}{2} = \\frac{2}{x}$$\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Evaluate the outer integral with respect to $x$:</strong><br>\n$$\\int_{1}^{4} \\frac{2}{x}\\,dx = 2\\Big[\\ln|x|\\Big]_{1}^{4} = 2(\\ln 4 - \\ln 1) = 2(\\ln 4 - 0) = 2\\ln 4$$"
+  },
+  {
+    "id": "FX_232_26",
+    "term": "232",
+    "number": 26,
+    "section": "11.7",
+    "topic": "Cylindrical and Spherical Coordinates",
+    "question": "The point with rectangular coordinates $(x, y, z) = (-2, 2\\sqrt{3}, 4)$ is represented in spherical coordinates by",
+    "choices": [
+      "$(\\rho, \\theta, \\phi) = \\left(4\\sqrt{2}, \\frac{5\\pi}{3}, \\frac{\\pi}{4}\\right)$",
+      "$(\\rho, \\theta, \\phi) = \\left(4\\sqrt{2}, \\frac{2\\pi}{3}, \\frac{\\pi}{4}\\right)$",
+      "$(\\rho, \\theta, \\phi) = \\left(4\\sqrt{2}, \\frac{2\\pi}{3}, \\frac{3\\pi}{4}\\right)$",
+      "$(\\rho, \\theta, \\phi) = \\left(4\\sqrt{2}, \\frac{\\pi}{3}, \\frac{3\\pi}{4}\\right)$",
+      "$(\\rho, \\theta, \\phi) = \\left(2\\sqrt{2}, \\frac{2\\pi}{3}, \\frac{\\pi}{4}\\right)$"
+    ],
+    "correct_answer": "B",
+    "solution": "<strong>Step 1 — Compute the radial distance $\\rho$:</strong><br>\n$$\\rho = \\sqrt{x^2 + y^2 + z^2} = \\sqrt{(-2)^2 + (2\\sqrt{3})^2 + 4^2} = \\sqrt{4 + 12 + 16} = \\sqrt{32} = 4\\sqrt{2}$$\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Determine the azimuthal angle $\\theta$:</strong><br>\nUse $\\tan\\theta = \\frac{y}{x}$ together with the quadrant of $(x, y)$:\n$$\\tan\\theta = \\frac{2\\sqrt{3}}{-2} = -\\sqrt{3}$$\nBecause $x = -2 < 0$ and $y = 2\\sqrt{3} > 0$, the point $(x, y)$ lies in <strong>Quadrant II</strong>. The reference angle for $\\sqrt{3}$ is $\\frac{\\pi}{3}$, so in Quadrant II:\n$$\\theta = \\pi - \\frac{\\pi}{3} = \\frac{2\\pi}{3}$$\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Determine the polar angle $\\phi \\in [0, \\pi]$:</strong><br>\nUse $z = \\rho\\cos\\phi$:\n$$\\cos\\phi = \\frac{z}{\\rho} = \\frac{4}{4\\sqrt{2}} = \\frac{1}{\\sqrt{2}} = \\frac{\\sqrt{2}}{2}$$\nSince $0 \\le \\phi \\le \\pi$ and $\\cos\\phi > 0$, we obtain $\\phi = \\frac{\\pi}{4}$.\n<div class=\"step-divider\"></div>\n<strong>Step 4 — Combine all three coordinates:</strong><br>\n$$(\\rho, \\theta, \\phi) = \\left(4\\sqrt{2},\\, \\frac{2\\pi}{3},\\, \\frac{\\pi}{4}\\right)$$"
+  },
+  {
+    "id": "FX_232_27",
+    "term": "232",
+    "number": 27,
+    "section": "11.7",
+    "topic": "Cylindrical and Spherical Coordinates",
+    "question": "The graph of the surface represented by the cylindrical equation $r^2\\cos(2\\theta) + z^2 + 1 = 0$ is",
+    "choices": [
+      "a hyperboloid of two sheets",
+      "an elliptic hyperboloid",
+      "an elliptic paraboloid",
+      "a hyperboloid of one sheet",
+      "a sphere"
+    ],
+    "correct_answer": "A",
+    "solution": "<strong>Step 1 — Apply the double-angle identity to eliminate $2\\theta$:</strong><br>\nRecall the trigonometric identity $\\cos(2\\theta) = \\cos^2\\theta - \\sin^2\\theta$. Substitute this into the cylindrical equation:\n$$r^2(\\cos^2\\theta - \\sin^2\\theta) + z^2 + 1 = 0$$\nDistribute $r^2$:\n$$(r\\cos\\theta)^2 - (r\\sin\\theta)^2 + z^2 + 1 = 0$$\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Convert to rectangular coordinates:</strong><br>\nUsing $x = r\\cos\\theta$ and $y = r\\sin\\theta$:\n$$x^2 - y^2 + z^2 + 1 = 0$$\nMove the constant to the right-hand side and multiply by $-1$ to put the equation in standard quadric form with $+1$ on the right:\n$$x^2 - y^2 + z^2 = -1 \\implies -x^2 + y^2 - z^2 = 1$$\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Classify the quadric surface:</strong><br>\nIn standard form $\\frac{y^2}{1} - \\frac{x^2}{1} - \\frac{z^2}{1} = 1$, there is <strong>one positive</strong> squared term ($y^2$) and <strong>two negative</strong> squared terms ($-x^2$ and $-z^2$) equal to $+1$. This is the standard equation of a <strong>hyperboloid of two sheets</strong> (opening along the $y$-axis, with $|y| \\ge 1$)."
+  },
+  {
+    "id": "FX_232_28",
+    "term": "232",
+    "number": 28,
+    "section": "14.7",
+    "topic": "Triple Integrals in Other Coordinates",
+    "question": "$\\displaystyle\\int_{0}^{2} \\int_{0}^{\\sqrt{4 - x^2}} \\int_{0}^{\\sqrt{4 - x^2 - y^2}} \\sqrt{x^2 + y^2 + z^2}\\,dz\\,dy\\,dx =$",
+    "choices": [
+      "$8\\pi$",
+      "$4\\pi$",
+      "$6\\pi$",
+      "$2\\pi$",
+      "$\\pi$"
+    ],
+    "correct_answer": "D",
+    "solution": "<strong>Step 1 — Identify the 3D solid $E$ from the rectangular limits:</strong><br>\nReading the limits from inside out:\n<ul>\n<li>$0 \\le z \\le \\sqrt{4 - x^2 - y^2}$: bounded below by the $xy$-plane ($z = 0$) and above by the upper hemisphere of $x^2 + y^2 + z^2 = 4$ (radius $2$).</li>\n<li>$0 \\le y \\le \\sqrt{4 - x^2}$ and $0 \\le x \\le 2$: the base projection is the first-quadrant quarter-disk of radius $2$.</li>\n</ul>\nTogether, $E$ is the portion of the solid ball $x^2 + y^2 + z^2 \\le 4$ lying in the <strong>first octant</strong> ($x \\ge 0$, $y \\ge 0$, $z \\ge 0$).\n<div class=\"step-divider\"></div>\n<strong>Step 2 — Convert to spherical coordinates:</strong><br>\nFor the first-octant ball of radius $2$:\n<ul>\n<li>$0 \\le \\rho \\le 2$ (from the origin to the sphere $\\rho = 2$).</li>\n<li>$0 \\le \\phi \\le \\frac{\\pi}{2}$ (from the positive $z$-axis down to the $xy$-plane).</li>\n<li>$0 \\le \\theta \\le \\frac{\\pi}{2}$ (Quadrant I in the $xy$-plane).</li>\n</ul>\nThe integrand is $\\sqrt{x^2 + y^2 + z^2} = \\rho$, and the spherical volume element is $dV = \\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$, so:\n$$\\iiint_{E} \\sqrt{x^2 + y^2 + z^2}\\,dV = \\int_{0}^{\\frac{\\pi}{2}} \\int_{0}^{\\frac{\\pi}{2}} \\int_{0}^{2} \\rho \\cdot \\rho^2\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta = \\int_{0}^{\\frac{\\pi}{2}} \\int_{0}^{\\frac{\\pi}{2}} \\int_{0}^{2} \\rho^3\\sin\\phi\\,d\\rho\\,d\\phi\\,d\\theta$$\n<div class=\"step-divider\"></div>\n<strong>Step 3 — Factor and evaluate the separable integral:</strong><br>\n$$\\left(\\int_{0}^{\\frac{\\pi}{2}} d\\theta\\right)\\left(\\int_{0}^{\\frac{\\pi}{2}} \\sin\\phi\\,d\\phi\\right)\\left(\\int_{0}^{2} \\rho^3\\,d\\rho\\right)$$\nEvaluate each factor:\n<ul>\n<li>$\\displaystyle\\int_{0}^{\\frac{\\pi}{2}} d\\theta = \\frac{\\pi}{2}$.</li>\n<li>$\\displaystyle\\int_{0}^{\\frac{\\pi}{2}} \\sin\\phi\\,d\\phi = \\Big[-\\cos\\phi\\Big]_{0}^{\\frac{\\pi}{2}} = 0 - (-1) = 1$.</li>\n<li>$\\displaystyle\\int_{0}^{2} \\rho^3\\,d\\rho = \\left[\\frac{\\rho^4}{4}\\right]_{0}^{2} = \\frac{16}{4} = 4$.</li>\n</ul>\nMultiply them together:\n$$\\frac{\\pi}{2} \\cdot 1 \\cdot 4 = 2\\pi$$"
+  }
+];
