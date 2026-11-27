@@ -5733,7 +5733,7 @@ div.choice-btn {
                 <p><strong>Tiny Example (Textbook p. 949, Example 2):</strong> Verify that the profit $P(x, y) = 8x + 10y - 0.001(x^2 + xy + y^2) - 10{,}000$ achieves a maximum at $(2000, 4000)$.</p>
                 <p>From $P_x = 8 - 0.001(2x + y) = 0$ and $P_y = 10 - 0.001(x + 2y) = 0$, we obtain $2x + y = 8000$ and $x + 2y = 10{,}000$, giving $(x, y) = (2000, 4000)$ (feasible since $x, y &gt; 0$). Next, $P_{xx} = -0.002$, $P_{yy} = -0.002$, and $P_{xy} = -0.001$, so:
                 $$D = (-0.002)(-0.002) - (-0.001)^2 = 0.000003 &gt; 0 \quad \text{and} \quad P_{xx} = -0.002 &lt; 0$$
-                Thus $(2000, 4000)$ produces the maximum profit $P(2000, 4000) = 18{,}000$ (&#36;18,000).</p>
+                Thus $(2000, 4000)$ produces the maximum profit $P(2000, 4000) = 18{,}000$ (<span>&#36;</span>18,000).</p>
 
                 <p><strong>Why It Works:</strong> Squaring $z = \sqrt{1 - 2x - 2y}$ into $z^2 = 1 - 2x - 2y$ hides the restriction $1 - 2x - 2y \ge 0$ from the polynomial $D(x, y)$, so checking feasibility restores the true domain. Similarly, $D &gt; 0$ guarantees the Hessian quadratic form is strictly convex ($f_{xx} &gt; 0$) or strictly concave ($f_{xx} &lt; 0$) near $(a, b)$.</p>
 
@@ -6011,7 +6011,7 @@ div.choice-btn {
                         <h3 class="example-title">Maximizing Volume of an Open-Top Box via 2-Variable Elimination</h3>
                     </div>
                     <div class="problem-statement">
-                        A box without a top is to be made, where the material for the base costs twice as much per square unit as the material for the sides. If the sides cost &#36;4 per square unit and the total cost of materials is &#36;600, find the sum of the length, width, and height of the largest possible box.
+                        A box without a top is to be made, where the material for the base costs twice as much per square unit as the material for the sides. If the sides cost <span>&#36;</span>4 per square unit and the total cost of materials is <span>&#36;</span>600, find the sum of the length, width, and height of the largest possible box.
                     </div>
                     <div class="final-ans-box">
                         <strong>Final Answer:</strong> $x + y + z = 15\text{ units}$ (optimal box is $5 \times 5 \times 5$).
@@ -6021,7 +6021,7 @@ div.choice-btn {
                             <div class="step-num">1</div>
                             <div class="step-body">
                                 <div class="step-title">Write Cost Constraint and Eliminate $z$</div>
-                                <p>Let $x, y, z &gt; 0$ be length, width, and height. Sides cost &#36;4 per unit area, so the base costs &#36;8 per unit area. One base ($xy$) plus four walls ($2xz + 2yz$) gives:</p>
+                                <p>Let $x, y, z &gt; 0$ be length, width, and height. Sides cost <span>&#36;</span>4 per unit area, so the base costs <span>&#36;</span>8 per unit area. One base ($xy$) plus four walls ($2xz + 2yz$) gives:</p>
                                 $$8(xy) + 4(2xz + 2yz) = 600 \implies xy + xz + yz = 75$$
                                 <p>Solve for $z = \dfrac{75 - xy}{x + y}$ (feasible region $x &gt; 0, y &gt; 0, xy &lt; 75$) and substitute into $V = xyz$:</p>
                                 $$V(x, y) = \frac{75xy - x^2 y^2}{x + y}$$
@@ -6046,7 +6046,7 @@ div.choice-btn {
                             </div>
                         </div>
                     </div>
-                    <div class="verify-box"><strong>Verification:</strong> Total cost at $(5, 5, 5)$ is $8(25) + 4\big(2(25) + 2(25)\big) = 200 + 400 = 600$ (&#36;600), and $V = 0$ on the boundary $x \to 0^+, y \to 0^+$, or $xy \to 75^-$, so $(5, 5)$ gives the unique global maximum volume $125$.</div>
+                    <div class="verify-box"><strong>Verification:</strong> Total cost at $(5, 5, 5)$ is $8(25) + 4\big(2(25) + 2(25)\big) = 200 + 400 = 600$ (<span>&#36;</span>600), and $V = 0$ on the boundary $x \to 0^+, y \to 0^+$, or $xy \to 75^-$, so $(5, 5)$ gives the unique global maximum volume $125$.</div>
                 </div>
 
             </div>
