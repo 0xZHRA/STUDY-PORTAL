@@ -3026,7 +3026,6 @@ div.choice-btn {
         <div class="nav-right-controls">
             <div class="tab-switch">
                 <button class="tab-btn active" id="btnNotes" onclick="switchTab('notes')">Notes</button>
-                                <button class="tab-btn" id="btnVideos" onclick="switchTab('videos')">Videos</button>
                 <button class="tab-btn" id="btnExams" onclick="switchTab('exambank')"><span>Exam Bank</span><span class="exam-bank-badge">107 Qs</span></button>
             </div>
 
@@ -3431,6 +3430,376 @@ div.choice-btn {
     color: #10b981;
 }
 
+/* Fix .step-num dark mode contrast globally */
+.step-num {
+    color: var(--accent-fg, #ffffff) !important;
+}
+
+/* ========================================================
+   TOP-OF-LESSON EMBEDDED VIDEO BLOCK & LESSON COMPONENTS
+   Light/Dark Mode Compatible + Mobile Responsive
+   ======================================================== */
+.lesson-video-block {
+    padding: 0;
+    overflow: hidden;
+    margin-block-end: 22px;
+}
+.lesson-video-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 14px 18px;
+    border-block-end: 1px solid var(--border-subtle);
+    background: var(--bg-subtle);
+}
+.lesson-video-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+.lv-tabs-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.lv-tab-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    padding: 5px 10px;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+.lv-tab-btn:hover {
+    border-color: var(--border-strong);
+    color: var(--text-primary);
+}
+.lv-tab-btn.active {
+    background: var(--accent-primary);
+    color: var(--accent-fg);
+    border-color: var(--accent-primary);
+}
+.lesson-video-player {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #09090b;
+    overflow: hidden;
+}
+.lesson-video-player iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.lv-poster-btn {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    padding: 0;
+    background: #09090b;
+    cursor: pointer;
+    display: block;
+}
+.lv-poster-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.86;
+    transition: opacity 0.2s ease, transform 0.25s ease;
+    display: block;
+}
+.lv-poster-btn:hover img {
+    opacity: 1;
+    transform: scale(1.01);
+}
+.lv-play-pill {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(9, 9, 11, 0.86);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 9999px;
+    padding: 10px 18px;
+    font-size: 13.5px;
+    font-weight: 700;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+}
+.lv-start-badge {
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-weight: 700;
+}
+.lesson-video-meta {
+    padding: 14px 18px;
+}
+.lv-summary-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+.lv-cover-line {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    flex: 1 1 260px;
+}
+.lv-yt-ext {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 11px;
+    border-radius: 7px;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.lv-yt-ext:hover {
+    border-color: var(--border-strong);
+}
+.lv-timestamps-wrap {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border-subtle);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    align-items: center;
+}
+.lv-ts-label {
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-inline-end: 4px;
+}
+.lv-ts-btn {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: start;
+    transition: all 0.15s ease;
+}
+.lv-ts-btn:hover, .lv-ts-btn.active {
+    border-color: var(--accent-primary);
+    background: var(--accent-primary);
+    color: var(--accent-fg);
+}
+.lv-ts-time {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-weight: 700;
+    margin-inline-end: 4px;
+}
+.lv-no-ts-note {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.prior-knowledge-box {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    border-inline-start: 4px solid #3b82f6;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 18px;
+}
+.prior-knowledge-box h3 {
+    margin: 0 0 8px 0;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #2563eb;
+}
+[data-theme="dark"] .prior-knowledge-box h3 { color: #60a5fa; }
+
+.note-diff-line {
+    background: rgba(245, 158, 11, 0.09);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    border-inline-start: 4px solid #d97706;
+    border-radius: 7px;
+    padding: 10px 14px;
+    margin: 12px 0;
+    font-size: 13.5px;
+    color: var(--text-primary);
+}
+[data-theme="dark"] .note-diff-line { color: #fde68a; }
+
+.svg-figure-card {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 14px;
+    margin: 16px 0;
+}
+.svg-figure-card svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 680px;
+    margin: 0 auto;
+    border-radius: 6px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+}
+.svg-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+.svg-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.svg-swatch {
+    width: 11px;
+    height: 11px;
+    border-radius: 3px;
+    display: inline-block;
+    flex-shrink: 0;
+}
+.svg-caption {
+    margin-top: 6px;
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.quick-check-card {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-top: 16px;
+}
+.quick-check-q {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+.quick-check-opts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 6px 14px;
+    margin-bottom: 10px;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+}
+.quick-check-details summary {
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    color: #2563eb;
+    user-select: none;
+    padding: 4px 0;
+}
+[data-theme="dark"] .quick-check-details summary { color: #60a5fa; }
+.quick-check-ans {
+    margin-top: 8px;
+    padding: 10px 14px;
+    border-radius: 7px;
+    background: var(--status-ok-bg);
+    border: 1px solid var(--status-ok-border);
+    font-size: 13.5px;
+    color: var(--text-primary);
+}
+
+.trap-compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 10px 0 18px 0;
+}
+@media (max-width: 640px) {
+    .trap-compare-grid { grid-template-columns: 1fr; }
+}
+.trap-wrong {
+    background: var(--status-err-bg);
+    border: 1px solid var(--status-err-border);
+    border-inline-start: 4px solid var(--status-err);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13.5px;
+}
+.trap-right {
+    background: var(--status-ok-bg);
+    border: 1px solid var(--status-ok-border);
+    border-inline-start: 4px solid var(--status-ok);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13.5px;
+}
+.trap-col-label {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+    display: block;
+}
+.trap-wrong .trap-col-label { color: var(--status-err); }
+.trap-right .trap-col-label { color: var(--status-ok); }
+
+.exam-five-box {
+    background: var(--bg-card);
+    border: 2px solid var(--border-strong);
+    border-radius: 12px;
+    padding: 18px 22px;
+}
+.exam-five-list {
+    margin: 10px 0 0 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.verify-box {
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 7px;
+    background: var(--status-ok-bg);
+    border: 1px solid var(--status-ok-border);
+    font-size: 13.5px;
+}
+
 </style>
 
 <!-- ========================================== -->
@@ -3441,342 +3810,670 @@ div.choice-btn {
 <!-- ====================================================================== -->
 <section class="topic-page-unit topic-page" id="page-v1" style="display: block;">
     <header class="page-header">
-        <div class="page-meta-badge">CONCEPT MASTERCLASS &bull; TOPIC 01 OF 10</div>
+        <div class="page-meta-badge">CONCEPT MASTERCLASS &bull; SECTION 13.7</div>
         <h1 class="page-title">13.7 Tangent Planes and Normal Lines</h1>
-        <p class="page-desc">Chapter 13: Functions of Several Variables — Geometric Meaning of the Gradient Normal Vector, Level Surfaces $F(x,y,z)=k$, Explicit Surfaces $z=f(x,y)$, Normal Lines, Surface Intersection Tangent Lines &amp; Angle of Inclination</p>
+        <p class="page-desc">Larson &amp; Edwards 7e (pp. 931&ndash;939) &amp; Dr. Alhumaidy Notes &mdash; Gradient Normal Vectors $\nabla F(P_0)$, Tangent Planes, Normal Lines, Surface Intersection Curves, Angle of Inclination &amp; Parallel/Perpendicular Plane Conditions.</p>
         <div class="teleport-strip">
-            <span class="teleport-label">Jump to idea:</span>
+            <span class="teleport-label">Jump to section:</span>
             <div class="teleport-chips">
-                <button class="teleport-chip" onclick="teleportTo('v1-sec-1')">&sect;1 Why $\nabla F$ Is Normal</button>
-                <button class="teleport-chip" onclick="teleportTo('v1-sec-2')">&sect;2 Intersections &amp; Inclination</button>
-                <button class="teleport-chip" onclick="teleportTo('v1-ex-1')">Ex 1: Level Surface</button>
-                <button class="teleport-chip" onclick="teleportTo('v1-ex-2')">Ex 2: Explicit &amp; Horizontal Plane</button>
-                <button class="teleport-chip" onclick="teleportTo('v1-ex-3')">Ex 3: Intersection Curve</button>
-                <button class="teleport-chip" onclick="teleportTo('v1-ex-4')">Ex 4: Angle of Inclination</button>
+                <button class="teleport-chip" onclick="teleportTo('v1-video')">Lecture Video</button>
+                <button class="teleport-chip" onclick="teleportTo('v1-sec-1')">&sect;1 Tangent Planes &amp; Normals</button>
+                <button class="teleport-chip" onclick="teleportTo('v1-sec-2')">&sect;2 Surface Intersections</button>
+                <button class="teleport-chip" onclick="teleportTo('v1-sec-3')">&sect;3 Angle of Inclination</button>
+                <button class="teleport-chip" onclick="teleportTo('v1-sec-4')">&sect;4 Parallel &amp; Horizontal</button>
+                <button class="teleport-chip" onclick="teleportTo('v1-formulas')">Master Formulas</button>
+                <button class="teleport-chip" onclick="teleportTo('v1-traps')">Exam Traps</button>
+                <button class="teleport-chip" onclick="teleportTo('v1-examples')">Worked Examples</button>
+                <button class="teleport-chip" onclick="teleportTo('v1-summary')">5 Exam Takeaways</button>
             </div>
         </div>
     </header>
 
     <div class="page-stream">
+        <!-- LECTURE VIDEO BLOCK -->
+        <div class="section-card lesson-video-block" id="v1-video">
+            <div class="lesson-video-header">
+                <div class="lesson-video-heading">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    <span>Lecture Video &bull; 13.7 Tangent Planes and Normal Lines</span>
+                </div>
+                <div class="lv-tabs-row"><button type="button" id="v1-vtab-0" class="lv-tab-btn active" data-title="13.7 Tangent Planes &amp; Normal Lines" onclick="selectLessonVideo(this, 'YOlukI-Ppqk', 0, 'v1-vm-0')">Video 1: 13.7 Tangent Planes &amp; Normal Lines (19:46)</button><button type="button" id="v1-vtab-1" class="lv-tab-btn" data-title="13.7 Bonus Revision" onclick="selectLessonVideo(this, 'xHQ92gdPVTI', 0, 'v1-vm-1')">Video 2: 13.7 Bonus Revision (15:12)</button></div>
+            </div>
+            <div class="lesson-video-player">
+                <button type="button" class="lv-poster-btn" onclick="loadLessonVideoFrame(this.closest('.lesson-video-block'), 'YOlukI-Ppqk', 0)" aria-label="Play 13.7 Tangent Planes &amp; Normal Lines">
+                    <img src="https://img.youtube.com/vi/YOlukI-Ppqk/hqdefault.jpg" alt="13.7 Tangent Planes &amp; Normal Lines" loading="lazy" />
+                    <span class="lv-play-pill"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Play Lecture Here</span></span>
+                </button>
+            </div>
+            <div class="lesson-video-meta">
+                <div class="lv-meta-pane" id="v1-vm-0" style="display: block;"><div class="lv-summary-row"><div class="lv-cover-line"><strong>13.7 Tangent Planes &amp; Normal Lines</strong> (19:46) &mdash; Covers tangent plane &amp; normal line equations using $\nabla F$, tangent lines to surface intersection curves, and parallel tangent planes.</div><a class="lv-yt-ext" href="https://www.youtube.com/watch?v=YOlukI-Ppqk" target="_blank" rel="noopener noreferrer">Watch on YouTube &nearr;</a></div><div class="lv-timestamps-wrap"><span class="lv-ts-label">Jump to Timestamp:</span><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'YOlukI-Ppqk', 5, 'v1-vtab-0', 'v1-vm-0')"><span class="lv-ts-time">00:05</span> Tangent plane &amp; normal line formulas ($\nabla F$) &rarr; &sect;1</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'YOlukI-Ppqk', 275, 'v1-vtab-0', 'v1-vm-0')"><span class="lv-ts-time">04:35</span> Worked example: $y = x^2 - z^2$ at $(4, 7, 3)$ &rarr; &sect;1</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'YOlukI-Ppqk', 410, 'v1-vtab-0', 'v1-vm-0')"><span class="lv-ts-time">06:50</span> Tangent line to intersection of two surfaces ($\nabla F_1 \times \nabla F_2$) &rarr; &sect;2</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'YOlukI-Ppqk', 770, 'v1-vtab-0', 'v1-vm-0')"><span class="lv-ts-time">12:50</span> Point where tangent plane is parallel to $x + 2y + 3z = 1$ &rarr; &sect;4</button></div></div><div class="lv-meta-pane" id="v1-vm-1" style="display: none;"><div class="lv-summary-row"><div class="lv-cover-line"><strong>13.7 Bonus Revision</strong> (15:12) &mdash; Extra solved revision problems on tangent planes, normal lines, and gradients.</div><a class="lv-yt-ext" href="https://www.youtube.com/watch?v=xHQ92gdPVTI" target="_blank" rel="noopener noreferrer">Watch on YouTube &nearr;</a></div><div class="lv-no-ts-note">Full topic lecture by Eng. Anas Abu Zahra (video has no chapter/caption index for timestamps).</div></div>
+            </div>
+        </div>
 
-        <!-- CONCEPT 1 -->
+        <!-- B1. WHAT YOU ALREADY KNOW -->
+        <div class="prior-knowledge-box">
+            <h3>What You Already Know</h3>
+            <p>In Calculus I, a differentiable curve $y = f(x)$ has tangent line $y - y_0 = f'(x_0)(x - x_0)$ using a single slope $f'(x_0)$. In Section 11.5, you saw that any plane through $P_0(x_0, y_0, z_0)$ with normal vector $\mathbf{n} = \langle A, B, C \rangle$ satisfies $\mathbf{n} \cdot \langle x - x_0, y - y_0, z - z_0 \rangle = 0$, and any line through $P_0$ in direction $\mathbf{v}$ uses that same vector for its direction numbers. And in Section 13.6, you proved that the 2D gradient $\nabla f(x_0, y_0)$ is always orthogonal to the level curve $f(x, y) = k$. Section 13.7 lifts that exact orthogonality idea one dimension higher into 3D space.</p>
+        </div>
+
+        <!-- SECTION 1: LEVEL SURFACES, TANGENT PLANES & NORMAL LINES -->
         <div class="section-card concept-card" id="v1-sec-1">
             <div class="card-header concept-header">
-                <span class="tag-pill tag-concept">Core Concept</span>
-                <h2 class="card-title section-title">1. The Mental Model: Why the Gradient $\nabla F$ Controls Every Tangent Plane</h2>
+                <span class="tag-pill tag-concept">Core Concept &bull; &sect;1</span>
+                <h2 class="card-title section-title">1. Tangent Plane &amp; Normal Line via $\nabla F(x_0, y_0, z_0)$</h2>
             </div>
             <div class="body-text">
-                <p><strong>Intuitive Picture:</strong> Imagine placing a flat sheet of glass against the side of a smooth bowling ball at one single point $P_0(x_0, y_0, z_0)$. That sheet of glass is the <strong>tangent plane</strong> — the best flat approximation to the curved surface right next to $P_0$. In 3D geometry (Chapter 11), to write the equation of <em>any</em> plane, you only need two ingredients: a point $P_0$ on the plane and a <strong>normal vector</strong> $\mathbf{n}$ sticking straight out at $90^\circ$. In multivariable calculus, the gradient vector $\nabla F(P_0)$ hands you that exact normal vector automatically.</p>
+                <p><strong>Intuition:</strong> Imagine resting a rigid flat pane of glass against a smooth sphere or bowl at a single point $P_0(x_0, y_0, z_0)$, while driving a straight pin through $P_0$ perpendicular to that glass pane (Textbook p. 931, Billiard Ball Exploration &amp; Figures 13.55&ndash;13.56). The flat glass is the <strong>tangent plane</strong>, and the perpendicular pin (the line of impact) is the <strong>normal line</strong>. Writing a surface in general 3-variable form $F(x, y, z) = 0$ puts $x$, $y$, and $z$ on equal footing so the 3D gradient $\nabla F(P_0)$ gives that perpendicular direction in one step (Textbook pp. 931&ndash;932, Example 1 &amp; Figure 13.57).</p>
 
-                <h4>Why Does $\nabla F(P_0)$ Stick Straight Out of the Surface?</h4>
-                <p>Think of any surface in 3D as a <strong>level surface</strong> $F(x, y, z) = k$, where $k$ is a fixed constant (just like a sphere $x^2 + y^2 + z^2 = 9$ is the single shell where the 3-variable function $F(x, y, z) = x^2 + y^2 + z^2$ equals $9$). Now imagine an ant walking along <em>any</em> smooth path $\mathbf{r}(t) = \langle x(t), y(t), z(t) \rangle$ that stays glued to the surface and passes through $P_0$ at time $t = t_0$.</p>
-                <ul>
-                    <li><strong>Because the ant never leaves the surface:</strong> The value of $F$ along the ant's path is permanently frozen at the constant $k$:
-                        $$F\big(x(t),\, y(t),\, z(t)\big) = k$$
-                    </li>
-                    <li><strong>Differentiate both sides using the Multivariable Chain Rule:</strong> The derivative of a constant $k$ is $0$, so:
-                        $$F_x\,\frac{dx}{dt} + F_y\,\frac{dy}{dt} + F_z\,\frac{dz}{dt} = 0 \implies \nabla F(\mathbf{r}(t)) \cdot \mathbf{r}'(t) = 0$$
-                    </li>
-                    <li><strong>What this dot product equals zero means geometrically:</strong> At $t = t_0$, the velocity vector $\mathbf{r}'(t_0)$ is tangent to the surface in whatever direction the ant chose to walk. Because $\nabla F(P_0) \cdot \mathbf{r}'(t_0) = 0$ for <em>every possible path</em> through $P_0$, the vector $\nabla F(P_0)$ is perpendicular to <em>every tangent vector</em> at $P_0$. Therefore, all tangent lines lie in one flat plane whose normal vector is $\mathbf{n} = \nabla F(P_0)$!</li>
-                </ul>
-
-                <div class="formula-box">
-                    <h4>Master Formulas: Implicit Level Surface $F(x, y, z) = k$</h4>
-                    <p>Suppose $F$ is differentiable at $P_0(x_0, y_0, z_0)$ and $\nabla F(P_0) = \langle F_x(P_0),\, F_y(P_0),\, F_z(P_0) \rangle \neq \mathbf{0}$.</p>
-                    <ul>
-                        <li><strong>Normal Vector to the Surface at $P_0$:</strong>
-                            $$\mathbf{n} = \nabla F(x_0, y_0, z_0) = \big\langle F_x(x_0, y_0, z_0),\; F_y(x_0, y_0, z_0),\; F_z(x_0, y_0, z_0) \big\rangle$$
-                        </li>
-                        <li><strong>Tangent Plane Equation at $P_0$:</strong> Simply apply $\mathbf{n} \cdot \langle x - x_0, y - y_0, z - z_0 \rangle = 0$:
-                            $$F_x(P_0)(x - x_0) + F_y(P_0)(y - y_0) + F_z(P_0)(z - z_0) = 0$$
-                        </li>
-                        <li><strong>Normal Line at $P_0$ (the line piercing straight through the surface perpendicularly):</strong> Its direction vector is the exact same normal vector $\mathbf{n} = \nabla F(P_0)$!
-                            $$\begin{aligned} x &= x_0 + F_x(P_0)\,t \\ y &= y_0 + F_y(P_0)\,t \\ z &= z_0 + F_z(P_0)\,t \end{aligned} \qquad \text{or in symmetric form:} \qquad \frac{x - x_0}{F_x(P_0)} = \frac{y - y_0}{F_y(P_0)} = \frac{z - z_0}{F_z(P_0)}$$
-                            <em>(Remember: if any partial derivative $F_x(P_0)$, $F_y(P_0)$, or $F_z(P_0)$ equals $0$, do not divide by zero — simply state that coordinate is constant, e.g., $x = x_0$.)</em>
-                        </li>
-                    </ul>
+                <div class="note-diff-line">
+                    <strong>Note (Instructor Notes vs. Book):</strong> Larson writes gradients with $\mathbf{i}, \mathbf{j}, \mathbf{k}$ (Textbook p. 934), whereas Dr. Alhumaidy&rsquo;s notes (pp. 932, 934) use component brackets $\nabla F(x_0, y_0, z_0) = \langle F_x, F_y, F_z \rangle \neq \langle 0, 0, 0 \rangle$ and solve explicit surfaces directly via $z = f(x_0, y_0) + f_x(x_0, y_0)(x - x_0) + f_y(x_0, y_0)(y - y_0)$ rather than $f_x(x-x_0)+f_y(y-y_0)-(z-z_0)=0$. Both forms describe the exact same plane; follow your instructor&rsquo;s notation for speed on exams.
                 </div>
 
-                <div class="rule-box">
-                    <h4>Special Case: Explicit Surfaces $z = f(x, y)$</h4>
-                    <p>When a surface is given explicitly as $z = f(x, y)$, move everything to one side to turn it into a level surface:
-                        $$F(x, y, z) = f(x, y) - z = 0 \implies \nabla F(x_0, y_0, z_0) = \big\langle f_x(x_0, y_0),\; f_y(x_0, y_0),\; -1 \big\rangle$$
-                    </p>
-                    <p>Plugging this normal into the tangent plane formula gives the famous <strong>explicit tangent plane</strong> (the 3D twin of Calc I's $y - y_0 = f'(x_0)(x - x_0)$):</p>
-                    $$z - z_0 = f_x(x_0, y_0)(x - x_0) + f_y(x_0, y_0)(y - y_0)$$
-                    <p><strong>Horizontal Tangent Plane Condition:</strong> A plane is horizontal (parallel to the $xy$-plane) when its normal vector is purely vertical ($\mathbf{n} \parallel \langle 0, 0, 1 \rangle$). That happens precisely when <strong>both</strong> slopes vanish: $f_x(x_0, y_0) = 0$ and $f_y(x_0, y_0) = 0$ (or for implicit $F = k$: $F_x = 0$, $F_y = 0$, and $F_z \neq 0$).</p>
+                <!-- DIAGRAM 1 -->
+                <div class="svg-figure-card">
+                    <svg viewBox="0 0 640 310" role="img" aria-label="Tangent plane and normal vector to a level surface F(x,y,z)=0 at P0">
+                        <defs>
+                            <marker id="arrowBlue1" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+                                <polygon points="0 0, 9 3.5, 0 7" fill="#2563eb" />
+                            </marker>
+                            <marker id="arrowOrange1" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                                <polygon points="0 0, 8 3, 0 6" fill="#ea580c" />
+                            </marker>
+                            <marker id="arrowGreen1" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                                <polygon points="0 0, 8 3, 0 6" fill="#16a34a" />
+                            </marker>
+                        </defs>
+                        <path d="M 85 255 Q 320 95 555 245 Q 320 295 85 255 Z" fill="#0ea5e9" fill-opacity="0.14" stroke="#0284c7" stroke-width="2" />
+                        <path d="M 155 225 Q 320 140 485 220" fill="none" stroke="#0284c7" stroke-width="1.2" stroke-dasharray="4 4" />
+                        <path d="M 170 232 Q 250 182 320 172 Q 395 164 470 212" fill="none" stroke="#16a34a" stroke-width="2.2" />
+                        <path d="M 255 248 Q 290 198 320 172 Q 350 148 390 144" fill="none" stroke="#16a34a" stroke-width="1.8" stroke-dasharray="5 3" />
+                        <polygon points="180,192 315,126 460,152 325,218" fill="#f59e0b" fill-opacity="0.14" stroke="#d97706" stroke-width="2" />
+                        <line x1="320" y1="278" x2="320" y2="172" stroke="#64748b" stroke-width="1.8" stroke-dasharray="5 4" />
+                        <line x1="320" y1="172" x2="320" y2="48" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowBlue1)" />
+                        <line x1="320" y1="172" x2="412" y2="155" stroke="#ea580c" stroke-width="2.4" marker-end="url(#arrowOrange1)" />
+                        <line x1="320" y1="172" x2="255" y2="193" stroke="#16a34a" stroke-width="2.2" marker-end="url(#arrowGreen1)" />
+                        <polyline points="320,156 334,153.5 334,169.5" fill="none" stroke="#2563eb" stroke-width="1.6" />
+                        <polyline points="320,158 308,162 308,176" fill="none" stroke="#2563eb" stroke-width="1.6" />
+                        <circle cx="320" cy="172" r="5" fill="#dc2626" />
+                        <text x="334" y="64" fill="currentColor" font-size="13.5" font-weight="700">&nabla;F(P&#8320;) = normal n</text>
+                        <text x="328" y="274" fill="#64748b" font-size="12" font-weight="600">Normal line</text>
+                        <text x="334" y="191" fill="currentColor" font-size="13" font-weight="700">P&#8320;(x&#8320;, y&#8320;, z&#8320;)</text>
+                        <text x="416" y="152" fill="#ea580c" font-size="12.5" font-weight="700">r&#8321;&prime;(t&#8320;)</text>
+                        <text x="218" y="206" fill="#16a34a" font-size="12.5" font-weight="700">r&#8322;&prime;(t&#8320;)</text>
+                        <text x="190" y="168" fill="#d97706" font-size="12.5" font-weight="700">Tangent Plane</text>
+                        <text x="115" y="264" fill="#0284c7" font-size="12.5" font-weight="700">Surface S: F(x, y, z) = 0</text>
+                        <text x="456" y="228" fill="#16a34a" font-size="11.5" font-weight="600">Curve C on S</text>
+                    </svg>
+                    <div class="svg-legend">
+                        <span class="svg-legend-item"><span class="svg-swatch" style="background:#0284c7;"></span>Level surface $F(x,y,z)=0$</span>
+                        <span class="svg-legend-item"><span class="svg-swatch" style="background:#d97706;"></span>Tangent plane through $P_0$</span>
+                        <span class="svg-legend-item"><span class="svg-swatch" style="background:#2563eb;"></span>Normal vector $\nabla F(P_0)$ &amp; normal line</span>
+                        <span class="svg-legend-item"><span class="svg-swatch" style="background:#ea580c;"></span>Tangent vectors $\mathbf{r}'(t_0)$ in the plane</span>
+                    </div>
+                    <p class="svg-caption">Notice that $\nabla F(P_0)$ makes a $90^\circ$ angle with every tangent vector $\mathbf{r}'(t_0)$ lying in the tangent plane at $P_0$ (cf. Textbook p. 932, Figure 13.57).</p>
+                </div>
+
+                <p><strong>Formulas (Textbook p. 932, Theorem 13.13 &amp; p. 933):</strong> Let $F$ be differentiable at $P_0(x_0, y_0, z_0)$ on $F(x, y, z) = 0$ with $\nabla F(P_0) = \langle F_x(P_0), F_y(P_0), F_z(P_0) \rangle \neq \langle 0, 0, 0 \rangle$.</p>
+                <ul>
+                    <li><strong>Tangent plane to $F(x, y, z) = 0$:</strong>
+                        $$F_x(P_0)(x - x_0) + F_y(P_0)(y - y_0) + F_z(P_0)(z - z_0) = 0$$
+                    </li>
+                    <li><strong>Special explicit case $z = f(x, y)$:</strong> Setting $F(x, y, z) = f(x, y) - z = 0$ yields $\nabla F(P_0) = \langle f_x(x_0, y_0), f_y(x_0, y_0), -1 \rangle$, so:
+                        $$z = f(x_0, y_0) + f_x(x_0, y_0)(x - x_0) + f_y(x_0, y_0)(y - y_0)$$
+                    </li>
+                    <li><strong>Normal line at $P_0$:</strong>
+                        $$\frac{x - x_0}{F_x(P_0)} = \frac{y - y_0}{F_y(P_0)} = \frac{z - z_0}{F_z(P_0)} \quad \text{(provided } F_x, F_y, F_z \neq 0 \text{)}$$
+                    </li>
+                </ul>
+
+                <p><strong>Tiny Example (Textbook p. 937, Ex. 18):</strong> Find the tangent plane and symmetric normal line to the sphere $x^2 + y^2 + z^2 = 9$ at $P_0(1, 2, 2)$.</p>
+                <p>Set $F(x, y, z) = x^2 + y^2 + z^2 - 9 = 0$. Then $\nabla F = \langle 2x, 2y, 2z \rangle$, so $\nabla F(1, 2, 2) = \langle 2, 4, 4 \rangle$ (parallel to $\mathbf{n}_1 = \langle 1, 2, 2 \rangle$). Thus the tangent plane is $1(x - 1) + 2(y - 2) + 2(z - 2) = 0 \implies x + 2y + 2z = 9$, and the symmetric normal line is $\dfrac{x - 1}{1} = \dfrac{y - 2}{2} = \dfrac{z - 2}{2}$.</p>
+
+                <p><strong>Why It Works (Chain Rule Proof, Textbook p. 932 &amp; p. 936 Theorem 13.14):</strong> For any differentiable curve $\mathbf{r}(t) = \langle x(t), y(t), z(t) \rangle$ on $S$ passing through $P_0 = \mathbf{r}(t_0)$, we have $F(x(t), y(t), z(t)) = 0$ for all $t$. Differentiating by the Chain Rule gives $\frac{d}{dt}[F(\mathbf{r}(t))] = \nabla F(\mathbf{r}(t)) \cdot \mathbf{r}'(t) = 0$. Evaluating at $t = t_0$ shows $\nabla F(P_0) \cdot \mathbf{r}'(t_0) = 0$, so $\nabla F(P_0)$ is orthogonal to every tangent vector at $P_0$. Unlike the 2D gradient $\nabla f(x, y)$ (which lives in the $xy$-plane and is normal to level curves), $\nabla F(x, y, z)$ lives in $\mathbb{R}^3$ and is normal to level surfaces (Textbook p. 936).</p>
+
+                <div class="quick-check-card">
+                    <div class="quick-check-q"><strong>Quick Check 1:</strong> Which vector is normal to the surface $z = x^2 - 3y$ at the point $P_0(2, 1, 1)$?</div>
+                    <div class="quick-check-opts">
+                        <span>(A) $\langle 4, -3, 1 \rangle$</span>
+                        <span>(B) $\langle 4, -3, -1 \rangle$</span>
+                        <span>(C) $\langle 4, -3, 0 \rangle$</span>
+                        <span>(D) $\langle 2, -3, -1 \rangle$</span>
+                    </div>
+                    <details class="quick-check-details">
+                        <summary>Check Answer &amp; Reason</summary>
+                        <div class="quick-check-ans"><strong>Answer: (B) $\langle 4, -3, -1 \rangle$.</strong> Move $z$ to the same side: $F(x, y, z) = x^2 - 3y - z = 0$. Then $\nabla F(x, y, z) = \langle 2x, -3, -1 \rangle$, so $\nabla F(2, 1, 1) = \langle 4, -3, -1 \rangle$.</div>
+                    </details>
                 </div>
             </div>
         </div>
 
-        <!-- CONCEPT 2 -->
+        <!-- SECTION 2: TANGENT LINE TO SURFACE INTERSECTION CURVE -->
         <div class="section-card concept-card" id="v1-sec-2">
             <div class="card-header concept-header">
-                <span class="tag-pill tag-concept">Core Concept</span>
-                <h2 class="card-title section-title">2. Tangent Lines to Surface Intersections &amp; Angle of Inclination</h2>
+                <span class="tag-pill tag-concept">Core Concept &bull; &sect;2</span>
+                <h2 class="card-title section-title">2. Tangent Line to the Intersection Curve of Two Surfaces</h2>
             </div>
             <div class="body-text">
-                <p><strong>Intuitive Picture:</strong> Two high-frequency KFUPM exam questions build directly on the normal vector $\nabla F(P_0)$: (1) finding the tangent line to the 3D seam curve where two surfaces slice through each other, and (2) measuring how steeply tilted a tangent plane is relative to the flat ground (the $xy$-plane).</p>
+                <p><strong>Intuition:</strong> When two smooth surfaces $F(x, y, z) = 0$ and $G(x, y, z) = 0$ slice through each other, their seam forms a 3D space curve $C$. At any shared point $P_0$ on $C$, the tangent line to $C$ is simply the line where the two tangent planes intersect &mdash; meaning its direction vector $\mathbf{v}$ must stay perpendicular to <em>both</em> $\nabla F(P_0)$ and $\nabla G(P_0)$ at the same time (Textbook p. 935, Figure 13.61; Alhumaidy notes p. 937).</p>
 
-                <h4>A. Tangent Line to the Intersection Curve of Two Surfaces</h4>
-                <p>Picture a round dome (Surface 1: $F(x, y, z) = k_1$) sliced by a tilted bowl (Surface 2: $G(x, y, z) = k_2$). Where they meet, they trace out a 3D space curve $C$. Suppose a point $P_0$ lies on $C$, and let $\mathbf{v}$ be the direction vector of the tangent line to $C$ at $P_0$.</p>
+                <!-- DIAGRAM 2 -->
+                <div class="svg-figure-card">
+                    <svg viewBox="0 0 640 270" role="img" aria-label="Intersection of two tangent planes with direction vector v = grad F cross grad G">
+                        <defs>
+                            <marker id="arrowBlue2" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+                                <polygon points="0 0, 9 3.5, 0 7" fill="#2563eb" />
+                            </marker>
+                            <marker id="arrowPurple2" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+                                <polygon points="0 0, 9 3.5, 0 7" fill="#7c3aed" />
+                            </marker>
+                            <marker id="arrowGreen2" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+                                <polygon points="0 0, 9 3.5, 0 7" fill="#16a34a" />
+                            </marker>
+                        </defs>
+                        <polygon points="120,210 250,150 475,180 345,240" fill="#0ea5e9" fill-opacity="0.14" stroke="#0284c7" stroke-width="2" />
+                        <polygon points="215,92 435,120 405,232 185,204" fill="#a855f7" fill-opacity="0.13" stroke="#7c3aed" stroke-width="2" />
+                        <line x1="150" y1="158" x2="500" y2="205" stroke="#16a34a" stroke-width="2.5" stroke-dasharray="6 4" />
+                        <line x1="315" y1="180" x2="435" y2="196" stroke="#16a34a" stroke-width="3.2" marker-end="url(#arrowGreen2)" />
+                        <line x1="315" y1="180" x2="315" y2="55" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowBlue2)" />
+                        <line x1="315" y1="180" x2="215" y2="95" stroke="#7c3aed" stroke-width="3" marker-end="url(#arrowPurple2)" />
+                        <polyline points="315,166 329,168 329,182" fill="none" stroke="#2563eb" stroke-width="1.5" />
+                        <polyline points="304,170 318,172 329,182" fill="none" stroke="#7c3aed" stroke-width="1.4" />
+                        <circle cx="315" cy="180" r="5" fill="#dc2626" />
+                        <text x="326" y="70" fill="#2563eb" font-size="13" font-weight="700">&nabla;F(P&#8320;)</text>
+                        <text x="152" y="88" fill="#7c3aed" font-size="13" font-weight="700">&nabla;G(P&#8320;)</text>
+                        <text x="372" y="218" fill="#16a34a" font-size="13" font-weight="700">v = &nabla;F(P&#8320;) &times; &nabla;G(P&#8320;)</text>
+                        <text x="292" y="203" fill="currentColor" font-size="12.5" font-weight="700">P&#8320;</text>
+                        <text x="128" y="226" fill="#0284c7" font-size="11.5" font-weight="600">Tangent Plane to F = 0</text>
+                        <text x="392" y="106" fill="#7c3aed" font-size="11.5" font-weight="600">Tangent Plane to G = 0</text>
+                    </svg>
+                    <div class="svg-legend">
+                        <span class="svg-legend-item"><span class="svg-swatch" style="background:#2563eb;"></span>$\nabla F(P_0)$ normal to $F=0$</span>
+                        <span class="svg-legend-item"><span class="svg-swatch" style="background:#7c3aed;"></span>$\nabla G(P_0)$ normal to $G=0$</span>
+                        <span class="svg-legend-item"><span class="svg-swatch" style="background:#16a34a;"></span>Cross product $\mathbf{v} = \nabla F(P_0) \times \nabla G(P_0)$</span>
+                    </div>
+                    <p class="svg-caption">Because the intersection curve lies on both surfaces simultaneously, its tangent direction $\mathbf{v}$ is orthogonal to both $\nabla F(P_0)$ and $\nabla G(P_0)$, matching their cross product.</p>
+                </div>
+
+                <p><strong>Formula (Textbook p. 935):</strong> If $\nabla F(P_0) \times \nabla G(P_0) = \langle a, b, c \rangle \neq \langle 0, 0, 0 \rangle$, then parametric equations of the tangent line to the intersection curve at $P_0(x_0, y_0, z_0)$ are:</p>
+                $$x = x_0 + at, \qquad y = y_0 + bt, \qquad z = z_0 + ct$$
+
+                <p><strong>Tiny Example (Textbook p. 935, Example 5):</strong> Find parametric equations for the tangent line to the intersection of the ellipsoid $x^2 + 2y^2 + 2z^2 = 20$ and the paraboloid $x^2 + y^2 + z = 4$ at $(0, 1, 3)$.</p>
+                <p>Set $F = x^2 + 2y^2 + 2z^2 - 20$ and $G = x^2 + y^2 + z - 4$. At $(0, 1, 3)$: $\nabla F(0, 1, 3) = \langle 0, 4, 12 \rangle$ and $\nabla G(0, 1, 3) = \langle 0, 2, 1 \rangle$. Thus:
+                $$\mathbf{v} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ 0 & 4 & 12 \\ 0 & 2 & 1 \end{vmatrix} = \langle 4(1) - 12(2),\; 0,\; 0 \rangle = \langle -20, 0, 0 \rangle$$
+                Dividing by $-20$ gives direction numbers $1, 0, 0$, so the tangent line is $x = t,\; y = 1,\; z = 3$.</p>
+
+                <p><strong>Why It Works:</strong> Any curve $C$ shared by $F = 0$ and $G = 0$ has tangent vector $\mathbf{v}$ at $P_0$ inside both tangent planes, forcing $\mathbf{v} \cdot \nabla F(P_0) = 0$ and $\mathbf{v} \cdot \nabla G(P_0) = 0$. The cross product $\nabla F(P_0) \times \nabla G(P_0)$ produces a vector perpendicular to both normals.</p>
+
+                <div class="quick-check-card">
+                    <div class="quick-check-q"><strong>Quick Check 2 (Textbook p. 937, Ex. 27):</strong> Which vector is parallel to the tangent line to the intersection curve of $x^2 + y^2 = 2$ and $z = x$ at $(1, 1, 1)$?</div>
+                    <div class="quick-check-opts">
+                        <span>(A) $\langle 1, 1, 1 \rangle$</span>
+                        <span>(B) $\langle 1, -1, 1 \rangle$</span>
+                        <span>(C) $\langle 1, -1, 0 \rangle$</span>
+                        <span>(D) $\langle 2, 2, -1 \rangle$</span>
+                    </div>
+                    <details class="quick-check-details">
+                        <summary>Check Answer &amp; Reason</summary>
+                        <div class="quick-check-ans"><strong>Answer: (B) $\langle 1, -1, 1 \rangle$.</strong> Using $F = x^2 + y^2 - 2$ and $G = x - z$: $\nabla F(1, 1, 1) = \langle 2, 2, 0 \rangle$ and $\nabla G(1, 1, 1) = \langle 1, 0, -1 \rangle$. Their cross product is $\langle -2, 2, -2 \rangle = -2\langle 1, -1, 1 \rangle$.</div>
+                    </details>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: ANGLE OF INCLINATION OF A TANGENT PLANE -->
+        <div class="section-card concept-card" id="v1-sec-3">
+            <div class="card-header concept-header">
+                <span class="tag-pill tag-concept">Core Concept &bull; &sect;3</span>
+                <h2 class="card-title section-title">3. Angle of Inclination of a Tangent Plane</h2>
+            </div>
+            <div class="body-text">
+                <p><strong>Intuition:</strong> The <strong>angle of inclination</strong> $\theta$ ($0 \le \theta \le \frac{\pi}{2}$) of a tangent plane is the acute tilt angle between the tangent plane and the flat horizontal $xy$-plane (Textbook p. 935, Figure 13.62). Imagine resting a flat board on the floor and tilting it up by $\theta$: a perpendicular pole glued straight out of the board tilts away from the vertical vector $\mathbf{k} = \langle 0, 0, 1 \rangle$ by that <em>exact same angle</em> $\theta$.</p>
+
+                <!-- DIAGRAM 3: Exact 35.26 degree geometric cross-section matching Textbook p. 936 Ex 6 -->
+                <div class="svg-figure-card">
+                    <svg viewBox="0 0 640 270" role="img" aria-label="Angle of inclination theta = 35.3 degrees between tilted tangent plane and xy-plane equals angle between n and k">
+                        <defs>
+                            <marker id="arrowBlue3" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+                                <polygon points="0 0, 9 3.5, 0 7" fill="#2563eb" />
+                            </marker>
+                            <marker id="arrowDark3" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+                                <polygon points="0 0, 9 3.5, 0 7" fill="#0d9488" />
+                            </marker>
+                        </defs>
+                        <line x1="110" y1="220" x2="540" y2="220" stroke="#64748b" stroke-width="2" />
+                        <line x1="390" y1="220" x2="128" y2="35" stroke="#d97706" stroke-width="3" />
+                        <line x1="185" y1="149.3" x2="430" y2="149.3" stroke="#64748b" stroke-width="1.3" stroke-dasharray="4 4" />
+                        <line x1="290" y1="149.3" x2="290" y2="46" stroke="#0d9488" stroke-width="2.8" marker-end="url(#arrowDark3)" />
+                        <line x1="290" y1="149.3" x2="349.5" y2="65.2" stroke="#2563eb" stroke-width="3" marker-end="url(#arrowBlue3)" />
+                        <polyline points="299,136 312,145.3 303,158.3" fill="none" stroke="#2563eb" stroke-width="1.5" />
+                        <path d="M 334 220 A 56 56 0 0 1 344.3 187.7" fill="none" stroke="#dc2626" stroke-width="2.2" />
+                        <path d="M 290 105.3 A 44 44 0 0 1 315.4 113.4" fill="none" stroke="#dc2626" stroke-width="2.2" />
+                        <circle cx="290" cy="149.3" r="4.5" fill="#dc2626" />
+                        <text x="310" y="198" fill="#dc2626" font-size="13" font-weight="700">&theta; &approx; 35.3&deg;</text>
+                        <text x="296" y="96" fill="#dc2626" font-size="13" font-weight="700">&theta; &approx; 35.3&deg;</text>
+                        <text x="242" y="54" fill="#0d9488" font-size="13" font-weight="700">k = &lang;0, 0, 1&rang;</text>
+                        <text x="357" y="72" fill="#2563eb" font-size="13" font-weight="700">n = &nabla;F(2, 2, 1)</text>
+                        <text x="120" y="78" fill="#d97706" font-size="12.5" font-weight="700">Tangent Plane</text>
+                        <text x="435" y="212" fill="#64748b" font-size="12.5" font-weight="600">xy-plane (horizontal)</text>
+                        <text x="275" y="170" fill="currentColor" font-size="12" font-weight="700">P&#8320;</text>
+                    </svg>
+                    <div class="svg-legend">
+                        <span class="svg-legend-item"><span class="svg-swatch" style="background:#d97706;"></span>Tangent plane tilted by $\theta$</span>
+                        <span class="svg-legend-item"><span class="svg-swatch" style="background:#0d9488;"></span>Vertical normal $\mathbf{k} = \langle 0,0,1\rangle$</span>
+                        <span class="svg-legend-item"><span class="svg-swatch" style="background:#2563eb;"></span>Surface normal $\mathbf{n} = \nabla F(P_0)$</span>
+                        <span class="svg-legend-item"><span class="svg-swatch" style="background:#dc2626;"></span>Equal acute angles $\theta \approx 35.3^\circ$</span>
+                    </div>
+                    <p class="svg-caption">Side cross-section drawn to exact scale for Textbook p. 936 Example 6 ($\theta = \arccos\sqrt{\frac{2}{3}} \approx 35.3^\circ$): tilting the plane by $\theta$ tilts its normal $\mathbf{n}$ away from $\mathbf{k}$ by the same angle $\theta$.</p>
+                </div>
+
+                <p><strong>Formulas (Textbook pp. 935&ndash;936):</strong> Since $\mathbf{k} = \langle 0, 0, 1 \rangle$ has length $\|\mathbf{k}\| = 1$, the acute angle $\theta \in \left[0, \frac{\pi}{2}\right]$ between a plane with normal $\mathbf{n} = \nabla F(P_0)$ and the $xy$-plane satisfies:</p>
+                $$\cos\theta = \frac{|\mathbf{n} \cdot \mathbf{k}|}{\|\mathbf{n}\|\,\|\mathbf{k}\|} = \frac{|F_z(P_0)|}{\sqrt{F_x(P_0)^2 + F_y(P_0)^2 + F_z(P_0)^2}} \qquad \text{or for } z = f(x, y): \quad \cos\theta = \frac{1}{\sqrt{[f_x(x_0, y_0)]^2 + [f_y(x_0, y_0)]^2 + 1}}$$
+
+                <p><strong>Tiny Example (Textbook p. 936, Example 6):</strong> Find the angle of inclination of the tangent plane to the ellipsoid $\dfrac{x^2}{12} + \dfrac{y^2}{12} + \dfrac{z^2}{3} = 1$ at $(2, 2, 1)$.</p>
+                <p>Let $F(x, y, z) = \dfrac{x^2}{12} + \dfrac{y^2}{12} + \dfrac{z^2}{3} - 1$. Then $\nabla F(x, y, z) = \left\langle \dfrac{x}{6},\; \dfrac{y}{6},\; \dfrac{2z}{3} \right\rangle$, so $\nabla F(2, 2, 1) = \left\langle \dfrac{1}{3},\; \dfrac{1}{3},\; \dfrac{2}{3} \right\rangle$. Therefore:
+                $$\cos\theta = \frac{2/3}{\sqrt{(1/3)^2 + (1/3)^2 + (2/3)^2}} = \frac{2/3}{\sqrt{6}/3} = \sqrt{\frac{2}{3}} \implies \theta = \arccos\sqrt{\frac{2}{3}} \approx 35.3^\circ$$</p>
+
+                <p><strong>Why It Works:</strong> By Section 11.5, the acute dihedral angle between two planes equals the acute angle between their normal vectors. Absolute value $|\mathbf{n} \cdot \mathbf{k}|$ guarantees $\cos\theta \ge 0$ so $\theta \in \left[0, \frac{\pi}{2}\right]$ regardless of whether $\nabla F$ points upward or downward (e.g. $F = f(x, y) - z$ vs. $F = z - f(x, y)$).</p>
+
+                <div class="quick-check-card">
+                    <div class="quick-check-q"><strong>Quick Check 3 (Textbook p. 937, Ex. 35):</strong> What is the angle of inclination $\theta$ of the tangent plane to $x^2 - y^2 + z = 0$ at $(1, 2, 3)$?</div>
+                    <div class="quick-check-opts">
+                        <span>(A) $\arccos\!\left(\dfrac{1}{\sqrt{21}}\right)$</span>
+                        <span>(B) $\arcsin\!\left(\dfrac{1}{\sqrt{21}}\right)$</span>
+                        <span>(C) $\arccos\!\left(\dfrac{4}{\sqrt{21}}\right)$</span>
+                        <span>(D) $0$</span>
+                    </div>
+                    <details class="quick-check-details">
+                        <summary>Check Answer &amp; Reason</summary>
+                        <div class="quick-check-ans"><strong>Answer: (A) $\arccos\!\left(\dfrac{1}{\sqrt{21}}\right)$.</strong> Here $F(x,y,z)=x^2-y^2+z$, so $\nabla F(1,2,3)=\langle 2, -4, 1\rangle$ and $\|\nabla F\|=\sqrt{4+16+1}=\sqrt{21}$. Thus $\cos\theta = \dfrac{|1|}{\sqrt{21}}$.</div>
+                    </details>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: HORIZONTAL, PARALLEL, TANGENT & PERPENDICULAR SURFACES -->
+        <div class="section-card concept-card" id="v1-sec-4">
+            <div class="card-header concept-header">
+                <span class="tag-pill tag-concept">Core Concept &bull; &sect;4</span>
+                <h2 class="card-title section-title">4. Locating Horizontal, Parallel, or Perpendicular Tangent Planes</h2>
+            </div>
+            <div class="body-text">
+                <p><strong>Intuition:</strong> Instead of being handed $P_0$ directly, KFUPM exam problems frequently ask you to <em>find</em> the point $(a, b, c)$ on a surface where its tangent plane satisfies a geometric condition &mdash; such as being horizontal, parallel to a given plane, or perpendicular to a given line or second surface (Textbook pp. 937&ndash;938, Exercises 37&ndash;51; Alhumaidy notes pp. 937&ndash;938). Every one of these problems translates into a simple vector equation on $\nabla F(x, y, z)$.</p>
+
+                <!-- DIAGRAM 4 -->
+                <div class="svg-figure-card">
+                    <svg viewBox="0 0 640 215" role="img" aria-label="Three tangent plane conditions: horizontal, parallel, and perpendicular">
+                        <defs>
+                            <marker id="arrB4" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" fill="#2563eb" /></marker>
+                            <marker id="arrT4" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" fill="#0d9488" /></marker>
+                            <marker id="arrP4" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" fill="#7c3aed" /></marker>
+                        </defs>
+                        <line x1="213" y1="14" x2="213" y2="200" stroke="var(--border-subtle, #d4d4d8)" stroke-width="1" stroke-dasharray="4 4" />
+                        <line x1="426" y1="14" x2="426" y2="200" stroke="var(--border-subtle, #d4d4d8)" stroke-width="1" stroke-dasharray="4 4" />
+
+                        <text x="106" y="28" text-anchor="middle" fill="currentColor" font-size="12.5" font-weight="700">(a) Horizontal Plane</text>
+                        <path d="M 40 165 Q 106 85 172 165" fill="#0ea5e9" fill-opacity="0.15" stroke="#0284c7" stroke-width="2" />
+                        <line x1="45" y1="125" x2="167" y2="125" stroke="#d97706" stroke-width="2.5" />
+                        <line x1="106" y1="125" x2="106" y2="62" stroke="#2563eb" stroke-width="2.6" marker-end="url(#arrB4)" />
+                        <circle cx="106" cy="125" r="4" fill="#dc2626" />
+                        <text x="114" y="75" fill="#2563eb" font-size="11.5" font-weight="700">&nabla;F &parallel; k</text>
+                        <text x="106" y="192" text-anchor="middle" fill="currentColor" font-size="11.5" font-weight="600"><tspan>f</tspan><tspan dy="3" font-size="9">x</tspan><tspan dy="-3"> = 0, f</tspan><tspan dy="3" font-size="9">y</tspan><tspan dy="-3"> = 0</tspan></text>
+
+                        <text x="320" y="28" text-anchor="middle" fill="currentColor" font-size="12.5" font-weight="700">(b) Parallel Plane</text>
+                        <line x1="248" y1="138" x2="368" y2="88" stroke="#d97706" stroke-width="2.5" />
+                        <line x1="258" y1="178" x2="378" y2="128" stroke="#0d9488" stroke-width="2.2" stroke-dasharray="5 3" />
+                        <line x1="308" y1="113" x2="284" y2="55" stroke="#2563eb" stroke-width="2.6" marker-end="url(#arrB4)" />
+                        <line x1="335" y1="146" x2="318" y2="105" stroke="#0d9488" stroke-width="2.4" marker-end="url(#arrT4)" />
+                        <circle cx="308" cy="113" r="4" fill="#dc2626" />
+                        <text x="292" y="62" fill="#2563eb" font-size="11" font-weight="700">&nabla;F</text>
+                        <text x="342" y="114" fill="#0d9488" font-size="11" font-weight="700">n</text>
+                        <text x="320" y="192" text-anchor="middle" fill="currentColor" font-size="11.5" font-weight="600">&nabla;F(P&#8320;) = &alpha; n</text>
+
+                        <text x="533" y="28" text-anchor="middle" fill="currentColor" font-size="12.5" font-weight="700">(c) Perpendicular Planes</text>
+                        <line x1="468" y1="150" x2="585" y2="150" stroke="#d97706" stroke-width="2.5" />
+                        <line x1="526" y1="70" x2="526" y2="176" stroke="#7c3aed" stroke-width="2.5" />
+                        <line x1="526" y1="150" x2="526" y2="86" stroke="#2563eb" stroke-width="2.6" marker-end="url(#arrB4)" />
+                        <line x1="526" y1="150" x2="585" y2="150" stroke="#7c3aed" stroke-width="2.6" marker-end="url(#arrP4)" />
+                        <polyline points="526,136 540,136 540,150" fill="none" stroke="#dc2626" stroke-width="1.6" />
+                        <circle cx="526" cy="150" r="4" fill="#dc2626" />
+                        <text x="534" y="96" fill="#2563eb" font-size="11" font-weight="700">&nabla;F</text>
+                        <text x="562" y="138" fill="#7c3aed" font-size="11" font-weight="700">&nabla;G</text>
+                        <text x="533" y="192" text-anchor="middle" fill="currentColor" font-size="11.5" font-weight="600">&nabla;F &middot; &nabla;G = 0</text>
+                    </svg>
+                    <div class="svg-legend">
+                        <span class="svg-legend-item"><span class="svg-swatch" style="background:#2563eb;"></span>Surface gradient $\nabla F(P_0)$</span>
+                        <span class="svg-legend-item"><span class="svg-swatch" style="background:#0d9488;"></span>Target plane normal $\mathbf{n}$</span>
+                        <span class="svg-legend-item"><span class="svg-swatch" style="background:#7c3aed;"></span>Second surface gradient $\nabla G(P_0)$</span>
+                    </div>
+                    <p class="svg-caption">Every geometric condition on tangent planes turns into an algebraic condition on $\nabla F(P_0)$ plus substituting back into the surface equation.</p>
+                </div>
+
+                <p><strong>Rules &amp; Steps (Alhumaidy notes pp. 937&ndash;938):</strong></p>
                 <ul>
-                    <li>Because $C$ lies on Surface 1, $\mathbf{v}$ must be tangent to Surface 1, which forces $\mathbf{v} \perp \nabla F(P_0)$.</li>
-                    <li>Because $C$ <em>also</em> lies on Surface 2, $\mathbf{v}$ must be tangent to Surface 2, which forces $\mathbf{v} \perp \nabla G(P_0)$.</li>
-                    <li>In $\mathbb{R}^3$, what vector is automatically perpendicular to <strong>both</strong> $\nabla F(P_0)$ and $\nabla G(P_0)$ at the same time? Their <strong>cross product</strong>!</li>
+                    <li><strong>Horizontal tangent plane on $z = f(x, y)$:</strong> Set $f_x(x, y) = 0$ and $f_y(x, y) = 0$, solve for $(x_0, y_0)$, then substitute back into $z = f(x_0, y_0)$ to get $z_0$ (Alhumaidy p. 937).</li>
+                    <li><strong>Tangent plane parallel to a given plane $Ax + By + Cz = D$ (or perpendicular to a line with direction $\mathbf{v}$):</strong> Solve $\nabla F(x_0, y_0, z_0) = \alpha\,\mathbf{n}$ for $x_0, y_0, z_0$ in terms of the scalar $\alpha \neq 0$, then substitute into the surface equation to solve for $\alpha$ (Alhumaidy p. 938, Ex. 49).</li>
+                    <li><strong>Tangent surfaces / Perpendicular surfaces at $P_0$:</strong> First verify $P_0$ satisfies both surface equations; then two surfaces are <em>tangent</em> if $\nabla F(P_0) \parallel \nabla G(P_0)$ (same tangent plane), and <em>perpendicular</em> if $\nabla F(P_0) \cdot \nabla G(P_0) = 0$ (Textbook p. 938, Ex. 43&ndash;46).</li>
                 </ul>
 
-                <div class="formula-box">
-                    <h4>Direction Vector of the Intersection Tangent Line</h4>
-                    $$\mathbf{v} = \nabla F(P_0) \times \nabla G(P_0)$$
-                    <p>Once you compute $\mathbf{v} = \langle a, b, c \rangle$ (you may scale $\mathbf{v}$ by any nonzero constant to simplify integers!), the tangent line to the intersection curve at $P_0(x_0, y_0, z_0)$ is simply:</p>
-                    $$x = x_0 + at, \qquad y = y_0 + bt, \qquad z = z_0 + ct$$
+                <p><strong>Tiny Example (Textbook p. 937, Ex. 37 / Alhumaidy notes):</strong> Find the point on $z = 3 - x^2 - y^2 + 6y$ where the tangent plane is horizontal.</p>
+                <p>Set $f_x = -2x = 0 \implies x = 0$ and $f_y = -2y + 6 = 0 \implies y = 3$. Substituting $(0, 3)$ back into $z$ gives $z = 3 - 0^2 - 3^2 + 6(3) = 12$, so the point is $(0, 3, 12)$.</p>
+
+                <div class="quick-check-card">
+                    <div class="quick-check-q"><strong>Quick Check 4 (KFUPM Final 251 Q9):</strong> If $(a, b, c)$ with $a &lt; 0$ is the point on $4x^2 + 2y^2 - z^2 = 100$ where the tangent plane is parallel to the $yz$-plane ($x = 0$), what is $a^2 + b^2 + c^2$?</div>
+                    <div class="quick-check-opts">
+                        <span>(A) $16$</span>
+                        <span>(B) $25$</span>
+                        <span>(C) $100$</span>
+                        <span>(D) $225$</span>
+                    </div>
+                    <details class="quick-check-details">
+                        <summary>Check Answer &amp; Reason</summary>
+                        <div class="quick-check-ans"><strong>Answer: (B) $25$.</strong> The $yz$-plane has normal $\langle 1, 0, 0 \rangle$. Since $\nabla F(a, b, c) = \langle 8a, 4b, -2c \rangle = \alpha\langle 1, 0, 0 \rangle$, we get $b = 0$ and $c = 0$. Substituting into the surface gives $4a^2 = 100 \implies a = -5$ (as $a &lt; 0$), so $(-5)^2 + 0 + 0 = 25$.</div>
+                    </details>
                 </div>
+            </div>
+        </div>
 
-                <h4>B. Angle of Inclination $\theta$ of a Tangent Plane</h4>
-                <p>Imagine tilting a flat tabletop upward from the horizontal floor (the $xy$-plane) by an acute angle $\theta \in \left[0, \frac{\pi}{2}\right]$. Notice that as the tabletop tilts by $\theta$ degrees from horizontal, a pencil glued straight up out of the tabletop (the normal vector $\nabla F(P_0)$) tilts by the <em>exact same angle</em> $\theta$ away from straight vertical ($\mathbf{k} = \langle 0, 0, 1 \rangle$)!</p>
-
+        <!-- MASTER FORMULAS -->
+        <div class="section-card concept-card" id="v1-formulas">
+            <div class="card-header concept-header">
+                <span class="tag-pill tag-concept">Master Formulas</span>
+                <h2 class="card-title section-title">Section 13.7 Formula Reference &amp; Edge Cases</h2>
+            </div>
+            <div class="body-text">
                 <div class="formula-box">
-                    <h4>Angle of Inclination Formula ($0 \le \theta \le \frac{\pi}{2}$)</h4>
-                    <p>Taking the acute angle between $\mathbf{n} = \nabla F(P_0)$ and $\mathbf{k} = \langle 0, 0, 1 \rangle$:</p>
-                    $$\cos\theta = \frac{\left|\nabla F(P_0) \cdot \mathbf{k}\right|}{\left\|\nabla F(P_0)\right\|\,\left\|\mathbf{k}\right\|} = \frac{\left|F_z(P_0)\right|}{\sqrt{\left[F_x(P_0)\right]^2 + \left[F_y(P_0)\right]^2 + \left[F_z(P_0)\right]^2}}$$
-                    <p>For an explicit surface $z = f(x, y)$ where $\nabla F = \langle f_x, f_y, -1 \rangle$, this simplifies to:</p>
-                    $$\cos\theta = \frac{1}{\sqrt{\left[f_x(x_0, y_0)\right]^2 + \left[f_y(x_0, y_0)\right]^2 + 1}}$$
-                    <p><em>Sanity check:</em> When the tangent plane is completely flat ($f_x = f_y = 0$), $\cos\theta = \frac{1}{\sqrt{1}} = 1 \implies \theta = 0^\circ$. When the surface becomes a vertical wall ($F_z = 0$), $\cos\theta = 0 \implies \theta = \frac{\pi}{2} = 90^\circ$.</p>
-                </div>
-
-                <div class="pitfall-box">
-                    <h4>KFUPM Exam Traps to Avoid in Section 13.7</h4>
+                    <h4>Core Equations &amp; Required Conditions ($F$ differentiable at $P_0(x_0, y_0, z_0)$, $\nabla F(P_0) \neq \langle 0, 0, 0 \rangle$)</h4>
                     <ul>
-                        <li><strong>Trap 1 — Sign Error When Converting $z = f(x, y)$ to $F(x, y, z) = 0$:</strong> If the surface is $z = x^2 + y^2$, students often carelessly write $\nabla F = \langle 2x, 2y, 1 \rangle$. WRONG! You must move all terms to <em>one side</em>: $x^2 + y^2 - z = 0 \implies \nabla F = \langle 2x, 2y, -1 \rangle$.</li>
-                        <li><strong>Trap 2 — Leaving Variables $(x, y, z)$ Inside the Normal Vector:</strong> Never write $2x(x - 1) + 4y(y + 2) + 6z(z - 1) = 0$! That is a curved quadratic equation, not a flat plane. Always plug the numbers $(x_0, y_0, z_0)$ into $F_x, F_y, F_z$ <em>before</em> writing the plane equation.</li>
-                        <li><strong>Trap 3 — Using $\sin\theta$ Instead of $\cos\theta$ for Angle of Inclination:</strong> Because we are measuring the angle between <em>two planes</em> (tangent plane vs. $xy$-plane), we use $\cos\theta = \frac{|\mathbf{n}\cdot\mathbf{k}|}{\|\mathbf{n}\|}$. (Only a <em>line</em>-to-plane angle uses $\sin\theta$!)</li>
+                        <li><strong>Level Surface $F(x, y, z) = 0$ &mdash; Tangent Plane:</strong>
+                            $$F_x(P_0)(x - x_0) + F_y(P_0)(y - y_0) + F_z(P_0)(z - z_0) = 0$$
+                        </li>
+                        <li><strong>Explicit Surface $z = f(x, y)$ &mdash; Tangent Plane:</strong>
+                            $$z = f(x_0, y_0) + f_x(x_0, y_0)(x - x_0) + f_y(x_0, y_0)(y - y_0)$$
+                        </li>
+                        <li><strong>Normal Line at $P_0$:</strong>
+                            $$\begin{aligned} x &= x_0 + F_x(P_0)t, \\ y &= y_0 + F_y(P_0)t, \\ z &= z_0 + F_z(P_0)t \end{aligned} \qquad \text{or} \qquad \frac{x - x_0}{F_x(P_0)} = \frac{y - y_0}{F_y(P_0)} = \frac{z - z_0}{F_z(P_0)}$$
+                            <em>Edge case:</em> If any component vanishes (say $F_x(P_0) = 0$), write $x = x_0$ separately and keep symmetric form only for nonzero denominators, e.g., $x = x_0,\; \frac{y - y_0}{F_y(P_0)} = \frac{z - z_0}{F_z(P_0)}$.
+                        </li>
+                        <li><strong>Tangent Line to Intersection of $F = 0$ and $G = 0$:</strong> Direction $\mathbf{v} = \nabla F(P_0) \times \nabla G(P_0)$ (requires $\mathbf{v} \neq \langle 0, 0, 0 \rangle$; otherwise the surfaces are tangent or fail regularity at $P_0$).</li>
+                        <li><strong>Angle of Inclination ($0 \le \theta \le \frac{\pi}{2}$):</strong>
+                            $$\cos\theta = \frac{|F_z(P_0)|}{\|\nabla F(P_0)\|} \qquad \text{or for } z = f(x, y): \quad \cos\theta = \frac{1}{\sqrt{[f_x(x_0, y_0)]^2 + [f_y(x_0, y_0)]^2 + 1}}$$
+                            <em>Edge cases:</em> Horizontal plane $\implies \theta = 0$; vertical plane ($F_z(P_0) = 0$) $\implies \theta = \frac{\pi}{2}$.
+                        </li>
+                        <li><strong>Quadric Tangent Shortcuts (Textbook pp. 938&ndash;939, Ex. 57&ndash;59):</strong> At $(x_0, y_0, z_0)$, tangent planes to $\frac{x^2}{a^2} + \frac{y^2}{b^2} \pm \frac{z^2}{c^2} = 1$ take the form $\frac{x_0 x}{a^2} + \frac{y_0 y}{b^2} \pm \frac{z_0 z}{c^2} = 1$, and any tangent plane to a cone $z^2 = a^2 x^2 + b^2 y^2$ (away from $(0,0,0)$) passes through the origin $(0,0,0)$.</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!-- WORKED EXAMPLE 1 -->
-        <div class="section-card question-card" id="v1-ex-1">
-            <div class="card-header q-header">
-                <span class="tag-pill tag-q">Worked Example</span>
-                <h3 class="card-title">Worked Example 1: Tangent Plane &amp; Normal Line to an Ellipsoid (Level Surface)</h3>
+        <!-- EXAM TRAPS -->
+        <div class="section-card concept-card" id="v1-traps">
+            <div class="card-header concept-header">
+                <span class="tag-pill tag-pitfall">Exam Traps</span>
+                <h2 class="card-title section-title">5 Classic Mistakes (WRONG vs. RIGHT)</h2>
             </div>
             <div class="body-text">
-                <div class="problem-statement">
-                    Find an equation of the tangent plane and both the parametric and symmetric equations of the normal line to the ellipsoid $x^2 + 2y^2 + 3z^2 = 12$ at the point $P_0(1, -2, 1)$.
+                <p><strong>Trap 1 &mdash; Wrong sign on $z$ when converting $z = f(x, y)$ to $F(x, y, z) = 0$:</strong></p>
+                <div class="trap-compare-grid">
+                    <div class="trap-wrong"><span class="trap-col-label">Wrong</span>Writing $\nabla F = \langle f_x, f_y, +1 \rangle$ for $z = x^2 + y^2$.</div>
+                    <div class="trap-right"><span class="trap-col-label">Right</span>Move everything to one side: $F = f(x, y) - z = 0 \implies \nabla F = \langle f_x, f_y, -1 \rangle$.</div>
                 </div>
-                <div class="final-ans-box">
-                    <strong>Final Answer:</strong> Tangent plane: $x - 4y + 3z = 12$. Normal line: $x = 1 + t,\; y = -2 - 4t,\; z = 1 + 3t$ (symmetric form: $\dfrac{x - 1}{1} = \dfrac{y + 2}{-4} = \dfrac{z - 1}{3}$).
+
+                <p><strong>Trap 2 &mdash; Leaving variables $(x, y, z)$ inside the normal coefficients:</strong></p>
+                <div class="trap-compare-grid">
+                    <div class="trap-wrong"><span class="trap-col-label">Wrong</span>$2x(x - 1) + 4y(y - 2) + 6z(z - 1) = 0$ (this is quadratic, not a plane!).</div>
+                    <div class="trap-right"><span class="trap-col-label">Right</span>Evaluate $F_x, F_y, F_z$ at $(x_0, y_0, z_0)$ first to get <em>numbers</em> before writing the plane.</div>
                 </div>
-                <div class="solution-steps">
-                    <div class="solution-step">
-                        <div class="step-num">1</div>
-                        <div class="step-body">
-                            <div class="step-title">Verify the Point and Define the Level Function $F(x, y, z)$</div>
-                            <p>First check that $P_0(1, -2, 1)$ truly lies on the ellipsoid: $1^2 + 2(-2)^2 + 3(1)^2 = 1 + 8 + 3 = 12$. Confirmed. Now write the surface as a level surface $F(x, y, z) = 12$ with:</p>
-                            $$F(x, y, z) = x^2 + 2y^2 + 3z^2$$
-                        </div>
-                    </div>
-                    <div class="solution-step">
-                        <div class="step-num">2</div>
-                        <div class="step-body">
-                            <div class="step-title">Compute $\nabla F(x, y, z)$ and Evaluate at $P_0(1, -2, 1)$</div>
-                            <p>Differentiate with respect to each variable while holding the other two constant:</p>
-                            $$F_x = 2x, \qquad F_y = 4y, \qquad F_z = 6z$$
-                            <p>Substitute $(x_0, y_0, z_0) = (1, -2, 1)$ to obtain the numerical normal vector:</p>
-                            $$\mathbf{n} = \nabla F(1, -2, 1) = \langle 2(1),\; 4(-2),\; 6(1) \rangle = \langle 2,\; -8,\; 6 \rangle$$
-                            <p>Since any nonzero scalar multiple of a normal vector points along the same perpendicular axis, we can divide by $2$ to use the cleaner parallel vector $\mathbf{n}_1 = \langle 1, -4, 3 \rangle$.</p>
-                        </div>
-                    </div>
-                    <div class="solution-step">
-                        <div class="step-num">3</div>
-                        <div class="step-body">
-                            <div class="step-title">Write and Simplify the Tangent Plane Equation</div>
-                            <p>Using $\mathbf{n}_1 = \langle 1, -4, 3 \rangle$ and $P_0(1, -2, 1)$:</p>
-                            $$\begin{aligned} 1(x - 1) - 4\big(y - (-2)\big) + 3(z - 1) &= 0 \\ (x - 1) - 4(y + 2) + 3(z - 1) &= 0 \\ x - 1 - 4y - 8 + 3z - 3 &= 0 \\ x - 4y + 3z &= 12 \end{aligned}$$
-                            <p><em>Quick verification:</em> Plug $(1, -2, 1)$ back into the plane: $1 - 4(-2) + 3(1) = 1 + 8 + 3 = 12$. Exact match!</p>
-                        </div>
-                    </div>
-                    <div class="solution-step">
-                        <div class="step-num">4</div>
-                        <div class="step-body">
-                            <div class="step-title">Write the Normal Line Equations</div>
-                            <p>The normal line passes through $P_0(1, -2, 1)$ in the direction $\mathbf{n}_1 = \langle 1, -4, 3 \rangle$:</p>
-                            $$\text{Parametric: } \begin{cases} x = 1 + t \\ y = -2 - 4t \\ z = 1 + 3t \end{cases} \qquad \text{Symmetric: } \frac{x - 1}{1} = \frac{y + 2}{-4} = \frac{z - 1}{3}$$
-                            <p><em>(Note: Writing $x = 1 + 2s$, $y = -2 - 8s$, $z = 1 + 6s$ using the unscaled gradient $\langle 2, -8, 6 \rangle$ represents the exact same geometric line.)</em></p>
-                        </div>
-                    </div>
+
+                <p><strong>Trap 3 &mdash; Ignoring the fixed coefficient or constant in KFUPM MCQs:</strong></p>
+                <div class="trap-compare-grid">
+                    <div class="trap-wrong"><span class="trap-col-label">Wrong</span>Getting $4x - 4y + 2z + 2 = 0$ and reading $a = 4, b = -4, c = 2$ when the prompt asks for $ax + by + cz + 1 = 0$.</div>
+                    <div class="trap-right"><span class="trap-col-label">Right</span>Divide the entire equation by $2$ first to match $+1$: $2x - 2y + z + 1 = 0 \implies (a,b,c) = (2,-2,1)$.</div>
                 </div>
-                <div class="rule-box">
-                    <h4>Physical / Geometric Meaning</h4>
-                    <p>The plane $x - 4y + 3z = 12$ kisses the ellipsoid shell at $(1, -2, 1)$ without cutting inside it, while the normal line acts like a laser pointer fired straight outward from the surface at $90^\circ$ along $\langle 1, -4, 3 \rangle$.</p>
+
+                <p><strong>Trap 4 &mdash; Forgetting scalar $\alpha$ in parallel-plane problems or dividing by zero in symmetric equations:</strong></p>
+                <div class="trap-compare-grid">
+                    <div class="trap-wrong"><span class="trap-col-label">Wrong</span>Setting $\nabla F(a, b, c) = \mathbf{n}$ without a scalar $\alpha$, or writing $\dfrac{z - 3}{0}$ in symmetric equations.</div>
+                    <div class="trap-right"><span class="trap-col-label">Right</span>Always solve $\nabla F(a, b, c) = \alpha\,\mathbf{n}$, and write zero-component lines as $z = 3,\; \dfrac{x-x_0}{a} = \dfrac{y-y_0}{b}$.</div>
+                </div>
+
+                <p><strong>Trap 5 &mdash; Using $\sin\theta$ or forgetting absolute value in angle of inclination:</strong></p>
+                <div class="trap-compare-grid">
+                    <div class="trap-wrong"><span class="trap-col-label">Wrong</span>Computing $\sin\theta = \dfrac{F_z}{\|\nabla F\|}$ or leaving a negative $\cos\theta$ from $F_z = -1$.</div>
+                    <div class="trap-right"><span class="trap-col-label">Right</span>Angle between two planes uses $\cos\theta = \dfrac{|F_z(P_0)|}{\|\nabla F(P_0)\|} \ge 0$ so $0 \le \theta \le \frac{\pi}{2}$.</div>
                 </div>
             </div>
         </div>
 
-        <!-- WORKED EXAMPLE 2 -->
-        <div class="section-card question-card" id="v1-ex-2">
+        <!-- WORKED EXAMPLES -->
+        <div class="section-card question-card" id="v1-examples">
             <div class="card-header q-header">
-                <span class="tag-pill tag-q">Worked Example</span>
-                <h3 class="card-title">Worked Example 2: Explicit Surface Tangent Plane &amp; Horizontal Tangent Point</h3>
+                <span class="tag-pill tag-q">Worked Examples</span>
+                <h2 class="card-title section-title">From Textbook Basics to KFUPM Final Level</h2>
             </div>
             <div class="body-text">
-                <div class="problem-statement">
-                    Consider the surface $z = f(x, y) = x^2 - 2xy + 2y^2 - 4x + 6y + 5$.
-                    <br/>(a) Find an equation of the tangent plane to the surface at the point where $x = 2$ and $y = 1$.
-                    <br/>(b) Find the point on the surface where the tangent plane is horizontal.
-                </div>
-                <div class="final-ans-box">
-                    <strong>Final Answer:</strong> (a) $2x - 6y + z = 3$. &nbsp;&nbsp;(b) The point $(1, -1, 0)$ (where the horizontal tangent plane is $z = 0$).
-                </div>
-                <div class="solution-steps">
-                    <div class="solution-step">
-                        <div class="step-num">1</div>
-                        <div class="step-body">
-                            <div class="step-title">Find the $z$-Coordinate and First Partial Derivatives</div>
-                            <p>At $(x_0, y_0) = (2, 1)$, evaluate $z_0 = f(2, 1)$:</p>
-                            $$z_0 = 2^2 - 2(2)(1) + 2(1)^2 - 4(2) + 6(1) + 5 = 4 - 4 + 2 - 8 + 6 + 5 = 5$$
-                            <p>So the point of tangency is $P_0(2, 1, 5)$. Now compute the partial derivatives:</p>
-                            $$f_x(x, y) = 2x - 2y - 4, \qquad f_y(x, y) = -2x + 4y + 6$$
+
+                <!-- EX 1 -->
+                <div class="worked-example-card" id="v1-ex-1">
+                    <div class="example-meta">
+                        <span class="section-badge">Example 1 &bull; Level Surface &bull; Textbook p. 933 Example 2 &amp; Alhumaidy Notes</span>
+                        <h3 class="example-title">Tangent Plane &amp; Normal Line to a Hyperboloid</h3>
+                    </div>
+                    <div class="problem-statement">
+                        Find an equation of the tangent plane and symmetric equations of the normal line to the hyperboloid $z^2 - 2x^2 - 2y^2 = 12$ at $P_0(1, -1, 4)$.
+                    </div>
+                    <div class="final-ans-box">
+                        <strong>Final Answer:</strong> Tangent plane: $x - y - 2z + 6 = 0$. Normal line: $\dfrac{x - 1}{-1} = \dfrac{y + 1}{1} = \dfrac{z - 4}{2}$.
+                    </div>
+                    <div class="solution-steps">
+                        <div class="solution-step">
+                            <div class="step-num">1</div>
+                            <div class="step-body">
+                                <div class="step-title">Define $F(x, y, z) = 0$ and Compute $\nabla F$</div>
+                                $$F(x, y, z) = z^2 - 2x^2 - 2y^2 - 12 = 0$$
+                                $$F_x = -4x, \qquad F_y = -4y, \qquad F_z = 2z$$
+                            </div>
+                        </div>
+                        <div class="solution-step">
+                            <div class="step-num">2</div>
+                            <div class="step-body">
+                                <div class="step-title">Evaluate $\nabla F$ at $P_0(1, -1, 4)$</div>
+                                $$\nabla F(1, -1, 4) = \langle -4(1),\; -4(-1),\; 2(4) \rangle = \langle -4,\; 4,\; 8 \rangle = 4\langle -1, 1, 2 \rangle$$
+                            </div>
+                        </div>
+                        <div class="solution-step">
+                            <div class="step-num">3</div>
+                            <div class="step-body">
+                                <div class="step-title">Write Tangent Plane &amp; Normal Line Equations</div>
+                                $$\begin{aligned} -4(x - 1) + 4(y + 1) + 8(z - 4) &= 0 \\ -4x + 4 + 4y + 4 + 8z - 32 &= 0 \\ -4x + 4y + 8z - 24 &= 0 \\ x - y - 2z + 6 &= 0 \end{aligned}$$
+                                <p>Symmetric normal line using direction $\langle -1, 1, 2 \rangle$:</p>
+                                $$\frac{x - 1}{-1} = \frac{y + 1}{1} = \frac{z - 4}{2}$$
+                            </div>
                         </div>
                     </div>
-                    <div class="solution-step">
-                        <div class="step-num">2</div>
-                        <div class="step-body">
-                            <div class="step-title">Part (a): Evaluate Slopes at $(2, 1)$ and Assemble the Tangent Plane</div>
-                            <p>Plug $(2, 1)$ into $f_x$ and $f_y$:</p>
-                            $$f_x(2, 1) = 2(2) - 2(1) - 4 = -2, \qquad f_y(2, 1) = -2(2) + 4(1) + 6 = 6$$
-                            <p>Substitute into the explicit tangent plane formula $z - z_0 = f_x(x_0, y_0)(x - x_0) + f_y(x_0, y_0)(y - y_0)$:</p>
-                            $$\begin{aligned} z - 5 &= -2(x - 2) + 6(y - 1) \\ z - 5 &= -2x + 4 + 6y - 6 \\ z - 5 &= -2x + 6y - 2 \\ 2x - 6y + z &= 3 \end{aligned}$$
+                    <div class="verify-box"><strong>Verification:</strong> Both equations contain $P_0(1, -1, 4)$: surface gives $4^2 - 2(1)^2 - 2(-1)^2 = 16 - 2 - 2 = 12$; plane gives $1 - (-1) - 2(4) + 6 = 0$.</div>
+                </div>
+
+                <!-- EX 2 -->
+                <div class="worked-example-card" id="v1-ex-2">
+                    <div class="example-meta">
+                        <span class="section-badge">Example 2 &bull; Explicit Surface &amp; Coefficient Matching &bull; KFUPM Final Term 253 Q11</span>
+                        <h3 class="example-title">Matching Standard Form $ax + by + cz + 1 = 0$</h3>
+                    </div>
+                    <div class="problem-statement">
+                        If $ax + by + cz + 1 = 0$ is an equation for the tangent plane to the surface $z = (x - y)^2$ at the point $(1, 2, 1)$, find $a + b + c$.
+                    </div>
+                    <div class="final-ans-box">
+                        <strong>Final Answer:</strong> $a + b + c = 1$ (from $2x - 2y + z + 1 = 0$).
+                    </div>
+                    <div class="solution-steps">
+                        <div class="solution-step">
+                            <div class="step-num">1</div>
+                            <div class="step-body">
+                                <div class="step-title">Compute Partial Derivatives at $(1, 2)$</div>
+                                $$f(x, y) = (x - y)^2 \implies f_x = 2(x - y), \qquad f_y = -2(x - y)$$
+                                $$f_x(1, 2) = 2(1 - 2) = -2, \qquad f_y(1, 2) = -2(1 - 2) = 2$$
+                            </div>
+                        </div>
+                        <div class="solution-step">
+                            <div class="step-num">2</div>
+                            <div class="step-body">
+                                <div class="step-title">Assemble Explicit Tangent Plane and Match $+1$ Constant</div>
+                                $$\begin{aligned} z &= f(1, 2) + f_x(1, 2)(x - 1) + f_y(1, 2)(y - 2) \\ z &= 1 - 2(x - 1) + 2(y - 2) \\ z &= 1 - 2x + 2 + 2y - 4 = -2x + 2y - 1 \\ 2x - 2y + z + 1 &= 0 \end{aligned}$$
+                                <p>Comparing with $ax + by + cz + 1 = 0$ gives $a = 2,\; b = -2,\; c = 1$, so $a + b + c = 2 - 2 + 1 = 1$.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="solution-step">
-                        <div class="step-num">3</div>
-                        <div class="step-body">
-                            <div class="step-title">Part (b): Set $f_x = 0$ and $f_y = 0$ for a Horizontal Tangent Plane</div>
-                            <p>A tangent plane is horizontal if and only if both slopes are zero simultaneously:</p>
-                            $$\begin{cases} 2x - 2y - 4 = 0 &\implies x - y = 2 \implies x = y + 2 \\ -2x + 4y + 6 = 0 &\implies -x + 2y = -3 \end{cases}$$
-                            <p>Substitute $x = y + 2$ into the second equation:</p>
-                            $$-(y + 2) + 2y = -3 \implies y - 2 = -3 \implies y = -1$$
-                            <p>Back-substitute to find $x$ and $z$:</p>
-                            $$x = (-1) + 2 = 1$$
-                            $$z = f(1, -1) = 1^2 - 2(1)(-1) + 2(-1)^2 - 4(1) + 6(-1) + 5 = 1 + 2 + 2 - 4 - 6 + 5 = 0$$
-                            <p>Thus the unique point with a horizontal tangent plane is $(1, -1, 0)$.</p>
+                    <div class="verify-box"><strong>Verification:</strong> Point $(1, 2, 1)$ satisfies $2(1) - 2(2) + 1 + 1 = 0$, and normal $\langle 2, -2, 1 \rangle$ equals $-\langle -2, 2, -1 \rangle = -\nabla(f - z)|_{(1,2,1)}$.</div>
+                </div>
+
+                <!-- EX 3 -->
+                <div class="worked-example-card" id="v1-ex-3">
+                    <div class="example-meta">
+                        <span class="section-badge">Example 3 &bull; Surface Intersection Curve &bull; Textbook p. 937 Ex. 31 &amp; Alhumaidy Notes</span>
+                        <h3 class="example-title">Tangent Line Where a Sphere Meets a Plane</h3>
+                    </div>
+                    <div class="problem-statement">
+                        Find parametric equations for the tangent line to the curve of intersection of the sphere $x^2 + y^2 + z^2 = 14$ and the plane $x - y - z = 0$ at $P_0(3, 1, 2)$.
+                    </div>
+                    <div class="final-ans-box">
+                        <strong>Final Answer:</strong> $x = 3 + t, \quad y = 1 + 5t, \quad z = 2 - 4t \quad (-\infty &lt; t &lt; \infty)$.
+                    </div>
+                    <div class="solution-steps">
+                        <div class="solution-step">
+                            <div class="step-num">1</div>
+                            <div class="step-body">
+                                <div class="step-title">Find Both Gradients at $P_0(3, 1, 2)$</div>
+                                $$F(x, y, z) = x^2 + y^2 + z^2 - 14 \implies \nabla F(3, 1, 2) = \langle 6, 2, 4 \rangle$$
+                                $$G(x, y, z) = x - y - z \implies \nabla G(3, 1, 2) = \langle 1, -1, -1 \rangle$$
+                            </div>
+                        </div>
+                        <div class="solution-step">
+                            <div class="step-num">2</div>
+                            <div class="step-body">
+                                <div class="step-title">Compute Cross Product $\nabla F(P_0) \times \nabla G(P_0)$</div>
+                                $$\begin{aligned} \nabla F \times \nabla G &= \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ 6 & 2 & 4 \\ 1 & -1 & -1 \end{vmatrix} \\ &= \big(2(-1) - 4(-1)\big)\mathbf{i} - \big(6(-1) - 4(1)\big)\mathbf{j} + \big(6(-1) - 2(1)\big)\mathbf{k} \\ &= \langle 2,\; 10,\; -8 \rangle = 2\langle 1,\; 5,\; -4 \rangle \end{aligned}$$
+                                <p>Using simplified direction $\langle 1, 5, -4 \rangle$ through $(3, 1, 2)$ gives $x = 3 + t,\; y = 1 + 5t,\; z = 2 - 4t$.</p>
+                            </div>
                         </div>
                     </div>
+                    <div class="verify-box"><strong>Verification:</strong> Both dot products vanish: $\langle 1, 5, -4 \rangle \cdot \langle 6, 2, 4 \rangle = 6 + 10 - 16 = 0$, and $\langle 1, 5, -4 \rangle \cdot \langle 1, -1, -1 \rangle = 1 - 5 + 4 = 0$.</div>
                 </div>
-                <div class="rule-box">
-                    <h4>Physical / Geometric Meaning</h4>
-                    <p>Notice that $(1, -1)$ where $f_x = f_y = 0$ is the exact bottom of this upward-opening elliptic paraboloid bowl! Looking ahead to Section 13.8, finding where a tangent plane is horizontal is the exact geometric foundation of finding local maxima and minima.</p>
+
+                <!-- EX 4 -->
+                <div class="worked-example-card" id="v1-ex-4">
+                    <div class="example-meta">
+                        <span class="section-badge">Example 4 &bull; Horizontal Tangent Plane &bull; Textbook p. 937 Ex. 40, Alhumaidy Notes &amp; Final 241 Q5</span>
+                        <h3 class="example-title">Coupled System for a Horizontal Tangent Plane</h3>
+                    </div>
+                    <div class="problem-statement">
+                        Find the point $(x_0, y_0, z_0)$ on the surface $z = 4x^2 + 4xy - 2y^2 + 8x - 5y - 4$ at which the tangent plane is horizontal.
+                    </div>
+                    <div class="final-ans-box">
+                        <strong>Final Answer:</strong> $P_0\!\left(-\dfrac{1}{4},\; -\dfrac{3}{2},\; -\dfrac{5}{4}\right)$ (Exam Final 241 Q5 asks for $x_0 = -\dfrac{1}{4}$).
+                    </div>
+                    <div class="solution-steps">
+                        <div class="solution-step">
+                            <div class="step-num">1</div>
+                            <div class="step-body">
+                                <div class="step-title">Set $z_x = 0$ and $z_y = 0$ Simultaneously</div>
+                                $$\begin{cases} z_x = 8x + 4y + 8 = 0 & (1) \\ z_y = 4x - 4y - 5 = 0 & (2) \end{cases}$$
+                            </div>
+                        </div>
+                        <div class="solution-step">
+                            <div class="step-num">2</div>
+                            <div class="step-body">
+                                <div class="step-title">Solve Linear System and Substitute Back for $z_0$</div>
+                                <p>Add equations $(1)$ and $(2)$ directly to eliminate $y$:</p>
+                                $$(8x + 4y + 8) + (4x - 4y - 5) = 0 \implies 12x + 3 = 0 \implies x_0 = -\frac{1}{4}$$
+                                <p>Substitute $x_0 = -\frac{1}{4}$ into $(1)$: $8\left(-\frac{1}{4}\right) + 4y + 8 = 0 \implies 4y + 6 = 0 \implies y_0 = -\frac{3}{2}$.</p>
+                                <p>Evaluate $z_0$ at $\left(-\frac{1}{4}, -\frac{3}{2}\right)$:</p>
+                                $$\begin{aligned} z_0 &= 4\left(\frac{1}{16}\right) + 4\left(-\frac{1}{4}\right)\left(-\frac{3}{2}\right) - 2\left(\frac{9}{4}\right) + 8\left(-\frac{1}{4}\right) - 5\left(-\frac{3}{2}\right) - 4 \\ &= \frac{1}{4} + \frac{3}{2} - \frac{9}{2} - 2 + \frac{15}{2} - 4 = \frac{1}{4} + \frac{9}{2} - 6 = -\frac{5}{4} \end{aligned}$$
+                            </div>
+                        </div>
+                    </div>
+                    <div class="verify-box"><strong>Verification:</strong> $z_x\!\left(-\frac{1}{4}, -\frac{3}{2}\right) = -2 - 6 + 8 = 0$ and $z_y\!\left(-\frac{1}{4}, -\frac{3}{2}\right) = -1 + 6 - 5 = 0$.</div>
                 </div>
+
+                <!-- EX 5 -->
+                <div class="worked-example-card" id="v1-ex-5">
+                    <div class="example-meta">
+                        <span class="section-badge">Example 5 &bull; Parallel Tangent Plane on Hyperboloid &bull; KFUPM Final Term 242 Q9</span>
+                        <h3 class="example-title">Finding $(a, b, c)$ with $a &lt; 0$ Using $\nabla F = \alpha\,\mathbf{n}$</h3>
+                    </div>
+                    <div class="problem-statement">
+                        If $(a, b, c)$ with $a &lt; 0$ is the point on the hyperboloid $x^2 + 4y^2 - z^2 = -4$ where the tangent plane is parallel to the plane $2x - 4y + 3z = 1$, find $a + b + c$.
+                    </div>
+                    <div class="final-ans-box">
+                        <strong>Final Answer:</strong> $(a, b, c) = (-4, 2, 6)$, so $a + b + c = -4 + 2 + 6 = 4$.
+                    </div>
+                    <div class="solution-steps">
+                        <div class="solution-step">
+                            <div class="step-num">1</div>
+                            <div class="step-body">
+                                <div class="step-title">Equate $\nabla F(a, b, c) = \alpha\,\mathbf{n}$</div>
+                                <p>With $F(x, y, z) = x^2 + 4y^2 - z^2 + 4$, we have $\nabla F(a, b, c) = \langle 2a, 8b, -2c \rangle$. The target plane has normal $\mathbf{n} = \langle 2, -4, 3 \rangle$, so for some scalar $\alpha \neq 0$:</p>
+                                $$\begin{cases} 2a = 2\alpha & \implies a = \alpha \\ 8b = -4\alpha & \implies b = -\dfrac{\alpha}{2} \\ -2c = 3\alpha & \implies c = -\dfrac{3\alpha}{2} \end{cases}$$
+                            </div>
+                        </div>
+                        <div class="solution-step">
+                            <div class="step-num">2</div>
+                            <div class="step-body">
+                                <div class="step-title">Substitute into the Surface and Enforce $a &lt; 0$</div>
+                                $$\begin{aligned} \alpha^2 + 4\left(-\frac{\alpha}{2}\right)^2 - \left(-\frac{3\alpha}{2}\right)^2 &= -4 \\ \alpha^2 + \alpha^2 - \frac{9}{4}\alpha^2 &= -4 \\ -\frac{1}{4}\alpha^2 &= -4 \implies \alpha^2 = 16 \implies \alpha = \pm 4 \end{aligned}$$
+                                <p>Because $a = \alpha$ and $a &lt; 0$, choose $\alpha = -4$: $a = -4$, $b = 2$, $c = 6$, giving $a + b + c = 4$.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="svg-figure-card">
+                        <svg viewBox="0 0 640 280" role="img" aria-label="Cross-section y=2 of z^2 - x^2 = 20 showing point (-4, 6) with tangent line 2x + 3z = 10">
+                            <defs>
+                                <marker id="arrAx5" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto"><polygon points="0 0, 7 2.5, 0 5" fill="#64748b" /></marker>
+                                <marker id="arrN5" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2563eb" /></marker>
+                            </defs>
+                            <line x1="120" y1="145" x2="520" y2="145" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrAx5)" />
+                            <line x1="320" y1="268" x2="320" y2="16" stroke="#64748b" stroke-width="1.5" marker-end="url(#arrAx5)" />
+                            <polyline points="216.0,25.9 222.5,31.5 229.0,37.0 235.5,42.4 242.0,47.7 248.5,52.8 255.0,57.8 261.5,62.5 268.0,67.0 274.5,71.2 281.0,75.0 287.5,78.4 294.0,81.3 300.5,83.7 307.0,85.4 313.5,86.5 320.0,86.9 326.5,86.5 333.0,85.4 339.5,83.7 346.0,81.3 352.5,78.4 359.0,75.0 365.5,71.2 372.0,67.0 378.5,62.5 385.0,57.8 391.5,52.8 398.0,47.7 404.5,42.4 411.0,37.0 417.5,31.5 424.0,25.9" fill="none" stroke="#0284c7" stroke-width="2.6" />
+                            <polyline points="216.0,264.1 222.5,258.5 229.0,253.0 235.5,247.6 242.0,242.3 248.5,237.2 255.0,232.2 261.5,227.5 268.0,223.0 274.5,218.8 281.0,215.0 287.5,211.6 294.0,208.7 300.5,206.3 307.0,204.6 313.5,203.5 320.0,203.1 326.5,203.5 333.0,204.6 339.5,206.3 346.0,208.7 352.5,211.6 359.0,215.0 365.5,218.8 372.0,223.0 378.5,227.5 385.0,232.2 391.5,237.2 398.0,242.3 404.5,247.6 411.0,253.0 417.5,258.5 424.0,264.1" fill="none" stroke="#0284c7" stroke-width="2.6" />
+                            <line x1="209.5" y1="28" x2="424" y2="171" stroke="#d97706" stroke-width="2.5" />
+                            <line x1="268" y1="67" x2="237.5" y2="112.8" stroke="#2563eb" stroke-width="2.8" marker-end="url(#arrN5)" />
+                            <polyline points="278,73.7 271.3,83.7 261.3,77" fill="none" stroke="#2563eb" stroke-width="1.5" />
+                            <circle cx="268" cy="67" r="5" fill="#dc2626" />
+                            <text x="506" y="138" fill="#64748b" font-size="12" font-weight="700">x</text>
+                            <text x="328" y="26" fill="#64748b" font-size="12" font-weight="700">z (slice y = 2)</text>
+                            <text x="278" y="61" fill="#dc2626" font-size="12.5" font-weight="700">(-4, 2, 6): a &lt; 0</text>
+                            <text x="355" y="122" fill="#d97706" font-size="12" font-weight="700">2x + 3z = 10 (slope -2/3)</text>
+                            <text x="115" y="114" fill="#2563eb" font-size="12" font-weight="700">&nabla;F = &lang;-8, 16, -12&rang;</text>
+                            <text x="415" y="45" fill="#0284c7" font-size="12" font-weight="700">z&sup2; - x&sup2; = 20</text>
+                        </svg>
+                        <div class="svg-legend">
+                            <span class="svg-legend-item"><span class="svg-swatch" style="background:#0284c7;"></span>$y=2$ cross-section $z^2 - x^2 = 20$</span>
+                            <span class="svg-legend-item"><span class="svg-swatch" style="background:#d97706;"></span>Exact tangent $2x + 3z = 10$ at $x=-4, z=6$</span>
+                            <span class="svg-legend-item"><span class="svg-swatch" style="background:#2563eb;"></span>Gradient normal $\langle -8, 16, -12 \rangle \parallel \langle 2, -4, 3 \rangle$</span>
+                        </div>
+                        <p class="svg-caption">Cross-section at $y = 2$ of Example 5: $x = -4$ ($a &lt; 0$) lies on the upper branch $z = \sqrt{x^2 + 20} = 6$ with exact slope $-\frac{2}{3}$ matching $2x - 4y + 3z = 1$.</p>
+                    </div>
+
+                    <div class="verify-box"><strong>Verification:</strong> $(-4)^2 + 4(2)^2 - 6^2 = 16 + 16 - 36 = -4$, and $\nabla F(-4, 2, 6) = \langle -8, 16, -12 \rangle = -4\langle 2, -4, 3 \rangle$.</div>
+                </div>
+
             </div>
         </div>
 
-        <!-- WORKED EXAMPLE 3 -->
-        <div class="section-card question-card" id="v1-ex-3">
-            <div class="card-header q-header">
-                <span class="tag-pill tag-q">Worked Example</span>
-                <h3 class="card-title">Worked Example 3: Tangent Line to the Intersection Curve of Two Surfaces</h3>
+        <!-- SUMMARY: THE 5 THINGS TO KNOW FOR THE EXAM -->
+        <div class="section-card exam-five-box" id="v1-summary">
+            <div class="card-header rule-header">
+                <span class="tag-pill tag-rule">One-Screen Summary</span>
+                <h2 class="card-title section-title">The 5 Things to Know for the Exam</h2>
             </div>
             <div class="body-text">
-                <div class="problem-statement">
-                    Find parametric equations of the tangent line to the curve of intersection of the ellipsoid $x^2 + 2y^2 + 2z^2 = 8$ and the paraboloid $z = x^2 + y^2 - 4$ at the point $P_0(2, 1, 1)$.
-                </div>
-                <div class="final-ans-box">
-                    <strong>Final Answer:</strong> $x = 2 + 3t, \quad y = 1 - 5t, \quad z = 1 + 2t \quad (-\infty < t < \infty)$.
-                </div>
-                <div class="solution-steps">
-                    <div class="solution-step">
-                        <div class="step-num">1</div>
-                        <div class="step-body">
-                            <div class="step-title">Write Both Surfaces as Level Surfaces $F = k_1$ and $G = k_2$</div>
-                            <p>Verify $P_0(2, 1, 1)$ lies on both surfaces: $2^2 + 2(1)^2 + 2(1)^2 = 4 + 2 + 2 = 8$, and $2^2 + 1^2 - 4 = 1 = z$. Confirmed! Rewrite both equations with all variables on the left side:</p>
-                            $$F(x, y, z) = x^2 + 2y^2 + 2z^2 = 8, \qquad G(x, y, z) = x^2 + y^2 - z = 4$$
-                        </div>
-                    </div>
-                    <div class="solution-step">
-                        <div class="step-num">2</div>
-                        <div class="step-body">
-                            <div class="step-title">Compute Both Gradients at $P_0(2, 1, 1)$</div>
-                            <p>Compute $\nabla F$ and $\nabla G$, watching the $-1$ sign on $G_z$:</p>
-                            $$\nabla F(x, y, z) = \langle 2x,\; 4y,\; 4z \rangle \implies \nabla F(2, 1, 1) = \langle 4,\; 4,\; 4 \rangle$$
-                            $$\nabla G(x, y, z) = \langle 2x,\; 2y,\; -1 \rangle \implies \nabla G(2, 1, 1) = \langle 4,\; 2,\; -1 \rangle$$
-                        </div>
-                    </div>
-                    <div class="solution-step">
-                        <div class="step-num">3</div>
-                        <div class="step-body">
-                            <div class="step-title">Take the Cross Product $\mathbf{v} = \nabla F(P_0) \times \nabla G(P_0)$</div>
-                            <p>The tangent line's direction vector must be perpendicular to both normal vectors:</p>
-                            $$\mathbf{v} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ 4 & 4 & 4 \\ 4 & 2 & -1 \end{vmatrix} = \big(4(-1) - 4(2)\big)\mathbf{i} - \big(4(-1) - 4(4)\big)\mathbf{j} + \big(4(2) - 4(4)\big)\mathbf{k}$$
-                            $$\mathbf{v} = \langle -4 - 8,\; -(-4 - 16),\; 8 - 16 \rangle = \langle -12,\; 20,\; -8 \rangle$$
-                            <p><em>Orthogonality check:</em> $\langle -12, 20, -8 \rangle \cdot \langle 4, 4, 4 \rangle = -48 + 80 - 32 = 0$, and $\langle -12, 20, -8 \rangle \cdot \langle 4, 2, -1 \rangle = -48 + 40 + 8 = 0$. Both zero — zero algebra errors!</p>
-                        </div>
-                    </div>
-                    <div class="solution-step">
-                        <div class="step-num">4</div>
-                        <div class="step-body">
-                            <div class="step-title">Simplify the Direction Vector and Write the Parametric Line</div>
-                            <p>Divide $\mathbf{v} = \langle -12, 20, -8 \rangle$ by $-4$ to get the cleanest direction vector $\mathbf{d} = \langle 3, -5, 2 \rangle$. Passing through $P_0(2, 1, 1)$ gives:</p>
-                            $$x = 2 + 3t, \qquad y = 1 - 5t, \qquad z = 1 + 2t$$
-                        </div>
-                    </div>
-                </div>
-                <div class="rule-box">
-                    <h4>Physical / Geometric Meaning</h4>
-                    <p>If a microscopic bead slides along the seam where the ellipsoid and paraboloid intersect, then at the instant it passes $(2, 1, 1)$, its flight path points straight along $\langle 3, -5, 2 \rangle$ — the exact line where the two tangent planes intersect!</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- WORKED EXAMPLE 4 -->
-        <div class="section-card question-card" id="v1-ex-4">
-            <div class="card-header q-header">
-                <span class="tag-pill tag-q">Worked Example</span>
-                <h3 class="card-title">Worked Example 4: Angle of Inclination of a Tangent Plane</h3>
-            </div>
-            <div class="body-text">
-                <div class="problem-statement">
-                    Find the angle of inclination $\theta$ of the tangent plane to the paraboloid $x^2 + y^2 - 4z = 0$ at the point $P_0\big(2,\, 2\sqrt{2},\, 3\big)$.
-                </div>
-                <div class="final-ans-box">
-                    <strong>Final Answer:</strong> $\theta = \dfrac{\pi}{3}$ (or $60^\circ$).
-                </div>
-                <div class="solution-steps">
-                    <div class="solution-step">
-                        <div class="step-num">1</div>
-                        <div class="step-body">
-                            <div class="step-title">Verify the Point and Compute the Surface Normal $\nabla F(P_0)$</div>
-                            <p>Verify $P_0$ lies on the surface: $2^2 + (2\sqrt{2})^2 - 4(3) = 4 + 8 - 12 = 0$. Confirmed. Let $F(x, y, z) = x^2 + y^2 - 4z$, so:</p>
-                            $$\nabla F(x, y, z) = \langle 2x,\; 2y,\; -4 \rangle$$
-                            <p>Evaluate at $P_0(2, 2\sqrt{2}, 3)$:</p>
-                            $$\mathbf{n} = \nabla F\big(2,\, 2\sqrt{2},\, 3\big) = \big\langle 4,\; 4\sqrt{2},\; -4 \big\rangle$$
-                        </div>
-                    </div>
-                    <div class="solution-step">
-                        <div class="step-num">2</div>
-                        <div class="step-body">
-                            <div class="step-title">Compute the Magnitude $\|\mathbf{n}\|$ and Dot Product with $\mathbf{k}$</div>
-                            <p>Compute the length of $\mathbf{n} = \langle 4, 4\sqrt{2}, -4 \rangle$:</p>
-                            $$\|\mathbf{n}\| = \sqrt{4^2 + \big(4\sqrt{2}\big)^2 + (-4)^2} = \sqrt{16 + 32 + 16} = \sqrt{64} = 8$$
-                            <p>The vertical component (dot product with $\mathbf{k} = \langle 0, 0, 1 \rangle$) is $|\mathbf{n} \cdot \mathbf{k}| = |-4| = 4$.</p>
-                        </div>
-                    </div>
-                    <div class="solution-step">
-                        <div class="step-num">3</div>
-                        <div class="step-body">
-                            <div class="step-title">Solve for the Acute Angle $\theta$</div>
-                            <p>Apply the angle of inclination formula:</p>
-                            $$\cos\theta = \frac{|\mathbf{n} \cdot \mathbf{k}|}{\|\mathbf{n}\|} = \frac{4}{8} = \frac{1}{2}$$
-                            <p>Since $\theta \in \left[0, \frac{\pi}{2}\right]$, we obtain $\theta = \arccos\!\left(\dfrac{1}{2}\right) = \dfrac{\pi}{3}$ ($60^\circ$).</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="rule-box">
-                    <h4>Physical / Geometric Meaning</h4>
-                    <p>If you stood on the paraboloid bowl at $(2, 2\sqrt{2}, 3)$, the slope of the ground directly under your boots would be tilted at a steep $60^\circ$ angle above horizontal — equivalent to a grade of $\tan(60^\circ) = \sqrt{3} \approx 173\%$!</p>
-                </div>
+                <ol class="exam-five-list">
+                    <li><strong>Move all terms to one side ($F(x, y, z) = 0$) before taking $\nabla F$:</strong> The normal to $z = f(x, y)$ at $(x_0, y_0, z_0)$ is $\langle f_x, f_y, -1 \rangle$ &mdash; never $+1$ &mdash; and you must plug in $(x_0, y_0, z_0)$ so your plane equation has numerical coefficients.</li>
+                    <li><strong>Match the exact constant or coefficient requested:</strong> If a KFUPM question gives $ax + by + cz + 1 = 0$, rescale your entire tangent plane equation until the constant term matches $+1$ before summing $a, b, c$.</li>
+                    <li><strong>Surface intersection tangent line = cross product of both gradients:</strong> Write both surfaces as $F=0$ and $G=0$, evaluate at $P_0$, and take $\mathbf{v} = \nabla F(P_0) \times \nabla G(P_0)$ (scaling out common factors is always legal).</li>
+                    <li><strong>Angle of inclination $\theta \in [0, \frac{\pi}{2}]$ uses $\cos\theta$ and $|F_z|$:</strong> $\cos\theta = \dfrac{|F_z(P_0)|}{\|\nabla F(P_0)\|}$; check $F_z = 0$ (vertical wall, $\theta = \frac{\pi}{2}$) and $F_x=F_y=0$ (horizontal plane, $\theta = 0$).</li>
+                    <li><strong>Finding an unknown point $(a, b, c)$ for horizontal/parallel/perpendicular planes:</strong> Use $\nabla F(a, b, c) = \alpha\,\mathbf{n}$ (don&rsquo;t forget $\alpha$!), plug into the surface equation to solve $\alpha$, and apply any sign constraint ($a &lt; 0$ or $a &gt; 0$).</li>
+                </ol>
             </div>
         </div>
 
@@ -3806,6 +4503,26 @@ div.choice-btn {
     </header>
 
     <div class="page-stream">
+        <!-- LECTURE VIDEO BLOCK -->
+        <div class="section-card lesson-video-block" id="v2-video">
+            <div class="lesson-video-header">
+                <div class="lesson-video-heading">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    <span>Lecture Video &bull; 13.8 Extrema of Two Variables</span>
+                </div>
+                <div class="lv-tabs-row"><button type="button" id="v2-vtab-0" class="lv-tab-btn active" data-title="13.8 Local Extrema &amp; Second Partials Test" onclick="selectLessonVideo(this, 'h82bvumoY5c', 0, 'v2-vm-0')">Video 1: 13.8 Local Extrema &amp; Second Partials Test (09:10)</button><button type="button" id="v2-vtab-1" class="lv-tab-btn" data-title="13.8-13.9 Absolute Extrema &amp; Optimization" onclick="selectLessonVideo(this, 'VaKqMw7_6nw', 0, 'v2-vm-1')">Video 2: 13.8-13.9 Absolute Extrema &amp; Optimization (23:50)</button></div>
+            </div>
+            <div class="lesson-video-player">
+                <button type="button" class="lv-poster-btn" onclick="loadLessonVideoFrame(this.closest('.lesson-video-block'), 'h82bvumoY5c', 0)" aria-label="Play 13.8 Local Extrema &amp; Second Partials Test">
+                    <img src="https://img.youtube.com/vi/h82bvumoY5c/hqdefault.jpg" alt="13.8 Local Extrema &amp; Second Partials Test" loading="lazy" />
+                    <span class="lv-play-pill"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Play Lecture Here</span></span>
+                </button>
+            </div>
+            <div class="lesson-video-meta">
+                <div class="lv-meta-pane" id="v2-vm-0" style="display: block;"><div class="lv-summary-row"><div class="lv-cover-line"><strong>13.8 Local Extrema &amp; Second Partials Test</strong> (09:10) &mdash; Covers finding critical points ($f_x=0, f_y=0$) and classifying local maxima, minima, and saddle points with $d = f_{xx}f_{yy}-[f_{xy}]^2$.</div><a class="lv-yt-ext" href="https://www.youtube.com/watch?v=h82bvumoY5c" target="_blank" rel="noopener noreferrer">Watch on YouTube &nearr;</a></div><div class="lv-no-ts-note">Full topic lecture by Eng. Anas Abu Zahra (video has no chapter/caption index for timestamps).</div></div><div class="lv-meta-pane" id="v2-vm-1" style="display: none;"><div class="lv-summary-row"><div class="lv-cover-line"><strong>13.8-13.9 Absolute Extrema &amp; Optimization</strong> (23:50) &mdash; Covers absolute max/min on closed bounded regions (interior critical points + boundary curves &amp; corners).</div><a class="lv-yt-ext" href="https://www.youtube.com/watch?v=VaKqMw7_6nw" target="_blank" rel="noopener noreferrer">Watch on YouTube &nearr;</a></div><div class="lv-no-ts-note">Full topic lecture by Eng. Anas Abu Zahra (video has no chapter/caption index for timestamps).</div></div>
+            </div>
+        </div>
+
 
         <!-- CONCEPT 1 -->
         <div class="section-card concept-card" id="v2-sec-1">
@@ -4176,6 +4893,26 @@ div.choice-btn {
     </header>
 
     <div class="page-stream">
+        <!-- LECTURE VIDEO BLOCK -->
+        <div class="section-card lesson-video-block" id="v3-video">
+            <div class="lesson-video-header">
+                <div class="lesson-video-heading">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    <span>Lecture Video &bull; 13.9 Applications of Extrema</span>
+                </div>
+                
+            </div>
+            <div class="lesson-video-player">
+                <button type="button" class="lv-poster-btn" onclick="loadLessonVideoFrame(this.closest('.lesson-video-block'), 'VaKqMw7_6nw', 0)" aria-label="Play 13.8-13.9 Absolute Extrema &amp; Optimization">
+                    <img src="https://img.youtube.com/vi/VaKqMw7_6nw/hqdefault.jpg" alt="13.8-13.9 Absolute Extrema &amp; Optimization" loading="lazy" />
+                    <span class="lv-play-pill"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Play Lecture Here</span></span>
+                </button>
+            </div>
+            <div class="lesson-video-meta">
+                <div class="lv-meta-pane" id="v3-vm-0" style="display: block;"><div class="lv-summary-row"><div class="lv-cover-line"><strong>13.8-13.9 Absolute Extrema &amp; Optimization</strong> (23:50) &mdash; Covers constrained geometric optimization word problems, distance minimization, and box/surface optimization.</div><a class="lv-yt-ext" href="https://www.youtube.com/watch?v=VaKqMw7_6nw" target="_blank" rel="noopener noreferrer">Watch on YouTube &nearr;</a></div><div class="lv-no-ts-note">Full topic lecture by Eng. Anas Abu Zahra (video has no chapter/caption index for timestamps).</div></div>
+            </div>
+        </div>
+
 
         <!-- CONCEPT 1 -->
         <div class="section-card concept-card" id="v3-sec-1">
@@ -4480,6 +5217,26 @@ div.choice-btn {
     </header>
 
     <div class="page-stream">
+        <!-- LECTURE VIDEO BLOCK -->
+        <div class="section-card lesson-video-block" id="v4-video">
+            <div class="lesson-video-header">
+                <div class="lesson-video-heading">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    <span>Lecture Video &bull; 13.10 Lagrange Multipliers</span>
+                </div>
+                
+            </div>
+            <div class="lesson-video-player">
+                <button type="button" class="lv-poster-btn" onclick="loadLessonVideoFrame(this.closest('.lesson-video-block'), '0X_hegI40E0', 0)" aria-label="Play 13.10 Lagrange Multipliers">
+                    <img src="https://img.youtube.com/vi/0X_hegI40E0/hqdefault.jpg" alt="13.10 Lagrange Multipliers" loading="lazy" />
+                    <span class="lv-play-pill"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Play Lecture Here</span></span>
+                </button>
+            </div>
+            <div class="lesson-video-meta">
+                <div class="lv-meta-pane" id="v4-vm-0" style="display: block;"><div class="lv-summary-row"><div class="lv-cover-line"><strong>13.10 Lagrange Multipliers</strong> (29:19) &mdash; Covers constrained optimization with $\nabla f = \lambda \nabla g$ in 2D and 3D plus two-constraint systems.</div><a class="lv-yt-ext" href="https://www.youtube.com/watch?v=0X_hegI40E0" target="_blank" rel="noopener noreferrer">Watch on YouTube &nearr;</a></div><div class="lv-no-ts-note">Full topic lecture by Eng. Anas Abu Zahra (video has no chapter/caption index for timestamps).</div></div>
+            </div>
+        </div>
+
 
         <!-- CONCEPT 1 -->
         <div class="section-card concept-card" id="v4-sec-1">
@@ -4782,6 +5539,26 @@ div.choice-btn {
     </header>
 
     <div class="page-stream">
+        <!-- LECTURE VIDEO BLOCK -->
+        <div class="section-card lesson-video-block" id="v5-video">
+            <div class="lesson-video-header">
+                <div class="lesson-video-heading">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    <span>Lecture Video &bull; 14.1 Iterated Integrals &amp; Area</span>
+                </div>
+                
+            </div>
+            <div class="lesson-video-player">
+                <button type="button" class="lv-poster-btn" onclick="loadLessonVideoFrame(this.closest('.lesson-video-block'), 'Mp_5-KUKr-g', 0)" aria-label="Play 14.1 Double Integrals &amp; Reversing Order">
+                    <img src="https://img.youtube.com/vi/Mp_5-KUKr-g/hqdefault.jpg" alt="14.1 Double Integrals &amp; Reversing Order" loading="lazy" />
+                    <span class="lv-play-pill"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Play Lecture Here</span></span>
+                </button>
+            </div>
+            <div class="lesson-video-meta">
+                <div class="lv-meta-pane" id="v5-vm-0" style="display: block;"><div class="lv-summary-row"><div class="lv-cover-line"><strong>14.1 Double Integrals &amp; Reversing Order</strong> (33:02) &mdash; Covers iterated $dy\,dx$ vs $dx\,dy$ setup, planar region sketching, and reversing integration order to unlock non-elementary integrals.</div><a class="lv-yt-ext" href="https://www.youtube.com/watch?v=Mp_5-KUKr-g" target="_blank" rel="noopener noreferrer">Watch on YouTube &nearr;</a></div><div class="lv-timestamps-wrap"><span class="lv-ts-label">Jump to Timestamp:</span><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'Mp_5-KUKr-g', 66, 'v5-vtab-0', 'v5-vm-0')"><span class="lv-ts-time">01:06</span> Double integral setup &amp; $dy\,dx$ vs $dx\,dy$ order</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'Mp_5-KUKr-g', 480, 'v5-vtab-0', 'v5-vm-0')"><span class="lv-ts-time">08:00</span> Reversing the order of integration via region sketch</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'Mp_5-KUKr-g', 902, 'v5-vtab-0', 'v5-vm-0')"><span class="lv-ts-time">15:02</span> Reversal example with $y = \ln x$ bounds</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'Mp_5-KUKr-g', 1080, 'v5-vtab-0', 'v5-vm-0')"><span class="lv-ts-time">18:00</span> Solving $\int e^{x^2}\,dx$ by reversing order</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'Mp_5-KUKr-g', 1505, 'v5-vtab-0', 'v5-vm-0')"><span class="lv-ts-time">25:05</span> Semicircle $\sqrt{9-x^2}$ &amp; $\cos^2 x$ reversal problems</button></div></div>
+            </div>
+        </div>
+
 
         <!-- CONCEPT 1 -->
         <div class="section-card concept-card" id="v5-sec-1">
@@ -5099,6 +5876,26 @@ div.choice-btn {
     </header>
 
     <div class="page-stream">
+        <!-- LECTURE VIDEO BLOCK -->
+        <div class="section-card lesson-video-block" id="v6-video">
+            <div class="lesson-video-header">
+                <div class="lesson-video-heading">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    <span>Lecture Video &bull; 14.2 Double Integrals &amp; Volume</span>
+                </div>
+                
+            </div>
+            <div class="lesson-video-player">
+                <button type="button" class="lv-poster-btn" onclick="loadLessonVideoFrame(this.closest('.lesson-video-block'), 'K8KdMncO71o', 0)" aria-label="Play 14.2 Volumes Under Surfaces">
+                    <img src="https://img.youtube.com/vi/K8KdMncO71o/hqdefault.jpg" alt="14.2 Volumes Under Surfaces" loading="lazy" />
+                    <span class="lv-play-pill"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Play Lecture Here</span></span>
+                </button>
+            </div>
+            <div class="lesson-video-meta">
+                <div class="lv-meta-pane" id="v6-vm-0" style="display: block;"><div class="lv-summary-row"><div class="lv-cover-line"><strong>14.2 Volumes Under Surfaces</strong> (14:43) &mdash; Covers computing 3D volumes under and between surfaces by projecting onto the $xy$-plane.</div><a class="lv-yt-ext" href="https://www.youtube.com/watch?v=K8KdMncO71o" target="_blank" rel="noopener noreferrer">Watch on YouTube &nearr;</a></div><div class="lv-no-ts-note">Full topic lecture by Eng. Anas Abu Zahra (video has no chapter/caption index for timestamps).</div></div>
+            </div>
+        </div>
+
 
         <!-- SECTION 1 -->
         <div class="section-card concept-card" id="v6-sec-1">
@@ -5472,6 +6269,26 @@ div.choice-btn {
     </header>
 
     <div class="page-stream">
+        <!-- LECTURE VIDEO BLOCK -->
+        <div class="section-card lesson-video-block" id="v7-video">
+            <div class="lesson-video-header">
+                <div class="lesson-video-heading">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    <span>Lecture Video &bull; 14.3 Polar Double Integrals</span>
+                </div>
+                
+            </div>
+            <div class="lesson-video-player">
+                <button type="button" class="lv-poster-btn" onclick="loadLessonVideoFrame(this.closest('.lesson-video-block'), 'uIoG_kOCtX8', 0)" aria-label="Play 14.3 Double Integrals in Polar">
+                    <img src="https://img.youtube.com/vi/uIoG_kOCtX8/hqdefault.jpg" alt="14.3 Double Integrals in Polar" loading="lazy" />
+                    <span class="lv-play-pill"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Play Lecture Here</span></span>
+                </button>
+            </div>
+            <div class="lesson-video-meta">
+                <div class="lv-meta-pane" id="v7-vm-0" style="display: block;"><div class="lv-summary-row"><div class="lv-cover-line"><strong>14.3 Double Integrals in Polar</strong> (28:05) &mdash; Covers polar area element $dA = r\,dr\,d\theta$, radial ray bounds, volumes between surfaces, and shifted circles.</div><a class="lv-yt-ext" href="https://www.youtube.com/watch?v=uIoG_kOCtX8" target="_blank" rel="noopener noreferrer">Watch on YouTube &nearr;</a></div><div class="lv-timestamps-wrap"><span class="lv-ts-label">Jump to Timestamp:</span><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'uIoG_kOCtX8', 12, 'v7-vtab-0', 'v7-vm-0')"><span class="lv-ts-time">00:12</span> Polar conversion laws &amp; $dA = r\,dr\,d\theta$</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'uIoG_kOCtX8', 183, 'v7-vtab-0', 'v7-vm-0')"><span class="lv-ts-time">03:03</span> Annulus &amp; quadrant circular sectors</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'uIoG_kOCtX8', 480, 'v7-vtab-0', 'v7-vm-0')"><span class="lv-ts-time">08:00</span> Volume between two surfaces using polar coordinates</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'uIoG_kOCtX8', 1021, 'v7-vtab-0', 'v7-vm-0')"><span class="lv-ts-time">17:01</span> Converting Cartesian iterated integrals to polar</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'uIoG_kOCtX8', 1442, 'v7-vtab-0', 'v7-vm-0')"><span class="lv-ts-time">24:02</span> Shifted circle $(x-1)^2 + y^2 = 1 \implies r = 2\cos\theta$</button></div></div>
+            </div>
+        </div>
+
 
         <!-- SECTION 1 -->
         <div class="section-card concept-card" id="v7-sec-1">
@@ -5838,6 +6655,26 @@ div.choice-btn {
     </header>
 
     <div class="page-stream">
+        <!-- LECTURE VIDEO BLOCK -->
+        <div class="section-card lesson-video-block" id="v8-video">
+            <div class="lesson-video-header">
+                <div class="lesson-video-heading">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    <span>Lecture Video &bull; 14.6 Triple Integrals</span>
+                </div>
+                
+            </div>
+            <div class="lesson-video-player">
+                <button type="button" class="lv-poster-btn" onclick="loadLessonVideoFrame(this.closest('.lesson-video-block'), 'uJgQWjvrGwY', 18)" aria-label="Play 14.6 Triple Integrals (Rectangular)">
+                    <img src="https://img.youtube.com/vi/uJgQWjvrGwY/hqdefault.jpg" alt="14.6 Triple Integrals (Rectangular)" loading="lazy" />
+                    <span class="lv-play-pill"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Play Lecture Here</span><span class="lv-start-badge">Starts at 00:18</span></span>
+                </button>
+            </div>
+            <div class="lesson-video-meta">
+                <div class="lv-meta-pane" id="v8-vm-0" style="display: block;"><div class="lv-summary-row"><div class="lv-cover-line"><strong>14.6 Triple Integrals (Rectangular)</strong> (16:17) &mdash; Covers rectangular triple integral bounds ($dz\,dy\,dx$) from roof/floor surfaces and 2D projections (first 5 minutes cover rectangular 14.6 before transitioning to cylindrical 11.7/14.7).</div><a class="lv-yt-ext" href="https://www.youtube.com/watch?v=uJgQWjvrGwY&t=18s" target="_blank" rel="noopener noreferrer">YouTube @ Starts at 00:18 &nearr;</a></div><div class="lv-timestamps-wrap"><span class="lv-ts-label">Jump to Timestamp:</span><button type="button" class="lv-ts-btn active" onclick="seekLessonVideo(this, 'uJgQWjvrGwY', 18, 'v8-vtab-0', 'v8-vm-0')"><span class="lv-ts-time">00:18</span> Rectangular $dV = dz\,dy\,dx$ triple integral setup</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'uJgQWjvrGwY', 302, 'v8-vtab-0', 'v8-vm-0')"><span class="lv-ts-time">05:02</span> Transition to Cylindrical Coordinates (covered in &sect;11.7 / &sect;14.7)</button></div></div>
+            </div>
+        </div>
+
 
         <!-- SECTION 1 -->
         <div class="section-card concept-card" id="v8-sec-1">
@@ -6192,6 +7029,26 @@ div.choice-btn {
     </header>
 
     <div class="page-stream">
+        <!-- LECTURE VIDEO BLOCK -->
+        <div class="section-card lesson-video-block" id="v9-video">
+            <div class="lesson-video-header">
+                <div class="lesson-video-heading">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    <span>Lecture Video &bull; 11.7 Cylindrical &amp; Spherical Coordinates</span>
+                </div>
+                <div class="lv-tabs-row"><button type="button" id="v9-vtab-0" class="lv-tab-btn active" data-title="11.7 Cylindrical Intro (from 05:02)" onclick="selectLessonVideo(this, 'uJgQWjvrGwY', 302, 'v9-vm-0')">Video 1: 11.7 Cylindrical Intro (from 05:02) (16:17)</button><button type="button" id="v9-vtab-1" class="lv-tab-btn" data-title="11.7 Spherical Coordinates Part 1" onclick="selectLessonVideo(this, 'soPUULLmQyY', 19, 'v9-vm-1')">Video 2: 11.7 Spherical Coordinates Part 1 (40:15)</button></div>
+            </div>
+            <div class="lesson-video-player">
+                <button type="button" class="lv-poster-btn" onclick="loadLessonVideoFrame(this.closest('.lesson-video-block'), 'uJgQWjvrGwY', 302)" aria-label="Play 11.7 Cylindrical Intro (from 05:02)">
+                    <img src="https://img.youtube.com/vi/uJgQWjvrGwY/hqdefault.jpg" alt="11.7 Cylindrical Intro (from 05:02)" loading="lazy" />
+                    <span class="lv-play-pill"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Play Lecture Here</span><span class="lv-start-badge">Chapter starts at 05:02</span></span>
+                </button>
+            </div>
+            <div class="lesson-video-meta">
+                <div class="lv-meta-pane" id="v9-vm-0" style="display: block;"><div class="lv-summary-row"><div class="lv-cover-line"><strong>11.7 Cylindrical Intro (from 05:02)</strong> (16:17) &mdash; Cylindrical coordinates $(r, \theta, z)$ are introduced at <strong>05:02</strong> in Eng. Anas&rsquo;s Triple Integrals video.</div><a class="lv-yt-ext" href="https://www.youtube.com/watch?v=uJgQWjvrGwY&t=302s" target="_blank" rel="noopener noreferrer">YouTube @ Chapter starts at 05:02 &nearr;</a></div><div class="lv-timestamps-wrap"><span class="lv-ts-label">Jump to Timestamp:</span><button type="button" class="lv-ts-btn active" onclick="seekLessonVideo(this, 'uJgQWjvrGwY', 302, 'v9-vtab-0', 'v9-vm-0')"><span class="lv-ts-time">05:02</span> Chapter starts: Cylindrical $(r, \theta, z)$ coordinate system</button></div></div><div class="lv-meta-pane" id="v9-vm-1" style="display: none;"><div class="lv-summary-row"><div class="lv-cover-line"><strong>11.7 Spherical Coordinates Part 1</strong> (40:15) &mdash; Covers geometric definitions of $(\rho, \theta, \phi)$, right-triangle conversion derivations, and cone angle formulas.</div><a class="lv-yt-ext" href="https://www.youtube.com/watch?v=soPUULLmQyY&t=19s" target="_blank" rel="noopener noreferrer">YouTube @ Starts at 00:19 &nearr;</a></div><div class="lv-timestamps-wrap"><span class="lv-ts-label">Jump to Timestamp:</span><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'soPUULLmQyY', 19, 'v9-vtab-1', 'v9-vm-1')"><span class="lv-ts-time">00:19</span> Chapter starts: Spherical $(\rho, \theta, \phi)$ definitions</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'soPUULLmQyY', 301, 'v9-vtab-1', 'v9-vm-1')"><span class="lv-ts-time">05:01</span> Right-triangle derivations ($r = \rho\sin\phi$, $z = \rho\cos\phi$)</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'soPUULLmQyY', 485, 'v9-vtab-1', 'v9-vm-1')"><span class="lv-ts-time">08:05</span> Cone equation $z = a\,r \implies \phi = \arctan(1/a)$ &amp; trig table</button></div></div>
+            </div>
+        </div>
+
 
         <!-- SECTION 1 -->
         <div class="section-card concept-card" id="v9-sec-1">
@@ -6647,6 +7504,26 @@ div.choice-btn {
     </header>
 
     <div class="page-stream">
+        <!-- LECTURE VIDEO BLOCK -->
+        <div class="section-card lesson-video-block" id="v10-video">
+            <div class="lesson-video-header">
+                <div class="lesson-video-heading">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    <span>Lecture Video &bull; 14.7 Cylindrical &amp; Spherical Triple Integrals</span>
+                </div>
+                <div class="lv-tabs-row"><button type="button" id="v10-vtab-0" class="lv-tab-btn active" data-title="14.7 Cylindrical Integrals (from 08:00)" onclick="selectLessonVideo(this, 'uJgQWjvrGwY', 480, 'v10-vm-0')">Video 1: 14.7 Cylindrical Integrals (from 08:00) (16:17)</button><button type="button" id="v10-vtab-1" class="lv-tab-btn" data-title="14.7 Spherical Integrals Setup (from 11:02)" onclick="selectLessonVideo(this, 'soPUULLmQyY', 662, 'v10-vm-1')">Video 2: 14.7 Spherical Integrals Setup (from 11:02) (40:15)</button><button type="button" id="v10-vtab-2" class="lv-tab-btn" data-title="14.7 Spherical Worked Exam Problems" onclick="selectLessonVideo(this, 'K_i09AvSnE4', 19, 'v10-vm-2')">Video 3: 14.7 Spherical Worked Exam Problems (34:01)</button><button type="button" id="v10-vtab-3" class="lv-tab-btn" data-title="14.7 Summary: Finding φ Bounds" onclick="selectLessonVideo(this, 'BUGMMwqW_UQ', 126, 'v10-vm-3')">Video 4: 14.7 Summary: Finding φ Bounds (21:26)</button></div>
+            </div>
+            <div class="lesson-video-player">
+                <button type="button" class="lv-poster-btn" onclick="loadLessonVideoFrame(this.closest('.lesson-video-block'), 'uJgQWjvrGwY', 480)" aria-label="Play 14.7 Cylindrical Integrals (from 08:00)">
+                    <img src="https://img.youtube.com/vi/uJgQWjvrGwY/hqdefault.jpg" alt="14.7 Cylindrical Integrals (from 08:00)" loading="lazy" />
+                    <span class="lv-play-pill"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Play Lecture Here</span><span class="lv-start-badge">Chapter starts at 08:00</span></span>
+                </button>
+            </div>
+            <div class="lesson-video-meta">
+                <div class="lv-meta-pane" id="v10-vm-0" style="display: block;"><div class="lv-summary-row"><div class="lv-cover-line"><strong>14.7 Cylindrical Integrals (from 08:00)</strong> (16:17) &mdash; Cylindrical triple integral volume problems ($dV = r\,dz\,dr\,d\theta$) start at <strong>08:00</strong>.</div><a class="lv-yt-ext" href="https://www.youtube.com/watch?v=uJgQWjvrGwY&t=480s" target="_blank" rel="noopener noreferrer">YouTube @ Chapter starts at 08:00 &nearr;</a></div><div class="lv-timestamps-wrap"><span class="lv-ts-label">Jump to Timestamp:</span><button type="button" class="lv-ts-btn active" onclick="seekLessonVideo(this, 'uJgQWjvrGwY', 480, 'v10-vtab-0', 'v10-vm-0')"><span class="lv-ts-time">08:00</span> Chapter starts: Cylindrical triple integral ($dV = r\,dz\,dr\,d\theta$)</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'uJgQWjvrGwY', 842, 'v10-vtab-0', 'v10-vm-0')"><span class="lv-ts-time">14:02</span> Volume between paraboloids $z = 9 - r^2$ and $z = 3r^2$</button></div></div><div class="lv-meta-pane" id="v10-vm-1" style="display: none;"><div class="lv-summary-row"><div class="lv-cover-line"><strong>14.7 Spherical Integrals Setup (from 11:02)</strong> (40:15) &mdash; Spherical Jacobian $dV = \rho^2\sin\phi\,d\rho\,d\phi\,d\theta$ and complete $\rho, \phi, \theta$ bound rules start at <strong>11:02</strong>.</div><a class="lv-yt-ext" href="https://www.youtube.com/watch?v=soPUULLmQyY&t=662s" target="_blank" rel="noopener noreferrer">YouTube @ Starts at 11:02 &nearr;</a></div><div class="lv-timestamps-wrap"><span class="lv-ts-label">Jump to Timestamp:</span><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'soPUULLmQyY', 662, 'v10-vtab-1', 'v10-vm-1')"><span class="lv-ts-time">11:02</span> Spherical volume element $dV = \rho^2\sin\phi\,d\rho\,d\phi\,d\theta$</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'soPUULLmQyY', 794, 'v10-vtab-1', 'v10-vm-1')"><span class="lv-ts-time">13:14</span> Step-by-step method for $\rho, \phi, \theta$ limits</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'soPUULLmQyY', 1080, 'v10-vtab-1', 'v10-vm-1')"><span class="lv-ts-time">18:00</span> Upper, lower &amp; double cone $\phi$ phrasing traps</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'soPUULLmQyY', 2160, 'v10-vtab-1', 'v10-vm-1')"><span class="lv-ts-time">36:00</span> Hemispheres &amp; shifted sphere $\phi$ bounds</button></div></div><div class="lv-meta-pane" id="v10-vm-2" style="display: none;"><div class="lv-summary-row"><div class="lv-cover-line"><strong>14.7 Spherical Worked Exam Problems</strong> (34:01) &mdash; Covers converting Rectangular to Spherical integrals, shifted spheres, and ice-cream cone exam solids.</div><a class="lv-yt-ext" href="https://www.youtube.com/watch?v=K_i09AvSnE4&t=19s" target="_blank" rel="noopener noreferrer">YouTube @ Starts at 00:19 &nearr;</a></div><div class="lv-timestamps-wrap"><span class="lv-ts-label">Jump to Timestamp:</span><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'K_i09AvSnE4', 19, 'v10-vtab-2', 'v10-vm-2')"><span class="lv-ts-time">00:19</span> Shifted sphere $x^2+y^2+(z-2)^2 = 4 \implies \rho = 4\cos\phi$</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'K_i09AvSnE4', 662, 'v10-vtab-2', 'v10-vm-2')"><span class="lv-ts-time">11:02</span> Ice-cream cone solid conversion to spherical</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'K_i09AvSnE4', 1031, 'v10-vtab-2', 'v10-vm-2')"><span class="lv-ts-time">17:11</span> Hard cone + sphere exam integral setups</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'K_i09AvSnE4', 1645, 'v10-vtab-2', 'v10-vm-2')"><span class="lv-ts-time">27:25</span> Solid between two spheres &amp; double cone</button></div></div><div class="lv-meta-pane" id="v10-vm-3" style="display: none;"><div class="lv-summary-row"><div class="lv-cover-line"><strong>14.7 Summary: Finding φ Bounds</strong> (21:26) &mdash; Focused visual summary covering every KFUPM $\phi$-bound case from the $+z$-axis.</div><a class="lv-yt-ext" href="https://www.youtube.com/watch?v=BUGMMwqW_UQ&t=126s" target="_blank" rel="noopener noreferrer">YouTube @ Starts at 02:06 &nearr;</a></div><div class="lv-timestamps-wrap"><span class="lv-ts-label">Jump to Timestamp:</span><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'BUGMMwqW_UQ', 126, 'v10-vtab-3', 'v10-vm-3')"><span class="lv-ts-time">02:06</span> Core rule: $\phi \in [0, \pi]$ measured from $+z$-axis</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'BUGMMwqW_UQ', 360, 'v10-vtab-3', 'v10-vm-3')"><span class="lv-ts-time">06:00</span> Upper cone: inside vs outside $\phi$ bounds</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'BUGMMwqW_UQ', 721, 'v10-vtab-3', 'v10-vm-3')"><span class="lv-ts-time">12:01</span> Lower cone $\phi$ bounds</button><button type="button" class="lv-ts-btn" onclick="seekLessonVideo(this, 'BUGMMwqW_UQ', 1084, 'v10-vtab-3', 'v10-vm-3')"><span class="lv-ts-time">18:04</span> Double cone phrasing &amp; $\phi$ interval</button></div></div>
+            </div>
+        </div>
+
 
         <!-- SECTION 1 -->
         <div class="section-card concept-card" id="v10-sec-1">
@@ -7082,293 +7959,6 @@ div.choice-btn {
 </section>
     </div>
 
-        <!-- Videos View -->
-    <div id="videosView" style="display: none;">
-        <header class="page-header">
-            <div class="page-meta-badge page-meta-videos">ORDERED FINAL EXAM PLAYLIST &bull; ANAS ABU ZAHRA</div>
-            <h1 class="page-title">Final Exam Lecture Videos (Post-Major 2)</h1>
-            <p class="page-desc">Ordered 12-video watchlist by Engineer Anas Abu Zahra covering all Final Exam topics (13.7 &ndash; 13.10, 14.1 &ndash; 14.3, 14.6, 11.7 &amp; 14.7). Total core runtime ~4h 30m. Note: See Notes Topic 09 &amp; 10 for complete from-scratch Cylindrical Coordinates coverage.</p>
-        </header>
-        <div class="video-grid">
-            
-        <div class="video-card">
-            <div class="video-card-thumb-wrap">
-                <a href="https://www.youtube.com/watch?v=YOlukI-Ppqk" target="_blank" rel="noopener noreferrer" class="thumb-link" aria-label="Watch 13.7 Tangent Planes &amp; Normal Lines on YouTube">
-                    <img src="https://img.youtube.com/vi/YOlukI-Ppqk/hqdefault.jpg" alt="13.7 Tangent Planes &amp; Normal Lines" class="video-thumbnail" loading="lazy" />
-                    <div class="video-play-btn"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
-                </a>
-            </div>
-            <div class="video-card-content">
-                <div class="video-meta-top">
-                    <span class="v-badge">#01 &bull; Sec 13.7</span>
-                    <span class="v-inst">Anas Abu Zahra &bull; 19:46</span>
-                </div>
-                <h3 class="video-title">13.7 Tangent Planes &amp; Normal Lines</h3>
-                <p class="video-desc">Gradient as normal vector to level surfaces F(x,y,z)=k, tangent plane equations, and symmetric normal lines. (Anas: 14.6)</p>
-                <div class="video-card-actions">
-                    <a href="https://www.youtube.com/watch?v=YOlukI-Ppqk" target="_blank" rel="noopener noreferrer" class="btn-watch-yt">
-                        <svg class="yt-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        <span>Watch on YouTube</span>
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=YOlukI-Ppqk" target="_blank" rel="noopener noreferrer" class="btn-yt-sub">Direct Link &nearr;</a>
-                </div>
-            </div>
-        </div>
-        <div class="video-card">
-            <div class="video-card-thumb-wrap">
-                <a href="https://www.youtube.com/watch?v=h82bvumoY5c" target="_blank" rel="noopener noreferrer" class="thumb-link" aria-label="Watch 13.8 Local Extrema &amp; Second Partials Test on YouTube">
-                    <img src="https://img.youtube.com/vi/h82bvumoY5c/hqdefault.jpg" alt="13.8 Local Extrema &amp; Second Partials Test" class="video-thumbnail" loading="lazy" />
-                    <div class="video-play-btn"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
-                </a>
-            </div>
-            <div class="video-card-content">
-                <div class="video-meta-top">
-                    <span class="v-badge">#02 &bull; Sec 13.8</span>
-                    <span class="v-inst">Anas Abu Zahra &bull; 9:10</span>
-                </div>
-                <h3 class="video-title">13.8 Local Extrema &amp; Second Partials Test</h3>
-                <p class="video-desc">Finding critical points (fx=0, fy=0) and classifying local maxima, local minima, and saddle points with D = fxx·fyy − fxy². (Anas: 14.7)</p>
-                <div class="video-card-actions">
-                    <a href="https://www.youtube.com/watch?v=h82bvumoY5c" target="_blank" rel="noopener noreferrer" class="btn-watch-yt">
-                        <svg class="yt-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        <span>Watch on YouTube</span>
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=h82bvumoY5c" target="_blank" rel="noopener noreferrer" class="btn-yt-sub">Direct Link &nearr;</a>
-                </div>
-            </div>
-        </div>
-        <div class="video-card">
-            <div class="video-card-thumb-wrap">
-                <a href="https://www.youtube.com/watch?v=VaKqMw7_6nw" target="_blank" rel="noopener noreferrer" class="thumb-link" aria-label="Watch 13.8–13.9 Absolute Extrema &amp; Optimization on YouTube">
-                    <img src="https://img.youtube.com/vi/VaKqMw7_6nw/hqdefault.jpg" alt="13.8–13.9 Absolute Extrema &amp; Optimization" class="video-thumbnail" loading="lazy" />
-                    <div class="video-play-btn"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
-                </a>
-            </div>
-            <div class="video-card-content">
-                <div class="video-meta-top">
-                    <span class="v-badge">#03 &bull; Sec 13.8 / 13.9</span>
-                    <span class="v-inst">Anas Abu Zahra &bull; 23:50</span>
-                </div>
-                <h3 class="video-title">13.8–13.9 Absolute Extrema &amp; Optimization</h3>
-                <p class="video-desc">Finding absolute maximum and minimum values on closed bounded regions (interior + boundary curves &amp; corners) and optimization problems. (Anas: 14.7)</p>
-                <div class="video-card-actions">
-                    <a href="https://www.youtube.com/watch?v=VaKqMw7_6nw" target="_blank" rel="noopener noreferrer" class="btn-watch-yt">
-                        <svg class="yt-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        <span>Watch on YouTube</span>
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=VaKqMw7_6nw" target="_blank" rel="noopener noreferrer" class="btn-yt-sub">Direct Link &nearr;</a>
-                </div>
-            </div>
-        </div>
-        <div class="video-card">
-            <div class="video-card-thumb-wrap">
-                <a href="https://www.youtube.com/watch?v=0X_hegI40E0" target="_blank" rel="noopener noreferrer" class="thumb-link" aria-label="Watch 13.10 Lagrange Multipliers on YouTube">
-                    <img src="https://img.youtube.com/vi/0X_hegI40E0/hqdefault.jpg" alt="13.10 Lagrange Multipliers" class="video-thumbnail" loading="lazy" />
-                    <div class="video-play-btn"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
-                </a>
-            </div>
-            <div class="video-card-content">
-                <div class="video-meta-top">
-                    <span class="v-badge">#04 &bull; Sec 13.10</span>
-                    <span class="v-inst">Anas Abu Zahra &bull; 29:19</span>
-                </div>
-                <h3 class="video-title">13.10 Lagrange Multipliers</h3>
-                <p class="video-desc">Solving constrained optimization problems using ∇f = λ∇g in 2D and 3D, including two-constraint systems. (Anas: 14.8)</p>
-                <div class="video-card-actions">
-                    <a href="https://www.youtube.com/watch?v=0X_hegI40E0" target="_blank" rel="noopener noreferrer" class="btn-watch-yt">
-                        <svg class="yt-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        <span>Watch on YouTube</span>
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=0X_hegI40E0" target="_blank" rel="noopener noreferrer" class="btn-yt-sub">Direct Link &nearr;</a>
-                </div>
-            </div>
-        </div>
-        <div class="video-card">
-            <div class="video-card-thumb-wrap">
-                <a href="https://www.youtube.com/watch?v=Mp_5-KUKr-g" target="_blank" rel="noopener noreferrer" class="thumb-link" aria-label="Watch 14.1 Iterated Integrals &amp; Area in the Plane on YouTube">
-                    <img src="https://img.youtube.com/vi/Mp_5-KUKr-g/hqdefault.jpg" alt="14.1 Iterated Integrals &amp; Area in the Plane" class="video-thumbnail" loading="lazy" />
-                    <div class="video-play-btn"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
-                </a>
-            </div>
-            <div class="video-card-content">
-                <div class="video-meta-top">
-                    <span class="v-badge">#05 &bull; Sec 14.1</span>
-                    <span class="v-inst">Anas Abu Zahra &bull; 33:02</span>
-                </div>
-                <h3 class="video-title">14.1 Iterated Integrals &amp; Area in the Plane</h3>
-                <p class="video-desc">Setting up double integrals over Type I &amp; Type II regions, computing planar area, and reversing the order of integration.</p>
-                <div class="video-card-actions">
-                    <a href="https://www.youtube.com/watch?v=Mp_5-KUKr-g" target="_blank" rel="noopener noreferrer" class="btn-watch-yt">
-                        <svg class="yt-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        <span>Watch on YouTube</span>
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=Mp_5-KUKr-g" target="_blank" rel="noopener noreferrer" class="btn-yt-sub">Direct Link &nearr;</a>
-                </div>
-            </div>
-        </div>
-        <div class="video-card">
-            <div class="video-card-thumb-wrap">
-                <a href="https://www.youtube.com/watch?v=K8KdMncO71o" target="_blank" rel="noopener noreferrer" class="thumb-link" aria-label="Watch 14.2 Double Integrals &amp; Volume on YouTube">
-                    <img src="https://img.youtube.com/vi/K8KdMncO71o/hqdefault.jpg" alt="14.2 Double Integrals &amp; Volume" class="video-thumbnail" loading="lazy" />
-                    <div class="video-play-btn"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
-                </a>
-            </div>
-            <div class="video-card-content">
-                <div class="video-meta-top">
-                    <span class="v-badge">#06 &bull; Sec 14.2</span>
-                    <span class="v-inst">Anas Abu Zahra &bull; 14:43</span>
-                </div>
-                <h3 class="video-title">14.2 Double Integrals &amp; Volume</h3>
-                <p class="video-desc">Computing volumes under and between 3D surfaces by identifying top/bottom roofs and projecting onto the xy-plane.</p>
-                <div class="video-card-actions">
-                    <a href="https://www.youtube.com/watch?v=K8KdMncO71o" target="_blank" rel="noopener noreferrer" class="btn-watch-yt">
-                        <svg class="yt-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        <span>Watch on YouTube</span>
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=K8KdMncO71o" target="_blank" rel="noopener noreferrer" class="btn-yt-sub">Direct Link &nearr;</a>
-                </div>
-            </div>
-        </div>
-        <div class="video-card">
-            <div class="video-card-thumb-wrap">
-                <a href="https://www.youtube.com/watch?v=uIoG_kOCtX8" target="_blank" rel="noopener noreferrer" class="thumb-link" aria-label="Watch 14.3 Double Integrals in Polar Coordinates on YouTube">
-                    <img src="https://img.youtube.com/vi/uIoG_kOCtX8/hqdefault.jpg" alt="14.3 Double Integrals in Polar Coordinates" class="video-thumbnail" loading="lazy" />
-                    <div class="video-play-btn"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
-                </a>
-            </div>
-            <div class="video-card-content">
-                <div class="video-meta-top">
-                    <span class="v-badge">#07 &bull; Sec 14.3</span>
-                    <span class="v-inst">Anas Abu Zahra &bull; 28:05</span>
-                </div>
-                <h3 class="video-title">14.3 Double Integrals in Polar Coordinates</h3>
-                <p class="video-desc">Converting Cartesian double integrals to polar form with dA = r dr dθ, circular sectors, annuli, and shifted circles.</p>
-                <div class="video-card-actions">
-                    <a href="https://www.youtube.com/watch?v=uIoG_kOCtX8" target="_blank" rel="noopener noreferrer" class="btn-watch-yt">
-                        <svg class="yt-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        <span>Watch on YouTube</span>
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=uIoG_kOCtX8" target="_blank" rel="noopener noreferrer" class="btn-yt-sub">Direct Link &nearr;</a>
-                </div>
-            </div>
-        </div>
-        <div class="video-card">
-            <div class="video-card-thumb-wrap">
-                <a href="https://www.youtube.com/watch?v=uJgQWjvrGwY" target="_blank" rel="noopener noreferrer" class="thumb-link" aria-label="Watch 14.6 Triple Integrals in Rectangular Coordinates on YouTube">
-                    <img src="https://img.youtube.com/vi/uJgQWjvrGwY/hqdefault.jpg" alt="14.6 Triple Integrals in Rectangular Coordinates" class="video-thumbnail" loading="lazy" />
-                    <div class="video-play-btn"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
-                </a>
-            </div>
-            <div class="video-card-content">
-                <div class="video-meta-top">
-                    <span class="v-badge">#08 &bull; Sec 14.6</span>
-                    <span class="v-inst">Anas Abu Zahra &bull; 16:17</span>
-                </div>
-                <h3 class="video-title">14.6 Triple Integrals in Rectangular Coordinates</h3>
-                <p class="video-desc">Setting up 3D triple integral bounds (roof-to-floor z-bounds then 2D projection shadow) and evaluating volumes.</p>
-                <div class="video-card-actions">
-                    <a href="https://www.youtube.com/watch?v=uJgQWjvrGwY" target="_blank" rel="noopener noreferrer" class="btn-watch-yt">
-                        <svg class="yt-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        <span>Watch on YouTube</span>
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=uJgQWjvrGwY" target="_blank" rel="noopener noreferrer" class="btn-yt-sub">Direct Link &nearr;</a>
-                </div>
-            </div>
-        </div>
-        <div class="video-card">
-            <div class="video-card-thumb-wrap">
-                <a href="https://www.youtube.com/watch?v=soPUULLmQyY" target="_blank" rel="noopener noreferrer" class="thumb-link" aria-label="Watch 11.7 &amp; 14.7 Spherical Coordinates &amp; Triple Integrals (Part 1) on YouTube">
-                    <img src="https://img.youtube.com/vi/soPUULLmQyY/hqdefault.jpg" alt="11.7 &amp; 14.7 Spherical Coordinates &amp; Triple Integrals (Part 1)" class="video-thumbnail" loading="lazy" />
-                    <div class="video-play-btn"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
-                </a>
-            </div>
-            <div class="video-card-content">
-                <div class="video-meta-top">
-                    <span class="v-badge">#09 &bull; Sec 11.7 / 14.7</span>
-                    <span class="v-inst">Anas Abu Zahra &bull; 40:15</span>
-                </div>
-                <h3 class="video-title">11.7 &amp; 14.7 Spherical Coordinates &amp; Triple Integrals (Part 1)</h3>
-                <p class="video-desc">Updated 2023 masterclass on spherical coordinates (ρ, θ, φ), Jacobian ρ² sin φ dρ dφ dθ, spheres, and cones.</p>
-                <div class="video-card-actions">
-                    <a href="https://www.youtube.com/watch?v=soPUULLmQyY" target="_blank" rel="noopener noreferrer" class="btn-watch-yt">
-                        <svg class="yt-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        <span>Watch on YouTube</span>
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=soPUULLmQyY" target="_blank" rel="noopener noreferrer" class="btn-yt-sub">Direct Link &nearr;</a>
-                </div>
-            </div>
-        </div>
-        <div class="video-card">
-            <div class="video-card-thumb-wrap">
-                <a href="https://www.youtube.com/watch?v=K_i09AvSnE4" target="_blank" rel="noopener noreferrer" class="thumb-link" aria-label="Watch 11.7 &amp; 14.7 Spherical Coordinates &amp; Triple Integrals (Part 2) on YouTube">
-                    <img src="https://img.youtube.com/vi/K_i09AvSnE4/hqdefault.jpg" alt="11.7 &amp; 14.7 Spherical Coordinates &amp; Triple Integrals (Part 2)" class="video-thumbnail" loading="lazy" />
-                    <div class="video-play-btn"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
-                </a>
-            </div>
-            <div class="video-card-content">
-                <div class="video-meta-top">
-                    <span class="v-badge">#10 &bull; Sec 11.7 / 14.7</span>
-                    <span class="v-inst">Anas Abu Zahra &bull; 34:01</span>
-                </div>
-                <h3 class="video-title">11.7 &amp; 14.7 Spherical Coordinates &amp; Triple Integrals (Part 2)</h3>
-                <p class="video-desc">Updated 2023 continuation covering shifted spheres, ice-cream cone solids, and exam-level spherical integration.</p>
-                <div class="video-card-actions">
-                    <a href="https://www.youtube.com/watch?v=K_i09AvSnE4" target="_blank" rel="noopener noreferrer" class="btn-watch-yt">
-                        <svg class="yt-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        <span>Watch on YouTube</span>
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=K_i09AvSnE4" target="_blank" rel="noopener noreferrer" class="btn-yt-sub">Direct Link &nearr;</a>
-                </div>
-            </div>
-        </div>
-        <div class="video-card">
-            <div class="video-card-thumb-wrap">
-                <a href="https://www.youtube.com/watch?v=BUGMMwqW_UQ" target="_blank" rel="noopener noreferrer" class="thumb-link" aria-label="Watch 14.7 How to Find φ Bounds — Key Cases Summary on YouTube">
-                    <img src="https://img.youtube.com/vi/BUGMMwqW_UQ/hqdefault.jpg" alt="14.7 How to Find φ Bounds — Key Cases Summary" class="video-thumbnail" loading="lazy" />
-                    <div class="video-play-btn"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
-                </a>
-            </div>
-            <div class="video-card-content">
-                <div class="video-meta-top">
-                    <span class="v-badge">#11 &bull; Sec 11.7 / 14.7</span>
-                    <span class="v-inst">Anas Abu Zahra &bull; 21:26</span>
-                </div>
-                <h3 class="video-title">14.7 How to Find φ Bounds — Key Cases Summary</h3>
-                <p class="video-desc">Dedicated visual cheat sheet for determining the polar angle φ limits across every standard KFUPM Final Exam solid.</p>
-                <div class="video-card-actions">
-                    <a href="https://www.youtube.com/watch?v=BUGMMwqW_UQ" target="_blank" rel="noopener noreferrer" class="btn-watch-yt">
-                        <svg class="yt-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        <span>Watch on YouTube</span>
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=BUGMMwqW_UQ" target="_blank" rel="noopener noreferrer" class="btn-yt-sub">Direct Link &nearr;</a>
-                </div>
-            </div>
-        </div>
-        <div class="video-card">
-            <div class="video-card-thumb-wrap">
-                <a href="https://www.youtube.com/watch?v=xHQ92gdPVTI" target="_blank" rel="noopener noreferrer" class="thumb-link" aria-label="Watch 13.7 Bonus Revision: Tangent Planes &amp; Gradients on YouTube">
-                    <img src="https://img.youtube.com/vi/xHQ92gdPVTI/hqdefault.jpg" alt="13.7 Bonus Revision: Tangent Planes &amp; Gradients" class="video-thumbnail" loading="lazy" />
-                    <div class="video-play-btn"><svg viewBox="0 0 24 24" width="28" height="28" fill="white"><path d="M8 5v14l11-7z"/></svg></div>
-                </a>
-            </div>
-            <div class="video-card-content">
-                <div class="video-meta-top">
-                    <span class="v-badge">#12 &bull; Sec 13.7 Rev</span>
-                    <span class="v-inst">Anas Abu Zahra &bull; 15:12</span>
-                </div>
-                <h3 class="video-title">13.7 Bonus Revision: Tangent Planes &amp; Gradients</h3>
-                <p class="video-desc">Quick exam-focused revision problems reinforcing tangent planes, normal lines, and directional gradients.</p>
-                <div class="video-card-actions">
-                    <a href="https://www.youtube.com/watch?v=xHQ92gdPVTI" target="_blank" rel="noopener noreferrer" class="btn-watch-yt">
-                        <svg class="yt-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                        <span>Watch on YouTube</span>
-                    </a>
-                    <a href="https://www.youtube.com/watch?v=xHQ92gdPVTI" target="_blank" rel="noopener noreferrer" class="btn-yt-sub">Direct Link &nearr;</a>
-                </div>
-            </div>
-        </div>
-        </div>
-    </div>
 
     <!-- Major 2 Exam Bank View (Embedded) -->
     <div id="exambankView" style="display: none;">
@@ -7896,19 +8486,14 @@ function switchTopic(topicId) {
 }
 
 function switchTab(tab) {
-    if (tab !== "notes" && tab !== "videos" && tab !== "exambank" && tab !== "exams") {
+    if (tab === "exams") tab = "exambank";
+    if (tab !== "notes" && tab !== "exambank") {
         tab = "notes";
     }
-    if (tab === "exams") tab = "exambank";
-    if (tab === "practice") tab = "notes";
 
     const curY = window.scrollY || document.documentElement.scrollTop;
     if (portalState.activeTab === "notes") {
         portalState.topicScroll[portalState.activeTopic] = curY;
-    } else if (portalState.activeTab === "practice") {
-        portalState.practiceScroll[portalState.activeTopic] = curY;
-    } else if (portalState.activeTab === "videos") {
-        portalState.videosScroll = curY;
     } else if (portalState.activeTab === "exambank") {
         portalState.exambankScroll = curY;
     }
@@ -7916,20 +8501,14 @@ function switchTab(tab) {
     portalState.activeTab = tab;
 
     const nView = document.getElementById("notesView");
-    const pView = document.getElementById("practiceView");
-    const vView = document.getElementById("videosView");
     const eView = document.getElementById("exambankView");
     const btnN = document.getElementById("btnNotes");
-    const btnP = document.getElementById("btnPractice");
-    const btnV = document.getElementById("btnVideos");
     const btnE = document.getElementById("btnExams");
     const topicMenuBtn = document.getElementById("btnTopicSelect");
     const mainWrap = document.querySelector(".main-wrapper");
     const quickAnchors = document.getElementById("quickAnchorsWrap");
 
     if (btnN) btnN.classList.remove("active");
-    if (btnP) btnP.classList.remove("active");
-    if (btnV) btnV.classList.remove("active");
     if (btnE) btnE.classList.remove("active");
 
     cachedScrollHeight = 0;
@@ -7937,30 +8516,15 @@ function switchTab(tab) {
     if (tab === "notes") {
         if (mainWrap) { mainWrap.style.maxWidth = "860px"; mainWrap.style.padding = "24px 16px"; }
         if (nView) nView.style.display = "block";
-        if (pView) pView.style.display = "none";
-        if (vView) vView.style.display = "none";
         if (eView) eView.style.display = "none";
         if (btnN) btnN.classList.add("active");
         if (topicMenuBtn) topicMenuBtn.style.display = "inline-flex";
         if (quickAnchors) quickAnchors.style.display = "flex";
         renderTopicMath("page-" + portalState.activeTopic);
         applyScroll(portalState.topicScroll[portalState.activeTopic] || 0);
-
-    } else if (tab === "videos") {
-        if (mainWrap) { mainWrap.style.maxWidth = "860px"; mainWrap.style.padding = "24px 16px"; }
-        if (nView) nView.style.display = "none";
-        if (pView) pView.style.display = "none";
-        if (vView) vView.style.display = "block";
-        if (eView) eView.style.display = "none";
-        if (btnV) btnV.classList.add("active");
-        if (topicMenuBtn) topicMenuBtn.style.display = "none";
-        if (quickAnchors) quickAnchors.style.display = "flex";
-        applyScroll(portalState.videosScroll || 0);
     } else if (tab === "exambank") {
         if (mainWrap) { mainWrap.style.maxWidth = "960px"; mainWrap.style.padding = "24px 16px"; }
         if (nView) nView.style.display = "none";
-        if (pView) pView.style.display = "none";
-        if (vView) vView.style.display = "none";
         if (eView) eView.style.display = "block";
         if (btnE) btnE.classList.add("active");
         if (topicMenuBtn) topicMenuBtn.style.display = "none";
@@ -7971,6 +8535,53 @@ function switchTab(tab) {
 
     populateQuickAnchors();
     savePortalStateImmediate();
+}
+
+function loadLessonVideoFrame(blockEl, videoId, startSec) {
+    if (!blockEl || !videoId) return;
+    const player = blockEl.querySelector(".lesson-video-player");
+    if (!player) return;
+    const startParam = (typeof startSec === "number" && startSec > 0) ? "&start=" + startSec : "";
+    player.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0${startParam}" title="Lecture Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+}
+
+function selectLessonVideo(btnEl, videoId, startSec, targetPanelId) {
+    const block = btnEl ? btnEl.closest(".lesson-video-block") : null;
+    if (!block) return;
+    block.querySelectorAll(".lv-tab-btn").forEach(b => b.classList.remove("active"));
+    if (btnEl) btnEl.classList.add("active");
+    block.querySelectorAll(".lv-meta-pane").forEach(p => {
+        p.style.display = (p.id === targetPanelId) ? "block" : "none";
+    });
+    const player = block.querySelector(".lesson-video-player");
+    const hasIframe = player && player.querySelector("iframe");
+    if (hasIframe) {
+        loadLessonVideoFrame(block, videoId, startSec);
+    } else if (player) {
+        const posterTitle = btnEl.getAttribute("data-title") || "Watch Lecture Video";
+        const startBadge = (typeof startSec === "number" && startSec > 0) ? `<span class="lv-start-badge">Starts at ${Math.floor(startSec/60)}:${String(startSec%60).padStart(2,'0')}</span>` : "";
+        player.innerHTML = `<button type="button" class="lv-poster-btn" onclick="loadLessonVideoFrame(this.closest('.lesson-video-block'), '${videoId}', ${startSec || 0})" aria-label="Play ${posterTitle}"><img src="https://img.youtube.com/vi/${videoId}/hqdefault.jpg" alt="${posterTitle}" loading="lazy" /><span class="lv-play-pill"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Play Lecture Here</span>${startBadge}</span></button>`;
+    }
+}
+
+function seekLessonVideo(triggerEl, videoId, startSec, tabBtnId, panelId) {
+    const block = triggerEl ? triggerEl.closest(".lesson-video-block") : null;
+    if (!block) return;
+    if (tabBtnId && panelId) {
+        const tabBtn = document.getElementById(tabBtnId);
+        if (tabBtn) {
+            block.querySelectorAll(".lv-tab-btn").forEach(b => b.classList.remove("active"));
+            tabBtn.classList.add("active");
+            block.querySelectorAll(".lv-meta-pane").forEach(p => {
+                p.style.display = (p.id === panelId) ? "block" : "none";
+            });
+        }
+    }
+    block.querySelectorAll(".lv-ts-btn").forEach(b => b.classList.remove("active"));
+    if (triggerEl && triggerEl.classList.contains("lv-ts-btn")) {
+        triggerEl.classList.add("active");
+    }
+    loadLessonVideoFrame(block, videoId, startSec);
 }
 
 
@@ -8072,22 +8683,6 @@ function populateQuickAnchors() {
             });
         }
 
-    } else if (activeTab === "videos") {
-        const vcards = document.querySelectorAll("#videosView .video-card");
-        vcards.forEach((vc, idx) => {
-            const titleEl = vc.querySelector(".video-title");
-            const btn = document.createElement("button");
-            btn.className = "anchor-chip";
-            btn.innerHTML = titleEl ? titleEl.textContent : ("Video " + (idx + 1));
-            btn.onclick = () => {
-                const topBar = document.querySelector(".top-nav-bar");
-                const offset = (topBar ? topBar.offsetHeight : 60) + 16;
-                const pos = vc.getBoundingClientRect().top + window.pageYOffset;
-                window.scrollTo({ top: pos - offset, behavior: "smooth" });
-                closeQuickAnchors();
-            };
-            container.appendChild(btn);
-        });
     } else if (activeTab === "exambank") {
         const items = [
             { label: "Filters & Search", target: "filterTerm" },
@@ -8249,7 +8844,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (cached) {
             const parsed = JSON.parse(cached);
             if (parsed && typeof parsed === "object") {
-                portalState.activeTab = (parsed.activeTab && ["practice", "videos", "exambank"].includes(parsed.activeTab)) ? parsed.activeTab : "notes";
+                portalState.activeTab = (parsed.activeTab && ["notes", "exambank"].includes(parsed.activeTab)) ? parsed.activeTab : "notes";
                 portalState.activeTopic = (parsed.activeTopic && /^v([1-9]|10)$/.test(parsed.activeTopic)) ? parsed.activeTopic : "v1";
                 if (parsed.topicScroll) Object.assign(portalState.topicScroll, parsed.topicScroll);
                 if (parsed.practiceScroll) Object.assign(portalState.practiceScroll, parsed.practiceScroll);
@@ -8611,7 +9206,7 @@ function initExamBank() {
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const tabParam = urlParams.get('tab');
-            if (tabParam && ['notes', 'videos', 'exambank', 'exams'].includes(tabParam.toLowerCase())) {
+            if (tabParam && ['notes', 'exambank', 'exams'].includes(tabParam.toLowerCase())) {
                 switchTab(tabParam.toLowerCase() === 'exams' ? 'exambank' : tabParam.toLowerCase());
             }
             initPaperTheme();
