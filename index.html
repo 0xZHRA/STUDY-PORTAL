@@ -3836,6 +3836,45 @@ div.choice-btn {
 
 .quick-check .options { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem 2rem; margin: 1rem 0; }
 @media (max-width: 640px) { .quick-check .options { grid-template-columns: 1fr; } }
+
+.lv-progress-track {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 5px;
+  background: rgba(255, 255, 255, 0.22); pointer-events: none; z-index: 3;
+}
+.lv-progress-fill {
+  height: 100%; background: #ef4444; transition: width 0.2s ease;
+}
+.lv-restart-pill {
+  position: absolute; top: 12px; right: 12px; z-index: 4;
+  background: rgba(9, 9, 11, 0.84); color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.26); border-radius: 9999px;
+  padding: 5px 12px; font-size: 11.5px; font-weight: 600;
+  cursor: pointer; backdrop-filter: blur(6px);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.lv-restart-pill:hover {
+  background: rgba(24, 24, 27, 0.96); transform: translateY(-1px);
+}
+.lv-tab-prog {
+  display: inline-block; margin-inline-start: 6px; padding: 1px 6px;
+  border-radius: 9999px; font-size: 10.5px; font-weight: 700;
+  background: rgba(37, 99, 235, 0.14); color: #2563eb;
+}
+[data-theme="dark"] .lv-tab-prog {
+  background: rgba(96, 165, 250, 0.18); color: #93c5fd;
+}
+.lv-tab-btn.active .lv-tab-prog {
+  background: rgba(255, 255, 255, 0.22); color: #ffffff;
+}
+.lv-tab-prog.is-done {
+  background: rgba(34, 197, 94, 0.18); color: #15803d;
+}
+[data-theme="dark"] .lv-tab-prog.is-done {
+  background: rgba(34, 197, 94, 0.22); color: #4ade80;
+}
+.lv-tab-btn.active .lv-tab-prog.is-done {
+  background: rgba(34, 197, 94, 0.35); color: #ffffff;
+}
 </style>
 
 <!-- ========================================== -->
@@ -14267,6 +14306,28 @@ function switchTab(tab) {
     savePortalStateImmediate();
 }
 
+const VIDEO_PROGRESS_GLOBAL_KEY = "math201_final_video_progress_global_v1";
+let VIDEO_PROGRESS_STATE = { slots: {}, activeTabs: {} };
+let videoSaveTimer = null;
+let videoCloudSyncTimer = null;
+let ytIframeSeq = 0;
+let activeVideoSession = null;
+
+function getVideoProgressKey(prof) {
+    return "math201_final_video_progress_" + (prof || getCurrentProfile());
+}
+
+function formatVideoTime(sec) {
+    const s = Math.max(0, Math.floor(Number(sec) || 0));
+    const h = Math.floor(s / 3600);
+    const m = Math.floor((s % 3600) / 60);
+    const rem = s % 60;
+    if (h > 0) {
+        return `${h}:${String(m).padStart(2, "0")}:${String(rem).padStart(2, "0")}`;
+    }
+    return `${m}:${String(rem).padStart(2, "0")}`;
+}
+
 function escapeVideoAttr(str) {
     return String(str || "")
         .replace(/&/g, "&amp;")
@@ -14276,29 +14337,274 @@ function escapeVideoAttr(str) {
         .replace(/>/g, "&gt;");
 }
 
-function buildLessonPosterHtml(videoId, startSec, posterTitle) {
+function mergeVideoProgressObjects(target, incoming) {
+    if (!incoming || typeof incoming !== "object") return false;
+    let changed = false;
+    if (incoming.slots && typeof incoming.slots === "object") {
+        for (const [k, v] of Object.entries(incoming.slots)) {
+            if (!v || typeof v !== "object") continue;
+            const cur = target.slots[k];
+            if (!cur || (Number(v.updatedAt) || 0) > (Number(cur.updatedAt) || 0)) {
+                target.slots[k] = {
+                    videoId: v.videoId || (cur && cur.videoId) || "",
+                    currentTime: Math.max(0, Math.floor(Number(v.currentTime) || 0)),
+                    duration: Math.max(0, Math.floor(Number(v.duration) || 0)),
+                    defaultStart: Math.max(0, Math.floor(Number(v.defaultStart) || 0)),
+                    completed: Boolean(v.completed),
+                    updatedAt: Number(v.updatedAt) || Date.now()
+                };
+                changed = true;
+            }
+        }
+    }
+    if (incoming.activeTabs && typeof incoming.activeTabs === "object") {
+        for (const [bid, tid] of Object.entries(incoming.activeTabs)) {
+            if (typeof tid === "string" && tid && !target.activeTabs[bid]) {
+                target.activeTabs[bid] = tid;
+                changed = true;
+            }
+        }
+    }
+    return changed;
+}
+
+function saveVideoProgressImmediate() {
+    clearTimeout(videoSaveTimer);
+    videoSaveTimer = null;
+    try {
+        const json = JSON.stringify(VIDEO_PROGRESS_STATE);
+        localStorage.setItem(getVideoProgressKey(getCurrentProfile()), json);
+        localStorage.setItem(VIDEO_PROGRESS_GLOBAL_KEY, json);
+    } catch (e) {}
+}
+
+function scheduleVideoProgressSave() {
+    if (videoSaveTimer) return;
+    videoSaveTimer = setTimeout(() => {
+        saveVideoProgressImmediate();
+    }, 1500);
+}
+
+function scheduleVideoCloudSync() {
+    if (videoCloudSyncTimer) clearTimeout(videoCloudSyncTimer);
+    videoCloudSyncTimer = setTimeout(() => {
+        if (typeof scheduleCloudSync === "function") scheduleCloudSync();
+    }, 10000);
+}
+
+function getActiveBlockSlotInfo(blockEl) {
+    if (!blockEl) return { slotKey: "", videoId: "", defaultStart: 0, posterTitle: "Watch Lecture Video", tabId: "" };
+    const activeTab = blockEl.querySelector(".lv-tab-btn.active");
+    if (activeTab) {
+        return {
+            slotKey: `${blockEl.id}::${activeTab.id}`,
+            videoId: activeTab.dataset.videoId || "",
+            defaultStart: parseInt(activeTab.dataset.defaultStart || "0", 10) || 0,
+            posterTitle: activeTab.getAttribute("data-title") || "Watch Lecture Video",
+            tabId: activeTab.id
+        };
+    }
+    const player = blockEl.querySelector(".lesson-video-player");
+    return {
+        slotKey: `${blockEl.id}::default`,
+        videoId: (player && (player.dataset.defaultVideoId || player.dataset.videoId)) || "",
+        defaultStart: parseInt((player && player.dataset.defaultStart) || "0", 10) || 0,
+        posterTitle: (player && player.dataset.posterTitle) || "Watch Lecture Video",
+        tabId: ""
+    };
+}
+
+function getEffectiveStartSeconds(slotKey, defaultStart) {
+    const saved = slotKey ? VIDEO_PROGRESS_STATE.slots[slotKey] : null;
+    const base = Math.max(0, Math.floor(Number(defaultStart) || 0));
+    if (saved && !saved.completed && Number(saved.currentTime) > base + 2) {
+        return Math.floor(Number(saved.currentTime));
+    }
+    return base;
+}
+
+function updateBlockTabBadges(blockEl) {
+    if (!blockEl) return;
+    blockEl.querySelectorAll(".lv-tab-btn").forEach(btn => {
+        if (!btn.dataset.baseHtml) {
+            btn.dataset.baseHtml = btn.innerHTML;
+        }
+        const slotKey = `${blockEl.id}::${btn.id}`;
+        const saved = VIDEO_PROGRESS_STATE.slots[slotKey];
+        const base = parseInt(btn.dataset.defaultStart || "0", 10) || 0;
+        let badge = "";
+        if (saved && saved.completed) {
+            badge = `<span class="lv-tab-prog is-done">Done</span>`;
+        } else if (saved && Number(saved.currentTime) > base + 2) {
+            badge = `<span class="lv-tab-prog">${formatVideoTime(saved.currentTime)}</span>`;
+        }
+        btn.innerHTML = btn.dataset.baseHtml + badge;
+    });
+}
+
+function buildLessonPosterHtml(videoId, defaultStartSec, posterTitle, slotKey) {
     const safeId = escapeVideoAttr(videoId);
-    const sec = Number(startSec) || 0;
+    const safeBlockId = escapeVideoAttr((slotKey || "").split("::")[0]);
+    const base = Math.max(0, Math.floor(Number(defaultStartSec) || 0));
+    const saved = slotKey ? VIDEO_PROGRESS_STATE.slots[slotKey] : null;
+    const isCompleted = Boolean(saved && saved.completed);
+    const hasSavedProgress = Boolean(saved && !isCompleted && Number(saved.currentTime) > base + 2);
+    const resumeSec = hasSavedProgress ? Math.floor(Number(saved.currentTime)) : base;
     const title = posterTitle || "Watch Lecture Video";
     const safeTitle = escapeVideoAttr(title);
-    const startBadge = sec > 0
-        ? `<span class="lv-start-badge">Starts at ${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}</span>`
+
+    let pillText = "Play Lecture Here";
+    let badgeHtml = "";
+    if (isCompleted) {
+        pillText = "Watched — Rewatch";
+    } else if (hasSavedProgress) {
+        pillText = `Resume at ${formatVideoTime(resumeSec)}`;
+        badgeHtml = (saved.duration > 0)
+            ? `<span class="lv-start-badge">${Math.min(100, Math.round((resumeSec / saved.duration) * 100))}%</span>`
+            : `<span class="lv-start-badge">Saved</span>`;
+    } else if (base > 0) {
+        badgeHtml = `<span class="lv-start-badge">Starts at ${formatVideoTime(base)}</span>`;
+    }
+
+    let progressBarHtml = "";
+    if (isCompleted) {
+        progressBarHtml = `<div class="lv-progress-track"><div class="lv-progress-fill" style="width:100%;"></div></div>`;
+    } else if (hasSavedProgress) {
+        const pct = (saved && saved.duration > 0)
+            ? Math.min(99, Math.max(4, Math.round((resumeSec / saved.duration) * 100)))
+            : 18;
+        progressBarHtml = `<div class="lv-progress-track"><div class="lv-progress-fill" style="width:${pct}%;"></div></div>`;
+    }
+
+    const restartBtnHtml = (hasSavedProgress || isCompleted) && safeBlockId
+        ? `<button type="button" class="lv-restart-pill" onclick="restartLessonVideo('${safeBlockId}')" aria-label="Start lecture from beginning">&#8634; Start over</button>`
         : "";
-    return `<button type="button" class="lv-poster-btn" onclick="loadLessonVideoFrame(this.closest('.lesson-video-block'), '${safeId}', ${sec})" aria-label="Play ${safeTitle}"><img src="https://img.youtube.com/vi/${safeId}/hqdefault.jpg" alt="${safeTitle}" loading="lazy" /><span class="lv-play-pill"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Play Lecture Here</span>${startBadge}</span></button>`;
+
+    return `<button type="button" class="lv-poster-btn" onclick="loadLessonVideoFrame(this.closest('.lesson-video-block'), '${safeId}', ${resumeSec})" aria-label="Play ${safeTitle}"><img src="https://img.youtube.com/vi/${safeId}/hqdefault.jpg" alt="${safeTitle}" loading="lazy" /><span class="lv-play-pill"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>${pillText}</span>${badgeHtml}</span>${progressBarHtml}</button>${restartBtnHtml}`;
+}
+
+function renderBlockPosterFromState(blockEl) {
+    if (!blockEl) return;
+    const player = blockEl.querySelector(".lesson-video-player");
+    updateBlockTabBadges(blockEl);
+    if (!player || player.querySelector("iframe")) return;
+    const info = getActiveBlockSlotInfo(blockEl);
+    if (info.videoId) {
+        player.dataset.videoId = info.videoId;
+        player.dataset.defaultStart = String(info.defaultStart);
+        player.dataset.posterTitle = info.posterTitle;
+        player.innerHTML = buildLessonPosterHtml(info.videoId, info.defaultStart, info.posterTitle, info.slotKey);
+    }
+}
+
+function initLessonVideoMetadata() {
+    document.querySelectorAll(".lesson-video-block").forEach(block => {
+        block.querySelectorAll(".lv-tab-btn").forEach(btn => {
+            if (!btn.dataset.baseHtml) {
+                btn.dataset.baseHtml = btn.innerHTML;
+            }
+            const oc = btn.getAttribute("onclick") || "";
+            const m = oc.match(/selectLessonVideo\s*\([^,]+,\s*'([^']+)'\s*,\s*(\d+)\s*,\s*'([^']+)'\s*\)/);
+            if (m) {
+                btn.dataset.videoId = m[1];
+                btn.dataset.defaultStart = m[2];
+                btn.dataset.panelId = m[3];
+            }
+        });
+        const player = block.querySelector(".lesson-video-player");
+        if (player && !player.dataset.defaultVideoId) {
+            const img = player.querySelector("img");
+            if (img && img.alt) player.dataset.posterTitle = img.alt;
+            const pb = player.querySelector(".lv-poster-btn");
+            if (pb) {
+                const oc = pb.getAttribute("onclick") || "";
+                const m = oc.match(/loadLessonVideoFrame\s*\([^,]+,\s*'([^']+)'\s*,\s*(\d+)\s*\)/);
+                if (m) {
+                    player.dataset.defaultVideoId = m[1];
+                    player.dataset.defaultStart = m[2];
+                }
+            }
+        }
+    });
+}
+
+function restoreAllVideoTabsAndPosters() {
+    document.querySelectorAll(".lesson-video-block").forEach(block => {
+        const savedTabId = VIDEO_PROGRESS_STATE.activeTabs[block.id];
+        if (savedTabId) {
+            const tabBtn = document.getElementById(savedTabId);
+            if (tabBtn && tabBtn.closest(".lesson-video-block") === block) {
+                block.querySelectorAll(".lv-tab-btn").forEach(b => b.classList.remove("active"));
+                tabBtn.classList.add("active");
+                const panelId = tabBtn.dataset.panelId;
+                if (panelId) {
+                    block.querySelectorAll(".lv-meta-pane").forEach(p => {
+                        p.style.display = (p.id === panelId) ? "block" : "none";
+                    });
+                }
+            }
+        }
+        renderBlockPosterFromState(block);
+    });
+}
+
+function loadLocalVideoProgress(prof) {
+    prof = prof || getCurrentProfile();
+    VIDEO_PROGRESS_STATE = { slots: {}, activeTabs: {} };
+    [getVideoProgressKey(prof), VIDEO_PROGRESS_GLOBAL_KEY].forEach(k => {
+        try {
+            const raw = localStorage.getItem(k);
+            if (raw) {
+                mergeVideoProgressObjects(VIDEO_PROGRESS_STATE, JSON.parse(raw));
+            }
+        } catch (e) {}
+    });
+    restoreAllVideoTabsAndPosters();
+}
+
+function clearActiveVideoSession() {
+    if (activeVideoSession && activeVideoSession.handshakeTimer) {
+        clearInterval(activeVideoSession.handshakeTimer);
+        activeVideoSession.handshakeTimer = null;
+    }
+    activeVideoSession = null;
+}
+
+function flushActiveVideoProgress(syncCloud) {
+    if (!activeVideoSession) return;
+    const slotKey = activeVideoSession.slotKey;
+    const cur = VIDEO_PROGRESS_STATE.slots[slotKey];
+    if (cur && activeVideoSession.isPlaying && activeVideoSession.lastDeliveryAt) {
+        const deltaSec = Math.floor((Date.now() - activeVideoSession.lastDeliveryAt) / 1000);
+        if (deltaSec > 0 && deltaSec <= 5) {
+            cur.currentTime = Math.floor(cur.currentTime) + deltaSec;
+            if (cur.duration > 0 && cur.currentTime > cur.duration) {
+                cur.currentTime = cur.duration;
+            }
+            cur.updatedAt = Date.now();
+            activeVideoSession.lastDeliveryAt = Date.now();
+        }
+    }
+    saveVideoProgressImmediate();
+    if (syncCloud && typeof scheduleCloudSync === "function") {
+        scheduleCloudSync();
+    }
 }
 
 function stopLessonVideoBlock(blockEl) {
     if (!blockEl) return;
+    if (activeVideoSession && activeVideoSession.blockEl === blockEl) {
+        flushActiveVideoProgress(false);
+        clearActiveVideoSession();
+    }
     const player = blockEl.querySelector(".lesson-video-player");
     const iframe = player ? player.querySelector("iframe") : null;
     if (iframe) {
         try { iframe.src = "about:blank"; } catch (e) {}
-        const activeTab = blockEl.querySelector(".lv-tab-btn.active");
-        const vid = player.dataset.videoId || "";
-        const startSec = parseInt(player.dataset.startSec || "0", 10) || 0;
-        const posterTitle = (activeTab && activeTab.getAttribute("data-title")) || player.dataset.posterTitle || "Watch Lecture Video";
+        const info = getActiveBlockSlotInfo(blockEl);
+        const vid = info.videoId || player.dataset.videoId || "";
         if (vid) {
-            player.innerHTML = buildLessonPosterHtml(vid, startSec, posterTitle);
+            player.innerHTML = buildLessonPosterHtml(vid, info.defaultStart, info.posterTitle, info.slotKey);
         } else if (player.dataset.defaultPoster) {
             player.innerHTML = player.dataset.defaultPoster;
         } else {
@@ -14306,6 +14612,7 @@ function stopLessonVideoBlock(blockEl) {
         }
     }
     blockEl.querySelectorAll(".lv-ts-btn").forEach(b => b.classList.remove("active"));
+    updateBlockTabBadges(blockEl);
 }
 
 function stopAllLessonVideos(exceptBlockEl) {
@@ -14316,13 +14623,136 @@ function stopAllLessonVideos(exceptBlockEl) {
     });
 }
 
-window.addEventListener("pagehide", () => stopAllLessonVideos(null));
+function handleYouTubePostMessage(e) {
+    if (!e || !e.origin || !/^https:\/\/(www\.)?youtube(-nocookie)?\.com$/i.test(e.origin)) return;
+    if (!activeVideoSession) return;
+    let data = e.data;
+    if (typeof data === "string") {
+        try {
+            data = JSON.parse(data);
+        } catch (err) {
+            return;
+        }
+    }
+    if (!data || typeof data !== "object") return;
+    const player = activeVideoSession.blockEl.querySelector(".lesson-video-player");
+    const iframe = player ? player.querySelector("iframe") : null;
+    if (!iframe) return;
+    const idMatches = data.id && data.id === activeVideoSession.iframeId;
+    const sourceMatches = iframe.contentWindow && e.source === iframe.contentWindow;
+    if (!idMatches && !sourceMatches) return;
 
-function loadLessonVideoFrame(blockEl, videoId, startSec) {
+    activeVideoSession.gotMessage = true;
+    if (activeVideoSession.handshakeTimer) {
+        clearInterval(activeVideoSession.handshakeTimer);
+        activeVideoSession.handshakeTimer = null;
+    }
+
+    if ((data.event === "infoDelivery" || data.event === "initialDelivery") && data.info) {
+        const info = data.info;
+        const slotKey = activeVideoSession.slotKey;
+        const existing = VIDEO_PROGRESS_STATE.slots[slotKey] || {
+            videoId: activeVideoSession.videoId,
+            currentTime: activeVideoSession.defaultStart,
+            duration: 0,
+            defaultStart: activeVideoSession.defaultStart,
+            completed: false,
+            updatedAt: Date.now()
+        };
+
+        if (typeof info.playerState === "number") {
+            activeVideoSession.isPlaying = (info.playerState === 1);
+        }
+        if (typeof info.duration === "number" && isFinite(info.duration) && info.duration > 0) {
+            existing.duration = Math.floor(info.duration);
+        }
+        if (typeof info.currentTime === "number" && isFinite(info.currentTime) && info.currentTime >= 0) {
+            const reportedSec = Math.floor(info.currentTime);
+            const ageMs = Date.now() - activeVideoSession.createdAt;
+            const ignorePreSeekZero = activeVideoSession.startUsed > 3 && ageMs < 4500 && reportedSec < activeVideoSession.startUsed - 3;
+            if (!ignorePreSeekZero) {
+                if (reportedSec > 0 || activeVideoSession.allowZeroReset) {
+                    existing.currentTime = reportedSec;
+                    activeVideoSession.lastDeliveryAt = Date.now();
+                }
+            }
+        }
+        if (info.playerState === 0 || (existing.duration > 30 && existing.currentTime >= existing.duration - 5)) {
+            existing.completed = true;
+        } else if (typeof info.playerState === "number" && info.playerState === 1 && existing.duration > 30 && existing.currentTime < existing.duration - 10) {
+            existing.completed = false;
+        }
+        existing.videoId = activeVideoSession.videoId;
+        existing.defaultStart = activeVideoSession.defaultStart;
+        existing.updatedAt = Date.now();
+        VIDEO_PROGRESS_STATE.slots[slotKey] = existing;
+
+        updateBlockTabBadges(activeVideoSession.blockEl);
+        const lastSavedAt = activeVideoSession.lastSavedAt || 0;
+        if (info.playerState === 2 || info.playerState === 0 || (Date.now() - lastSavedAt) >= 1000) {
+            activeVideoSession.lastSavedAt = Date.now();
+            saveVideoProgressImmediate();
+            if (info.playerState === 2 || info.playerState === 0) {
+                if (typeof scheduleCloudSync === "function") scheduleCloudSync();
+            } else {
+                scheduleVideoCloudSync();
+            }
+        } else {
+            scheduleVideoProgressSave();
+            scheduleVideoCloudSync();
+        }
+    }
+}
+
+window.addEventListener("message", handleYouTubePostMessage);
+window.addEventListener("pagehide", () => {
+    flushActiveVideoProgress(false);
+    stopAllLessonVideos(null);
+});
+window.addEventListener("beforeunload", () => {
+    flushActiveVideoProgress(false);
+});
+document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") {
+        flushActiveVideoProgress(false);
+    }
+});
+
+function restartLessonVideo(blockId) {
+    const block = document.getElementById(blockId);
+    if (!block) return;
+    if (activeVideoSession && activeVideoSession.blockEl === block) {
+        clearActiveVideoSession();
+    }
+    const info = getActiveBlockSlotInfo(block);
+    if (!info.slotKey || !info.videoId) return;
+    VIDEO_PROGRESS_STATE.slots[info.slotKey] = {
+        videoId: info.videoId,
+        currentTime: info.defaultStart,
+        duration: (VIDEO_PROGRESS_STATE.slots[info.slotKey] && VIDEO_PROGRESS_STATE.slots[info.slotKey].duration) || 0,
+        defaultStart: info.defaultStart,
+        completed: false,
+        updatedAt: Date.now()
+    };
+    saveVideoProgressImmediate();
+    updateBlockTabBadges(block);
+    loadLessonVideoFrame(block, info.videoId, info.defaultStart, { forceExactStart: true, allowZeroReset: true });
+}
+
+function loadLessonVideoFrame(blockEl, videoId, startSec, opts) {
     if (!blockEl || !videoId) return;
+    if (activeVideoSession) {
+        flushActiveVideoProgress(false);
+        clearActiveVideoSession();
+    }
     stopAllLessonVideos(blockEl);
     const player = blockEl.querySelector(".lesson-video-player");
     if (!player) return;
+
+    const info = getActiveBlockSlotInfo(blockEl);
+    const slotKey = info.slotKey || `${blockEl.id}::default`;
+    const defaultStart = info.defaultStart || Math.max(0, Math.floor(Number(startSec) || 0));
+
     const existingIframe = player.querySelector("iframe");
     if (existingIframe) {
         try { existingIframe.src = "about:blank"; } catch (e) {}
@@ -14335,55 +14765,167 @@ function loadLessonVideoFrame(blockEl, videoId, startSec) {
             if (img && img.alt) player.dataset.posterTitle = img.alt;
         }
     }
-    const sec = Number(startSec) || 0;
+
+    const forceExact = Boolean(opts && opts.forceExactStart);
+    const saved = VIDEO_PROGRESS_STATE.slots[slotKey];
+    let sec = Math.max(0, Math.floor(Number(startSec) || 0));
+    if (!forceExact) {
+        sec = (saved && !saved.completed && Number(saved.currentTime) > defaultStart + 2)
+            ? Math.floor(Number(saved.currentTime))
+            : Math.max(sec, defaultStart);
+    }
+
+    const iframeId = "lv-yt-iframe-" + (++ytIframeSeq);
     player.dataset.videoId = videoId;
     player.dataset.startSec = String(sec);
+    player.dataset.iframeId = iframeId;
+
     const startParam = sec > 0 ? "&start=" + sec : "";
-    player.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0${startParam}" title="Lecture Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+    const originParam = (typeof location !== "undefined" && (location.protocol === "http:" || location.protocol === "https:"))
+        ? "&origin=" + encodeURIComponent(location.origin)
+        : "";
+    player.innerHTML = `<iframe id="${iframeId}" src="https://www.youtube.com/embed/${videoId}?enablejsapi=1&autoplay=1&rel=0&playsinline=1${startParam}${originParam}" title="Lecture Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+
+    if (!VIDEO_PROGRESS_STATE.slots[slotKey]) {
+        VIDEO_PROGRESS_STATE.slots[slotKey] = {
+            videoId,
+            currentTime: sec,
+            duration: 0,
+            defaultStart,
+            completed: false,
+            updatedAt: Date.now()
+        };
+        saveVideoProgressImmediate();
+    }
+
+    activeVideoSession = {
+        blockEl,
+        slotKey,
+        videoId,
+        defaultStart,
+        startUsed: sec,
+        iframeId,
+        createdAt: Date.now(),
+        lastDeliveryAt: Date.now(),
+        isPlaying: true,
+        gotMessage: false,
+        allowZeroReset: Boolean(opts && opts.allowZeroReset),
+        handshakeTimer: null
+    };
+
+    const mountedIframe = player.querySelector("iframe");
+    if (mountedIframe) {
+        const sendHandshake = () => {
+            if (!mountedIframe.contentWindow) return;
+            try {
+                mountedIframe.contentWindow.postMessage(JSON.stringify({ event: "listening", id: iframeId, channel: "widget" }), "*");
+                mountedIframe.contentWindow.postMessage(JSON.stringify({ event: "command", func: "addEventListener", args: ["onStateChange"], id: iframeId, channel: "widget" }), "*");
+            } catch (err) {}
+        };
+        if (typeof mountedIframe.addEventListener === "function") {
+            mountedIframe.addEventListener("load", sendHandshake);
+        }
+        let attempts = 0;
+        activeVideoSession.handshakeTimer = setInterval(() => {
+            attempts += 1;
+            if (!activeVideoSession || activeVideoSession.gotMessage || attempts > 10) {
+                if (activeVideoSession && activeVideoSession.handshakeTimer) {
+                    clearInterval(activeVideoSession.handshakeTimer);
+                    activeVideoSession.handshakeTimer = null;
+                }
+                return;
+            }
+            sendHandshake();
+        }, 450);
+    }
 }
 
 function selectLessonVideo(btnEl, videoId, startSec, targetPanelId) {
     const block = btnEl ? btnEl.closest(".lesson-video-block") : null;
     if (!block) return;
+
+    if (activeVideoSession && activeVideoSession.blockEl === block) {
+        flushActiveVideoProgress(false);
+        clearActiveVideoSession();
+    }
+
     block.querySelectorAll(".lv-tab-btn").forEach(b => b.classList.remove("active"));
-    if (btnEl) btnEl.classList.add("active");
+    if (btnEl) {
+        btnEl.classList.add("active");
+        if (block.id && btnEl.id) {
+            VIDEO_PROGRESS_STATE.activeTabs[block.id] = btnEl.id;
+            saveVideoProgressImmediate();
+        }
+    }
     block.querySelectorAll(".lv-meta-pane").forEach(p => {
         p.style.display = (p.id === targetPanelId) ? "block" : "none";
     });
+
     const player = block.querySelector(".lesson-video-player");
     const posterTitle = (btnEl && btnEl.getAttribute("data-title")) || "Watch Lecture Video";
-    const sec = Number(startSec) || 0;
+    const defaultStart = Math.max(0, Math.floor(Number(startSec) || 0));
+    const slotKey = (block.id && btnEl && btnEl.id) ? `${block.id}::${btnEl.id}` : `${block.id}::default`;
+    const resumeSec = getEffectiveStartSeconds(slotKey, defaultStart);
+
+    const hasIframe = player && player.querySelector("iframe");
     if (player) {
         player.dataset.videoId = videoId;
-        player.dataset.startSec = String(sec);
+        player.dataset.defaultStart = String(defaultStart);
+        player.dataset.startSec = String(resumeSec);
         player.dataset.posterTitle = posterTitle;
     }
-    const hasIframe = player && player.querySelector("iframe");
+
     if (hasIframe) {
-        loadLessonVideoFrame(block, videoId, sec);
+        loadLessonVideoFrame(block, videoId, resumeSec, { forceExactStart: true });
     } else if (player) {
-        player.innerHTML = buildLessonPosterHtml(videoId, sec, posterTitle);
+        player.innerHTML = buildLessonPosterHtml(videoId, defaultStart, posterTitle, slotKey);
     }
+    updateBlockTabBadges(block);
 }
 
 function seekLessonVideo(triggerEl, videoId, startSec, tabBtnId, panelId) {
     const block = triggerEl ? triggerEl.closest(".lesson-video-block") : null;
     if (!block) return;
+
+    if (activeVideoSession) {
+        flushActiveVideoProgress(false);
+        clearActiveVideoSession();
+    }
+
     if (tabBtnId && panelId) {
         const tabBtn = document.getElementById(tabBtnId);
         if (tabBtn) {
             block.querySelectorAll(".lv-tab-btn").forEach(b => b.classList.remove("active"));
             tabBtn.classList.add("active");
+            if (block.id && tabBtn.id) {
+                VIDEO_PROGRESS_STATE.activeTabs[block.id] = tabBtn.id;
+            }
             block.querySelectorAll(".lv-meta-pane").forEach(p => {
                 p.style.display = (p.id === panelId) ? "block" : "none";
             });
         }
     }
+
+    const sec = Math.max(0, Math.floor(Number(startSec) || 0));
+    const info = getActiveBlockSlotInfo(block);
+    if (info.slotKey) {
+        const prevDur = (VIDEO_PROGRESS_STATE.slots[info.slotKey] && VIDEO_PROGRESS_STATE.slots[info.slotKey].duration) || 0;
+        VIDEO_PROGRESS_STATE.slots[info.slotKey] = {
+            videoId,
+            currentTime: sec,
+            duration: prevDur,
+            defaultStart: info.defaultStart,
+            completed: false,
+            updatedAt: Date.now()
+        };
+        saveVideoProgressImmediate();
+    }
+
     block.querySelectorAll(".lv-ts-btn").forEach(b => b.classList.remove("active"));
     if (triggerEl && triggerEl.classList.contains("lv-ts-btn")) {
         triggerEl.classList.add("active");
     }
-    loadLessonVideoFrame(block, videoId, startSec);
+    loadLessonVideoFrame(block, videoId, sec, { forceExactStart: true, allowZeroReset: sec === 0 });
 }
 
 
@@ -14655,11 +15197,15 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     } catch(e) {}
 
-    // 2. Switch to initial view & render math ONLY for the active topic container (<50ms vs >4000ms)
+    // 2. Initialize video progress metadata & restore saved video tabs/posters
+    initLessonVideoMetadata();
+    loadLocalVideoProgress(getCurrentProfile());
+
+    // 3. Switch to initial view & render math ONLY for the active topic container (<50ms vs >4000ms)
     switchTopic(portalState.activeTopic || "v1");
     switchTab(portalState.activeTab || "notes");
 
-    // 3. Kick off progressive background idle pre-rendering
+    // 4. Kick off progressive background idle pre-rendering
     queueBackgroundMathPrecache();
     
 });
@@ -14773,7 +15319,15 @@ async function fetchCloudProfileData(prof) {
 }
 
 function mergeCloudData(cloudData, prof) {
-    if (!cloudData || typeof APP === 'undefined') return;
+    if (!cloudData) return;
+    if (cloudData.videoProgress && typeof cloudData.videoProgress === 'object') {
+        const vpChanged = mergeVideoProgressObjects(VIDEO_PROGRESS_STATE, cloudData.videoProgress);
+        if (vpChanged) {
+            saveVideoProgressImmediate();
+            restoreAllVideoTabsAndPosters();
+        }
+    }
+    if (typeof APP === 'undefined') return;
     let changed = false;
     if (cloudData.progress && typeof cloudData.progress === 'object') {
         for (const [qid, p] of Object.entries(cloudData.progress)) {
@@ -14814,15 +15368,15 @@ function scheduleCloudSync() {
 }
 
 async function syncProfileToCloud() {
-    if (typeof APP === 'undefined') return;
     const prof = getCurrentProfile();
     const key = 'math201_final_user_' + prof;
     const payload = {
         profile: prof,
-        progress: APP.progress,
-        bookmarks: Array.from(APP.bookmarks),
+        progress: (typeof APP !== 'undefined' && APP.progress) ? APP.progress : {},
+        bookmarks: (typeof APP !== 'undefined' && APP.bookmarks) ? Array.from(APP.bookmarks) : [],
+        videoProgress: VIDEO_PROGRESS_STATE,
         totalQuestions: 201,
-        attempted: Object.keys(APP.progress).length,
+        attempted: (typeof APP !== 'undefined' && APP.progress) ? Object.keys(APP.progress).length : 0,
         updatedAt: Date.now()
     };
 
@@ -14884,6 +15438,7 @@ function switchActiveProfile(newProf) {
     }
 
     closeProfileSwitchModal();
+    loadLocalVideoProgress(newProf);
     fetchCloudProfileData(newProf);
 }
 
