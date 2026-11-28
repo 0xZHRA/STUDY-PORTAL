@@ -310,8 +310,8 @@ body {
     position: fixed;
     top: 0;
     inset-inline-start: 0;
-    height: 2px;
-    background: var(--text-primary);
+    height: 2.5px;
+    background: var(--accent, var(--text-primary));
     width: 0%;
     z-index: 9999;
     pointer-events: none;
@@ -332,7 +332,7 @@ body {
 }
 
 .nav-inner-container {
-    max-width: 900px;
+    max-width: 960px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -423,7 +423,7 @@ body {
     color: var(--text-secondary);
     font-size: 13px;
     font-weight: 600;
-    padding: 6px 12px;
+    padding: 6px 11px;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.15s ease;
@@ -432,6 +432,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 5px;
+    white-space: nowrap;
 }
 .tab-btn:hover {
     color: var(--text-primary);
@@ -472,6 +473,7 @@ body {
     cursor: pointer;
     transition: all 0.15s ease;
     user-select: none;
+    white-space: nowrap;
 }
 .btn-theme-toggle:hover {
     background: var(--bg-subtle);
@@ -482,13 +484,13 @@ body {
     flex-shrink: 0;
 }
 [data-scheme="light"] .btn-theme-toggle .icon-sun,
-[data-theme="light"] .btn-theme-toggle .icon-sun { display: none; }
+[data-theme="light"] .btn-theme-toggle .icon-sun { display: block; }
 [data-scheme="light"] .btn-theme-toggle .icon-moon,
-[data-theme="light"] .btn-theme-toggle .icon-moon { display: block; }
+[data-theme="light"] .btn-theme-toggle .icon-moon { display: none; }
 [data-scheme="dark"] .btn-theme-toggle .icon-sun,
-[data-theme="dark"] .btn-theme-toggle .icon-sun { display: block; }
+[data-theme="dark"] .btn-theme-toggle .icon-sun { display: none; }
 [data-scheme="dark"] .btn-theme-toggle .icon-moon,
-[data-theme="dark"] .btn-theme-toggle .icon-moon { display: none; }
+[data-theme="dark"] .btn-theme-toggle .icon-moon { display: block; }
 
 .theme-picker-wrap {
     position: relative;
@@ -600,6 +602,7 @@ body {
     cursor: pointer;
     transition: all 0.15s ease;
     user-select: none;
+    white-space: nowrap;
 }
 .btn-profile-pill:hover {
     background: var(--bg-subtle);
@@ -1790,18 +1793,107 @@ html.auth-passed .auth-gate-screen {
 }
 
 /* Responsive adjustments */
+@media (max-width: 820px) {
+    .btn-profile-pill .profile-prefix {
+        display: none;
+    }
+    .btn-topics-menu {
+        max-width: 210px;
+    }
+}
 @media (max-width: 768px) {
     .nav-inner-container {
         flex-wrap: wrap;
-    }
-    .btn-topics-menu {
-        max-width: 180px;
+        gap: 8px;
     }
     .topic-modal-sheet {
         max-height: 90vh;
     }
     .video-grid {
         grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 640px) {
+    .top-nav-bar {
+        padding: 8px 10px;
+    }
+    .nav-inner-container {
+        gap: 7px 8px;
+    }
+    .brand-group {
+        gap: 6px;
+    }
+    .brand-text {
+        font-size: 13.5px;
+    }
+    .brand-badge {
+        font-size: 9.5px;
+        padding: 2px 5px;
+    }
+    .btn-topics-menu {
+        flex: 1 1 140px;
+        max-width: none;
+        min-width: 0;
+        min-height: 34px;
+        padding: 5px 10px;
+        font-size: 12.5px;
+        justify-content: space-between;
+    }
+    .nav-right-controls {
+        width: 100%;
+        justify-content: space-between;
+        gap: 6px;
+    }
+    .tab-btn {
+        padding: 5px 9px;
+        font-size: 12.5px;
+        white-space: nowrap;
+    }
+    .exam-bank-badge {
+        display: none;
+    }
+    .btn-theme-toggle, .btn-profile-pill {
+        padding: 6px 9px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+    .btn-profile-pill .profile-sync-text {
+        display: none;
+    }
+    .btn-profile-pill .profile-sync-dot {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--paper-green, #10b981);
+        flex-shrink: 0;
+    }
+    .theme-picker-menu {
+        position: fixed;
+        top: 90px;
+        inset-inline-end: 10px;
+        max-width: calc(100vw - 20px);
+    }
+    .main-wrapper {
+        padding: 14px 10px !important;
+    }
+    .page-title {
+        font-size: 22px;
+    }
+    .section-card, .practice-card {
+        padding: 15px 12px;
+        margin-bottom: 18px;
+    }
+    .lesson-video-block {
+        padding: 0 !important;
+    }
+    .lesson-video-header, .lesson-video-meta {
+        padding: 11px 12px;
+    }
+    .lv-play-pill {
+        white-space: nowrap;
+        padding: 8px 14px;
+        font-size: 12.5px;
     }
 }
 
@@ -2161,17 +2253,52 @@ html.auth-passed .auth-gate-screen {
     font-variant-numeric: tabular-nums;
 }
 .fx-card .filter-chip.active {
-    background: var(--accent-primary);
-    border-color: var(--accent-primary);
-    color: var(--accent-fg);
+    background: var(--bg-subtle);
+    background: color-mix(in srgb, var(--accent, #2563eb) 13%, var(--bg-card));
+    border-color: var(--accent, var(--accent-primary));
+    color: var(--text-primary);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent, #2563eb) 22%, transparent);
 }
 .fx-card .filter-chip.active .chip-code,
 .fx-card .filter-chip.active .chip-name {
-    color: var(--accent-fg);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+.fx-card .filter-chip.active .chip-code {
+    color: var(--accent, var(--text-primary));
 }
 .fx-card .filter-chip.active .chip-sub {
-    color: var(--accent-fg);
-    opacity: 0.6;
+    color: var(--text-secondary);
+    opacity: 0.85;
+}
+.fx-drawer-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 6px 11px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+.fx-drawer-toggle:hover {
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+}
+.fx-drawer-toggle .fx-drawer-chevron {
+    transition: transform 0.18s ease;
+    font-size: 10px;
+}
+.fx-card.filters-collapsed .fx-drawer-toggle .fx-drawer-chevron {
+    transform: rotate(-90deg);
+}
+.fx-card.filters-collapsed .fx-collapsible {
+    display: none;
 }
 
 .fx-foot {
@@ -3328,9 +3455,10 @@ div.choice-btn {
 
             <button class="btn-profile-pill" id="btnProfileSwitch" onclick="openProfileSwitchModal()" aria-label="Switch User Profile" title="Switch User Profile (pass / pine / full)">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                <span>Profile:</span>
+                <span class="profile-prefix">Profile:</span>
                 <strong class="profile-name" id="activeProfileLabel">pass</strong>
-                <span class="profile-sync-status" id="profileSyncStatus" title="Cross-Device Cloud Sync Status">• synced</span>
+                <span class="profile-sync-dot" aria-hidden="true"></span>
+                <span class="profile-sync-status profile-sync-text" id="profileSyncStatus" title="Cross-Device Cloud Sync Status">• synced</span>
             </button>
         </div>
     </div>
@@ -3391,7 +3519,7 @@ div.choice-btn {
                 <div class="topic-sheet-title">13.7 Tangent Planes and Normal Lines</div>
                 <div class="topic-sheet-sub">Chapter 13: Functions of Several Variables — Level Surfaces, Normal Lines &amp; Surface Intersections</div>
             </div>
-            <span class="topic-sheet-pcount">Final Topic</span>
+            <span class="topic-sheet-pcount">8 Qs</span>
         </button>
 
         <button class="topic-sheet-item" data-vid="v2" onclick="switchTopic('v2'); closeTopicsModal();">
@@ -3400,7 +3528,7 @@ div.choice-btn {
                 <div class="topic-sheet-title">13.8 Extrema of Functions of Two Variables</div>
                 <div class="topic-sheet-sub">Chapter 13: Functions of Several Variables — Critical Points, Second Partials Test &amp; Closed Boundaries</div>
             </div>
-            <span class="topic-sheet-pcount">Final Topic</span>
+            <span class="topic-sheet-pcount">14 Qs</span>
         </button>
 
         <button class="topic-sheet-item" data-vid="v3" onclick="switchTopic('v3'); closeTopicsModal();">
@@ -3409,7 +3537,7 @@ div.choice-btn {
                 <div class="topic-sheet-title">13.9 Applications of Extrema (Optimization)</div>
                 <div class="topic-sheet-sub">Chapter 13: Functions of Several Variables — Constrained Geometric Optimization &amp; Shortest Distance</div>
             </div>
-            <span class="topic-sheet-pcount">Final Topic</span>
+            <span class="topic-sheet-pcount">7 Qs</span>
         </button>
 
         <button class="topic-sheet-item" data-vid="v4" onclick="switchTopic('v4'); closeTopicsModal();">
@@ -3418,7 +3546,7 @@ div.choice-btn {
                 <div class="topic-sheet-title">13.10 Lagrange Multipliers</div>
                 <div class="topic-sheet-sub">Chapter 13: Functions of Several Variables — Gradient Tangency, Single &amp; Two-Constraint Optimization</div>
             </div>
-            <span class="topic-sheet-pcount">Final Topic</span>
+            <span class="topic-sheet-pcount">9 Qs</span>
         </button>
 
         <button class="topic-sheet-item" data-vid="v5" onclick="switchTopic('v5'); closeTopicsModal();">
@@ -3427,7 +3555,7 @@ div.choice-btn {
                 <div class="topic-sheet-title">14.1 Iterated Integrals and Area in the Plane</div>
                 <div class="topic-sheet-sub">Chapter 14: Multiple Integration — Vertical/Horizontal Slicing &amp; Reversing Order of Integration</div>
             </div>
-            <span class="topic-sheet-pcount">Final Topic</span>
+            <span class="topic-sheet-pcount">17 Qs</span>
         </button>
 
         <button class="topic-sheet-item" data-vid="v6" onclick="switchTopic('v6'); closeTopicsModal();">
@@ -3436,7 +3564,7 @@ div.choice-btn {
                 <div class="topic-sheet-title">14.2 Double Integrals and Volume</div>
                 <div class="topic-sheet-sub">Chapter 14: Multiple Integration — Volumes Under/Between Surfaces &amp; Average Value</div>
             </div>
-            <span class="topic-sheet-pcount">Final Topic</span>
+            <span class="topic-sheet-pcount">14 Qs</span>
         </button>
 
         <button class="topic-sheet-item" data-vid="v7" onclick="switchTopic('v7'); closeTopicsModal();">
@@ -3445,7 +3573,7 @@ div.choice-btn {
                 <div class="topic-sheet-title">14.3 Change of Variables: Polar Coordinates</div>
                 <div class="topic-sheet-sub">Chapter 14: Multiple Integration — Polar Area Element r dr dθ, Disks, Annuli &amp; Shifted Circles</div>
             </div>
-            <span class="topic-sheet-pcount">Final Topic</span>
+            <span class="topic-sheet-pcount">9 Qs</span>
         </button>
 
         <button class="topic-sheet-item" data-vid="v8" onclick="switchTopic('v8'); closeTopicsModal();">
@@ -3454,7 +3582,7 @@ div.choice-btn {
                 <div class="topic-sheet-title">14.6 Triple Integrals and Applications</div>
                 <div class="topic-sheet-sub">Chapter 14: Multiple Integration — 3D Roof-to-Floor Bounds, Projections &amp; Volumes</div>
             </div>
-            <span class="topic-sheet-pcount">Final Topic</span>
+            <span class="topic-sheet-pcount">9 Qs</span>
         </button>
 
         <button class="topic-sheet-item" data-vid="v9" onclick="switchTopic('v9'); closeTopicsModal();">
@@ -3463,7 +3591,7 @@ div.choice-btn {
                 <div class="topic-sheet-title">11.7 Cylindrical and Spherical Coordinates</div>
                 <div class="topic-sheet-sub">Chapter 11: Space Coordinates — Cylindrical (r, θ, z) &amp; Spherical (ρ, θ, φ) Conversions &amp; Surfaces</div>
             </div>
-            <span class="topic-sheet-pcount">Final Topic</span>
+            <span class="topic-sheet-pcount">5 Qs</span>
         </button>
 
         <button class="topic-sheet-item" data-vid="v10" onclick="switchTopic('v10'); closeTopicsModal();">
@@ -3472,7 +3600,7 @@ div.choice-btn {
                 <div class="topic-sheet-title">14.7 Triple Integrals in Other Coordinates</div>
                 <div class="topic-sheet-sub">Chapter 14: Multiple Integration — Cylindrical (r dz dr dθ) &amp; Spherical (ρ² sin φ dρ dφ dθ) Integrals</div>
             </div>
-            <span class="topic-sheet-pcount">Final Topic</span>
+            <span class="topic-sheet-pcount">15 Qs</span>
         </button>
         </div>
     </div>
@@ -3484,107 +3612,7 @@ div.choice-btn {
         
         
 <style id="enhanced-notes-components-style">
-
-/* ========================================================
-   ENHANCED STYLING FOR TOPIC 01 & 02 LECTURE NOTES
-   Dark/Light Theme Compatible with High Visual Hierarchy
-   ======================================================== */
-.formula-box {
-    background: var(--bg-subtle, #f4f4f5);
-    border: 1px solid var(--border-subtle, #e4e4e7);
-    border-inline-start: 4px solid var(--accent-primary, #18181b);
-    border-radius: 8px;
-    padding: 16px 20px;
-    margin: 18px 0;
-}
-.formula-box h4 {
-    margin: 0 0 10px 0;
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-primary, #18181b);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.formula-box h4::before {
-    content: "";
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent-primary, #18181b);
-}
-.rule-box {
-    background: var(--status-ok-bg, rgba(21, 128, 61, 0.06));
-    border: 1px solid var(--status-ok-border, rgba(21, 128, 61, 0.25));
-    border-inline-start: 4px solid var(--status-ok, #15803d);
-    border-radius: 8px;
-    padding: 16px 20px;
-    margin: 18px 0;
-}
-.rule-box h4 {
-    margin: 0 0 10px 0;
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--status-ok, #15803d);
-}
-.pitfall-box {
-    background: var(--status-err-bg, rgba(185, 28, 28, 0.06));
-    border: 1px solid var(--status-err-border, rgba(185, 28, 28, 0.25));
-    border-inline-start: 4px solid var(--status-err, #b91c1c);
-    border-radius: 8px;
-    padding: 16px 20px;
-    margin: 18px 0;
-}
-.pitfall-box h4 {
-    margin: 0 0 10px 0;
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--status-err, #b91c1c);
-}
-.solution-step {
-    margin-bottom: 16px;
-}
-.solution-step .step-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
-}
-.solution-step .step-num {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: var(--accent-primary, #18181b);
-    color: var(--accent-fg, #ffffff);
-    font-size: 12px;
-    font-weight: 700;
-    flex-shrink: 0;
-}
-.solution-step .step-title {
-    font-size: 14.5px;
-    font-weight: 600;
-    color: var(--text-primary, #18181b);
-}
-.solution-step .step-body {
-    padding-inline-start: 34px;
-    line-height: 1.65;
-    color: var(--text-secondary, #52525b);
-}
-
-
-/* ========================================================
-   ENHANCED TOPIC 03 & 04 EDITORIAL STYLING
-   ======================================================== */
+/* Top-of-Lesson Video Block, Shared Callouts & Editorial Components */
 .formula-box, .rule-box {
     background: var(--bg-subtle, rgba(255, 255, 255, 0.04));
     border: 1px solid var(--border-strong, #3b82f6);
@@ -3937,8 +3965,8 @@ div.choice-btn {
 }
 
 .note-diff-line {
-    background: rgba(245, 158, 11, 0.09);
-    border: 1px solid rgba(245, 158, 11, 0.35);
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.32);
     border-inline-start: 4px solid #d97706;
     border-radius: 7px;
     padding: 10px 14px;
@@ -3946,7 +3974,13 @@ div.choice-btn {
     font-size: 13.5px;
     color: var(--text-primary);
 }
-[data-scheme="dark"] .note-diff-line { color: #fde68a; }
+.note-diff-line > strong:first-child { color: #b45309; }
+[data-scheme="dark"] .note-diff-line {
+    background: rgba(245, 158, 11, 0.07);
+    border-color: rgba(245, 158, 11, 0.28);
+    color: var(--text-primary);
+}
+[data-scheme="dark"] .note-diff-line > strong:first-child { color: #fbbf24; }
 
 .svg-figure-card {
     background: var(--bg-subtle);
@@ -4115,8 +4149,103 @@ div.choice-btn {
 .lesson .source-tag { display: inline-block; margin-top: .9rem; font-size: .75rem;
   color: var(--muted, #888); border: 1px solid currentColor; border-radius: 999px; padding: .1rem .65rem; }
 
-.quick-check .options { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem 2rem; margin: 1rem 0; }
-@media (max-width: 640px) { .quick-check .options { grid-template-columns: 1fr; } }
+.concept-card .lesson > p:first-of-type { max-width: none; }
+.page-stream [id] { scroll-margin-top: 86px; }
+.page-stream > .section-card:not(:first-child) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 520px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes topicFadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .topic-page-unit.is-entering { animation: topicFadeIn 180ms ease-out; }
+  details[open] .quick-check-ans { animation: topicFadeIn 150ms ease-out; }
+}
+
+.quick-check .options { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem 1.25rem; margin: 1rem 0; }
+.quick-check .options > div.qc-opt-btn {
+  padding: .65rem .85rem;
+  border: 1px solid var(--border-subtle, var(--border));
+  border-radius: 9px;
+  background: var(--bg-subtle, var(--surface-2));
+  cursor: pointer;
+  transition: border-color .15s ease, background-color .15s ease, transform .12s ease;
+  user-select: none;
+}
+.quick-check .options > div.qc-opt-btn:hover:not(.qc-locked) {
+  border-color: var(--accent, #3b82f6);
+  transform: translateY(-1px);
+}
+.quick-check .options > div.qc-opt-btn:focus-visible {
+  outline: 2px solid var(--accent, #3b82f6);
+  outline-offset: 2px;
+}
+.quick-check .options > div.qc-opt-btn.is-correct {
+  border-color: var(--status-ok, #22c55e);
+  background: var(--status-ok-bg, rgba(34, 197, 94, .12));
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.quick-check .options > div.qc-opt-btn.is-wrong {
+  border-color: var(--status-err, #ef4444);
+  background: var(--status-err-bg, rgba(239, 68, 68, .12));
+  color: var(--text-primary);
+}
+.qc-status-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px; margin-top: .5rem; font-size: 12.5px; font-weight: 600;
+}
+.qc-status-msg.ok { color: var(--status-ok); }
+.qc-status-msg.bad { color: var(--status-err); }
+.qc-reset-btn {
+  background: transparent; border: 1px solid var(--border-subtle);
+  color: var(--text-muted); border-radius: 6px; padding: 2px 8px;
+  font-size: 11.5px; font-weight: 600; cursor: pointer;
+}
+.qc-reset-btn:hover { color: var(--text-primary); border-color: var(--border-strong); }
+
+.teleport-chip-practice {
+  background: color-mix(in srgb, var(--accent, #2563eb) 10%, var(--bg-card));
+  border-color: var(--accent, #2563eb);
+  color: var(--accent, #2563eb);
+}
+.teleport-chip-practice:hover {
+  background: var(--accent, #2563eb);
+  color: #ffffff;
+}
+
+.lesson-footer-nav {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 12px; padding: 16px 18px; margin-top: 24px;
+  background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+.lesson-nav-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--bg-subtle); border: 1px solid var(--border-subtle);
+  color: var(--text-primary); border-radius: 9px;
+  padding: 9px 14px; font-size: 13px; font-weight: 600; cursor: pointer;
+  transition: all 0.15s ease;
+}
+.lesson-nav-btn:hover { border-color: var(--border-strong); background: var(--bg-card); }
+.lesson-nav-btn-practice {
+  background: var(--accent-primary); border-color: var(--accent-primary); color: var(--accent-fg);
+}
+.lesson-nav-btn-practice:hover { opacity: 0.92; background: var(--accent-primary); }
+
+@media (max-width: 640px) {
+  .quick-check .options { grid-template-columns: 1fr; gap: .6rem; }
+  .lesson .example, .lesson .why, .lesson .formula-box, .lesson .quick-check {
+    padding: .95rem 1rem; margin: 1.35rem 0; border-radius: 10px;
+  }
+  .lesson .step { padding-left: .75rem; margin: .9rem 0; }
+  .katex-display { font-size: .92em; }
+  .lesson-footer-nav { flex-direction: column; align-items: stretch; }
+  .lesson-nav-btn { justify-content: center; }
+}
 
 .lv-progress-track {
   position: absolute; left: 0; right: 0; bottom: 0; height: 5px;
@@ -14063,7 +14192,7 @@ div.choice-btn {
             </div>
 
             <!-- Filter Card -->
-            <div class="fx-card">
+            <div class="fx-card" id="fxCard">
                 <div class="fx-top">
                     <div class="search-input-wrapper fx-search">
                         <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -14079,8 +14208,13 @@ div.choice-btn {
                         <button type="button" class="status-pill-btn" data-status="CORRECT" onclick="setStatusFilter('CORRECT')">Correct</button>
                         <button type="button" class="status-pill-btn" data-status="INCORRECT" onclick="setStatusFilter('INCORRECT')">Incorrect</button>
                     </div>
+                    <button type="button" class="fx-drawer-toggle" id="btnToggleFilterDrawer" onclick="toggleFilterDrawer()" aria-expanded="true">
+                        <span id="fxDrawerLabel">Filters</span>
+                        <span class="fx-drawer-chevron">&#9662;</span>
+                    </button>
                 </div>
 
+                <div class="fx-collapsible" id="fxCollapsibleBody">
                 <div class="fx-block">
                     <div class="fx-block-head">
                         <span class="fx-title">Sections</span>
@@ -14103,6 +14237,7 @@ div.choice-btn {
                         </div>
                     </div>
                     <div class="fx-rows fx-rows-inline" id="termsChipsGrid"></div>
+                </div>
                 </div>
 
                 <div class="fx-foot">
@@ -14447,10 +14582,9 @@ window.addEventListener("scroll", () => {
             const curY = window.scrollY || document.documentElement.scrollTop;
             if (portalState.activeTab === "notes") {
                 portalState.topicScroll[portalState.activeTopic] = curY;
-            } else if (portalState.activeTab === "practice") {
-                portalState.practiceScroll[portalState.activeTopic] = curY;
-            } else if (portalState.activeTab === "videos") {
-                portalState.videosScroll = curY;
+                if (typeof updateActiveTeleportChip === "function") updateActiveTeleportChip();
+            } else if (portalState.activeTab === "exambank") {
+                portalState.exambankScroll = curY;
             }
             scheduleSaveState();
             scrollTicking = false;
@@ -14503,7 +14637,14 @@ function switchTopic(topicId) {
 
     // Show active topic page
     const curNote = document.getElementById("page-" + topicId);
-    if (curNote) curNote.style.display = "block";
+    if (curNote) {
+        curNote.style.display = "block";
+        if (prevTopic !== topicId && curNote.classList) {
+            curNote.classList.remove("is-entering");
+            void curNote.offsetWidth;
+            curNote.classList.add("is-entering");
+        }
+    }
 
     // Stop any playing lecture video on hidden pages (or the previous page when switching topics)
     if (prevTopic !== topicId) {
@@ -15390,51 +15531,13 @@ function initKaTeXWhenReady() {
         setTimeout(initKaTeXWhenReady, 50);
         return;
     }
-    const activeId = (portalState.activeTab === "practice") 
-        ? "practice-" + portalState.activeTopic + "-page" 
-        : "page-" + portalState.activeTopic;
+    const activeId = "page-" + portalState.activeTopic;
     renderedContainers.delete(activeId);
     renderTopicMath(activeId);
-    queueBackgroundMathPrecache();
 }
 
-// Progressive background idle pre-caching: renders remaining topics without blocking main thread
-function queueBackgroundMathPrecache() {
-    const queue = [];
-    // Prioritize active topic's practice/notes partner first
-    if (portalState.activeTab === "notes") {
-        queue.push("practice-" + portalState.activeTopic + "-page");
-    } else {
-        queue.push("page-" + portalState.activeTopic);
-    }
-    // Then queue all other 11 topics
-    for (let i = 1; i <= 10; i++) {
-        const tid = "v" + i;
-        if (tid !== portalState.activeTopic) {
-            queue.push("page-" + tid);
-            queue.push("practice-" + tid + "-page");
-        }
-    }
-
-    function processNextIdle() {
-        if (queue.length === 0) return;
-        const nextId = queue.shift();
-        if (!renderedContainers.has(nextId)) {
-            renderTopicMath(nextId);
-        }
-        if (window.requestIdleCallback) {
-            window.requestIdleCallback(processNextIdle, { timeout: 1000 });
-        } else {
-            setTimeout(processNextIdle, 80);
-        }
-    }
-
-    if (window.requestIdleCallback) {
-        window.requestIdleCallback(processNextIdle, { timeout: 800 });
-    } else {
-        setTimeout(processNextIdle, 100);
-    }
-}
+// Legacy stub kept harmlessly: KaTeX renders lazily per active topic for <35ms switches without 350k-node bloat
+function queueBackgroundMathPrecache() {}
 
 const PORTAL_THEMES = {
     'light':        { label: 'Studio Paper',   shortLabel: 'Paper',       scheme: 'light' },
@@ -15514,8 +15617,207 @@ document.addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         closeThemeMenu();
+        closeTopicsModal();
+        closeProfileSwitchModal();
+        closeQuickAnchors();
+    } else if (e.altKey && (e.key === 'ArrowRight' || e.key === 'ArrowLeft') && portalState.activeTab === 'notes') {
+        const curNum = parseInt((portalState.activeTopic || 'v1').replace('v', ''), 10) || 1;
+        const nextNum = e.key === 'ArrowRight' ? curNum + 1 : curNum - 1;
+        if (nextNum >= 1 && nextNum <= 10) {
+            e.preventDefault();
+            switchTopic('v' + nextNum);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     }
 });
+
+const TOPIC_TO_SECTION = {
+    v1:  { sec: '13.7', count: 8 },
+    v2:  { sec: '13.8', count: 14 },
+    v3:  { sec: '13.9', count: 7 },
+    v4:  { sec: '13.10', count: 9 },
+    v5:  { sec: '14.1', count: 17 },
+    v6:  { sec: '14.2', count: 14 },
+    v7:  { sec: '14.3', count: 9 },
+    v8:  { sec: '14.6', count: 9 },
+    v9:  { sec: '11.7', count: 5 },
+    v10: { sec: '14.7', count: 15 }
+};
+
+function updateActiveTeleportChip() {
+    if (portalState.activeTab !== 'notes') return;
+    const page = document.getElementById('page-' + portalState.activeTopic);
+    if (!page || typeof page.querySelectorAll !== 'function') return;
+    const chips = Array.from(page.querySelectorAll('.teleport-chip[onclick*="teleportTo"]'));
+    if (!chips.length) return;
+    let activeIdx = 0;
+    const threshold = 130;
+    chips.forEach((chip, i) => {
+        const m = (chip.getAttribute('onclick') || '').match(/teleportTo\('([^']+)'\)/);
+        if (!m) return;
+        const sec = document.getElementById(m[1]);
+        if (sec && sec.getBoundingClientRect().top <= threshold) {
+            activeIdx = i;
+        }
+    });
+    chips.forEach((c, i) => c.classList.toggle('active', i === activeIdx));
+}
+
+function practiceSectionInBank(secCode) {
+    if (!secCode) return;
+    initExamBank();
+    APP.selectedSections = new Set([secCode]);
+    APP.selectedTerms = new Set(ALL_EXAM_TERMS);
+    APP.status = 'ALL';
+    APP.search = '';
+    APP.page = 1;
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) searchInput.value = '';
+    document.querySelectorAll('.status-pill-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.status === 'ALL');
+    });
+    if (typeof renderSectionChips === 'function') renderSectionChips();
+    if (typeof renderTermChips === 'function') renderTermChips();
+    if (typeof applyFilters === 'function') applyFilters();
+    if (typeof saveFilterState === 'function') saveFilterState();
+    if (typeof renderPracticeView === 'function') renderPracticeView();
+    if (typeof syncFilterDrawerState === 'function') syncFilterDrawerState(true);
+    portalState.exambankScroll = 0;
+    switchTab('exambank');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function gradeQuickCheckOption(qcEl, optEl, correctLetter) {
+    if (!qcEl || !optEl || !correctLetter) return;
+    const opts = Array.from(qcEl.querySelectorAll('.options > div.qc-opt-btn'));
+    const chosenLetter = optEl.dataset.choiceLetter || '';
+    const isRight = chosenLetter === correctLetter;
+    opts.forEach(o => {
+        o.classList.add('qc-locked');
+        o.classList.remove('is-correct', 'is-wrong');
+        if (o.dataset.choiceLetter === correctLetter) {
+            o.classList.add('is-correct');
+        } else if (o === optEl && !isRight) {
+            o.classList.add('is-wrong');
+        }
+    });
+    const details = qcEl.querySelector('details');
+    if (details) details.open = true;
+    let bar = qcEl.querySelector('.qc-status-row');
+    if (!bar) {
+        bar = document.createElement('div');
+        bar.className = 'qc-status-row';
+        bar.innerHTML = '<span class="qc-status-msg"></span><button type="button" class="qc-reset-btn">Reset</button>';
+        const optsWrap = qcEl.querySelector('.options');
+        if (optsWrap && optsWrap.parentNode) {
+            optsWrap.parentNode.insertBefore(bar, optsWrap.nextSibling);
+        }
+        bar.querySelector('.qc-reset-btn').addEventListener('click', () => {
+            opts.forEach(o => o.classList.remove('qc-locked', 'is-correct', 'is-wrong'));
+            if (details) details.open = false;
+            bar.remove();
+        });
+    }
+    const msg = bar.querySelector('.qc-status-msg');
+    if (msg) {
+        msg.className = 'qc-status-msg ' + (isRight ? 'ok' : 'bad');
+        msg.textContent = isRight
+            ? `Correct (${correctLetter}) — nice work.`
+            : `Not quite — correct answer is (${correctLetter}).`;
+    }
+}
+
+function enhanceLessonInteractivity() {
+    if (typeof document.createElement !== 'function') return;
+    // 1. Progressive interactive Quick Checks
+    document.querySelectorAll('.quick-check').forEach(qc => {
+        if (qc.dataset.qcEnhanced === '1') return;
+        const ansEl = qc.querySelector('.quick-check-ans');
+        const ansMatch = ansEl ? (ansEl.textContent || '').match(/\(([A-D])\)/) : null;
+        const correctLetter = ansMatch ? ansMatch[1] : '';
+        if (!correctLetter) return;
+        const opts = Array.from(qc.querySelectorAll('.options > div'));
+        if (opts.length !== 4) return;
+        qc.dataset.qcEnhanced = '1';
+        opts.forEach((opt, idx) => {
+            const m = (opt.textContent || '').trim().match(/^\(([A-D])\)/);
+            opt.dataset.choiceLetter = m ? m[1] : String.fromCharCode(65 + idx);
+            opt.classList.add('qc-opt-btn');
+            opt.setAttribute('role', 'button');
+            opt.setAttribute('tabindex', '0');
+            opt.addEventListener('click', () => gradeQuickCheckOption(qc, opt, correctLetter));
+            opt.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    gradeQuickCheckOption(qc, opt, correctLetter);
+                }
+            });
+        });
+    });
+
+    // 2. Connect each lesson header + footer cleanly to neighboring topics and section Exam Bank Qs
+    for (let i = 1; i <= 10; i++) {
+        const vid = 'v' + i;
+        const page = document.getElementById('page-' + vid);
+        if (!page || page.dataset.navEnhanced === '1') continue;
+        page.dataset.navEnhanced = '1';
+        const info = TOPIC_TO_SECTION[vid];
+        const chipsWrap = page.querySelector('.teleport-chips');
+        if (chipsWrap && info && !chipsWrap.querySelector('.teleport-chip-practice')) {
+            const pChip = document.createElement('button');
+            pChip.type = 'button';
+            pChip.className = 'teleport-chip teleport-chip-practice';
+            pChip.textContent = `Practice ${info.sec} (${info.count} Qs) \u2192`;
+            pChip.onclick = () => practiceSectionInBank(info.sec);
+            chipsWrap.appendChild(pChip);
+        }
+        const stream = page.querySelector('.page-stream');
+        if (stream && !stream.querySelector('.lesson-footer-nav')) {
+            const footer = document.createElement('nav');
+            footer.className = 'lesson-footer-nav';
+            footer.setAttribute('aria-label', 'Lesson Navigation');
+
+            const prevIdx = i > 1 ? i - 1 : null;
+            const nextIdx = i < 10 ? i + 1 : null;
+            const prevBtn = document.createElement('button');
+            prevBtn.type = 'button';
+            prevBtn.className = 'lesson-nav-btn';
+            if (prevIdx) {
+                prevBtn.textContent = `\u2190 ${SHORT_TITLES[prevIdx - 1]}`;
+                prevBtn.onclick = () => { switchTopic('v' + prevIdx); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+            } else {
+                prevBtn.textContent = 'First Topic';
+                prevBtn.disabled = true;
+                prevBtn.style.opacity = '0.45';
+            }
+
+            const midBtn = document.createElement('button');
+            midBtn.type = 'button';
+            midBtn.className = 'lesson-nav-btn lesson-nav-btn-practice';
+            if (info) {
+                midBtn.textContent = `Practice ${info.sec} in Exam Bank (${info.count} Qs)`;
+                midBtn.onclick = () => practiceSectionInBank(info.sec);
+            }
+
+            const nextBtn = document.createElement('button');
+            nextBtn.type = 'button';
+            nextBtn.className = 'lesson-nav-btn';
+            if (nextIdx) {
+                nextBtn.textContent = `${SHORT_TITLES[nextIdx - 1]} \u2192`;
+                nextBtn.onclick = () => { switchTopic('v' + nextIdx); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+            } else {
+                nextBtn.textContent = 'All Topics Complete';
+                nextBtn.disabled = true;
+                nextBtn.style.opacity = '0.45';
+            }
+
+            footer.appendChild(prevBtn);
+            footer.appendChild(midBtn);
+            footer.appendChild(nextBtn);
+            stream.appendChild(footer);
+        }
+    }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     applyPortalTheme(document.documentElement.getAttribute("data-theme") || "light");
@@ -15528,23 +15830,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 portalState.activeTab = (parsed.activeTab && ["notes", "exambank"].includes(parsed.activeTab)) ? parsed.activeTab : "notes";
                 portalState.activeTopic = (parsed.activeTopic && /^v([1-9]|10)$/.test(parsed.activeTopic)) ? parsed.activeTopic : "v1";
                 if (parsed.topicScroll) Object.assign(portalState.topicScroll, parsed.topicScroll);
-                if (parsed.practiceScroll) Object.assign(portalState.practiceScroll, parsed.practiceScroll);
-                if (parsed.videosScroll) portalState.videosScroll = parsed.videosScroll;
             }
         }
     } catch(e) {}
 
-    // 2. Initialize video progress metadata & restore saved video tabs/posters
+    // 2. Initialize video progress metadata, quick checks, and connected topic/bank navigation
     initLessonVideoMetadata();
     loadLocalVideoProgress(getCurrentProfile());
+    enhanceLessonInteractivity();
 
-    // 3. Switch to initial view & render math ONLY for the active topic container (<50ms vs >4000ms)
+    // 3. Switch to initial view & render math ONLY for the active topic container (<35ms)
     switchTopic(portalState.activeTopic || "v1");
     switchTab(portalState.activeTab || "notes");
-
-    // 4. Kick off progressive background idle pre-rendering
-    queueBackgroundMathPrecache();
-    
+    updateActiveTeleportChip();
 });
 
 const KV_BASE = 'https://kvdb.io/Vc3nLuNA8mMdWRX5VSH33j/';
@@ -15809,12 +16107,45 @@ function handleDeviceAuth(e) {
 
 
 
+function syncFilterDrawerState(forceState) {
+    const card = document.getElementById('fxCard');
+    const btn = document.getElementById('btnToggleFilterDrawer');
+    const lbl = document.getElementById('fxDrawerLabel');
+    if (!card) return;
+    let collapsed;
+    if (typeof forceState === 'boolean') {
+        collapsed = forceState;
+    } else if (card.dataset.userToggled === '1') {
+        collapsed = card.classList.contains('filters-collapsed');
+    } else {
+        const isMobile = typeof window !== 'undefined' && window.innerWidth <= 640;
+        const secAll = typeof APP !== 'undefined' && APP.selectedSections && APP.selectedSections.size === ALL_EXAM_SECTIONS.length;
+        const termAll = typeof APP !== 'undefined' && APP.selectedTerms && APP.selectedTerms.size === ALL_EXAM_TERMS.length;
+        collapsed = isMobile && secAll && termAll;
+    }
+    card.classList.toggle('filters-collapsed', collapsed);
+    if (btn) btn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+    if (lbl && typeof APP !== 'undefined') {
+        const sN = APP.selectedSections ? APP.selectedSections.size : 10;
+        const tN = APP.selectedTerms ? APP.selectedTerms.size : 8;
+        lbl.textContent = collapsed ? `Filters (${sN}/${ALL_EXAM_SECTIONS.length} · ${tN}/${ALL_EXAM_TERMS.length})` : 'Hide Filters';
+    }
+}
+
+function toggleFilterDrawer() {
+    const card = document.getElementById('fxCard');
+    if (!card) return;
+    card.dataset.userToggled = '1';
+    syncFilterDrawerState(!card.classList.contains('filters-collapsed'));
+}
+
 let examBankInitialized = false;
 
 function initExamBank() {
     if (!examBankInitialized) {
         initData();
         renderPracticeView();
+        syncFilterDrawerState();
         examBankInitialized = true;
     }
 }
@@ -15904,7 +16235,13 @@ function initExamBank() {
                 switchTab(tabParam.toLowerCase() === 'exams' ? 'exambank' : tabParam.toLowerCase());
             }
             initPaperTheme();
-            initExamBank();
+            const prof = getCurrentProfile();
+            const profLabel = document.getElementById('activeProfileLabel');
+            if (profLabel) profLabel.textContent = prof;
+            fetchCloudProfileData(prof);
+            if (portalState.activeTab === 'exambank') {
+                initExamBank();
+            }
         });
 
         function initData() {
@@ -16155,6 +16492,7 @@ function initExamBank() {
             if (badge) badge.textContent = `${count}/${total}`;
             const allBtn = document.getElementById('presetSecAll');
             if (allBtn) allBtn.classList.toggle('active', count === total);
+            if (typeof syncFilterDrawerState === 'function') syncFilterDrawerState();
         }
 
         function toggleChapterMulti(chap, e) {
