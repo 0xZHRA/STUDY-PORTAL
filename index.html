@@ -9,17 +9,31 @@
 <script>
     /* Theme Initialization: runs before first paint to prevent flashes */
     (function () {
+        var validThemes = {
+            'light': 'light',
+            'paper': 'light',
+            'sepia': 'light',
+            'dark': 'dark',
+            'oled': 'dark',
+            'tokyo-night': 'dark',
+            'gruvbox-dark': 'dark'
+        };
         var t = 'light';
         try {
             var p = new URLSearchParams(window.location.search);
-            var q = p.get('theme') || p.get('paper');
-            if (q === 'dark' || q === 'light') {
-                t = q;
-            } else if (localStorage.getItem('math201_theme') === 'dark' || localStorage.getItem('math201_paper_theme') === 'dark') {
-                t = 'dark';
+            var q = (p.get('theme') || p.get('paper') || '').toLowerCase();
+            var stored = (localStorage.getItem('math201_theme') || localStorage.getItem('math201_paper_theme') || '').toLowerCase();
+            var candidate = q || stored;
+            if (candidate === 'paper') candidate = 'light';
+            if (candidate === 'oled') candidate = 'dark';
+            if (validThemes[candidate]) {
+                t = candidate;
             }
         } catch (e) {}
+        var scheme = validThemes[t] || 'light';
         document.documentElement.setAttribute('data-theme', t);
+        document.documentElement.setAttribute('data-scheme', scheme);
+        document.documentElement.style.colorScheme = scheme;
     })();
     /* Instant Device Auth Gatekeeper Check */
     (function () {
@@ -119,7 +133,9 @@
 }
 
 /* ========================================================
-   REFINED MONOCHROME & EDITORIAL THEME TOKENS
+   5 CURATED POLARITY-AUTHENTIC PORTAL THEMES
+   Daylight: light (Studio Paper), sepia (Warm Parchment)
+   Night:    dark (Carbon OLED), tokyo-night, gruvbox-dark
    ======================================================== */
 :root,
 :root[data-theme="light"],
@@ -153,18 +169,49 @@
     --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.12);
 }
 
+:root[data-theme="sepia"],
+[data-theme="sepia"] {
+    --bg-body: #f3ece0;
+    --bg-card: #faf6ed;
+    --bg-subtle: #eae0ce;
+    --bg-elevated: #fdfaf3;
+    --bg-nav: rgba(243, 236, 224, 0.95);
+    --border-subtle: #dfd3bd;
+    --border-strong: #cbb99d;
+    --border: #dfd3bd;
+    --surface-2: rgba(92, 69, 44, 0.055);
+    --accent: #b45309;
+    --muted: #84705c;
+    --text-primary: #2b2118;
+    --text-secondary: #5c4b3b;
+    --text-muted: #84705c;
+    --accent-primary: #3d2b1f;
+    --accent-fg: #faf6ed;
+    --accent-subtle: #e5d8c3;
+    --border-focus: #9a3412;
+    --status-ok: #2e6f40;
+    --status-ok-bg: rgba(46, 111, 64, 0.09);
+    --status-ok-border: rgba(46, 111, 64, 0.32);
+    --status-err: #9f2c23;
+    --status-err-bg: rgba(159, 44, 35, 0.08);
+    --status-err-border: rgba(159, 44, 35, 0.3);
+    --shadow-sm: 0 1px 3px rgba(61, 43, 31, 0.06);
+    --shadow-md: 0 4px 14px rgba(61, 43, 31, 0.09);
+    --shadow-lg: 0 12px 26px rgba(61, 43, 31, 0.14);
+}
+
 :root[data-theme="dark"],
 [data-theme="dark"] {
-    --bg-body: #0a0a0b;
-    --bg-card: #121214;
-    --bg-subtle: #18181b;
-    --bg-elevated: #1c1c20;
-    --bg-nav: rgba(10, 10, 11, 0.94);
+    --bg-body: #09090b;
+    --bg-card: #121215;
+    --bg-subtle: #18181c;
+    --bg-elevated: #1c1c21;
+    --bg-nav: rgba(9, 9, 11, 0.94);
     --border-subtle: #27272a;
     --border-strong: #3f3f46;
     --border: #27272a;
     --surface-2: rgba(255, 255, 255, 0.045);
-    --accent: #3b82f6;
+    --accent: #60a5fa;
     --muted: #a1a1aa;
     --text-primary: #f4f4f5;
     --text-secondary: #a1a1aa;
@@ -182,6 +229,68 @@
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.25);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
     --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.5);
+}
+
+:root[data-theme="tokyo-night"],
+[data-theme="tokyo-night"] {
+    --bg-body: #1a1b26;
+    --bg-card: #24283b;
+    --bg-subtle: #1f2335;
+    --bg-elevated: #292e42;
+    --bg-nav: rgba(26, 27, 38, 0.95);
+    --border-subtle: #2f3549;
+    --border-strong: #414868;
+    --border: #2f3549;
+    --surface-2: rgba(122, 162, 247, 0.07);
+    --accent: #7aa2f7;
+    --muted: #737aa2;
+    --text-primary: #c0caf5;
+    --text-secondary: #a9b1d6;
+    --text-muted: #737aa2;
+    --accent-primary: #7aa2f7;
+    --accent-fg: #15161e;
+    --accent-subtle: #292e42;
+    --border-focus: #7aa2f7;
+    --status-ok: #9ece6a;
+    --status-ok-bg: rgba(158, 206, 106, 0.11);
+    --status-ok-border: rgba(158, 206, 106, 0.36);
+    --status-err: #f7768e;
+    --status-err-bg: rgba(247, 118, 142, 0.11);
+    --status-err-border: rgba(247, 118, 142, 0.36);
+    --shadow-sm: 0 1px 3px rgba(10, 12, 20, 0.35);
+    --shadow-md: 0 4px 14px rgba(10, 12, 20, 0.45);
+    --shadow-lg: 0 12px 28px rgba(8, 10, 18, 0.6);
+}
+
+:root[data-theme="gruvbox-dark"],
+[data-theme="gruvbox-dark"] {
+    --bg-body: #1d2021;
+    --bg-card: #282828;
+    --bg-subtle: #32302f;
+    --bg-elevated: #3c3836;
+    --bg-nav: rgba(29, 32, 33, 0.95);
+    --border-subtle: #3c3836;
+    --border-strong: #504945;
+    --border: #3c3836;
+    --surface-2: rgba(235, 219, 178, 0.05);
+    --accent: #83a598;
+    --muted: #a89984;
+    --text-primary: #ebdbb2;
+    --text-secondary: #d5c4a1;
+    --text-muted: #a89984;
+    --accent-primary: #fabd2f;
+    --accent-fg: #1d2021;
+    --accent-subtle: #3c3836;
+    --border-focus: #fabd2f;
+    --status-ok: #b8bb26;
+    --status-ok-bg: rgba(184, 187, 38, 0.11);
+    --status-ok-border: rgba(184, 187, 38, 0.36);
+    --status-err: #fb4934;
+    --status-err-bg: rgba(251, 73, 52, 0.11);
+    --status-err-border: rgba(251, 73, 52, 0.36);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
+    --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.6);
 }
 
 body {
@@ -372,10 +481,108 @@ body {
 .btn-theme-toggle svg {
     flex-shrink: 0;
 }
+[data-scheme="light"] .btn-theme-toggle .icon-sun,
 [data-theme="light"] .btn-theme-toggle .icon-sun { display: none; }
+[data-scheme="light"] .btn-theme-toggle .icon-moon,
 [data-theme="light"] .btn-theme-toggle .icon-moon { display: block; }
+[data-scheme="dark"] .btn-theme-toggle .icon-sun,
 [data-theme="dark"] .btn-theme-toggle .icon-sun { display: block; }
+[data-scheme="dark"] .btn-theme-toggle .icon-moon,
 [data-theme="dark"] .btn-theme-toggle .icon-moon { display: none; }
+
+.theme-picker-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+.theme-picker-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    inset-inline-end: 0;
+    min-width: 236px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    padding: 7px;
+    box-shadow: var(--shadow-lg);
+    z-index: 1200;
+    display: none;
+}
+.theme-picker-menu.open {
+    display: block;
+}
+.theme-group-label {
+    font-size: 10.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    padding: 6px 8px 4px;
+}
+.theme-group-divider {
+    height: 1px;
+    background: var(--border-subtle);
+    margin: 5px 6px;
+}
+.theme-opt-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 7px 9px;
+    cursor: pointer;
+    text-align: start;
+    color: var(--text-primary);
+    transition: background 0.14s ease, border-color 0.14s ease;
+}
+.theme-opt-btn:hover {
+    background: var(--bg-subtle);
+}
+.theme-opt-btn.active {
+    background: var(--bg-subtle);
+    border-color: var(--border-strong);
+}
+.theme-swatch-pair {
+    display: inline-flex;
+    width: 24px;
+    height: 16px;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid rgba(128, 128, 128, 0.35);
+    flex-shrink: 0;
+}
+.theme-swatch-pair > span {
+    flex: 1;
+    height: 100%;
+}
+.theme-opt-meta {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1;
+}
+.theme-opt-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+.theme-opt-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.25;
+}
+.theme-opt-check {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--accent, var(--accent-primary));
+    opacity: 0;
+}
+.theme-opt-btn.active .theme-opt-check {
+    opacity: 1;
+}
 
 /* Profile Switch Pill & Modal */
 .btn-profile-pill {
@@ -2241,19 +2448,61 @@ html.auth-passed .auth-gate-screen {
     --paper-red: #c81e1e;
     --paper-amber: #b45309;
 }
+[data-theme="sepia"] {
+    --paper-bg: #f9f4e8;
+    --paper-ink: #261c14;
+    --paper-ink-soft: #665443;
+    --paper-rule: rgba(43, 33, 24, 0.5);
+    --paper-rule-faint: rgba(43, 33, 24, 0.18);
+    --paper-hover: rgba(43, 33, 24, 0.05);
+    --paper-edge: rgba(92, 69, 44, 0.14);
+    --paper-shadow: 0 1px 3px rgba(61, 43, 31, 0.08), 0 8px 24px rgba(61, 43, 31, 0.07);
+    --paper-blue: #9a3412;
+    --paper-green: #2e6f40;
+    --paper-red: #9f2c23;
+    --paper-amber: #b45309;
+}
 [data-theme="dark"] {
-    --paper-bg: #141416;
-    --paper-ink: #e7e5df;
-    --paper-ink-soft: #a29f97;
-    --paper-rule: rgba(231, 229, 223, 0.5);
-    --paper-rule-faint: rgba(231, 229, 223, 0.18);
-    --paper-hover: rgba(231, 229, 223, 0.06);
+    --paper-bg: #121215;
+    --paper-ink: #ececef;
+    --paper-ink-soft: #a1a1aa;
+    --paper-rule: rgba(236, 236, 239, 0.5);
+    --paper-rule-faint: rgba(236, 236, 239, 0.18);
+    --paper-hover: rgba(236, 236, 239, 0.06);
     --paper-edge: rgba(255, 255, 255, 0.08);
     --paper-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.6);
     --paper-blue: #7cb7ff;
     --paper-green: #4ade80;
     --paper-red: #f87171;
     --paper-amber: #fbbf24;
+}
+[data-theme="tokyo-night"] {
+    --paper-bg: #1f2335;
+    --paper-ink: #c0caf5;
+    --paper-ink-soft: #a9b1d6;
+    --paper-rule: rgba(192, 202, 245, 0.45);
+    --paper-rule-faint: rgba(192, 202, 245, 0.16);
+    --paper-hover: rgba(122, 162, 247, 0.08);
+    --paper-edge: rgba(65, 72, 104, 0.45);
+    --paper-shadow: 0 1px 3px rgba(10, 12, 20, 0.45), 0 10px 26px rgba(10, 12, 20, 0.6);
+    --paper-blue: #7aa2f7;
+    --paper-green: #9ece6a;
+    --paper-red: #f7768e;
+    --paper-amber: #e0af68;
+}
+[data-theme="gruvbox-dark"] {
+    --paper-bg: #282828;
+    --paper-ink: #ebdbb2;
+    --paper-ink-soft: #d5c4a1;
+    --paper-rule: rgba(235, 219, 178, 0.45);
+    --paper-rule-faint: rgba(235, 219, 178, 0.16);
+    --paper-hover: rgba(250, 189, 47, 0.07);
+    --paper-edge: rgba(80, 73, 69, 0.6);
+    --paper-shadow: 0 1px 3px rgba(0, 0, 0, 0.45), 0 10px 26px rgba(0, 0, 0, 0.6);
+    --paper-blue: #83a598;
+    --paper-green: #b8bb26;
+    --paper-red: #fb4934;
+    --paper-amber: #fabd2f;
 }
 
 .paper-sheet {
@@ -2462,6 +2711,7 @@ html.auth-passed .auth-gate-screen {
 [dir="rtl"] .share-toast {
     transform: translateX(50%) translateY(20px);
 }
+[data-scheme="light"] .share-toast,
 [data-theme="light"] .share-toast {
     background: #0f172a;
     color: #f8fafc;
@@ -3037,11 +3287,44 @@ div.choice-btn {
                 <button class="tab-btn" id="btnExams" onclick="switchTab('exambank')"><span>Exam Bank</span><span class="exam-bank-badge">107 Qs</span></button>
             </div>
 
-            <button class="btn-theme-toggle" id="btnThemeToggle" onclick="togglePortalTheme()" aria-label="Toggle Theme" title="Toggle Light/Dark Theme">
-                <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                <span class="theme-text" id="themeToggleText">Theme</span>
-            </button>
+            <div class="theme-picker-wrap" id="themePickerWrap">
+                <button type="button" class="btn-theme-toggle" id="btnThemeToggle" onclick="toggleThemeMenu(event)" aria-haspopup="menu" aria-expanded="false" aria-label="Choose Color Theme" title="Choose Color Theme">
+                    <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    <span class="theme-text" id="themeToggleText">Paper</span>
+                    <span style="font-size:10px;opacity:0.7;">&#9662;</span>
+                </button>
+                <div class="theme-picker-menu" id="themePickerMenu" role="menu" aria-label="Color Themes">
+                    <div class="theme-group-label">Daylight</div>
+                    <button type="button" class="theme-opt-btn" data-theme-choice="light" role="menuitemradio" aria-checked="false" onclick="selectPortalTheme('light')">
+                        <span class="theme-swatch-pair"><span style="background:#ffffff"></span><span style="background:#2563eb"></span></span>
+                        <span class="theme-opt-meta"><span class="theme-opt-title">Studio Paper</span><span class="theme-opt-sub">Crisp white textbook</span></span>
+                        <span class="theme-opt-check">&#10003;</span>
+                    </button>
+                    <button type="button" class="theme-opt-btn" data-theme-choice="sepia" role="menuitemradio" aria-checked="false" onclick="selectPortalTheme('sepia')">
+                        <span class="theme-swatch-pair"><span style="background:#f3ece0"></span><span style="background:#b45309"></span></span>
+                        <span class="theme-opt-meta"><span class="theme-opt-title">Warm Parchment</span><span class="theme-opt-sub">Low-glare cream study</span></span>
+                        <span class="theme-opt-check">&#10003;</span>
+                    </button>
+                    <div class="theme-group-divider"></div>
+                    <div class="theme-group-label">Night</div>
+                    <button type="button" class="theme-opt-btn" data-theme-choice="dark" role="menuitemradio" aria-checked="false" onclick="selectPortalTheme('dark')">
+                        <span class="theme-swatch-pair"><span style="background:#09090b"></span><span style="background:#60a5fa"></span></span>
+                        <span class="theme-opt-meta"><span class="theme-opt-title">Carbon OLED</span><span class="theme-opt-sub">Pure deep black</span></span>
+                        <span class="theme-opt-check">&#10003;</span>
+                    </button>
+                    <button type="button" class="theme-opt-btn" data-theme-choice="tokyo-night" role="menuitemradio" aria-checked="false" onclick="selectPortalTheme('tokyo-night')">
+                        <span class="theme-swatch-pair"><span style="background:#1a1b26"></span><span style="background:#7aa2f7"></span></span>
+                        <span class="theme-opt-meta"><span class="theme-opt-title">Tokyo Night</span><span class="theme-opt-sub">Indigo slate &amp; neon ice</span></span>
+                        <span class="theme-opt-check">&#10003;</span>
+                    </button>
+                    <button type="button" class="theme-opt-btn" data-theme-choice="gruvbox-dark" role="menuitemradio" aria-checked="false" onclick="selectPortalTheme('gruvbox-dark')">
+                        <span class="theme-swatch-pair"><span style="background:#282828"></span><span style="background:#fabd2f"></span></span>
+                        <span class="theme-opt-meta"><span class="theme-opt-title">Gruvbox Dark</span><span class="theme-opt-sub">Warm charcoal &amp; ochre</span></span>
+                        <span class="theme-opt-check">&#10003;</span>
+                    </button>
+                </div>
+            </div>
 
             <button class="btn-profile-pill" id="btnProfileSwitch" onclick="openProfileSwitchModal()" aria-label="Switch User Profile" title="Switch User Profile (pass / pine / full)">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -3639,7 +3922,7 @@ div.choice-btn {
 .prior-knowledge-box {
     background: var(--bg-subtle);
     border: 1px solid var(--border-subtle);
-    border-inline-start: 4px solid #3b82f6;
+    border-inline-start: 4px solid var(--accent, #3b82f6);
     border-radius: 10px;
     padding: 16px 20px;
     margin-bottom: 18px;
@@ -3650,9 +3933,8 @@ div.choice-btn {
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #2563eb;
+    color: var(--accent, #2563eb);
 }
-[data-theme="dark"] .prior-knowledge-box h3 { color: #60a5fa; }
 
 .note-diff-line {
     background: rgba(245, 158, 11, 0.09);
@@ -3664,7 +3946,7 @@ div.choice-btn {
     font-size: 13.5px;
     color: var(--text-primary);
 }
-[data-theme="dark"] .note-diff-line { color: #fde68a; }
+[data-scheme="dark"] .note-diff-line { color: #fde68a; }
 
 .svg-figure-card {
     background: var(--bg-subtle);
@@ -3736,11 +4018,10 @@ div.choice-btn {
     cursor: pointer;
     font-size: 13px;
     font-weight: 700;
-    color: #2563eb;
+    color: var(--accent, #2563eb);
     user-select: none;
     padding: 4px 0;
 }
-[data-theme="dark"] .quick-check-details summary { color: #60a5fa; }
 .quick-check-ans {
     margin-top: 8px;
     padding: 10px 14px;
@@ -3826,7 +4107,7 @@ div.choice-btn {
 .lesson .step { margin: 1.1rem 0; padding-left: 1rem;
   border-left: 3px solid var(--accent, #3b82f6); }
 .lesson .answer { margin-top: 1.25rem; padding: .8rem 1.1rem; border-radius: 8px;
-  border: 1px solid #22c55e; background: rgba(34,197,94,.07); }
+  border: 1px solid var(--status-ok-border, #22c55e); background: var(--status-ok-bg, rgba(34,197,94,.07)); }
 
 .katex { white-space: nowrap; }
 .katex-display { margin: 1rem 0 !important; overflow-x: auto; overflow-y: hidden; padding: .25rem 0; }
@@ -3858,22 +4139,22 @@ div.choice-btn {
 .lv-tab-prog {
   display: inline-block; margin-inline-start: 6px; padding: 1px 6px;
   border-radius: 9999px; font-size: 10.5px; font-weight: 700;
-  background: rgba(37, 99, 235, 0.14); color: #2563eb;
+  background: var(--surface-2, rgba(37, 99, 235, 0.14)); color: var(--accent, #2563eb);
 }
-[data-theme="dark"] .lv-tab-prog {
-  background: rgba(96, 165, 250, 0.18); color: #93c5fd;
+[data-scheme="dark"] .lv-tab-prog {
+  background: rgba(255, 255, 255, 0.08); color: var(--accent, #93c5fd);
 }
 .lv-tab-btn.active .lv-tab-prog {
-  background: rgba(255, 255, 255, 0.22); color: #ffffff;
+  background: rgba(128, 128, 128, 0.24); color: var(--accent-fg);
 }
 .lv-tab-prog.is-done {
-  background: rgba(34, 197, 94, 0.18); color: #15803d;
+  background: var(--status-ok-bg, rgba(34, 197, 94, 0.18)); color: var(--status-ok, #15803d);
 }
-[data-theme="dark"] .lv-tab-prog.is-done {
-  background: rgba(34, 197, 94, 0.22); color: #4ade80;
+[data-scheme="dark"] .lv-tab-prog.is-done {
+  background: var(--status-ok-bg, rgba(34, 197, 94, 0.22)); color: var(--status-ok, #4ade80);
 }
 .lv-tab-btn.active .lv-tab-prog.is-done {
-  background: rgba(34, 197, 94, 0.35); color: #ffffff;
+  background: rgba(34, 197, 94, 0.32); color: var(--accent-fg);
 }
 </style>
 
@@ -15155,30 +15436,86 @@ function queueBackgroundMathPrecache() {
     }
 }
 
+const PORTAL_THEMES = {
+    'light':        { label: 'Studio Paper',   shortLabel: 'Paper',       scheme: 'light' },
+    'sepia':        { label: 'Warm Parchment', shortLabel: 'Parchment',   scheme: 'light' },
+    'dark':         { label: 'Carbon OLED',    shortLabel: 'OLED',        scheme: 'dark'  },
+    'tokyo-night':  { label: 'Tokyo Night',    shortLabel: 'Tokyo Night', scheme: 'dark'  },
+    'gruvbox-dark': { label: 'Gruvbox Dark',   shortLabel: 'Gruvbox',     scheme: 'dark'  }
+};
+
+function normalizePortalTheme(theme) {
+    let t = String(theme || 'light').trim().toLowerCase();
+    if (t === 'paper') t = 'light';
+    if (t === 'oled') t = 'dark';
+    return PORTAL_THEMES[t] ? t : 'light';
+}
+
 function applyPortalTheme(theme) {
-    const dark = (theme === 'dark');
-    const val = dark ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', val);
+    const t = normalizePortalTheme(theme);
+    const meta = PORTAL_THEMES[t];
+    document.documentElement.setAttribute('data-theme', t);
+    document.documentElement.setAttribute('data-scheme', meta.scheme);
+    document.documentElement.style.colorScheme = meta.scheme;
     const btn = document.getElementById('btnThemeToggle');
     if (btn) {
-        btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
-        btn.title = dark ? 'Switch to Light Theme' : 'Switch to Dark Theme';
+        btn.setAttribute('aria-pressed', meta.scheme === 'dark' ? 'true' : 'false');
+        btn.title = 'Theme: ' + meta.label + ' (click to switch)';
     }
     const label = document.getElementById('themeToggleText');
     if (label) {
-        label.textContent = dark ? 'Dark' : 'Light';
+        label.textContent = meta.shortLabel;
     }
+    document.querySelectorAll('.theme-opt-btn').forEach(opt => {
+        const isAct = (opt.getAttribute('data-theme-choice') === t);
+        opt.classList.toggle('active', isAct);
+        opt.setAttribute('aria-checked', isAct ? 'true' : 'false');
+    });
 }
 
-function togglePortalTheme() {
-    const current = document.documentElement.getAttribute('data-theme') || 'light';
-    const next = (current === 'dark') ? 'light' : 'dark';
-    applyPortalTheme(next);
-    try {
-        localStorage.setItem('math201_theme', next);
-        localStorage.setItem('math201_paper_theme', next);
-    } catch(e) {}
+function closeThemeMenu() {
+    const menu = document.getElementById('themePickerMenu');
+    const btn = document.getElementById('btnThemeToggle');
+    if (menu) menu.classList.remove('open');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
 }
+
+function toggleThemeMenu(e) {
+    if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
+    const menu = document.getElementById('themePickerMenu');
+    const btn = document.getElementById('btnThemeToggle');
+    if (!menu) return;
+    const willOpen = !menu.classList.contains('open');
+    menu.classList.toggle('open', willOpen);
+    if (btn) btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+}
+
+function selectPortalTheme(theme) {
+    const t = normalizePortalTheme(theme);
+    applyPortalTheme(t);
+    try {
+        localStorage.setItem('math201_theme', t);
+        localStorage.setItem('math201_paper_theme', t);
+    } catch (e) {}
+    closeThemeMenu();
+}
+
+function togglePortalTheme(e) {
+    toggleThemeMenu(e);
+}
+
+document.addEventListener('click', (e) => {
+    const wrap = document.getElementById('themePickerWrap');
+    if (wrap && !wrap.contains(e.target)) {
+        closeThemeMenu();
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeThemeMenu();
+    }
+});
 
 document.addEventListener("DOMContentLoaded", () => {
     applyPortalTheme(document.documentElement.getAttribute("data-theme") || "light");
